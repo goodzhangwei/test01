@@ -139,7 +139,9 @@
                           :playsinline="true"
                           :options="playerOptions"
                           @pause="onPlayerPause($event)"
-                          @play="onPlayerPlay($event)">
+                          @play="onPlayerPlay($event)"
+                          @timeupdate="onPlayerTimeupdate($event)"
+                          @ready="playerReadied">
             </video-player>
           </div>
         </el-main>
@@ -450,11 +452,11 @@ export default {
     },
     videoRules () {
       var _this = this
-      var diff = 3000, // 未操作触发间隔
-        firstTime = new Date().getTime(),
-        lastTime = new Date().getTime(),
-        indulge = false, // 阀门
-        viewNub = 1
+      var diff = 3000 // 未操作触发间隔
+      var firstTime = new Date().getTime()
+      var lastTime = new Date().getTime()
+      var indulge = false // 阀门
+      var viewNub = 1
       // 启动
       var switchTime = setInterval(anm, 5000)
       // 停止
@@ -462,7 +464,7 @@ export default {
         indulge = true
         clearInterval(switchTime)
         firstTime = new Date().getTime()
-        console.log('moving')
+        // console.log('moving')
       })
       // 再启动
       setInterval(function () {
@@ -486,12 +488,56 @@ export default {
     onPlayerPlay (player) {
       console.log('player play!', player)
     },
+    onPlayerTimeupdate (player) {
+      console.log('fefefef')
+      this.stopDrag(player)
+    },
+    playerReadied (player) {
+      // seek to 10s
+      console.log('example player 1 readied', player)
+      player.currentTime(10)
+      console.log(player.currentTime(10))
+      // console.log('example 01: the player is readied', player)
+    },
     onPause () {
       this.player.pause()
     },
     onPlay () {
       this.player.play()
-    }
+    },
+    stopDrag(videoPlayer) {
+      var isDrag = false
+
+      var oldTime=0,newTime=0,maxTime=0;
+      if(!isDrag) {
+        var isMousedown = false;
+        videoPlayer.on('pause', function() {
+          if(isMousedown == false) {
+            oldTime = videoPlayer.currentTime();
+          }
+        });
+        videoPlayer.on('play', function() {
+          isMousedown = false;
+          newTime = videoPlayer.currentTime();
+          if(newTime < maxTime) {
+            videoPlayer.currentTime(newTime);
+          } else {
+            videoPlayer.currentTime(oldTime);
+          };
+        });
+        $(".vjs-progress-holder").mousedown(function() {
+          isMousedown = true;
+          oldTime = videoPlayer.getCache().currentTime;
+          console.log('fewfgsss')
+        });
+        videoPlayer.on('timeupdate', function() {
+          if(videoPlayer.currentTime() > maxTime && !isMousedown) {
+            maxTime = videoPlayer.currentTime();
+          }
+        });
+      }
+
+    },
   }
 }
 </script>

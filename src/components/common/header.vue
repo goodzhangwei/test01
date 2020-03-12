@@ -53,7 +53,11 @@ export default {
     },
     gotoHomepage () {
       this.$router.push('/')
-    }
+    },
+    gotoCompetition: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/codingCompetition')
+    },
   }
 }
 </script>

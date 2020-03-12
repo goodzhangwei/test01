@@ -8,7 +8,7 @@
 <script>
 export default {
   name: 'App',
-  mounted() {
+  mounted () {
     this.$router.afterEach((to, from, next) => {
       window.scrollTo(0, 0)
     })

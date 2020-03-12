@@ -1,24 +1,25 @@
 <template>
   <div class="app-container">
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="../../assets/new.png">
-        </div>
-        <div class="navbar">
-          <ul>
-            <li @click="gotoHome"><span>首页</span></li>
-            <li><span>全部课程</span></li>
-            <li @click="gotoCompetition"><span>编程比赛</span></li>
-          </ul>
-        </div>
-        <div class="personal">
-          <user-setting-popover></user-setting-popover>
-          <!--          <el-button @click="gotonima">点我跳</el-button>-->
-          <!--          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
-        </div>
-      </nav>
-    </header>
+    <Header></Header>
+    <!--<header>-->
+      <!--<nav>-->
+        <!--<div class="logo">-->
+          <!--<img src="../../assets/new.png">-->
+        <!--</div>-->
+        <!--<div class="navbar">-->
+          <!--<ul>-->
+            <!--<li @click="gotoHome"><span>首页</span></li>-->
+            <!--<li><span>全部课程</span></li>-->
+            <!--<li @click="gotoCompetition"><span>编程比赛</span></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="personal">-->
+          <!--<user-setting-popover></user-setting-popover>-->
+          <!--&lt;!&ndash;          <el-button @click="gotonima">点我跳</el-button>&ndash;&gt;-->
+          <!--&lt;!&ndash;          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>&ndash;&gt;-->
+        <!--</div>-->
+      <!--</nav>-->
+    <!--</header>-->
     <div class="main_content contaier">
       <div class="class-content">
         <div style="margin-bottom: 20px">
@@ -74,10 +75,11 @@
 </template>
 
 <script>
+  import Header from '@/components/common/header'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
   name: 'index',
-  components: { userSettingPopover },
+  components: { userSettingPopover, Header },
   data () {
     return {
       value1: '5'
