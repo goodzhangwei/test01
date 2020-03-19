@@ -92,7 +92,8 @@
                   <el-menu-item-group>
                     <!--                    <template slot="title">分组一</template>-->
                     <el-menu-item v-for="(item2, index2) in item.children" :key="index2" :index="index+ '-' + index2" @click="openVideo(item2)">
-                      <i class=" iconfont ymq-iconyunhang"></i>
+                      <i class=" iconfont ymq-iconyunhang" v-show="item2.ptype === '1'"></i>
+                      <i class=" iconfont ymq-iconDOC" v-show="item2.ptype !== '1'"></i>
                       <span slot="title">{{item2.pname}}</span>
                     </el-menu-item>
                   </el-menu-item-group>
@@ -134,15 +135,19 @@
                 <span>{{class_title_1}}</span>
               </div>
             </div>
-            <video-player class="video-player vjs-custom-skin"
-                          ref="videoPlayer"
-                          :playsinline="true"
-                          :options="playerOptions"
-                          @pause="onPlayerPause($event)"
-                          @play="onPlayerPlay($event)"
-                          @timeupdate="onPlayerTimeupdate($event)"
-                          @ready="playerReadied">
-            </video-player>
+            <div @contextmenu.prevent="disPlayer">
+              <video-player class="video-player vjs-custom-skin"
+                            ref="videoPlayer"
+                            id="video"
+                            :playsinline="true"
+                            :options="playerOptions"
+                            @pause="onPlayerPause($event)"
+                            @play="onPlayerPlay($event)"
+                            @timeupdate="onPlayerTimeupdate($event)"
+                            @ready="playerReadied">
+              </video-player>
+            </div>
+
           </div>
         </el-main>
       </el-container>
@@ -372,7 +377,7 @@ export default {
       textarea: '',
       playerOptions: {
         // 播放速度
-        // playbackRates: [0.5, 1.0, 1.5, 2.0],
+        playbackRates: [0.5, 1, 1.5, 2],
         // 如果true,浏览器准备好时开始回放。
         autoplay: false,
         // 默认情况下将会消除任何音频。
@@ -409,7 +414,10 @@ export default {
       class_header: '',
       list: [],
       class_title_1: '',
-      open_list: []
+      open_list: [],
+      teachPlanId: '',
+      videoState: '',
+      src: ''
 
     }
   },
@@ -419,8 +427,12 @@ export default {
     // })
   },
   mounted () {
-    this.videoRules()
     this.getList()
+    setTimeout(() => {
+      this.videoRulesState()
+      // this.captureImage()
+    }, 200)
+
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -435,8 +447,12 @@ export default {
       var url = 'http://58.119.112.14:11030/cms/course/courseview/' + this.class_id
       this.$axios.get(url).then((res) => {
         this.list = res.data.teachplanNode.children
-        this.playerOptions.sources[0].src = res.data.teachplanNode.children[0].children[0].mediaUrl
+        this.teachPlanId = res.data.teachplanNode.children[0].children[0].id
+        this.getStatue()
+        console.log(this.teachPlanId)
+        // this.playerOptions.sources[0].src = res.data.teachplanNode.children[0].children[0].mediaUrl
         this.class_header = res.data.courseBase.name
+        this.playerOptions.poster = res.data.coursePic.pic
         this.class_title_1 = res.data.teachplanNode.children[0].children[0].pname
         for (var i = 0; i < res.data.teachplanNode.children.length; i++) {
           list.push(i)
@@ -445,14 +461,56 @@ export default {
         // console.log('sfefef' + this.playerOptions.sources[0].src)
       })
     },
+    getStatue () {
+      var url = 'http://58.119.112.14:11030/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
+      this.$axios.get(url).then((res) => {
+        this.videoState = res.data
+        if (res.data === 1) {
+          this.playerOptions.notSupportedMessage = '暂未开播'
+        } else {
+          this.playerOptions.sources[0].src = this.list[0].children[0].mediaUrl
+        }
+      })
+    },
     openVideo (item) {
-      this.playerOptions.sources[0].src = item.mediaUrl
-      this.class_title_1 = item.pname
-      console.log('vegggr' + this.playerOptions.sources[0].src)
+      if (item.ptype === '1') {
+        var url = 'http://58.119.112.14:11030/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
+        this.$axios.get(url).then((res) => {
+          this.videoState = res.data
+          if (res.data === 1) {
+            this.playerOptions.notSupportedMessage = '暂未开播'
+            this.playerOptions.sources[0].src = ''
+          } else if (res.data === 2) {
+            this.playerOptions.sources[0].src = item.mediaUrl
+            this.playerOptions.playbackRates = []
+            this.videoRules()
+          } else if (res.data === 3) {
+            this.playerOptions.sources[0].src = item.mediaUrl
+            this.playerOptions.playbackRates = [0.5, 1, 1.5, 2]
+          }
+        })
+        this.class_title_1 = item.pname
+        console.log('vegggr' + this.playerOptions.sources[0].src)
+        setTimeout(() => {
+          this.onPlay()
+        }, 200)
+
+      } else if (item.ptype === '2') {
+        window.open(item.mediaUrl )
+      }
+
+    },
+    videoRulesState () {
+      if (this.videoState === 2) {
+       this.playerOptions.playbackRates = []
+        this.videoRules()
+      } else if (this.videoState === 3) {
+        this.playerOptions.playbackRates = [0.5, 1, 1.5, 2]
+      }
     },
     videoRules () {
       var _this = this
-      var diff = 3000 // 未操作触发间隔
+      var diff = 3600000 // 未操作触发间隔
       var firstTime = new Date().getTime()
       var lastTime = new Date().getTime()
       var indulge = false // 阀门
@@ -480,6 +538,8 @@ export default {
         console.log('触发视频暂停')
         _this.onPause()
       }
+      console.log('www' + _this.videoState)
+
     },
     onPlayerPause (player) {
       // player.pause()
@@ -490,13 +550,18 @@ export default {
     },
     onPlayerTimeupdate (player) {
       console.log('fefefef')
-      this.stopDrag(player)
+      if (this.videoState === 2) {
+        this.stopDrag(player)
+      } else if (this.videoState === 3) {
+
+      }
+
     },
     playerReadied (player) {
       // seek to 10s
       console.log('example player 1 readied', player)
-      player.currentTime(10)
-      console.log(player.currentTime(10))
+      // player.currentTime(10)
+      // console.log(player.currentTime(10))
       // console.log('example 01: the player is readied', player)
     },
     onPause () {
@@ -504,6 +569,9 @@ export default {
     },
     onPlay () {
       this.player.play()
+    },
+    disPlayer () {
+      console.log('禁止鼠标右键默认行为')
     },
     stopDrag(videoPlayer) {
       var isDrag = false
@@ -537,7 +605,7 @@ export default {
         });
       }
 
-    },
+    }
   }
 }
 </script>

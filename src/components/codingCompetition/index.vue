@@ -1,23 +1,6 @@
 <template>
   <div class="app_container">
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="../../assets/new.png">
-        </div>
-        <div class="navbar">
-          <ul>
-            <li @click="gotoHomePage"><span>首页</span></li>
-            <li @click="gotoAllclasses"><span>全部课程</span></li>
-            <li><span>编程比赛</span></li>
-          </ul>
-        </div>
-        <div class="personal">
-<!--          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
-          <user-setting-popover></user-setting-popover>
-        </div>
-      </nav>
-    </header>
+    <Header></Header>
     <div class="contaier">
       <el-container>
         <el-aside width="25%">
@@ -122,9 +105,10 @@
 
 <script>
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
+import Header from '@/components/common/header'
 export default {
   name: 'index',
-  components: { userSettingPopover },
+  components: { userSettingPopover, Header },
   data () {
     return {
     }

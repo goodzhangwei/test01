@@ -1,23 +1,6 @@
 <template>
   <div class="app_container">
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="../../assets/new.png">
-        </div>
-        <div class="navbar">
-          <ul>
-            <li @click="gotoHomePage"><span>首页</span></li>
-            <li><span>全部课程</span></li>
-            <li @click="gotoCompetition"><span>编程比赛</span></li>
-          </ul>
-        </div>
-        <div class="personal">
-          <!--          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
-          <user-setting-popover></user-setting-popover>
-        </div>
-      </nav>
-    </header>
+    <Header></Header>
     <div class="contaier">
       <el-container>
         <el-aside width="25%">
@@ -26,7 +9,7 @@
               <img src="../../assets/touxiang.jpg" style="width: 80px;height: 80px;border-radius: 50%">
             </div>
             <div style="margin-top: 30px">
-              <span>杨启航</span>
+              <span>{{username}}</span>
             </div>
           </div>
           <div class="left_container">
@@ -64,19 +47,20 @@
         </el-main>
       </el-container>
     </div>
-    <div class="copyrightContainer">
-      <span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>
-    </div>
+    <Footer style="margin-top: 50px"></Footer>
   </div>
 </template>
 
 <script>
+  import Header from '@/components/common/header'
+  import Footer from '@/components/common/footer'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
   name: 'index',
-  components: { userSettingPopover },
+  components: { userSettingPopover, Header, Footer },
   data () {
     return {
+      username: localStorage.getItem('name')
     }
   },
   methods: {

@@ -1,23 +1,6 @@
 <template>
   <div class="app-container">
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="../../assets/new.png">
-        </div>
-        <div class="navbar">
-          <ul>
-            <li @click="gotoHomePage"><span>首页</span></li>
-            <li><span>全部课程</span></li>
-            <li @click="gotoCompetition"><span>编程比赛</span></li>
-          </ul>
-        </div>
-        <div class="personal">
-          <user-setting-popover></user-setting-popover>
-<!--          <a href="#" style="text-decoration:none;color: black"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
-        </div>
-      </nav>
-    </header>
+    <Header></Header>
     <div class="course_head">
       <div class="contaier">
         <el-row>
@@ -177,10 +160,11 @@
 </template>
 
 <script>
+  import Header from '@/components/common/header'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
   name: 'index',
-  components: { userSettingPopover },
+  components: { userSettingPopover, Header },
   data () {
     return {
       isShow: true

@@ -30,7 +30,13 @@
         </div>
       </div>
       <div class="personal" slot="reference" >
-        <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">{{name}}</a>
+        <a href="#">
+          <img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">
+          <span style="display: block;float: right;">
+            {{name}}
+          </span>
+
+        </a>
       </div>
 <!--      <i class="el-icon-s-custom" slot="reference"></i>-->
 <!--      <span slot="reference">杨启航</span>-->

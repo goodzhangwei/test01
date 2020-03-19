@@ -86,10 +86,10 @@
                   </el-col>
                 </el-row>
               </el-form-item>
-              <el-radio-group v-model="radio">
-                <el-radio :label="2">学生</el-radio>
-                <el-radio :label="1">老师</el-radio>
-              </el-radio-group>
+              <!--<el-radio-group v-model="radio">-->
+                <!--<el-radio :label="2">学生</el-radio>-->
+                <!--<el-radio :label="1">老师</el-radio>-->
+              <!--</el-radio-group>-->
               <el-button type="primary" style="width: 200px" size="large" @click="userregister('ruleForm2')">注册</el-button>
             </div>
           </el-form>
@@ -144,7 +144,7 @@ export default {
         username: '',
         password: ''
       },
-      radio: '',
+      radio: '2',
       showpassword: true,
       ruleForm2: {
         username: '',

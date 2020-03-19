@@ -14,7 +14,7 @@
               <span style="color: #9397a2">姓名：</span>
             </el-col>
             <el-col :span="4">
-              <span>YQH</span>
+              <span>{{username}}</span>
             </el-col>
             <el-col :span="4">
               <span style="color: #9397a2">性别：</span>
@@ -124,7 +124,12 @@
 
 <script>
 export default {
-  name: 'personalInformation'
+  name: 'personalInformation',
+  data () {
+    return {
+      username: localStorage.getItem('name')
+    }
+  }
 }
 </script>
 

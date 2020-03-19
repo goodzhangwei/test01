@@ -31,43 +31,43 @@
             <ul>
               <li>
                 <p class="p-word">
-                  前沿 / 区块链 / 人工智能
+                  Python智能编程
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  前端 / 小程序 / JS
+                  Python少儿趣味编程
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  后端 / JAVA / Python
+                  StarT项目
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  移动 / Android / iOS
+                  博弈算法大赛
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  云计算 / 大数据 / 容器
+                  信息奥赛课程
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  运维 / 测试 / 数据库
+                  在线课堂
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
               <li>
                 <p class="p-word">
-                  UI设计 / 3D动画 / 游戏
+                  直播大讲堂
                   <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
                 </p>
               </li>
@@ -91,7 +91,7 @@
     <div style="background-color: white;padding-top: 20px;  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)">
       <div class="content_two">
         <div>
-          <span class="word_two">零基础就业</span>
+          <span class="word_two">科技讲堂</span>
           &nbsp;&nbsp;
           <span class="word_three">从入门到具备1年开发经验</span>
         </div>
@@ -146,7 +146,7 @@
       </div>
       <div class="content_two">
         <div>
-          <span class="word_two">职场提升</span>
+          <span class="word_two">职场认知体验</span>
           &nbsp;&nbsp;
           <span class="word_three">一年以上开发经验系统成长</span>
         </div>
@@ -180,13 +180,13 @@
               <span>推荐</span>
             </div>
           </div>
-          <div class="list3-img1" @click="goToCourseIndex">
+          <div class="list3-img1 list3-img">
             <div class="img1-icon">
               <el-tag size="mini">python</el-tag>
               <el-tag size="mini">算法</el-tag>
             </div>
           </div>
-          <div class="list3-word" @click="goToCourseIndex">
+          <div class="list3-word">
             <span>python计算思维实践基础课 适合零基础的同学</span>
           </div>
           <div class="list3-icon-word">
@@ -365,6 +365,7 @@
 
 
 
+
     <!--<div class="recom-products contaier" style="margin-top: 400px">-->
       <!--<div class="recom-hd">-->
         <!--<h4>推荐课程</h4>-->
@@ -534,6 +535,198 @@
         </el-row>
       </div>
     </div>
+    <div class="content_two" style="margin-top: 80px;margin-bottom: 450px">
+      <div>
+        <span class="word_two">热门直播</span>
+      </div>
+      <div class="list3">
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img11" @click="goToCourseIndex">
+            <div class="img1-icon">
+              <el-tag size="mini">数据分析&挖掘</el-tag>
+              <el-tag size="mini">算法与数据结构</el-tag>
+            </div>
+          </div>
+          <div class="list3-word" @click="goToCourseIndex">
+            <span>玩转算法系列--数据结构精讲 更适合0算法基础入门到进阶（java版）</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img21">
+            <div class="img1-icon">
+              <el-tag size="mini">JavaScript</el-tag>
+              <!--<el-tag size="mini">C++</el-tag>-->
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>抓紧面试前的宝贵时间 快速搞定前端JavaScript面试</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img51">
+            <div class="img1-icon">
+              <el-tag size="mini">SpringBoot</el-tag>
+              <el-tag size="mini">SSM</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>Java主流技术栈SSM+SpringBoot商铺系统</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img31">
+            <div class="img1-icon">
+              <el-tag size="mini">Node.js</el-tag>
+              <el-tag size="mini">Vue.js</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>Vue Element+Node.js开发企业通用管理后台系统</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+      </div>
+      <div class="list3" style="margin-top: 30px">
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img41">
+            <div class="img1-icon">
+              <el-tag size="mini">Python</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>全面系统Python3.8入门+进阶 (程序员必备第二语言)</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img61">
+            <div class="img1-icon">
+              <el-tag size="mini">Node.js</el-tag>
+              <el-tag size="mini">React.js</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>TypeScript 系统入门到项目实战 趁早学习提高职场竞争力</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img71">
+            <div class="img1-icon">
+              <el-tag size="mini">Go</el-tag>
+              <el-tag size="mini">爬虫</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>Google资深工程师深度讲解Go语言</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+        <div class="list3-div">
+          <div class="icon-list">
+            <div class="icon-list-content">
+              <span>直播</span>
+            </div>
+          </div>
+          <div class="list3-img1 list3-img81">
+            <div class="img1-icon">
+              <el-tag size="mini">JavaScript</el-tag>
+              <el-tag size="mini">小程序</el-tag>
+            </div>
+          </div>
+          <div class="list3-word">
+            <span>纯正商业级应用-微信小程序开发实战</span>
+          </div>
+          <div class="list3-icon-word">
+            <span>中级</span>
+            &nbsp;&nbsp;
+            <i class="el-icon-user"></i>
+            <span>456</span>
+            <span style="float: right">13人评价</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <div class="copyrightContainer">
@@ -551,7 +744,7 @@ export default {
     return {
       value1: '5',
       navBarFixed: false,
-      schna: ['http://img.mukewang.com/5e6842050001ea7d16000652.jpg', 'http://img.mukewang.com/5e683f0e00018d4218720764.jpg', 'http://img.mukewang.com/5e683f6f00012ec118720764.jpg'],
+      schna: [ 'http://58.119.112.12/CCZX_image/photoseven.jpg','http://58.119.112.12/CCZX_image/photofive.jpg','http://58.119.112.12/CCZX_image/photonine.jpg','http://58.119.112.12/CCZX_image/photosix.jpg', 'http://58.119.112.12/CCZX_image/photoone.jpg','http://58.119.112.12/CCZX_image/phototwo.jpg','http://img.mukewang.com/5e6842050001ea7d16000652.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
@@ -1047,10 +1240,36 @@ export default {
   .list3-div:hover .list3-word {
     color: red;
   }
+  .list3-img {
+    background-image: url("http://img3.sycdn.imooc.com/szimg/5e3cfea008e9a61b06000338-360-202.jpg");
+  }
+  .list3-img11 {
+    background-image: url("http://img3.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg");
+  }
+  .list3-img21 {
+    background-image: url("http://img3.mukewang.com/szimg/5dbffa9109ef425a12000676-360-202.png");
+  }
+  .list3-img51 {
+    background-image: url("http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg");
+  }
+  .list3-img31 {
+    background-image: url("http://img3.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png");
+  }
+  .list3-img41 {
+    background-image: url("http://img1.mukewang.com/szimg/59b8a486000107fb05400300-360-202.jpg");
+  }
+  .list3-img61 {
+    background-image: url("http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg");
+  }
+  .list3-img71 {
+    background-image: url("http://img2.mukewang.com/szimg/5a7127370001a8fa05400300-360-202.jpg");
+  }
+  .list3-img81 {
+    background-image: url("http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg");
+  }
   .list3-img1 {
     height: 150px;
     width: 100%;
-    background-image: url("http://img3.sycdn.imooc.com/szimg/5e3cfea008e9a61b06000338-360-202.jpg");
     background-size: 100% 100%;
     border-radius: 10px;
     position: relative;

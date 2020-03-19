@@ -2,8 +2,16 @@
   <div>
     <header>
       <nav>
+
         <div class="logo">
-          <img src="../../assets/new.png">
+          <div style="float: left">
+            <i class="iconfont ymq-iconQ" style="font-size: 35px;color: #16bcb4;font-weight: bolder;line-height: 40px"></i>
+          </div>
+          <div style="float: left;width: 150px">
+            <img src="../../assets/image1.png">
+            <div style="font-size: 10px;color: #16bcb4;font-weight: bolder;letter-spacing: 2px;">智慧编程 · 青程倾心</div>
+          </div>
+
         </div>
         <div class="navbar">
           <ul>
@@ -31,7 +39,8 @@ export default {
   components: { userSettingPopover, Logout },
   data () {
     return {
-      flag_login: '未登录'
+      flag_login: '未登录',
+      flag_state: true,
     }
   },
   props: {
@@ -39,6 +48,11 @@ export default {
   },
   created () {
     this.flag_login = localStorage.getItem('flag_class')
+    if (localStorage.getItem('flag_class') === null) {
+      this.flag_state = true
+    } else {
+      this.flag_state = false
+    }
   },
   mounted () {
   },
@@ -48,8 +62,14 @@ export default {
       this.$router.push('/coursestudy')
     },
     gotoAllclasses: function () {
+      if (this.flag_state === true) {
+        alert('请先登录！')
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/allclasses')
+      }
       console.log('我要跳转界面了')
-      this.$router.push('/allclasses')
+
     },
     gotoHomepage () {
       this.$router.push('/')
@@ -64,42 +84,43 @@ export default {
 
 <style scoped>
   header{
-    height: 100px;
+    height: 70px;
     background-color: white;
     overflow: hidden;
   }
   nav {
     width: 1400px;
-    height: 60px;
+    height: 40px;
     background-color: white;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .logo {
     float: left;
     margin-left: 5%;
+    width: 200px;
+    text-align: center;
   }
   .navbar {
     float: left;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     margin-left: 100px;
   }
   .navbar li {
     float: left;
     list-style-type: none;
     margin-left: 150px;
-    height: 60px;
+    height: 40px;
     cursor: pointer;
   }
   .logo img {
-    height: 50px;
-    width: 150px;
+    height: 35px;
   }
   .navbar li span {
     padding:0 8px;
     /*border-bottom: 1px solid red ;*/
-    height: 60px;
+    height: 40px;
     display: block;
     cursor: pointer;
   }
@@ -109,8 +130,8 @@ export default {
   }
   .personal {
     float: right;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     margin-right: 15px;
   }
 </style>
