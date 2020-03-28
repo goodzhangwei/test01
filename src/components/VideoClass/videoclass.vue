@@ -143,6 +143,7 @@
                             :options="playerOptions"
                             @pause="onPlayerPause($event)"
                             @play="onPlayerPlay($event)"
+                            @ended="onPlayerEnded($event)"
                             @timeupdate="onPlayerTimeupdate($event)"
                             @ready="playerReadied">
               </video-player>
@@ -417,22 +418,49 @@ export default {
       open_list: [],
       teachPlanId: '',
       videoState: '',
-      src: ''
-
+      src: '',
+      oldTime: 0,
+      newTime: 0,
+      maxTimes: 0,
+      maxTimess: 0,
+      isMousedown: false,
+      isMousedown2: true,
+      TimeList: []
     }
   },
   created () {
     // this.$router.afterEach((to, from, next) => {
     //   window.scrollTo(0, 0)
     // })
+    // window.addEventListener('beforeunload', this.updateHandler())
   },
   mounted () {
+    // localStorage.setItem('time', this.player.currentTime())
+    console.log(localStorage.getItem('time'))
+
     this.getList()
     setTimeout(() => {
       this.videoRulesState()
       // this.captureImage()
     }, 200)
+    // window.onbeforeunload = function () {
+    //   // localStorage.setItem('time', this.player.currentTime())
+    //   console.log('当前')
+    //   // console.log(this.player.currentTime())
+    // }
+  },
+  beforeDestroy () {
+    localStorage.setItem('time', this.player.currentTime())
+    console.log(this.player.currentTime())
 
+    // localStorage.setItem('tim', '销毁')
+    // console.log('销毁')
+    // this.beforeunloadFn()
+  },
+  destroyed () {
+    // console.log('销毁之后')
+
+    // window.removeEventListener('beforeunload', this.updateHandler())
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -440,6 +468,14 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
+    },
+    updateHandler() {
+      this.beforeunloadFn()
+    },
+    beforeunloadFn() {
+      console.log('刷新或关闭')
+      localStorage.setItem('time', this.player.currentTime())
+      console.log(localStorage.getItem('time'))
     },
     getList () {
       var list = []
@@ -473,6 +509,7 @@ export default {
       })
     },
     openVideo (item) {
+      this.TimeList = []
       if (item.ptype === '1') {
         var url = 'http://58.119.112.14:11030/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
         this.$axios.get(url).then((res) => {
@@ -481,6 +518,10 @@ export default {
             this.playerOptions.notSupportedMessage = '暂未开播'
             this.playerOptions.sources[0].src = ''
           } else if (res.data === 2) {
+            this.oldTime = 0
+            this.newTime = 0
+            this.maxTimes = 0
+            this.isMousedown = false
             this.playerOptions.sources[0].src = item.mediaUrl
             this.playerOptions.playbackRates = []
             this.videoRules()
@@ -548,8 +589,14 @@ export default {
     onPlayerPlay (player) {
       console.log('player play!', player)
     },
+    onPlayerEnded (player) {
+      console.log('视频播放完成')
+    },
     onPlayerTimeupdate (player) {
-      console.log('fefefef')
+      // console.log('fefefef')
+      // localStorage.setItem('time', player.currentTime())
+
+      // console.log(this.TimeList)
       if (this.videoState === 2) {
         this.stopDrag(player)
       } else if (this.videoState === 3) {
@@ -560,7 +607,7 @@ export default {
     playerReadied (player) {
       // seek to 10s
       console.log('example player 1 readied', player)
-      // player.currentTime(10)
+      // this.maxTimes = 3600
       // console.log(player.currentTime(10))
       // console.log('example 01: the player is readied', player)
     },
@@ -574,35 +621,74 @@ export default {
       console.log('禁止鼠标右键默认行为')
     },
     stopDrag(videoPlayer) {
+      var _this = this
       var isDrag = false
+      _this.TimeList.push(videoPlayer.currentTime())
+      // console.log(_this.TimeList)
+      // console.log(videoPlayer.currentTime())
 
-      var oldTime=0,newTime=0,maxTime=0;
+
+      // var oldTime=0,newTime=0,maxTime=0;
       if(!isDrag) {
-        var isMousedown = false;
+        // var isMousedown = false;
         videoPlayer.on('pause', function() {
-          if(isMousedown == false) {
-            oldTime = videoPlayer.currentTime();
+          _this.isMousedown = false
+          // _this.isMousedown2 = false
+          if(_this.isMousedown === false) {
+            _this.oldTime = videoPlayer.currentTime()
+            console.log('oldTime' + _this.oldTime)
+            // console.log(_this.TimeList[_this.TimeList.length-2])
+            if (_this.TimeList[_this.TimeList.length-2] < _this.TimeList[_this.TimeList.length-1])  {
+              _this.maxTimes = _this.TimeList[_this.TimeList.length-2]
+            } else {
+              _this.maxTimes = _this.TimeList[_this.TimeList.length-1]
+            }
+
           }
         });
         videoPlayer.on('play', function() {
-          isMousedown = false;
-          newTime = videoPlayer.currentTime();
-          if(newTime < maxTime) {
-            videoPlayer.currentTime(newTime);
+
+          _this.isMousedown = true;
+          // _this.isMousedown2 = true
+          _this.newTime = videoPlayer.currentTime();
+          // _this.oldTime = localStorage.getItem('time');
+          // _this.maxTimes = localStorage.getItem('time')
+          console.log('newTime' + _this.newTime)
+          // console.log('oldTime' + _this.oldTime)
+          if(_this.newTime < _this.oldTime) {
+            videoPlayer.currentTime(_this.newTime);
+            // _this.maxTimes = videoPlayer.currentTime()
+            console.log('maxTimes1', _this.maxTimes)
+          } else if (_this.newTime > _this.oldTime) {
+            videoPlayer.currentTime(_this.oldTime);
+            // _this.maxTimes = videoPlayer.currentTime()
+            console.log('maxTimes2', _this.maxTimes)
           } else {
-            videoPlayer.currentTime(oldTime);
-          };
-        });
-        $(".vjs-progress-holder").mousedown(function() {
-          isMousedown = true;
-          oldTime = videoPlayer.getCache().currentTime;
-          console.log('fewfgsss')
-        });
-        videoPlayer.on('timeupdate', function() {
-          if(videoPlayer.currentTime() > maxTime && !isMousedown) {
-            maxTime = videoPlayer.currentTime();
+            // _this.maxTimes = _this.maxTimess
+            videoPlayer.currentTime(_this.maxTimes);
+            console.log('fffweeee')
+            console.log(_this.maxTimes)
+            // console.log(_this.TimeList[_this.TimeList.length-4])
+            _this.TimeList = []
+
           }
         });
+        // videoPlayer.on('timeupdate', function() {
+        //   if(videoPlayer.currentTime() > _this.maxTimes && _this.isMousedown === true) {
+        //     _this.maxTimes = videoPlayer.currentTime();
+        //     console.log('_this.maxTimes' + _this.maxTimes)
+        //   }
+        // });
+        // $(".vjs-progress-holder").mousedown(function() {
+        //   _this.isMousedown = true;
+        //   _this.oldTime = videoPlayer.getCache().currentTime;
+        //   console.log('fewfgsss')
+        // });
+        // videoPlayer.on('timeupdate', function() {
+        //   if(videoPlayer.currentTime() > _this.maxTimes && !isMousedown) {
+        //     _this.maxTimes = videoPlayer.currentTime();
+        //   }
+        // });
       }
 
     }

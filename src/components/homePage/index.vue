@@ -762,6 +762,15 @@ export default {
       this.flag_state = false
     }
   },
+  computed: {
+    username (){
+      if (localStorage.getItem('name') === null) {
+        return 'ceshi'
+      } else {
+        return localStorage.getItem('name')
+      }
+    }
+  },
   mounted () {
     window.addEventListener('scroll', this.watchScroll)
     this.setBannerH()
@@ -836,7 +845,8 @@ export default {
       }
     },
     getList () {
-      var url = 'http://58.119.112.14:11030/cms/user/coursePub/list/1/8'
+      // var url = 'http://58.119.112.14:11030/cms/user/coursePub/list/1/8'
+      var url = 'http://58.119.112.14:11030/cms/user/coursePub/mylist/1/10?username=' + this.username
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
       })
