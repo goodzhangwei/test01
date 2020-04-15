@@ -91,46 +91,46 @@
     <div style="background-color: white;padding-top: 20px;  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)">
       <div class="content_two">
         <div>
-          <span class="word_two">科技讲堂</span>
+          <span class="word_two">科普大讲堂</span>
           &nbsp;&nbsp;
-          <span class="word_three">从入门到具备1年开发经验</span>
+          <!--<span class="word_three">从入门到具备1年开发经验</span>-->
         </div>
         <div class="list">
           <div class="list-div">
             <div class="two-img">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583746754019&di=87a96de6dbb1c15aeb9fb58262c0075b&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F1ddd0ba969765d5ac99eff9724c7edfc3ae9113e.jpg" width="100%" height="100%">
+              <img src="http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg" width="100%" height="100%">
             </div>
             <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">Web前端攻城狮</p>
-              <p style="font-size: 12px;margin-top: 5px">从未接触过编程也可以学好</p>
+              <p style="font-weight: bolder">AI&机器人</p>
+              <p style="font-size: 12px;margin-top: 5px">从未接触过编程的爱好者</p>
             </div>
 
           </div>
           <div class="list-div">
             <div class="two-img">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583746953606&di=de13f4da64ce993696c9bf69a8872e34&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20130806%2F20130806213317-1513026654.jpg" width="100%" height="100%">
+              <img src="http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg" width="100%" height="100%">
             </div>
             <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">Java攻城狮</p>
-              <p style="font-size: 12px;margin-top: 5px">综合就业排名第一</p>
+              <p style="font-weight: bolder">自然语言处理</p>
+              <p style="font-size: 12px;margin-top: 5px">人工智能和语言学领域的分支学科</p>
             </div>
           </div>
           <div class="list-div">
             <div class="two-img">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583745690435&di=f542eeac313371a27dea2867331da874&imgtype=0&src=http%3A%2F%2Fseo-1255598498.file.myqcloud.com%2Ffull%2F390fb338950d8d12f0b16b960fc61d020b1af3a6.jpg" width="100%" height="100%">
+              <img src="http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg" width="100%" height="100%">
             </div>
             <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">Python攻城狮</p>
+              <p style="font-weight: bolder">机器学习</p>
               <p style="font-size: 12px;margin-top: 5px">应用领域最为广泛</p>
             </div>
           </div>
           <div class="list-div">
             <div class="two-img">
-              <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4129739275,1462830792&fm=26&gp=0.jpg" width="100%" height="100%">
+              <img src="http://img2.sycdn.imooc.com/szimg/5e4644f609ffdfa312000676-360-202.png" width="100%" height="100%">
             </div>
             <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">Android攻城狮</p>
-              <p style="font-size: 12px;margin-top: 5px">移动市场份额第一</p>
+              <p style="font-weight: bolder">深度学习</p>
+              <p style="font-size: 12px;margin-top: 5px">人工智能新方向</p>
             </div>
           </div>
           <div class="list-div">
@@ -138,8 +138,8 @@
               <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729506782,1707648579&fm=11&gp=0.jpg" width="100%" height="100%">
             </div>
             <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">PHP工程师</p>
-              <p style="font-size: 12px;margin-top: 5px">web开发首选语言</p>
+              <p style="font-weight: bolder">前端开发</p>
+              <p style="font-size: 12px;margin-top: 5px">web开发首选</p>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@
         <div>
           <span class="word_two">职场认知体验</span>
           &nbsp;&nbsp;
-          <span class="word_three">一年以上开发经验系统成长</span>
+          <!--<span class="word_three">一年以上开发经验系统成长</span>-->
         </div>
         <div class="list2">
           <div class="list2-div list2-img1">
@@ -171,11 +171,11 @@
 
     <div class="content_two" style="margin-top: 40px;margin-bottom: 450px">
       <div>
-        <span class="word_two">推荐课程</span>
+        <span class="word_two">系列课程</span>
       </div>
       <div class="list3">
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -221,7 +221,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -244,7 +244,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -269,7 +269,7 @@
       </div>
       <div class="list3" style="margin-top: 30px">
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -292,7 +292,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -315,7 +315,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -338,7 +338,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>推荐</span>
             </div>
@@ -535,13 +535,45 @@
         </el-row>
       </div>
     </div>
-    <div class="content_two" style="margin-top: 80px;margin-bottom: 450px">
+    <div class="content_twos" v-show="LiveList.length !== 0">
       <div>
         <span class="word_two">热门直播</span>
       </div>
+      <el-row>
+        <el-col :span="6" class="col_div" v-for="(item, index) in LiveList" :key="index">
+          <div class="list4-div">
+            <div class="icon-lists">
+              <div class="icon-list-content">
+                <span>直播</span>
+              </div>
+            </div>
+            <div class="list3-img1 list3-img11" @click="goToLive(item)">
+              <div class="img1-icon">
+                <el-tag size="mini">数据分析&挖掘</el-tag>
+                <el-tag size="mini">算法与数据结构</el-tag>
+              </div>
+            </div>
+            <div class="list4-word" @click="goToLive(item)">
+              <span>{{item.schoolname}}</span>
+            </div>
+            <div class="list3-icon-word">
+              <span>中级</span>
+              &nbsp;&nbsp;
+              <i class="el-icon-user"></i>
+              <span>456</span>
+              <span style="float: right">13人评价</span>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="content_two" style="margin-top: 80px;margin-bottom: 450px">
+      <div>
+        <span class="word_two">实践项目</span>
+      </div>
       <div class="list3">
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -564,12 +596,12 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
           </div>
-          <div class="list3-img1 list3-img21">
+          <div class="list3-img1 list3-img21" @click="gotoVideoLive">
             <div class="img1-icon">
               <el-tag size="mini">JavaScript</el-tag>
               <!--<el-tag size="mini">C++</el-tag>-->
@@ -587,7 +619,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -610,7 +642,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -635,7 +667,7 @@
       </div>
       <div class="list3" style="margin-top: 30px">
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -657,7 +689,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -680,7 +712,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -703,7 +735,7 @@
           </div>
         </div>
         <div class="list3-div">
-          <div class="icon-list">
+          <div class="icon-lists">
             <div class="icon-list-content">
               <span>直播</span>
             </div>
@@ -729,6 +761,7 @@
     </div>
 
 
+
     <div class="copyrightContainer">
       <span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>
     </div>
@@ -744,14 +777,15 @@ export default {
     return {
       value1: '5',
       navBarFixed: false,
-      schna: [ 'http://58.119.112.12/CCZX_image/photoseven.jpg','http://58.119.112.12/CCZX_image/photofive.jpg','http://58.119.112.12/CCZX_image/photonine.jpg','http://58.119.112.12/CCZX_image/photosix.jpg', 'http://58.119.112.12/CCZX_image/photoone.jpg','http://58.119.112.12/CCZX_image/phototwo.jpg','http://img.mukewang.com/5e6842050001ea7d16000652.jpg'],
+      schna: [ 'http://58.119.112.12/CCZX_image/banner123.jpg','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
       list: [],
       flag_class: '未登录',
       flag_state: true,
-      bannerStyle: 'background-banner'
+      bannerStyle: 'background-banner',
+      LiveList: []
 
     }
   },
@@ -778,6 +812,7 @@ export default {
       this.setBannerH()
     }, false)
     this.getList()
+    this.getLive()
     // console.log(this.$route.query.flag_class)
     // if (this.$route.query.flag_class === undefined) {
     //
@@ -827,6 +862,14 @@ export default {
         this.$router.push('/coursestudy')
       }
     },
+    gotoVideoLive () {
+      if (this.flag_state === true) {
+        alert('请先登录！')
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/VideoLive')
+      }
+    },
     gotoAllclasses: function () {
       if (this.flag_state === true) {
         alert('请先登录！')
@@ -845,8 +888,8 @@ export default {
       }
     },
     getList () {
-      // var url = 'http://58.119.112.14:11030/cms/user/coursePub/list/1/8'
-      var url = 'http://58.119.112.14:11030/cms/user/coursePub/mylist/1/10?username=' + this.username
+      // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
+      var url = 'http://58.119.112.14:11020/cms/user/coursePub/mylist/1/10?username=' + this.username
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
       })
@@ -880,6 +923,35 @@ export default {
         this.bannerStyle = 'background-banner1'
       } else if (data === 2) {
         this.bannerStyle = 'background-banner2'
+      }
+    },
+    getLive() {
+      var url = 'http://58.119.112.14:11030/cms/video/getVideos?username=' + this.username
+      this.$axios.get(url).then((res) => {
+        if (res.data.queryResult.total === 0) {
+          this.LiveList = []
+        } else {
+          this.LiveList = res.data.queryResult.list
+        }
+      })
+    },
+    goToLive(item) {
+      if (this.flag_state === true) {
+        alert('请先登录！')
+        this.$router.push('/login')
+      } else {
+        var url = 'http://58.119.112.14:11030/cms/video/pullVideo?username=' + item.username
+        this.$axios.get(url).then((res) => {
+          if (res.data.code === undefined) {
+            this.$router.push({
+              query: { username: item.username},
+              path: '/VideoLive'
+            })
+          } else  {
+            alert('暂未开播')
+          }
+        })
+
       }
     }
   }
@@ -1169,6 +1241,16 @@ export default {
     height: 200px;
     margin: 0 auto;
   }
+  .content_twos {
+    width: 1150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    margin-top: 80px;margin-bottom: 120px
+  }
+  .col_div {
+    margin-top: 20px;
+  }
   .word_two {
     color: black;font-size: 24px;font-weight: bolder
   }
@@ -1247,6 +1329,14 @@ export default {
     cursor: pointer;
     position: relative;
   }
+  .list4-div {
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+  }
+  .list4-div:hover .list4-word {
+    color: red;
+  }
   .list3-div:hover .list3-word {
     color: red;
   }
@@ -1311,6 +1401,12 @@ export default {
     margin-left: 10px;
     transition: all 0.4s;
   }
+  .list4-word {
+    margin-top: 10px;
+    font-weight: bolder;
+    margin-left: 10px;
+    transition: all 0.4s;
+  }
   .list3-icon-word {
     margin-left: 10px;
     font-size: 12px;
@@ -1323,7 +1419,7 @@ export default {
     position: absolute;
     left: 5%;
   }
-  .icon-list {
+  .icon-lists {
     width: 40px;
     height: 20px;
     background-color: white;

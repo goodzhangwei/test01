@@ -24,13 +24,17 @@ export default {
   /*text-align: center;*/
   /*color: #2c3e50;*/
   /*margin-top: 60px;*/
+  width: 100%;
+  height: 100%;
 }
   * {
     margin: 0;
     padding: 0;
   }
-  body {
+html,body {
     background-color: #f7f7fb;
+    width:100%;
+    height: 100%;
   }
 
 </style>

@@ -11,6 +11,7 @@
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
         <span @click="gotoupdate" v-show="role === '1'">上传课程</span>
+        <span @click="gotolive" v-show="role === '1'">我要直播</span>
         <el-divider style="padding-top: 10px"></el-divider>
         <div class="function_item">
           <div class="functionLogo">
@@ -41,6 +42,16 @@
 <!--      <i class="el-icon-s-custom" slot="reference"></i>-->
 <!--      <span slot="reference">杨启航</span>-->
     </el-popover>
+    <el-dialog
+      title="直播推流地址"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <span>{{LiveUrl}}</span>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" data-clipboard-action="copy" class="cobyOrderSn" :data-clipboard-text='LiveUrl' @click="copyUrl" >复制URL</el-button>
+          </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -50,7 +61,9 @@ export default {
   data () {
     return {
       role: '',
-      name: ''
+      name: '',
+      LiveUrl: '',
+      dialogVisible: false
     }
   },
   created () {
@@ -75,8 +88,28 @@ export default {
       this.$router.push('/userSetting/personalInformation')
     },
     gotoupdate () {
-      var url = 'http://58.119.112.14:11030/cms/#/course/list?username=' + this.name
+      var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + this.name
       window.open(url)
+    },
+    gotolive () {
+      var url = 'http://58.119.112.14:11020/cms/video/pushVideo?username=' + this.name
+      this.$axios.get(url).then((res) => {
+       this.LiveUrl = res.data
+        this.dialogVisible = true
+      })
+    },
+    copyUrl () {
+      let _this = this;
+      let clipboard = new this.clipboard(".cobyOrderSn");
+      clipboard.on('success', function () {
+        _this.dialogVisible = false
+        _this.$message.success('复制成功')
+        clipboard.destroyed()
+      })
+      clipboard.on('error', function () {
+        _this.$message.error('复制失败')
+      })
+      clipboard.destroyed()
     },
     logout () {
       localStorage.clear()

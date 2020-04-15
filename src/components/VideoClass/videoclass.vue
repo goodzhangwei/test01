@@ -238,15 +238,7 @@
           </el-menu>
         </el-aside>
         <el-main style="padding: 0;padding-left: 40px;padding-right: 40px">
-          <el-card style="height: 250px;padding-right: 40px;padding-left: 40px">
-            <el-input
-              type="text"
-              placeholder="请输入标题"
-              v-model="text"
-              maxlength="20"
-              show-word-limit
-            >
-            </el-input>
+          <el-card style="height: 200px;padding-right: 40px;padding-left: 40px">
             <el-input
               type="textarea"
               placeholder="请输入内容"
@@ -257,100 +249,163 @@
             >
             </el-input>
             <div style="width: 100%;margin-top: 20px">
-              <el-button type="primary" plain>图片</el-button>
-              <el-button type="info" plain :disabled="true" style="float: right">发布帖子</el-button>
+              <!--<el-button type="primary" plain>图片</el-button>-->
+              <el-button type="primary" :disabled="textarea===''" style="float: right" @click="submit_content">发表评论</el-button>
             </div>
           </el-card>
           <div class="line_style">
-            <div style="margin-top: 20px">
-              <span>{{'#' + class_header + '---' + class_title_1}}</span>
-            </div>
-            <div class="video_text">
-              <div class="video_img">
-                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="height: 100%;width: 100%;border-radius: 5px">
-                <i class="el-icon-video-play" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-size: 40px"></i>
-              </div>
-              <div style="float: left;line-height: 100px;margin-left: 20px">
-                <span><i class="iconfont ymq-iconyunhang"></i>{{class_title_1}}</span>
-              </div>
-            </div>
-            <div style="float: right;margin-top: 10px">
-              <i class="iconfont ymq-iconlike"></i>
-              <span>0</span>
-              <span> | </span>
-              <i class="el-icon-chat-dot-square"></i>
-              <span>1</span>
-            </div>
-            <div style="margin-top: 20px">
-              <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-              <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                <span>课程老师</span>
-                <span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>
-              </div>
-            </div>
-            <div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">
-              <img src="http://image.biaobaiju.com/uploads/20180803/23/1533308847-sJINRfclxg.jpeg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-              <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                <span>展梦</span>
-              </div>
-              <div style="margin-top: 10px">
-                <div style="font-size: 12px;float: left;margin-left: 40px">
-                  <span>什么是函数？</span>
-                  <div>
-                    <span style="font-size: 12px;color: grey">2020-02-11/11:30</span>
+            <!--<div style="margin-top: 20px">-->
+              <!--<span>{{'#' + class_header + '-&#45;&#45;' + class_title_1}}</span>-->
+            <!--</div>-->
+            <!--<div class="video_text">-->
+              <!--<div class="video_img">-->
+                <!--<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="height: 100%;width: 100%;border-radius: 5px">-->
+                <!--<i class="el-icon-video-play" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-size: 40px"></i>-->
+              <!--</div>-->
+              <!--<div style="float: left;line-height: 100px;margin-left: 20px">-->
+                <!--<span><i class="iconfont ymq-iconyunhang"></i>{{class_title_1}}</span>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div style="float: right;margin-top: 10px">-->
+              <!--<i class="iconfont ymq-iconlike"></i>-->
+              <!--<span>0</span>-->
+              <!--<span> | </span>-->
+              <!--<i class="el-icon-chat-dot-square"></i>-->
+              <!--<span>1</span>-->
+            <!--</div>-->
+            <div style="margin-top: 30px;border-top: 1px solid #C1C1C1;padding-top: 20px;padding-bottom: 20px" v-for="(item, index) in content_list" :key="index">
+              <div>
+                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
+                <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
+                  <span style="font-size: 12px">{{item.username}}</span>
+                  <!--<span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+                </div>
+                <div style="margin-top: 10px;margin-left: 30px">
+                  <span>
+                    {{item.info}}
+                  </span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                  <span>{{item.createtime | timestampToTime}}</span>
+                  <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>10
+                  <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>3
+                  <span style="margin-left: 20px;cursor: pointer" @click="showText2(index)">回复</span>
+                  <div style="margin-top: 10px" v-show="showIndex === index">
+                    <el-input
+                      type="textarea"
+                      placeholder="请输入内容"
+                      v-model="textarea2"
+                      maxlength="30"
+                      :autosize="{ minRows: 4, maxRows: 4}"
+                      show-word-limit
+                    >
+                    </el-input>
+                    <div style="width: 100%;margin-top: 20px">
+                      <!--<el-button type="primary" plain>图片</el-button>-->
+                      <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply(item)">发表评论</el-button>
+                    </div>
                   </div>
                 </div>
-                <div style="float: right;font-size: 12px">
-                  <i class="iconfont ymq-iconlike"></i>
-                  <span>0</span>
-                  <span> | </span>
-                  <i class="el-icon-chat-dot-square"></i>
-                  <span>1</span>
+              </div>
+              <div style="margin-left: 30px;margin-top: 10px" v-for="(item2, index2) in item.takeInfos" :key="index2">
+                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
+                <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
+                  <span style="font-size: 12px">{{item2.username}}</span>
+                  <span>回复</span>
+                  <span style="color: #3a8ee6">{{'@' + item2.askuser}}</span>
+                  <span style="margin-left: 40px">
+                    {{item2.ask}}
+                  </span>
                 </div>
-              </div>
-            </div>
-            <div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">
-              <img src="http://pic4.zhimg.com/50/v2-8f994b17abb6299eb65084b505b9872f_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-              <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                <span>yjn345</span>
-              </div>
-              <div style="margin-top: 10px">
-                <div style="font-size: 12px;float: left;margin-left: 40px">
-                  <span>函数的形参与实参是什么意思？</span>
-                  <div>
-                    <span style="font-size: 12px;color: grey">2020-02-11/11:30</span>
+                <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                  <span>{{item2.createtime | timestampToTime}}</span>
+                  <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>23
+                  <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>5
+                  <span style="margin-left: 20px" @click="showText3(item2)">回复</span>
+                  <div style="margin-top: 10px" v-show="showIndex2 === item2">
+                    <el-input
+                      type="textarea"
+                      placeholder="请输入内容"
+                      v-model="textarea2"
+                      maxlength="30"
+                      :autosize="{ minRows: 4, maxRows: 4}"
+                      show-word-limit
+                    >
+                    </el-input>
+                    <div style="width: 100%;margin-top: 20px">
+                      <!--<el-button type="primary" plain>图片</el-button>-->
+                      <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply2(item2, item.takeid)">发表评论</el-button>
+                    </div>
                   </div>
                 </div>
-                <div style="float: right;font-size: 12px">
-                  <i class="iconfont ymq-iconlike"></i>
-                  <span>0</span>
-                  <span> | </span>
-                  <i class="el-icon-chat-dot-square"></i>
-                  <span>1</span>
-                </div>
               </div>
             </div>
-            <div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">
-              <img src="http://pic1.zhimg.com/50/v2-0d9c0088606a09bedb29e91c1aca4893_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-              <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                <span>云风</span>
-              </div>
-              <div style="margin-top: 10px">
-                <div style="font-size: 12px;float: left;margin-left: 40px">
-                  <span>数据结构怎么这么难？</span>
-                  <div>
-                    <span style="font-size: 12px;color: grey">2020-02-11/11:30</span>
-                  </div>
-                </div>
-                <div style="float: right;font-size: 12px">
-                  <i class="iconfont ymq-iconlike"></i>
-                  <span>0</span>
-                  <span> | </span>
-                  <i class="el-icon-chat-dot-square"></i>
-                  <span>1</span>
-                </div>
-              </div>
-            </div>
+            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--<div>-->
+                <!--<img src="http://image.biaobaiju.com/uploads/20180803/23/1533308847-sJINRfclxg.jpeg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
+                <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
+                  <!--<span>展梦</span>-->
+                <!--</div>-->
+                <!--<div style="margin-top: 10px">-->
+                  <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+                    <!--<span>什么是函数？</span>-->
+                    <!--<div>-->
+                      <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div style="float: right;font-size: 12px">-->
+                    <!--<i class="iconfont ymq-iconlike"></i>-->
+                    <!--<span>0</span>-->
+                    <!--<span> | </span>-->
+                    <!--<i class="el-icon-chat-dot-square"></i>-->
+                    <!--<span>1</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+            <!--</div>-->
+            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--<img src="http://pic4.zhimg.com/50/v2-8f994b17abb6299eb65084b505b9872f_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
+              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
+                <!--<span>yjn345</span>-->
+              <!--</div>-->
+              <!--<div style="margin-top: 10px">-->
+                <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+                  <!--<span>函数的形参与实参是什么意思？</span>-->
+                  <!--<div>-->
+                    <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div style="float: right;font-size: 12px">-->
+                  <!--<i class="iconfont ymq-iconlike"></i>-->
+                  <!--<span>0</span>-->
+                  <!--<span> | </span>-->
+                  <!--<i class="el-icon-chat-dot-square"></i>-->
+                  <!--<span>1</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--<img src="http://pic1.zhimg.com/50/v2-0d9c0088606a09bedb29e91c1aca4893_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
+              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
+                <!--<span>云风</span>-->
+              <!--</div>-->
+              <!--<div style="margin-top: 10px">-->
+                <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+                  <!--<span>数据结构怎么这么难？</span>-->
+                  <!--<div>-->
+                    <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div style="float: right;font-size: 12px">-->
+                  <!--<i class="iconfont ymq-iconlike"></i>-->
+                  <!--<span>0</span>-->
+                  <!--<span> | </span>-->
+                  <!--<i class="el-icon-chat-dot-square"></i>-->
+                  <!--<span>1</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
           </div>
         </el-main>
       </el-container>
@@ -425,7 +480,15 @@ export default {
       maxTimess: 0,
       isMousedown: false,
       isMousedown2: true,
-      TimeList: []
+      TimeList: [],
+      courseIdFirst: '',
+      username: '',
+      content_list: [],
+      textarea2: '',
+      showreply: false,
+      showreply2: false,
+      showIndex: -1,
+      showIndex2: ''
     }
   },
   created () {
@@ -437,8 +500,10 @@ export default {
   mounted () {
     // localStorage.setItem('time', this.player.currentTime())
     console.log(localStorage.getItem('time'))
+    this.username = localStorage.getItem('name')
 
     this.getList()
+    this.getContent()
     setTimeout(() => {
       this.videoRulesState()
       // this.captureImage()
@@ -462,6 +527,24 @@ export default {
 
     // window.removeEventListener('beforeunload', this.updateHandler())
   },
+  filters: {
+    timestampToTime: function (timestamp) {
+      var date = ''
+      if (timestamp.toString().length === 10) {
+        date = new Date(timestamp * 1000)
+      } else {
+        date = new Date(timestamp)
+      }
+      // var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+      var Y = date.getFullYear() + '-';
+      var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+      var D = date.getDate() + ' ';
+      var h = date.getHours() + ':';
+      var m = date.getMinutes() + ':';
+      var s = date.getSeconds();
+      return Y+M+D+h+m+s;
+    }
+  },
   methods: {
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
@@ -480,7 +563,7 @@ export default {
     getList () {
       var list = []
       this.class_id = this.$route.query.class_id
-      var url = 'http://58.119.112.14:11030/cms/course/courseview/' + this.class_id
+      var url = 'http://58.119.112.14:11020/cms/course/courseview/' + this.class_id
       this.$axios.get(url).then((res) => {
         this.list = res.data.teachplanNode.children
         this.teachPlanId = res.data.teachplanNode.children[0].children[0].id
@@ -498,7 +581,7 @@ export default {
       })
     },
     getStatue () {
-      var url = 'http://58.119.112.14:11030/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
+      var url = 'http://58.119.112.14:11020/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
         this.videoState = res.data
         if (res.data === 1) {
@@ -511,7 +594,7 @@ export default {
     openVideo (item) {
       this.TimeList = []
       if (item.ptype === '1') {
-        var url = 'http://58.119.112.14:11030/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
+        var url = 'http://58.119.112.14:11020/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
         this.$axios.get(url).then((res) => {
           this.videoState = res.data
           if (res.data === 1) {
@@ -689,8 +772,77 @@ export default {
         //     _this.maxTimes = videoPlayer.currentTime();
         //   }
         // });
+
       }
 
+    },
+    getContent() {
+      this.courseIdFirst = this.$route.query.class_id
+      var url = 'http://58.119.112.14:11020/cms/take/findList?courseId=' + this.$route.query.class_id
+      this.$axios.get(url).then((res) => {
+        this.content_list = res.data.queryResult.list
+      })
+    },
+    submit_content() {
+      var url = 'http://58.119.112.14:11030/cms/take/publicTake?courseId=' + this.courseIdFirst + '&username=' + this.username + '&info=' + this.textarea
+      this.$axios.get(url).then((res) => {
+        if (res.data.success === true) {
+          this.$message.success('发表成功！')
+          this.textarea = ''
+          this.getContent()
+        }
+      })
+    },
+    submit_reply(item) {
+      var url = 'http://58.119.112.14:11030/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' + item.takeid
+      this.$axios.get(url).then((res) => {
+        if (res.data.success === true) {
+          this.$message.success('发表成功！')
+          this.textarea2 = ''
+          this.showIndex = -1
+          this.showIndex2 = ''
+          this.getContent()
+        }
+      })
+    },
+    submit_reply2(item, takeid) {
+      var url = 'http://58.119.112.14:11030/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' +  takeid
+      this.$axios.get(url).then((res) => {
+        if (res.data.success === true) {
+          this.$message.success('发表成功！')
+          this.textarea2 = ''
+          this.showIndex = -1
+          this.showIndex2 = ''
+          this.getContent()
+        }
+      })
+    },
+    showText2 (index) {
+      // this.showreply = !this.showreply
+      // if (this.showIndex === -1) {
+      //   this.showIndex = index
+      // } else {
+      //   this.showIndex = -1
+      // }
+      if (this.showIndex === index) {
+        this.showIndex = -1
+        this.showIndex2 = ''
+      } else  {
+        this.showIndex2 = ''
+        this.showIndex = index
+      }
+
+
+    },
+    showText3 (item) {
+      // this.showreply2 = !this.showreply2
+      if (this.showIndex2 === item) {
+        this.showIndex2 = ''
+        this.showIndex = -1
+      } else {
+        this.showIndex2 = item
+        this.showIndex = -1
+      }
     }
   }
 }
@@ -730,8 +882,8 @@ export default {
   }
   .line_style {
     /*height: 380px;*/
-    border-bottom: 1px #C1C1C1 solid;
-    border-top: 1px #C1C1C1 solid;
+    /*border-bottom: 1px #C1C1C1 solid;*/
+    /*border-top: 1px #C1C1C1 solid;*/
     margin-top: 50px;
   }
   .video_text {

@@ -1,0 +1,329 @@
+<template>
+  <div class="container_live">
+    <div style="background-color: rgba(255, 255, 255, 0.9);position: fixed;width: 100%;z-index: 999" v-if="navBarFixed">
+      <Header class="header"></Header>
+    </div>
+    <Header class="header">
+    </Header>
+    <div class="video_container">
+      <el-row :gutter="20">
+        <el-col :span="18">
+          <div class="video_cantainer_style">
+            <div class="video_header">
+              <div style="position: absolute;top: 50%;transform: translateY(-50%)">
+                <div class="img_header">
+                  <img src="http://imgsrc.baidu.com/forum/w=580/sign=a9714efaaf86c91708035231f93c70c6/ddd3ab59d109b3dea0394e6ac4bf6c81810a4c48.jpg" style="border-radius: 50%;text-align: center;" width="100%">
+                </div>
+                <div class="video_header_title">
+                  <div>
+                    <el-tag effect="plain" size="mini">
+                      直播
+                    </el-tag>
+                    <span style="margin-left: 10px">直播测试</span>
+                    <i class="iconfont ymq-iconteam icon_video">
+                      <span style="font-size: 12px;margin-left: 5px">5637</span>
+                    </i>
+                    <i class="iconfont ymq-iconshare1 icon_video">
+                      <span style="font-size: 12px;margin-left: 5px">分享</span>
+                    </i>
+                    <i class="iconfont ymq-iconjubao icon_video">
+                      <span style="font-size: 12px;margin-left: 5px">举报</span>
+                    </i>
+                  </div>
+                  <div style="margin-top: 20px;margin-left: 5px;">
+                    <svg t="1586586185896" class="icon" style="width: 20px;height: 20px" viewBox="0 0 1127 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="237236" width="200" height="200"><path d="M893.415774 1024H231.63386a101.90667 101.90667 0 0 1-101.906669-101.90667v-499.342682a101.90667 101.90667 0 0 1 101.906669-101.90667h661.781914a101.90667 101.90667 0 0 1 101.90667 101.90667v499.342682a101.90667 101.90667 0 0 1-101.90667 101.90667z" fill="#FB705B" p-id="237237"></path><path d="M17.833667 226.682215h1090.401367a18.037481 18.037481 0 0 1 17.833667 17.833668v212.271593a18.037481 18.037481 0 0 1-17.833667 17.833667H17.833667A18.037481 18.037481 0 0 1 0 456.787476V244.515883a17.731761 17.731761 0 0 1 17.833667-17.833668z" fill="#F03E41" p-id="237238"></path><path d="M257.008621 161.258133s-129.319564-24.967134-154.796231-33.629201l45.858001 65.627896-82.442496 32.610134a1378.287709 1378.287709 0 0 0 400.595119 5.095334l-100.174256-45.450375c-0.61144-0.509533-109.040137-24.253787-109.040137-24.253788zM349.641784 4.729489a130.644351 130.644351 0 0 0-96.70943 11.209733l-17.833667 113.52403a136.860658 136.860658 0 0 1 101.29523-17.833667 445.23024 445.23024 0 0 1 160.808725 118.619364v-77.347163S438.81012 20.525022 349.641784 4.729489z m634.267113 187.813992l45.858001-65.627895c-25.986201 8.662067-154.796231 33.629201-154.796231 33.629201l-108.93823 23.948067-100.276163 45.858002a1357.702562 1357.702562 0 0 0 400.595119-5.095334z m-87.945456-63.589762L878.5374 15.939222a130.644351 130.644351 0 0 0-96.709429-11.209733c-89.066429 15.795534-147.662765 148.172298-147.662765 148.172297v77.347163a450.631294 450.631294 0 0 1 160.910632-119.128897 136.860658 136.860658 0 0 1 101.29523 17.833667z" fill="#FFCA3E" p-id="237239"></path><path d="M489.253922 141.692053h148.172298v877.62024H489.253922z" fill="#FFCA3E" p-id="237240"></path><path d="M489.253922 478.187876h148.172298v541.124417H489.253922zM384.901492 128.444186c-64.608829-37.195934-141.548364-24.967134-149.700898 0-9.1716 28.024334 36.686401 57.984895 102.82383 92.633163a402.225626 402.225626 0 0 0 159.789658 8.662066 432.491907 432.491907 0 0 0-112.60687-101.295229z m511.571482 0c-8.662067-25.476667-84.990163-38.215001-149.700898 0a435.4472 435.4472 0 0 0-112.097336 101.90667 412.110573 412.110573 0 0 0 159.789658-8.662067c65.831709-34.750174 111.180177-64.710735 102.008576-92.73507z" fill="#FFB82C" p-id="237241"></path></svg>
+                    <span style="color: #8c939d;font-size: 12px;">124.4万</span>
+                    <svg t="1586586847135" class="icon" style="width: 25px;height: 25px;margin-left: 30px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="278925" width="200" height="200"><path d="M193.521 410.59h174.432V782.42H193.52V410.59z" fill="#8CB700" p-id="278926"></path><path d="M434.643 258.643H598.84v523.776H434.643V258.643z" fill="#F9CF8C" p-id="278927"></path><path d="M665.436 534.537h164.197V782.42H665.436V534.537z" fill="#FD6000" p-id="278928"></path><path d="M67.76 780.884h890.784v3.07H67.76v-3.07z" fill="#C1C0C0" p-id="278929"></path></svg>
+                    <span style="color: #8c939d;font-size: 12px;">NO.56</span>
+                    <div style="float: right;width: 75px;height: 32px;text-align: center;line-height: 32px;color: #8c939d;font-size: 12px;background-color: rgba(0,0,0,0.03);border-radius: 2px">
+                      <p>4456</p>
+                    </div>
+                    <el-button size="mini" type="primary" style="float: right"><i class="iconfont ymq-iconxin"></i> 关注</el-button>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="video_content">
+              <div class="prism-player" id="player-con" v-show="showvideo"></div>
+              <div style="background-color: black;height: 100%;color: white;text-align: center;line-height: 510px" v-show="!showvideo">
+                <span>暂未开播</span>
+              </div>
+            </div>
+            <div class="video_footer"></div>
+          </div>
+
+        </el-col>
+        <el-col :span="6">
+          <el-container class="video_right_content">
+            <el-header style="background-color: white;padding: 5px;height: 170px">
+              <div class="video_right_content_title">
+                <ul>
+                  <li>
+                    <a href="#">七日榜</a>
+                  </li>
+                  <li class="space"></li>
+                  <li>
+                    <a href="#">七日榜</a>
+                  </li>
+                  <li class="space"></li>
+                  <li>
+                    <a href="#">七日榜</a>
+                  </li>
+                  <li class="space"></li>
+                  <li>
+                    <a href="#">七日榜</a>
+                  </li>
+                  <li class="space"></li>
+                  <li>
+                    <a href="#">七日榜</a>
+                  </li>
+                </ul>
+              </div>
+              <div style="height: 125px;">
+                <div style="text-align: center;">
+                  <div class="video_right_img">
+                    <img src="http://img0.imgtn.bdimg.com/it/u=2600182404,1883113558&fm=11&gp=0.jpg" class="img_video_right">
+                    <div>
+                      <span style="font-size: 14px;color: #8c939d;font-weight: bolder">聪明小灰</span>
+                    </div>
+                  </div>
+                  <div class="video_right_img">
+                    <img src="http://img1.imgtn.bdimg.com/it/u=360892274,1255258457&fm=11&gp=0.jpg" style="width: 70px;height: 70px;border-radius: 50%">
+                    <div>
+                      <span style="font-size: 14px;color: #8c939d;font-weight: bolder">路易十三点</span>
+                    </div>
+                  </div>
+                  <div class="video_right_img">
+                    <img src="http://b-ssl.duitang.com/uploads/item/201705/09/20170509165713_NiHaG.jpeg" class="img_video_right">
+                    <div>
+                      <span style="font-size: 14px;color: #8c939d;font-weight: bolder">hegbe</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </el-header>
+            <el-main style="background-color: #F8F8F8;">
+              <div >
+                <p>1：数学史
+                  2：数理逻辑与数学基础　a；演绎逻辑学（也称符号逻辑学）b：证明论（也称元数学）c：递归论 d：模型论 e：公理集合论 f：数学基础 g：数理逻辑与数学基础其他学科
+                  　　3：数论
+                  　　a：初等数论 b：解析数论 c：代数数论 d：超越数论 e：丢番图逼近 f：数的几何 g：概率数论 h：计算数论 i：数论其他学科
+                  　　4：代数学
+                  　　a：线性代数 b：群论 c：域论 d：李群 e：李代数 f：Kac-Moody代数 g：环论（包括交换环与交换代数，结合环与结合代数，非结合环与非结合代数等）h：模论 i：格论 j：泛代数理论 k：范畴论 l：同调代数 m：代数K理论 n：微分代数 o：代数编码理论 p：代数学其他学科
+                  　　5</p>
+              </div>
+            </el-main>
+            <el-footer style="background-color: white;height: 120px">
+              <div>
+                <div>
+                  <i class="iconfont ymq-iconshebeizhuangtai icon_text"></i>
+                  <i class="iconfont ymq-iconmoshubang icon_text"></i>
+                  <i class="iconfont ymq-iconbianjisekuai icon_text"></i>
+                  <i class="iconfont ymq-iconzitixiabiao icon_text"></i>
+                  <i class="iconfont ymq-icontuoguan icon_text"></i>
+                  <i class="iconfont ymq-iconshoucang icon_text"></i>
+                </div>
+                <el-input
+                  type="textarea"
+                  placeholder="请输入内容"
+                  v-model="textarea"
+                  maxlength="20"
+                  show-word-limit
+                  style="margin-top: 10px"
+                >
+                </el-input>
+                <div style="margin-top: 2px">
+                  <el-button size="mini" type="primary" :disabled="textarea === ''" style="float: right;">发送</el-button>
+                </div>
+              </div>
+            </el-footer>
+          </el-container>
+        </el-col>
+      </el-row>
+    </div>
+   <Footer style="margin-top: 100px;"></Footer>
+  </div>
+</template>
+
+<script>
+  import Header from '@/components/common/header'
+  import Footer from '@/components/common/footer'
+  export default {
+      name: "VideoLive",
+    components: { Header, Footer },
+    data() {
+        return {
+          playervideo: '',
+          LiveUrl: '',
+          navBarFixed: false,
+          textarea: '',
+          showvideo: false
+        }
+    },
+    created() {
+
+      // setTimeout(() => {
+      //   this.init()
+      // }, 200)
+    },
+    mounted() {
+      window.addEventListener('scroll', this.watchScroll)
+      this.setBannerH()
+      window.addEventListener('resize', () => {
+        this.setBannerH()
+      }, false)
+      this.init()
+      // setTimeout(() => {
+      //   this.initLive()
+      // }, 2000)
+
+
+    },
+    methods: {
+      setBannerH(){
+        this.bannerH = document.body.clientWidth / 4
+      },
+      watchScroll () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        if (scrollTop > 49) {
+          this.navBarFixed = true
+        } else {
+          this.navBarFixed = false
+        }
+        console.log(scrollTop)
+      },
+      init() {
+        var username = ''
+        username = this.$route.query.username
+        var url = 'http://58.119.112.14:11030/cms/video/pullVideo?username=' + username
+        this.$axios.get(url).then((res) => {
+          if (res.data.code === undefined) {
+            this.initLive(res.data)
+            this.showvideo = true
+          } else  {
+            this.showvideo = false
+            // alert(res.data.message)
+
+          }
+
+        })
+
+        },
+      initLive(str) {
+        // console.log(str)
+        var player = new Aliplayer({
+          id: "player-con",
+          source: str,
+          width: "100%",
+          height: "510px",
+          autoplay: true,
+          isLive: true,
+          // controlBarVisibility: 'hover',    /* The mode of the status bar, which is set to Click. */
+          // showBarTime: '10000',             /* The time period that you must wait before the status bar is hidden, which is set to 10,000 milliseconds. */
+          rePlay: false,
+          // showBuffer: true,
+          playsinline: true,
+          preload: true,
+          controlBarVisibility: true,
+          useH5Prism: true,
+          // components: [{
+          //   name: 'AliplayerDanmuComponent',
+          //   type: AliPlayerComponent.AliplayerDanmuComponent,
+          //   args: [danmukuList]
+          // }]
+        }, function (player) {
+          console.log(player);
+        });
+        // player._options.source = _this.LiveUrl
+        this.playervideo = player
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .container_live {
+    background-image: url("../../assets/bbfb.jpg");
+    background-size: 100% 100%;
+  }
+  .header {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  }
+  .video_container {
+    width: 1200px;
+    margin: 20px auto;
+  }
+  .video_cantainer_style {
+    border-radius: 10px;overflow: hidden
+  }
+  .video_header {
+    height: 96px;
+    position: relative;
+    background-color: white;
+  }
+  .img_header {
+    height: 64px;
+    width: 64px;
+    float: left;
+    /*line-height: 96px;*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    margin-left: 20px;
+  }
+  .video_content {
+    height: 510px;
+  }
+  .video_footer {
+    height: 124px;
+    background-image: url("../../assets/beff.jpg");
+    background-size: 100% 100%;
+  }
+  .video_right_content {
+    height: 730px;border-radius: 10px;overflow: hidden
+  }
+  .video_header_title {
+    height: 64px;float: left;width: 782px;margin-left: 20px
+  }
+  .icon_video {
+    color: #8c939d;
+    float: right;
+    margin-left: 20px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+    color: #8c939d;
+  }
+  .video_right_content_title {
+    height: 30px;line-height: 30px;font-size: 12px;
+  }
+  .video_right_content_title li{
+    float: left;
+  }
+  .space {
+    width: 1px;
+    height: 10px;
+    background-color: #8c939d;
+    margin: 10px 10px 0;
+  }
+  .video_right_img {
+    float: left;margin-left: 20px;margin-top: 20px;
+  }
+  .icon_text {
+    font-size: 18px;
+    margin-left: 5px;
+    color: #8c939d;
+  }
+  .img_video_right {
+    width: 60px;height: 60px;border-radius: 50%
+  }
+
+</style>

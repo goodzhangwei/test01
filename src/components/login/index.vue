@@ -184,7 +184,7 @@ export default {
           if (this.radio === '') {
             this.$message.warning('请选择需要注册的角色')
           } else {
-            var url = 'http://58.119.112.14:11030/cms/user/register?username=' + this.ruleForm2.username + '&password=' + this.ruleForm2.password1 + '&schoolname=' + this.ruleForm2.class_name + '&role=' + this.radio
+            var url = 'http://58.119.112.14:11020/cms/user/register?username=' + this.ruleForm2.username + '&password=' + this.ruleForm2.password1 + '&schoolname=' + this.ruleForm2.class_name + '&role=' + this.radio
             this.$axios.post(url).then((res) => {
               if (res.data.code === 10000) {
                 this.$message.success('注册成功！')
@@ -201,7 +201,7 @@ export default {
       if (this.ruleForm1.username === '' || this.ruleForm1.password === '') {
         this.$message.warning('请输入用户名或密码！')
       } else {
-        var url = 'http://58.119.112.14:11030/cms/user/login?username=' + this.ruleForm1.username + '&password=' + this.ruleForm1.password
+        var url = 'http://58.119.112.14:11020/cms/user/login?username=' + this.ruleForm1.username + '&password=' + this.ruleForm1.password
         this.$axios.post(url).then((res) => {
           if (res.data.code === 10000) {
             this.$message.success('登录成功！')

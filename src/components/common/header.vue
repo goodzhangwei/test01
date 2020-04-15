@@ -18,6 +18,7 @@
             <li @click="gotoHomepage"><span>首页</span></li>
             <li @click="gotoAllclasses"><span>全部课程</span></li>
             <li @click="gotoCompetition"><span>编程比赛</span></li>
+            <li><span>作品擂台</span></li>
           </ul>
         </div>
         <div class="personal">
@@ -110,7 +111,7 @@ export default {
   .navbar li {
     float: left;
     list-style-type: none;
-    margin-left: 150px;
+    margin-left: 100px;
     height: 40px;
     cursor: pointer;
   }
