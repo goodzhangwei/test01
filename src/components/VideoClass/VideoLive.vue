@@ -51,7 +51,34 @@
                 <span>暂未开播</span>
               </div>
             </div>
-            <div class="video_footer"></div>
+            <div class="video_footer">
+              <div style="font-size: 14px;padding-top: 10px;margin-left: 20px">
+                <span>{{'当前在线人数：' + online_man.length + '人'}}</span>
+                <span style="float: right;font-size: 14px;margin-right: 20px;cursor: pointer;color: #8c939d" @click="showOnline">查看更多在线人数</span>
+              </div>
+              <div class="onlineman" v-for="(item, index) in online_man" :key="index">
+                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 50px;border-radius: 50%">
+                <div>
+                  <span>{{item}}</span>
+                </div>
+              </div>
+            </div>
+            <el-dialog
+              title="当前在线用户"
+              :visible.sync="dialogVisible"
+              :modal="false"
+              width="30%">
+              <div class="onlineman" v-for="(item, index) in online_man" :key="index">
+                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 50px;border-radius: 50%">
+                <div>
+                  <span>{{item}}</span>
+                </div>
+              </div>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">关闭</el-button>
+                <!--<el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
+              </span>
+            </el-dialog>
           </div>
 
         </el-col>
@@ -105,15 +132,12 @@
 
               </div>
             </el-header>
-            <el-main style="background-color: #F8F8F8;">
-              <div >
-                <p>1：数学史
-                  2：数理逻辑与数学基础　a；演绎逻辑学（也称符号逻辑学）b：证明论（也称元数学）c：递归论 d：模型论 e：公理集合论 f：数学基础 g：数理逻辑与数学基础其他学科
-                  　　3：数论
-                  　　a：初等数论 b：解析数论 c：代数数论 d：超越数论 e：丢番图逼近 f：数的几何 g：概率数论 h：计算数论 i：数论其他学科
-                  　　4：代数学
-                  　　a：线性代数 b：群论 c：域论 d：李群 e：李代数 f：Kac-Moody代数 g：环论（包括交换环与交换代数，结合环与结合代数，非结合环与非结合代数等）h：模论 i：格论 j：泛代数理论 k：范畴论 l：同调代数 m：代数K理论 n：微分代数 o：代数编码理论 p：代数学其他学科
-                  　　5</p>
+            <el-main style="background-color: #F8F8F8;" id="msgContents">
+              <div id="msgContent" >
+               <div v-for="(item, index) in messageList" :key="index" style="margin-top: 10px;width: 100%">
+                <span style="color: #3a8ee6;font-size: 14px">{{item.fromusername + ':'}}</span>
+                 <span style="font-size: 14px;color: #8c939d">{{item.textMessage}}</span>
+               </div>
               </div>
             </el-main>
             <el-footer style="background-color: white;height: 120px">
@@ -130,13 +154,11 @@
                   type="textarea"
                   placeholder="请输入内容"
                   v-model="textarea"
-                  maxlength="20"
-                  show-word-limit
                   style="margin-top: 10px"
                 >
                 </el-input>
                 <div style="margin-top: 2px">
-                  <el-button size="mini" type="primary" :disabled="textarea === ''" style="float: right;">发送</el-button>
+                  <el-button size="mini" type="primary" :disabled="textarea === ''" style="float: right;" @click="send">发送</el-button>
                 </div>
               </div>
             </el-footer>
@@ -151,16 +173,26 @@
 <script>
   import Header from '@/components/common/header'
   import Footer from '@/components/common/footer'
+  import $ from 'jquery'
   export default {
       name: "VideoLive",
     components: { Header, Footer },
     data() {
         return {
           playervideo: '',
+          dialogVisible: false,
           LiveUrl: '',
           navBarFixed: false,
           textarea: '',
-          showvideo: false
+          showvideo: false,
+          path: 'ws://58.119.112.14:11020/websocket/' + this.$route.query.username,
+          socket: '',
+          online_man: [],
+          shang_online_man: '',
+          xia_online_man: '',
+          textMessage: '',
+          fromusername: '',
+          messageList: []
         }
     },
     created() {
@@ -176,6 +208,7 @@
         this.setBannerH()
       }, false)
       this.init()
+      this.initWebSocket()
       // setTimeout(() => {
       //   this.initLive()
       // }, 2000)
@@ -239,7 +272,93 @@
         });
         // player._options.source = _this.LiveUrl
         this.playervideo = player
+      },
+      initWebSocket() {
+        if(typeof(WebSocket) === "undefined"){
+          alert("您的浏览器不支持socket")
+        }else{
+          // 实例化socket
+          console.log(this.path)
+          var socket = new WebSocket(this.path)
+          this.socket = socket
+          console.log(socket)
+          // 监听socket连接
+          socket.onopen = this.open
+          // 监听socket错误信息
+          socket.onerror = this.error
+          // 监听socket消息
+          socket.onmessage = this.getMessage
+         //  socket.onopen = function () {
+         //    //webSocket.send( document.getElementById('username').value+"已经上线了");
+         //    console.log("已经连通了websocket");
+         //    setMessageInnerHTML("已经连通了websocket");
+         //  }
+        }
+      },
+      open: function () {
+        console.log("socket连接成功")
+      },
+      error: function () {
+        console.log("连接错误")
+      },
+      getMessage: function (msg) {
+        // console.log(msg.data)
+        var obj = JSON.parse(msg.data)
+          // 1代表上线 2代表下线 3代表在线名单 4代表普通消息
+        if (obj.messageType === 1) {
+          this.shang_online_man = obj.username
+          $("#msgContent").append('<div style="color: red;font-size: 14px;margin-top: 10px">' + this.shang_online_man +' 上线了</div>')
+          this.scrolly()
+        } else if (obj.messageType === 2) {
+          this.xia_online_man = obj.username
+          $("#msgContent").append('<div style="color: red;font-size: 14px;margin-top: 10px">' + this.xia_online_man +' 下线了</div>')
+          this.scrolly()
+          this.online_man = obj.onlineUsers
+        } else if (obj.messageType === 3) {
+          this.online_man = obj.onlineUsers
+        } else {
+          var objMsg = {
+            textMessage: '',
+            fromusername: ''
+          }
+          objMsg.textMessage = obj.textMessage
+          objMsg.fromusername = obj.fromusername
+          this.messageList.push(objMsg)
+          this.textMessage = obj.textMessage
+          this.fromusername = obj.fromusername
+         this.scrolly()
+
+
+          // $("#msgContent").append('<div style="font-size: 14px;margin-top: 10px"><span style="color: #3a8ee6">' + obj.fromusername +' :</span><span style="color: #8c939d">'+obj.textMessage + '</span></div>')
+        }
+        // console.log(this.msgobj)
+        console.log(msg.data)
+      },
+      send: function () {
+        var message = {
+          "message": this.textarea,
+          "username": this.$route.query.username,
+          "to": 'All'
+        };
+        this.socket.send(JSON.stringify(message))
+        this.textarea = ''
+      },
+      close: function () {
+        console.log("socket已经关闭")
+      },
+      showOnline() {
+        this.dialogVisible = true
+      },
+      scrolly() {
+        setTimeout(() => {
+          var div = document.getElementById('msgContents');
+          div.scrollTop = div.scrollHeight;
+        })
       }
+    },
+    destroyed () {
+      // 销毁监听
+      this.socket.onclose = this.close
     }
   }
 </script>
@@ -279,8 +398,11 @@
   }
   .video_footer {
     height: 124px;
-    background-image: url("../../assets/beff.jpg");
+    /*background-image: url("../../assets/beff.jpg");*/
+    background-color: white;
     background-size: 100% 100%;
+    overflow: hidden;
+    position: relative;
   }
   .video_right_content {
     height: 730px;border-radius: 10px;overflow: hidden
@@ -325,5 +447,7 @@
   .img_video_right {
     width: 60px;height: 60px;border-radius: 50%
   }
-
+  .onlineman {
+    width: 80px;height: 80px;text-align: center;float: left;margin-top: 10px;margin-left: 20px
+  }
 </style>
