@@ -1,6 +1,6 @@
 <template>
   <div class="logout">
-    <span @click="gotoLogin">登录/注册</span>
+    <span @click="gotoLogin">登录 &nbsp;&nbsp;| &nbsp;&nbsp;注册</span>
   </div>
 </template>
 
@@ -17,14 +17,15 @@ export default {
 
 <style scoped>
   .logout {
-    color: #A5A5A5;
-    height: 40px;
-    line-height: 40px;
-    width: 100px;
+    color: #16bcb4;
+    font-size: 20px;
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    /*width: 150px;*/
     text-align: center;
   }
-  .logout:hover {
-    color: red;
-    cursor: pointer;
-  }
+  /*.logout:hover {*/
+    /*color: white;*/
+    /*cursor: pointer;*/
+  /*}*/
 </style>

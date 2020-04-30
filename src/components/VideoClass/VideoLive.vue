@@ -70,7 +70,7 @@
               width="30%">
               <div class="onlineman" v-for="(item, index) in online_man" :key="index">
                 <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 50px;border-radius: 50%">
-                <div>
+                <div style="padding: 5px">
                   <span>{{item}}</span>
                 </div>
               </div>
@@ -111,19 +111,19 @@
               <div style="height: 125px;">
                 <div style="text-align: center;">
                   <div class="video_right_img">
-                    <img src="http://img0.imgtn.bdimg.com/it/u=2600182404,1883113558&fm=11&gp=0.jpg" class="img_video_right">
+                    <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" class="img_video_right">
                     <div>
                       <span style="font-size: 14px;color: #8c939d;font-weight: bolder">聪明小灰</span>
                     </div>
                   </div>
                   <div class="video_right_img">
-                    <img src="http://img1.imgtn.bdimg.com/it/u=360892274,1255258457&fm=11&gp=0.jpg" style="width: 70px;height: 70px;border-radius: 50%">
+                    <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 70px;height: 70px;border-radius: 50%">
                     <div>
                       <span style="font-size: 14px;color: #8c939d;font-weight: bolder">路易十三点</span>
                     </div>
                   </div>
                   <div class="video_right_img">
-                    <img src="http://b-ssl.duitang.com/uploads/item/201705/09/20170509165713_NiHaG.jpeg" class="img_video_right">
+                    <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" class="img_video_right">
                     <div>
                       <span style="font-size: 14px;color: #8c939d;font-weight: bolder">hegbe</span>
                     </div>
@@ -177,6 +177,16 @@
   export default {
       name: "VideoLive",
     components: { Header, Footer },
+    // watch: {
+    //   $route: {
+    //     handler: function(val, oldVal){
+    //       console.log(val);
+    //       console.log(oldVal);
+    //     },
+    //     // 深度观察监听
+    //     deep: true
+    //   }
+    // },
     data() {
         return {
           playervideo: '',
@@ -185,7 +195,7 @@
           navBarFixed: false,
           textarea: '',
           showvideo: false,
-          path: 'ws://58.119.112.14:11020/websocket/' + this.$route.query.username,
+          path: 'ws://58.119.112.14:11020/websocket/' + localStorage.getItem('name'),
           socket: '',
           online_man: [],
           shang_online_man: '',
@@ -195,6 +205,7 @@
           messageList: []
         }
     },
+
     created() {
 
       // setTimeout(() => {
@@ -307,6 +318,7 @@
           // 1代表上线 2代表下线 3代表在线名单 4代表普通消息
         if (obj.messageType === 1) {
           this.shang_online_man = obj.username
+          this.online_man.push(this.shang_online_man)
           $("#msgContent").append('<div style="color: red;font-size: 14px;margin-top: 10px">' + this.shang_online_man +' 上线了</div>')
           this.scrolly()
         } else if (obj.messageType === 2) {
@@ -337,7 +349,7 @@
       send: function () {
         var message = {
           "message": this.textarea,
-          "username": this.$route.query.username,
+          "username": localStorage.getItem('name'),
           "to": 'All'
         };
         this.socket.send(JSON.stringify(message))

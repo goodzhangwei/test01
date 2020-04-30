@@ -1,367 +1,610 @@
 <template>
   <div class="app_container">
-    <!--<header>-->
-      <!--<nav>-->
-        <!--<div class="logo">-->
-          <!--<img src="../../assets/new.png">-->
-        <!--</div>-->
-        <!--<div class="navbar">-->
-          <!--<ul>-->
-            <!--<li><span>首页</span></li>-->
-            <!--<li @click="gotoAllclasses"><span>全部课程</span></li>-->
-            <!--<li @click="gotoCompetition"><span>编程比赛</span></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="personal">-->
-          <!--<user-setting-popover></user-setting-popover>-->
-<!--&lt;!&ndash;          <el-button @click="gotonima">点我跳</el-button>&ndash;&gt;-->
-<!--&lt;!&ndash;          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>&ndash;&gt;-->
-        <!--</div>-->
-      <!--</nav>-->
-    <!--</header>-->
-    <div style="background-color: rgba(255, 255, 255, 0.9);position: fixed;width: 100%;z-index: 999" v-if="navBarFixed">
-      <Header :flags = flag_class class="header"></Header>
-    </div>
+    <transition name="fade">
+      <div  v-if="navBarFixed" class="header-show">
+        <Header :flags = flag_class class="header"></Header>
+      </div>
+    </transition>
+
 
     <Header :flags = flag_class class="header"></Header>
-    <div :class="bannerStyle" class="background-style">
-      <el-row style="width: 1150px;margin: 0 auto;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);border-radius: 10px;">
-        <el-col :span="5">
-          <div class="nav-back">
-            <ul>
-              <li>
-                <p class="p-word">
-                  Python智能编程
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  Python少儿趣味编程
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  StarT项目
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  博弈算法大赛
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  信息奥赛课程
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  在线课堂
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-              <li>
-                <p class="p-word">
-                  直播大讲堂
-                  <i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>
-                </p>
-              </li>
-            </ul>
-          </div>
-        </el-col>
-        <el-col :span="19">
-          <div class="banner">
-            <div class="banner-in">
-              <el-carousel height="400px" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;" @change="carouselChange">
-                <el-carousel-item  v-for="(item, index) in schna" :key="index">
-                  <img :src="item" alt="" style="width: 100%;height: 100%">
-                </el-carousel-item>
-              </el-carousel>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-
+    <div >
+      <el-carousel class="carousel-img" height="665px" @change="carouselChange">
+        <el-carousel-item  v-for="(item, index) in schna" :key="index">
+          <img :src="item" alt="" >
+        </el-carousel-item>
+      </el-carousel>
     </div>
-    <div style="background-color: white;padding-top: 20px;  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)">
-      <div class="content_two">
-        <div>
-          <span class="word_two">科普大讲堂</span>
-          &nbsp;&nbsp;
-          <!--<span class="word_three">从入门到具备1年开发经验</span>-->
-        </div>
-        <div class="list">
-          <div class="list-div">
-            <div class="two-img">
-              <img src="http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg" width="100%" height="100%">
-            </div>
-            <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">AI&机器人</p>
-              <p style="font-size: 12px;margin-top: 5px">从未接触过编程的爱好者</p>
-            </div>
-
-          </div>
-          <div class="list-div">
-            <div class="two-img">
-              <img src="http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg" width="100%" height="100%">
-            </div>
-            <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">自然语言处理</p>
-              <p style="font-size: 12px;margin-top: 5px">人工智能和语言学领域的分支学科</p>
-            </div>
-          </div>
-          <div class="list-div">
-            <div class="two-img">
-              <img src="http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg" width="100%" height="100%">
-            </div>
-            <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">机器学习</p>
-              <p style="font-size: 12px;margin-top: 5px">应用领域最为广泛</p>
-            </div>
-          </div>
-          <div class="list-div">
-            <div class="two-img">
-              <img src="http://img2.sycdn.imooc.com/szimg/5e4644f609ffdfa312000676-360-202.png" width="100%" height="100%">
-            </div>
-            <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">深度学习</p>
-              <p style="font-size: 12px;margin-top: 5px">人工智能新方向</p>
-            </div>
-          </div>
-          <div class="list-div">
-            <div class="two-img">
-              <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729506782,1707648579&fm=11&gp=0.jpg" width="100%" height="100%">
-            </div>
-            <div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">
-              <p style="font-weight: bolder">前端开发</p>
-              <p style="font-size: 12px;margin-top: 5px">web开发首选</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="content_two">
-        <div>
-          <span class="word_two">职场认知体验</span>
-          &nbsp;&nbsp;
-          <!--<span class="word_three">一年以上开发经验系统成长</span>-->
-        </div>
-        <div class="list2">
-          <div class="list2-div list2-img1">
-            <!--<div class="list2-word">-->
-              <!--<div class="list2-word-title">-->
-                <!--<span>从Java后端到全栈</span>-->
-              <!--</div>-->
-              <!--<div class="list2-word-content">-->
-                <!--<span>浓缩7月从工程师到CTO的十年成长经历</span>-->
-              <!--</div>-->
-            <!--</div>-->
-          </div>
-          <div class="list2-div list2-img2">
-          </div>
-          <div class="list2-div list2-img3">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content_two" style="margin-top: 40px;margin-bottom: 450px">
+    <div class="content-tag">
       <div>
-        <span class="word_two">系列课程</span>
+        <span>Python智能编程</span>
       </div>
-      <div class="list3">
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img">
-            <div class="img1-icon">
-              <el-tag size="mini">python</el-tag>
-              <el-tag size="mini">算法</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>python计算思维实践基础课 适合零基础的同学</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img2">
-            <div class="img1-icon">
-              <el-tag size="mini">C</el-tag>
-              <el-tag size="mini">C++</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>2020 重学C++ 重构你的C++知识体系</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img5">
-            <div class="img1-icon">
-              <el-tag size="mini">React.js</el-tag>
-              <el-tag size="mini">vue.js</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>前端框架及项目面试 聚焦 Vue/React/Webpack</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img3">
-            <div class="img1-icon">
-              <el-tag size="mini">Linux</el-tag>
-              <el-tag size="mini">计算机网络</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>编程必备基础 计算机组成原理+操作系统+计算机网络</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
+      <div>
+        <span>Python少儿趣味编程</span>
       </div>
-      <div class="list3" style="margin-top: 30px">
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img4">
-            <div class="img1-icon">
-              <el-tag size="mini">Android</el-tag>
-              <el-tag size="mini">React native</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>新版React Native从入门到实战打造高质量上线App（再升级）</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
+      <div>
+        <span>StarT项目</span>
+      </div>
+      <div>
+        <span>博弈算法大赛</span>
+      </div>
+      <div>
+        <span>信息奥赛课程</span>
+      </div>
+      <div>
+        <span>在线课堂</span>
+      </div>
+      <div>
+        <span>直播大讲堂</span>
+      </div>
+    </div>
+    <div class="kp-con">
+      <div class="content-kp">
+        <div class="kp-title">
+          <span>科普大讲堂</span>
         </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
+        <div class="kp-tag">
+          <div class="kp-tag-card kp-bg1">
+            <div class="kp-text-title">
+              <span>AI&机器人</span>
             </div>
-          </div>
-          <div class="list3-img1 list3-img6">
-            <div class="img1-icon">
-              <el-tag size="mini">python</el-tag>
-              <el-tag size="mini">算法</el-tag>
+            <div class="kp-text-con">
+              <span>从未接触过编程的爱好者</span>
             </div>
+
+            <img src="../../assets/circle1-icon.png" class="tag-img">
           </div>
-          <div class="list3-word">
-            <span>剑指Java自研框架，决胜Spring源码</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
+          <div class="kp-tag-card kp-bg2">
+            <div class="kp-text-title">
+              <span>自然语言处理</span>
             </div>
-          </div>
-          <div class="list3-img1 list3-img7">
-            <div class="img1-icon">
-              <el-tag size="mini">算法</el-tag>
-              <el-tag size="mini">算法与数据结构</el-tag>
+            <div class="kp-text-con">
+              <div>
+                <span>人工智能和语言学</span>
+              </div>
+              <div>
+                <span>领域的分支学科</span>
+              </div>
             </div>
+
+            <img src="../../assets/circle2-icon.png" class="tag-img2">
           </div>
-          <div class="list3-word">
-            <span>Python3入门机器学习 经典算法与应用 轻松入行人工智能</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>推荐</span>
+          <div class="kp-tag-card kp-bg3">
+            <div class="kp-text-title">
+              <span>机器学习</span>
             </div>
-          </div>
-          <div class="list3-img1 list3-img8">
-            <div class="img1-icon">
-              <el-tag size="mini">Spark</el-tag>
-              <el-tag size="mini">Hadoop</el-tag>
+            <div class="kp-text-con">
+              <span>应用领域最为广泛</span>
             </div>
+
+            <img src="../../assets/circle3-icon.png" class="tag-img">
           </div>
-          <div class="list3-word">
-            <span>玩转热门框架 用企业级思维 开发通用够硬的大数据平台</span>
+          <div class="kp-tag-card kp-bg4">
+            <div class="kp-text-title">
+              <span>深度学习</span>
+            </div>
+            <div class="kp-text-con">
+              <span>人工智能新方向</span>
+            </div>
+
+            <img src="../../assets/circle4-icon.png" class="tag-img">
           </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
+          <div class="kp-tag-card kp-bg5">
+            <div class="kp-text-title">
+              <span>前端开发</span>
+            </div>
+            <div class="kp-text-con">
+              <span>Web开发首选</span>
+            </div>
+
+            <img src="../../assets/circle5-icon.png" class="tag-img">
           </div>
         </div>
       </div>
     </div>
+    <div class="zhichang-con">
+      <div class="content-zc">
+        <div class="kp-title">
+          <span>职场认知体验</span>
+        </div>
+        <div class="zc-tag">
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <div class="zc-card zc-bg1">
+                <div class="zc-card-title">
+                  <span>从Java后端到全栈</span>
+                </div>
+                <div class="zc-card-con">
+                  <span>浓缩从工程师到CTO的10年成长经验</span>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="zc-card zc-bg2">
+                <div class="zc-card-title">
+                  <span>大前端--前端高级进阶</span>
+                </div>
+                <div class="zc-card-con">
+                  <div>
+                    <span>覆盖前端全栈+全周期</span>
+                  </div>
+                  <div>
+                    <span>+多端应用的体系大课</span>
+                  </div>
+
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="zc-card zc-bg3">
+                <div class="zc-card-title">
+                  <span>Java架构师</span>
+                </div>
+                <div class="zc-card-con">
+                  <span>跟随千万级项目从0-100一起成长</span>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="xl-course">
+      <div class="content-xl">
+        <div class="xl-title">
+          <span>系列课程</span>
+        </div>
+        <div class="xl-tag">
+         <span class="xl-tags">
+              Python
+            </span>
+          <span class="xl-tags">
+             C++
+            </span>
+          <span class="xl-tags">
+             计算机组成原理
+            </span>
+          <span class="xl-tags">
+             React Native
+            </span>
+          <span class="xl-tags">
+             玩转热门框架
+            </span>
+          <span class="xl-tags">
+             机器学习&人工智能
+            </span>
+          <span class="xl-tags-more">查看更多课程 > ></span>
+        </div>
+        <div class="xl-course-card">
+          <el-row :gutter="30">
+            <el-col :span="6">
+              <div class="xl-card">
+                <div class="xl-card-img xl-card-img1"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card"></div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card"></div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card"></div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+
+    <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">-->
+     <!---->
+      <!--&lt;!&ndash; Indicators &ndash;&gt;-->
+      <!--&lt;!&ndash;<ol class="carousel-indicators">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="0" class="active"></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="1"></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="2"></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;</ol>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="carousel-inner" role="listbox">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
+          <!--&lt;!&ndash;<img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
+              <!--&lt;!&ndash;<h1>Example headline.</h1>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+          <!--&lt;!&ndash;<img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
+              <!--&lt;!&ndash;<h1>Another example headline.</h1>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+          <!--&lt;!&ndash;<img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
+              <!--&lt;!&ndash;<h1>One more for good measure.</h1>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>&ndash;&gt;-->
+              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="sr-only">Previous</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</a>&ndash;&gt;-->
+      <!--&lt;!&ndash;<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class="sr-only">Next</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</a>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div :class="bannerStyle" class="background-style">-->
+      <!--<el-row style="width: 1150px;margin: 0 auto;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);border-radius: 10px;">-->
+        <!--<el-col :span="5">-->
+          <!--<div class="nav-back">-->
+            <!--<ul>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--Python智能编程-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--Python少儿趣味编程-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--StarT项目-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--博弈算法大赛-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--信息奥赛课程-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--在线课堂-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<p class="p-word">-->
+                  <!--直播大讲堂-->
+                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
+                <!--</p>-->
+              <!--</li>-->
+            <!--</ul>-->
+          <!--</div>-->
+        <!--</el-col>-->
+        <!--<el-col :span="19">-->
+          <!--<div class="banner">-->
+            <!--<div class="banner-in">-->
+              <!--<el-carousel height="400px" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;" @change="carouselChange">-->
+                <!--<el-carousel-item  v-for="(item, index) in schna" :key="index">-->
+                  <!--<img :src="item" alt="" style="width: 100%;height: 100%">-->
+                <!--</el-carousel-item>-->
+              <!--</el-carousel>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</el-col>-->
+      <!--</el-row>-->
+
+    <!--</div>-->
+    <!--<div style="background-color: white;padding-top: 20px;  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)">-->
+      <!--<div class="content_two">-->
+        <!--<div>-->
+          <!--<span class="word_two">科普大讲堂</span>-->
+          <!--&nbsp;&nbsp;-->
+          <!--&lt;!&ndash;<span class="word_three">从入门到具备1年开发经验</span>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="list">-->
+          <!--<div class="list-div">-->
+            <!--<div class="two-img">-->
+              <!--<img src="http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg" width="100%" height="100%">-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
+              <!--<p style="font-weight: bolder">AI&机器人</p>-->
+              <!--<p style="font-size: 12px;margin-top: 5px">从未接触过编程的爱好者</p>-->
+            <!--</div>-->
+
+          <!--</div>-->
+          <!--<div class="list-div">-->
+            <!--<div class="two-img">-->
+              <!--<img src="http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg" width="100%" height="100%">-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
+              <!--<p style="font-weight: bolder">自然语言处理</p>-->
+              <!--<p style="font-size: 12px;margin-top: 5px">人工智能和语言学领域的分支学科</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list-div">-->
+            <!--<div class="two-img">-->
+              <!--<img src="http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg" width="100%" height="100%">-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
+              <!--<p style="font-weight: bolder">机器学习</p>-->
+              <!--<p style="font-size: 12px;margin-top: 5px">应用领域最为广泛</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list-div">-->
+            <!--<div class="two-img">-->
+              <!--<img src="http://img2.sycdn.imooc.com/szimg/5e4644f609ffdfa312000676-360-202.png" width="100%" height="100%">-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
+              <!--<p style="font-weight: bolder">深度学习</p>-->
+              <!--<p style="font-size: 12px;margin-top: 5px">人工智能新方向</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list-div">-->
+            <!--<div class="two-img">-->
+              <!--<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729506782,1707648579&fm=11&gp=0.jpg" width="100%" height="100%">-->
+            <!--</div>-->
+            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
+              <!--<p style="font-weight: bolder">前端开发</p>-->
+              <!--<p style="font-size: 12px;margin-top: 5px">web开发首选</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="content_two">-->
+        <!--<div>-->
+          <!--<span class="word_two">职场认知体验</span>-->
+          <!--&nbsp;&nbsp;-->
+          <!--&lt;!&ndash;<span class="word_three">一年以上开发经验系统成长</span>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="list2">-->
+          <!--<div class="list2-div list2-img1">-->
+            <!--&lt;!&ndash;<div class="list2-word">&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="list2-word-title">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span>从Java后端到全栈</span>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="list2-word-content">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span>浓缩7月从工程师到CTO的十年成长经历</span>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="list2-div list2-img2">-->
+          <!--</div>-->
+          <!--<div class="list2-div list2-img3">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content_tag">-->
+      <!--<ul>-->
+        <!--<li>-->
+          <!--Python智能编程-->
+        <!--</li>-->
+        <!--<li>Python少儿趣味编程</li>-->
+        <!--<li>StarT项目</li>-->
+        <!--<li>博弈算法大赛</li>-->
+        <!--<li>信息奥赛课程</li>-->
+        <!--<li>在线课堂</li>-->
+        <!--<li>直播大讲堂</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+
+
+    <!--<div class="content_two" style="margin-top: 40px;margin-bottom: 450px">-->
+      <!--<div>-->
+        <!--<span class="word_two">系列课程</span>-->
+      <!--</div>-->
+      <!--<div class="list3">-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">python</el-tag>-->
+              <!--<el-tag size="mini">算法</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>python计算思维实践基础课 适合零基础的同学</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img2">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">C</el-tag>-->
+              <!--<el-tag size="mini">C++</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>2020 重学C++ 重构你的C++知识体系</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img5">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">React.js</el-tag>-->
+              <!--<el-tag size="mini">vue.js</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>前端框架及项目面试 聚焦 Vue/React/Webpack</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img3">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Linux</el-tag>-->
+              <!--<el-tag size="mini">计算机网络</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>编程必备基础 计算机组成原理+操作系统+计算机网络</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list3" style="margin-top: 30px">-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img4">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Android</el-tag>-->
+              <!--<el-tag size="mini">React native</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>新版React Native从入门到实战打造高质量上线App（再升级）</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img6">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">python</el-tag>-->
+              <!--<el-tag size="mini">算法</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>剑指Java自研框架，决胜Spring源码</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img7">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">算法</el-tag>-->
+              <!--<el-tag size="mini">算法与数据结构</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>Python3入门机器学习 经典算法与应用 轻松入行人工智能</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>推荐</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img8">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Spark</el-tag>-->
+              <!--<el-tag size="mini">Hadoop</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>玩转热门框架 用企业级思维 开发通用够硬的大数据平台</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
 
@@ -503,262 +746,262 @@
         <!--</el-row>-->
       <!--</div>-->
     <!--</div>-->
-    <div  style=" width: 1150px;margin: 0 auto">
-      <div>
-        <span class="word_two">热门课程</span>
-      </div>
-      <div style="margin: 0 auto;height: 20px;">
-        <div class="link">
-          <span @click="gotoContentClass">查看全部</span>
-        </div>
-      </div>
-      <div>
-        <el-row>
-          <el-col :span="12" class="col_style" v-for="(item, index) in list" :key="index">
-            <div class="img_div">
-              <img v-if="item.pic === null" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3111860246,1925938903&fm=26&gp=0.jpg" class="img_class" @click="gotocontent(item.id)">
-              <img v-else :src="'http://'+item.pic" class="img_class" @click="gotocontent(item.id)">
-            </div>
-            <div class="class_text">
-              <h3 @click="gotocontent(item.id)">
-                {{item.name}}
-              </h3>
-              <div class="content_class">
-                <span>{{item.description}}</span>
-              </div>
-              <div class="content_class_start">
-                <span>4步骤 · 6门课</span>
-                <span style="margin-left: 40px"><i class="iconfont ymq-iconshoucang_shixin star_icon"></i>8848人收藏</span>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-    </div>
-    <div class="content_twos" v-show="LiveList.length !== 0">
-      <div>
-        <span class="word_two">热门直播</span>
-      </div>
-      <el-row>
-        <el-col :span="6" class="col_div" v-for="(item, index) in LiveList" :key="index">
-          <div class="list4-div">
-            <div class="icon-lists">
-              <div class="icon-list-content">
-                <span>直播</span>
-              </div>
-            </div>
-            <div class="list3-img1 list3-img11" @click="goToLive(item)">
-              <div class="img1-icon">
-                <el-tag size="mini">数据分析&挖掘</el-tag>
-                <el-tag size="mini">算法与数据结构</el-tag>
-              </div>
-            </div>
-            <div class="list4-word" @click="goToLive(item)">
-              <span>{{item.schoolname}}</span>
-            </div>
-            <div class="list3-icon-word">
-              <span>中级</span>
-              &nbsp;&nbsp;
-              <i class="el-icon-user"></i>
-              <span>456</span>
-              <span style="float: right">13人评价</span>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="content_two" style="margin-top: 80px;margin-bottom: 450px">
-      <div>
-        <span class="word_two">实践项目</span>
-      </div>
-      <div class="list3">
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img11" @click="goToCourseIndex">
-            <div class="img1-icon">
-              <el-tag size="mini">数据分析&挖掘</el-tag>
-              <el-tag size="mini">算法与数据结构</el-tag>
-            </div>
-          </div>
-          <div class="list3-word" @click="goToCourseIndex">
-            <span>玩转算法系列--数据结构精讲 更适合0算法基础入门到进阶（java版）</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img21" @click="gotoVideoLive">
-            <div class="img1-icon">
-              <el-tag size="mini">JavaScript</el-tag>
-              <!--<el-tag size="mini">C++</el-tag>-->
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>抓紧面试前的宝贵时间 快速搞定前端JavaScript面试</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img51">
-            <div class="img1-icon">
-              <el-tag size="mini">SpringBoot</el-tag>
-              <el-tag size="mini">SSM</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>Java主流技术栈SSM+SpringBoot商铺系统</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img31">
-            <div class="img1-icon">
-              <el-tag size="mini">Node.js</el-tag>
-              <el-tag size="mini">Vue.js</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>Vue Element+Node.js开发企业通用管理后台系统</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-      </div>
-      <div class="list3" style="margin-top: 30px">
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img41">
-            <div class="img1-icon">
-              <el-tag size="mini">Python</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>全面系统Python3.8入门+进阶 (程序员必备第二语言)</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img61">
-            <div class="img1-icon">
-              <el-tag size="mini">Node.js</el-tag>
-              <el-tag size="mini">React.js</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>TypeScript 系统入门到项目实战 趁早学习提高职场竞争力</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img71">
-            <div class="img1-icon">
-              <el-tag size="mini">Go</el-tag>
-              <el-tag size="mini">爬虫</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>Google资深工程师深度讲解Go语言</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-        <div class="list3-div">
-          <div class="icon-lists">
-            <div class="icon-list-content">
-              <span>直播</span>
-            </div>
-          </div>
-          <div class="list3-img1 list3-img81">
-            <div class="img1-icon">
-              <el-tag size="mini">JavaScript</el-tag>
-              <el-tag size="mini">小程序</el-tag>
-            </div>
-          </div>
-          <div class="list3-word">
-            <span>纯正商业级应用-微信小程序开发实战</span>
-          </div>
-          <div class="list3-icon-word">
-            <span>中级</span>
-            &nbsp;&nbsp;
-            <i class="el-icon-user"></i>
-            <span>456</span>
-            <span style="float: right">13人评价</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--<div  style=" width: 1150px;margin: 0 auto">-->
+      <!--<div>-->
+        <!--<span class="word_two">热门课程</span>-->
+      <!--</div>-->
+      <!--<div style="margin: 0 auto;height: 20px;">-->
+        <!--<div class="link">-->
+          <!--<span @click="gotoContentClass">查看全部</span>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<el-row>-->
+          <!--<el-col :span="12" class="col_style" v-for="(item, index) in list" :key="index">-->
+            <!--<div class="img_div">-->
+              <!--<img v-if="item.pic === null" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3111860246,1925938903&fm=26&gp=0.jpg" class="img_class" @click="gotocontent(item.id)">-->
+              <!--<img v-else :src="'http://'+item.pic" class="img_class" @click="gotocontent(item.id)">-->
+            <!--</div>-->
+            <!--<div class="class_text">-->
+              <!--<h3 @click="gotocontent(item.id)">-->
+                <!--{{item.name}}-->
+              <!--</h3>-->
+              <!--<div class="content_class">-->
+                <!--<span>{{item.description}}</span>-->
+              <!--</div>-->
+              <!--<div class="content_class_start">-->
+                <!--<span>4步骤 · 6门课</span>-->
+                <!--<span style="margin-left: 40px"><i class="iconfont ymq-iconshoucang_shixin star_icon"></i>8848人收藏</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content_twos" v-show="LiveList.length !== 0">-->
+      <!--<div>-->
+        <!--<span class="word_two">热门直播</span>-->
+      <!--</div>-->
+      <!--<el-row>-->
+        <!--<el-col :span="6" class="col_div" v-for="(item, index) in LiveList" :key="index">-->
+          <!--<div class="list4-div">-->
+            <!--<div class="icon-lists">-->
+              <!--<div class="icon-list-content">-->
+                <!--<span>直播</span>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="list3-img1 list3-img11" @click="goToLive(item)">-->
+              <!--<div class="img1-icon">-->
+                <!--<el-tag size="mini">数据分析&挖掘</el-tag>-->
+                <!--<el-tag size="mini">算法与数据结构</el-tag>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="list4-word" @click="goToLive(item)">-->
+              <!--<span>{{item.schoolname}}</span>-->
+            <!--</div>-->
+            <!--<div class="list3-icon-word">-->
+              <!--<span>中级</span>-->
+              <!--&nbsp;&nbsp;-->
+              <!--<i class="el-icon-user"></i>-->
+              <!--<span>456</span>-->
+              <!--<span style="float: right">13人评价</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</el-col>-->
+      <!--</el-row>-->
+    <!--</div>-->
+    <!--<div class="content_two" style="margin-top: 80px;margin-bottom: 450px">-->
+      <!--<div>-->
+        <!--<span class="word_two">实践项目</span>-->
+      <!--</div>-->
+      <!--<div class="list3">-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img11" @click="goToCourseIndex">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">数据分析&挖掘</el-tag>-->
+              <!--<el-tag size="mini">算法与数据结构</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word" @click="goToCourseIndex">-->
+            <!--<span>玩转算法系列&#45;&#45;数据结构精讲 更适合0算法基础入门到进阶（java版）</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img21" @click="gotoVideoLive">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">JavaScript</el-tag>-->
+              <!--&lt;!&ndash;<el-tag size="mini">C++</el-tag>&ndash;&gt;-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>抓紧面试前的宝贵时间 快速搞定前端JavaScript面试</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img51">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">SpringBoot</el-tag>-->
+              <!--<el-tag size="mini">SSM</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>Java主流技术栈SSM+SpringBoot商铺系统</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img31">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Node.js</el-tag>-->
+              <!--<el-tag size="mini">Vue.js</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>Vue Element+Node.js开发企业通用管理后台系统</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list3" style="margin-top: 30px">-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img41">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Python</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>全面系统Python3.8入门+进阶 (程序员必备第二语言)</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img61">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Node.js</el-tag>-->
+              <!--<el-tag size="mini">React.js</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>TypeScript 系统入门到项目实战 趁早学习提高职场竞争力</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img71">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">Go</el-tag>-->
+              <!--<el-tag size="mini">爬虫</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>Google资深工程师深度讲解Go语言</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="list3-div">-->
+          <!--<div class="icon-lists">-->
+            <!--<div class="icon-list-content">-->
+              <!--<span>直播</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-img1 list3-img81">-->
+            <!--<div class="img1-icon">-->
+              <!--<el-tag size="mini">JavaScript</el-tag>-->
+              <!--<el-tag size="mini">小程序</el-tag>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="list3-word">-->
+            <!--<span>纯正商业级应用-微信小程序开发实战</span>-->
+          <!--</div>-->
+          <!--<div class="list3-icon-word">-->
+            <!--<span>中级</span>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<i class="el-icon-user"></i>-->
+            <!--<span>456</span>-->
+            <!--<span style="float: right">13人评价</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
 
@@ -777,7 +1020,7 @@ export default {
     return {
       value1: '5',
       navBarFixed: false,
-      schna: [ 'http://58.119.112.12/CCZX_image/banner123.jpg','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
+      schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
@@ -959,518 +1202,235 @@ export default {
 </script>
 
 <style scoped>
-  .contaier {
-    width: 1150px;
-    margin: 0 auto;
-  }
-  a {
-    color: #050505;
-    text-decoration: none;
-  }
-  header{
+  .content-tag {
+    display: flex;
+    width: 100%;
     height: 100px;
-    background-color: white;
-    overflow: hidden;
   }
-  nav {
-    width: 1400px;
-    height: 60px;
-    background-color: white;
-    margin: 0 auto;
-    margin-top: 20px;
-  }
-  .logo {
-    float: left;
-    margin-left: 5%;
-  }
-  .navbar {
-    float: left;
-    height: 60px;
-    line-height: 60px;
-    margin-left: 100px;
-  }
-  .navbar li {
-    float: left;
-    list-style-type: none;
-    margin-left: 150px;
-    height: 60px;
-    cursor: pointer;
-  }
-  .logo img {
-    height: 50px;
-    width: 150px;
-  }
-  .navbar li span {
-    padding:0 8px;
-    /*border-bottom: 1px solid red ;*/
-    height: 60px;
-    display: block;
-    cursor: pointer;
-  }
-  .navbar li span:hover {
-    border-bottom: 2px solid #a68b56;
-    cursor: pointer;
-  }
-  .personal {
-    float: right;
-    height: 60px;
-    line-height: 60px;
-    margin-right: 15px;
-  }
-  .banner {
-    /*height:420px;*/
-    /*background-color: hotpink;*/
-  }
-  .banner-in{
-    /*background-color: #42b983;*/
-    /*border-radius: 20px;*/
-
-  }
-  /*.el-carousel__item:nth-child(1) {*/
-  /*  background-image: url("../../assets/lunboone.jpg");*/
-  /*}*/
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  .recom-products {
-    margin-top: 35px;
-  }
-  .recom-hd {
-    height: 40px;
-  }
-  .recom-hd h4 {
-    float: left;
-    color: #494949;
-  }
-  .recom-hd a {
-    float: right;
-    margin-top: 10px;
-    margin-right: 30px;
-    font-size: 14px;
-    color: #a5a5a5;
-  }
-  .recom-bd {
-    position: relative;
-  }
-  .star {
-    position: absolute;
-    margin-top: -23px;
-    margin-left: 100px;
-  }
-  .recom-bd ul li {
-    width:400px;
-    height: 300px;
-    border-radius: 20px;
-    background-color: #f4f4f4;
-    list-style-type: none;
-    box-shadow: 0 3px 2px rgba(0,0,0,0.4) ;
-    float: left;
-    margin-right: 65px;
-  }
-  .recom-bd li h5,
-  .recom-bd li p {
-    padding: 0 20px 0 24px;
-    font-size: 14px;
-  }
-  .recom-bd li h5 {
-    margin-top: 12px;
-    line-height: 22px;
-    cursor:pointer
-  }
-  .recom-bd li p {
-    color:#999;
-  }
-  .fea-class {
-    margin-top: 30px;
-    /*height: 300px;*/
-    margin-bottom: 30px;
-  }
-   .fea-head h4 {
-    color: #494949;
-  }
-   .fea-body {
-     width: 1400px;
-     background-color: white;
-     box-shadow: 0 3px 2px rgba(0,0,0,0.4) ;;
-     border-radius: 20px;
-     margin-top: 15px;
-     padding-bottom: 20px;
-   }
-   .fea-img{
-     padding: 20px;
-   }
-   .fea-content ul li {
-     list-style-type: circle;
-     list-style-type: none;
-     margin-top: 20px;
-   }
-   .fea-content p{
-     font-size: 14px;
-     color: #999;
-   }
-   .fea-content img {
-     width: 30px;
-     height: 30px;
-     display: block;
-     margin-top: -7px;
-     float: left;
-     margin-right: 30px
-   }
-   /*.fea-pic-con{*/
-   /*  padding: 20px;*/
-   /*  float: left;*/
-   /*}*/
-   /*.fea-content-con {*/
-   /*  padding: 20px;*/
-   /*  display: block;*/
-   /*}*/
-
-  /*// 清除浮动*/
-  .clearfix:before, .clearfix:after {
-    display: table;
-    content: none;
-  }
-  .clearfix:after {
-    clear: both;
-  }
-  .clearfix {
-    *zoom: 1;
-  }
-  .copyrightContainer {
+  .content-tag div {
+    flex: 1;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 100px;
-
+    font-size: 20px;
+    line-height: 100px;
+    font-weight: bold;
+    letter-spacing: 3px;
   }
-  .class_header {
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    font-size: 28px;
+  .content-tag div:hover {
+    color: #16bcb4;
+    cursor: pointer;
     font-weight: bold;
   }
-  .img_class {
+  .carousel-img {
+    width: 100%;
+    /*height: 665px;*/
+  }
+  .carousel-img img {
     width: 100%;
     height: 100%;
   }
-  .img_class {
+  .header-show {
+    position: fixed;width: 100%;z-index: 999;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+  .kp-con {
+    background-color: #f7f8fa;
+    padding-top: 70px;
+    height: 665px;
+  }
+  .content-kp {
+    width: 1500px;
+    /*height: 100px;*/
+    margin: 0 auto;
+  }
+  .kp-title {
+    font-weight: bold;
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+  .kp-tag {
+    margin-top: 70px;
+    height: 406px;
+    width: 100%;
+    display: flex;
+  }
+  .kp-tag-card {
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-size: 100% 100%;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  .kp-tag-card:hover {
+    transform: scale(1.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+  }
+  .kp-text-title {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 44px;
+    letter-spacing: 4px;
+  }
+  .kp-text-con {
+    color: white;
+    /*font-weight: bold;*/
+    margin-top: 22px;
+    font-size: 18px;
+    letter-spacing: 4px;
+  }
+  .tag-img2 {
+    height: 205px;
+    margin-top: 16px;
+  }
+  .tag-img {
+    /*width: 215px;*/
+    height: 205px;
+    margin-top: 34px;
+  }
+
+  .kp-bg1 {
+    background-image: url("../../assets/circle1.png");
+  }
+  .kp-bg2 {
+    background-image: url("../../assets/circle2.png");
+  }
+  .kp-bg3 {
+    background-image: url("../../assets/circle3.png");
+  }
+  .kp-bg4 {
+    background-image: url("../../assets/circle4.png");
+  }
+  .kp-bg5 {
+    background-image: url("../../assets/circle5.png");
+  }
+  .zhichang-con {
+    height: 458px;
+    width: 100%;
+    padding-top: 70px;
+  }
+  .content-zc {
+    width: 1500px;
+    margin: 0 auto;
+  }
+  .zc-tag {
+    margin-top: 70px;
+    width: 100%;
+    /*height: 214px;*/
+  }
+  .zc-card {
+    height: 214px;
+    background-size: 100% 100%;
+    text-align: center;
+    padding-top: 40px;
+    cursor: pointer;
     transition: all 0.6s;
   }
-  .img_div:hover .img_class{
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-  .img_div {
-    width: 140px;
-    height: 140px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
-    float: left;
-  }
-  .class_text {
-    float: left;
-    padding-left: 30px;
-    width: 400px;
-    height: 150px;
-  }
-  .class_text h3 {
-    margin-top: 10px;
-  }
-  .class_text h3:hover {
-    cursor: pointer;
-  }
-  .content_class {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666666;
-    letter-spacing: 1px;
-  }
-  .content_class_start {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #999999;
-    font-weight: bolder;
-  }
-  .star_icon {
-    font-size: 13px;margin-right: 2px;
-  }
-  .col_style {
-    margin-top: 20px;
-  }
-  .link {
-    float: right;
-    font-size: 14px;
-    color: #A5A5A5;
-  }
-  .link:hover {
-    cursor: pointer;
-  }
-  .header {
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
-  }
-  .background-banner {
-    /*background: #C9D6FF;  !* fallback for old browsers *!*/
-    /*background: -webkit-linear-gradient(to top, #E2E2E2, #C9D6FF);  !* Chrome 10-25, Safari 5.1-6 *!*/
-    /*background: linear-gradient(to top, #E2E2E2, #C9D6FF); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
-    background: #D8E7F8;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #FFFFFF, #D8E7F8);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #FFFFFF, #D8E7F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  .background-banner1 {
-    background: #EFEDFA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #FFFFFF, #EFEDFA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #FFFFFF, #EFEDFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  .zc-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 5px;
 
   }
-  .background-banner2 {
-    background: #F8E1DA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #FFFFFF, #F8E1DA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #FFFFFF, #F8E1DA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  .zc-card-title {
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
   }
-  .background-style {
-    height: 450px;padding-top: 40px;
+  .zc-card-con {
+    color: white;
+    font-size: 24px;
+    margin-top: 20px;
   }
-  .content_two {
-    width: 1150px;
-    height: 200px;
+  .zc-bg1 {
+    background-image: url("../../assets/zc-bg1.png");
+  }
+  .zc-bg2 {
+    background-image: url("../../assets/zc-bg2.png");
+  }
+  .zc-bg3 {
+    background-image: url("../../assets/zc-bg3.png");
+  }
+  .xl-course {
+    height: 805px;
+    width: 100%;
+    background-color: #3dc5a4;
+    margin-top: 23px;
+    padding-top: 70px;
+  }
+  .content-xl {
+    width: 1500px;
     margin: 0 auto;
   }
-  .content_twos {
-    width: 1150px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 0 auto;
-    margin-top: 80px;margin-bottom: 120px
-  }
-  .col_div {
-    margin-top: 20px;
-  }
-  .word_two {
-    color: black;font-size: 24px;font-weight: bolder
-  }
-  .word_three {
-    color: grey;
-    font-size: 14px;
-  }
-  .list {
-    height: 80px;
-    margin-top: 20px;
-    display: flex;
-  }
-  .list .list-div {
-    flex: 1;
-    background-color: #F3F5F6;
-    margin-left: 20px;
-    border-radius: 10px;
-    transition: all 0.4s;
-  }
-  .list-div:hover {
-    cursor: pointer;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04)
-  }
-  .two-img {
-    width: 50px;height: 50px;float: left;margin-top: 15px;margin-left: 10px;border-radius: 5px
-  }
-  .two-img img {
-    border-radius: 5px
-  }
-  .list2 {
-    height: 100px;
-    margin-top: 20px;
-    display: flex;
-  }
-  .list2 .list2-div {
-    flex: 1;
-    margin-left: 20px;
-    border-radius: 10px;
-    margin-right: 10px;
-    position: relative;
-    cursor: pointer;
-  }
-  .list2-word {
-    text-align: center;position: absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width: 100%
-  }
-  .list2-word-title {
-    font-weight: bolder;
-    font-size: 18px;
+  .xl-title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 3px;
     color: white;
   }
-  .list2-word-content {
-    color: white;
-    font-size: 12px;
-    margin-top: 10px;
+  .xl-tag {
+    margin-top: 70px;
+    /*height: 86px;*/
+    background-color: #d2fff4;
+    padding: 30px 18px 30px 18px;
   }
-  .list2-img1 {
-    background-image: url("../../assets/box-java1.png");
-    background-size: 100% 100%;
-  }
-  .list2-img2 {
-    background-image: url("../../assets/1234.png");
-    background-size: 100% 100%;
-  }
-  .list2-img3 {
-    background-image: url("../../assets/box-java2.png");
-    background-size: 100% 100%;
-  }
-  .list3 {
-    height: 240px;
-    margin-top: 20px;
-    display: flex;
-  }
-  .list3 .list3-div {
-    flex: 1;
-    margin-left: 20px;
-    cursor: pointer;
-    position: relative;
-  }
-  .list4-div {
-    margin-left: 20px;
-    cursor: pointer;
-    position: relative;
-  }
-  .list4-div:hover .list4-word {
-    color: red;
-  }
-  .list3-div:hover .list3-word {
-    color: red;
-  }
-  .list3-img {
-    background-image: url("http://img3.sycdn.imooc.com/szimg/5e3cfea008e9a61b06000338-360-202.jpg");
-  }
-  .list3-img11 {
-    background-image: url("http://img3.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg");
-  }
-  .list3-img21 {
-    background-image: url("http://img3.mukewang.com/szimg/5dbffa9109ef425a12000676-360-202.png");
-  }
-  .list3-img51 {
-    background-image: url("http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg");
-  }
-  .list3-img31 {
-    background-image: url("http://img3.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png");
-  }
-  .list3-img41 {
-    background-image: url("http://img1.mukewang.com/szimg/59b8a486000107fb05400300-360-202.jpg");
-  }
-  .list3-img61 {
-    background-image: url("http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg");
-  }
-  .list3-img71 {
-    background-image: url("http://img2.mukewang.com/szimg/5a7127370001a8fa05400300-360-202.jpg");
-  }
-  .list3-img81 {
-    background-image: url("http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg");
-  }
-  .list3-img1 {
-    height: 150px;
-    width: 100%;
-    background-size: 100% 100%;
-    border-radius: 10px;
-    position: relative;
-  }
-  .list3-img2 {
-    background-image: url("http://img2.sycdn.imooc.com/szimg/5e26a9f909ef95b512000676-360-202.png");
-  }
-  .list3-img3 {
-    background-image: url("http://img4.sycdn.imooc.com/szimg/5d1032ab08719e0906000338-360-202.jpg");
-  }
-  .list3-img4 {
-    background-image: url("http://img2.sycdn.imooc.com/szimg/5db6916d08d81b8b12000676-360-202.jpg");
-  }
-  .list3-img5 {
-    background-image: url("http://img2.sycdn.imooc.com/szimg/5e4644f609ffdfa312000676-360-202.png");
-  }
-  .list3-img6 {
-    background-image: url("http://img1.sycdn.imooc.com/szimg/5a39cd3f0001c09805400300-360-202.jpg");
-  }
-  .list3-img7 {
-    background-image: url("http://img3.sycdn.imooc.com/szimg/5e40f9d408e7c86b06000338-360-202.jpg");
-  }
-  .list3-img8 {
-    background-image: url("http://img2.sycdn.imooc.com/szimg/5e5621d0092c054612000676-360-202.png");
-  }
-  .list3-word {
-    margin-top: 10px;
-    font-weight: bolder;
-    margin-left: 10px;
-    transition: all 0.4s;
-  }
-  .list4-word {
-    margin-top: 10px;
-    font-weight: bolder;
-    margin-left: 10px;
-    transition: all 0.4s;
-  }
-  .list3-icon-word {
-    margin-left: 10px;
-    font-size: 12px;
-    margin-top: 10px;
-    padding-right: 15px;
-    color: grey;
-  }
-  .img1-icon {
-    top: 80%;
-    position: absolute;
-    left: 5%;
-  }
-  .icon-lists {
-    width: 40px;
-    height: 20px;
-    background-color: white;
-    border-radius: 10px;
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    z-index: 2;
-    padding: 2px;
-  }
-  .icon-list-content {
-    border-radius: 10px;
-    background-color: red;
-    z-index: 3;
-    width: 100%;
-    height: 100%;
+  .xl-tags {
+    padding: 10px 20px 10px 20px;
+    background-color: #77c5c2;
     color: white;
     text-align: center;
-    line-height: 20px;
-    font-size: 12px;
+    border-radius: 5px;
+    border: #249094 solid 1px;
+    margin-left: 20px;
+    letter-spacing: 3px;
+    font-size: 18px;
   }
-  .el-tag {
-    background-color: rgba(0,0,0,0.5);
-    border-color: rgba(0,0,0,0.5);
+  .xl-tags-more {
+    font-size: 24px;
+    float: right;
+    margin-right: 50px;
+    letter-spacing: 3px;
+    color: #636363;
+  }
+  .xl-course-card {
+    margin-top: 55px;
+
+  }
+  .xl-card {
+    height: 411px;
+  }
+  .xl-card-img {
+    height: 270px;
+    background-size: 100% 100%;
+  }
+  .xl-card-text {
+    padding: 20px;
+    background-color: white;
+    height: 141px;
+  }
+  .xl-card-img1 {
+    background-image: url("../../assets/xl-card-img1.png");
+  }
+  .xl-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    letter-spacing: 3px;
+  }
+  .xl-card-footer {
+    margin-top: 20px;
+  }
+  .xl-footer-tag {
+    padding: 5px 10px 5px 10px;
     color: white;
-  }
-  .nav-back {
-    height: 400px;background-color: #2B333B;border-top-left-radius: 10px;border-bottom-left-radius: 10px;
-  }
-  .nav-back ul li {
-    list-style-type: circle;
-    list-style-type: none;
-    padding: 15px;
-    transition: all 0.1s;
-  }
-  .nav-back ul li:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    cursor: pointer;
-  }
-  .nav-back ul li:hover p {
-    color: white;
-  }
-  .nav-back ul {
-    padding-top: 30px;
-    padding-left: 10px;
-  }
-  .p-word {
-    color: #AAADB1;
-    text-align: left;
-    font-size: 14px;
+    background-color: #f4ab00;
+    font-size: 18px;
+    letter-spacing: 3px;
   }
 </style>

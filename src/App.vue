@@ -32,7 +32,7 @@ export default {
     padding: 0;
   }
 html,body {
-    background-color: #f7f7fb;
+    /*background-color: #f7f7fb;*/
     width:100%;
     height: 100%;
   }

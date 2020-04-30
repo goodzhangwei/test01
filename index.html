@@ -7,11 +7,49 @@
     <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css" />
     <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
     <script type="text/javascript" src="/static/aliplayercomponents-1.0.5.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>青程在线</title>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script>
+      window.onresize = function () {
+
+        rem();
+
+      }
+
+      window.onload = function () {
+
+        rem();
+
+      }
+
+      function rem() {
+
+        let whdef = 100/1920;// 表示1920的设计图,使用100PX的默认值
+
+        let html = document.documentElement;
+
+        let wW = html.clientWidth;// 窗口宽度
+
+        console.log(wW)
+
+        let rem = wW * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
+
+        document.documentElement.style.fontSize = rem + 'px';
+
+        document.body.style.fontSize = '16px';
+
+      }
+
+    </script>
   </body>
 </html>
 

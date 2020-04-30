@@ -25,6 +25,7 @@ import videoclass from '@/components/VideoClass/videoclass'
 import ContentClass from '@/components/VideoClass/ContentClass'
 import login from '@/components/login/index'
 import VideoLive from '@/components/VideoClass/VideoLive'
+import AboutUs from "@/components/aboutUs/AboutUs";
 Vue.use(Router)
 
 export default new Router({
@@ -156,6 +157,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/AboutUs',
+      name: 'AboutUs',
+      component: AboutUs
     }
   ]
 })

@@ -166,247 +166,212 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose" style="min-height: 500px">
-          <el-submenu index="11">
-            <template slot="title">
+            <el-menu-item index="1-11" @click="click_content">
               <i class="el-icon-chat-dot-round"></i>
               <span>全部帖子</span>
-            </template>
-            <el-menu-item-group>
-          <!--                    <template slot="title">分组一</template>-->
-              <el-menu-item index="1-11">
-                <i class=" iconfont ymq-iconyunhang"></i>
-                <span slot="title">测试</span>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-            <el-submenu index="12">
-              <template slot="title">
-                <i class="el-icon-coin"></i>
-                <span>我的发布</span>
-              </template>
-              <el-menu-item-group>
-                <!--                    <template slot="title">分组一</template>-->
-                <el-menu-item index="2-11">
-                  <i class=" iconfont ymq-iconyunhang"></i>
-                  <span slot="title">测试</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="13">
-              <template slot="title">
-                <i class="el-icon-user"></i>
-                <span>老师参与</span>
-              </template>
-              <el-menu-item-group>
-                <!--                    <template slot="title">分组一</template>-->
-                <el-menu-item index="3-11">
-                  <i class=" iconfont ymq-iconyunhang"></i>
-                  <span slot="title">测试</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="14">
-              <template slot="title">
-                <i class="el-icon-set-up"></i>
-                <span>讨论单元</span>
-              </template>
-              <el-menu-item-group>
-                <!--                    <template slot="title">分组一</template>-->
-                <el-menu-item index="4-11">
-                  <i class=" iconfont ymq-iconyunhang"></i>
-                  <span slot="title">测试</span>
-                </el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-          <!--<el-submenu index="2">-->
-          <!--<template slot="title">-->
-          <!--<i class="el-icon-location"></i>-->
-          <!--<span>在线比赛</span>-->
-          <!--</template>-->
-          <!--<el-menu-item-group>-->
-          <!--&lt;!&ndash;                    <template slot="title">分组一</template>&ndash;&gt;-->
-          <!--<el-menu-item index="">-->
-          <!--<i class="el-icon-menu"></i>-->
-          <!--<span slot="title">小学组</span>-->
-          <!--</el-menu-item>-->
-          <!--<el-menu-item index="">-->
-          <!--<i class="el-icon-document"></i>-->
-          <!--<span slot="title">中学组</span>-->
-          <!--</el-menu-item>-->
-          <!--</el-menu-item-group>-->
-          <!--</el-submenu>-->
+            </el-menu-item>
+            <el-menu-item index="4-11" @click="click_update">
+              <i class="el-icon-set-up"></i>
+              <span>上传作业</span>
+            </el-menu-item>
+            <el-menu-item index="2-11">
+              <i class="el-icon-coin"></i>
+              <span>我的发布</span>
+            </el-menu-item>
+            <el-menu-item index="3-11">
+              <i class="el-icon-user"></i>
+              <span>老师参与</span>
+            </el-menu-item>
+
+
           </el-menu>
         </el-aside>
         <el-main style="padding: 0;padding-left: 40px;padding-right: 40px">
-          <el-card style="height: 200px;padding-right: 40px;padding-left: 40px">
-            <el-input
-              type="textarea"
-              placeholder="请输入内容"
-              v-model="textarea"
-              maxlength="30"
-              :autosize="{ minRows: 4, maxRows: 4}"
-              show-word-limit
-            >
-            </el-input>
-            <div style="width: 100%;margin-top: 20px">
-              <!--<el-button type="primary" plain>图片</el-button>-->
-              <el-button type="primary" :disabled="textarea===''" style="float: right" @click="submit_content">发表评论</el-button>
-            </div>
-          </el-card>
-          <div class="line_style">
-            <!--<div style="margin-top: 20px">-->
+          <div v-show="contentShow">
+            <el-card style="height: 200px;padding-right: 40px;padding-left: 40px">
+              <el-input
+                type="textarea"
+                placeholder="请输入内容"
+                v-model="textarea"
+                maxlength="30"
+                :autosize="{ minRows: 4, maxRows: 4}"
+                show-word-limit
+              >
+              </el-input>
+              <div style="width: 100%;margin-top: 20px">
+                <!--<el-button type="primary" plain>图片</el-button>-->
+                <el-button type="primary" :disabled="textarea===''" style="float: right" @click="submit_content">发表评论</el-button>
+              </div>
+            </el-card>
+            <div class="line_style">
+              <!--<div style="margin-top: 20px">-->
               <!--<span>{{'#' + class_header + '-&#45;&#45;' + class_title_1}}</span>-->
-            <!--</div>-->
-            <!--<div class="video_text">-->
+              <!--</div>-->
+              <!--<div class="video_text">-->
               <!--<div class="video_img">-->
-                <!--<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="height: 100%;width: 100%;border-radius: 5px">-->
-                <!--<i class="el-icon-video-play" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-size: 40px"></i>-->
+              <!--<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="height: 100%;width: 100%;border-radius: 5px">-->
+              <!--<i class="el-icon-video-play" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-size: 40px"></i>-->
               <!--</div>-->
               <!--<div style="float: left;line-height: 100px;margin-left: 20px">-->
-                <!--<span><i class="iconfont ymq-iconyunhang"></i>{{class_title_1}}</span>-->
+              <!--<span><i class="iconfont ymq-iconyunhang"></i>{{class_title_1}}</span>-->
               <!--</div>-->
-            <!--</div>-->
-            <!--<div style="float: right;margin-top: 10px">-->
+              <!--</div>-->
+              <!--<div style="float: right;margin-top: 10px">-->
               <!--<i class="iconfont ymq-iconlike"></i>-->
               <!--<span>0</span>-->
               <!--<span> | </span>-->
               <!--<i class="el-icon-chat-dot-square"></i>-->
               <!--<span>1</span>-->
-            <!--</div>-->
-            <div style="margin-top: 30px;border-top: 1px solid #C1C1C1;padding-top: 20px;padding-bottom: 20px" v-for="(item, index) in content_list" :key="index">
-              <div>
-                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-                <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                  <span style="font-size: 12px">{{item.username}}</span>
-                  <!--<span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-                </div>
-                <div style="margin-top: 10px;margin-left: 30px">
+              <!--</div>-->
+              <div style="margin-top: 30px;border-top: 1px solid #C1C1C1;padding-top: 20px;padding-bottom: 20px" v-for="(item, index) in content_list" :key="index">
+                <div>
+                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
+                  <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
+                    <span style="font-size: 12px">{{item.username}}</span>
+                    <!--<span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+                  </div>
+                  <div style="margin-top: 10px;margin-left: 30px">
                   <span>
                     {{item.info}}
                   </span>
-                </div>
-                <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
-                  <span>{{item.createtime | timestampToTime}}</span>
-                  <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>10
-                  <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>3
-                  <span style="margin-left: 20px;cursor: pointer" @click="showText2(index)">回复</span>
-                  <div style="margin-top: 10px" v-show="showIndex === index">
-                    <el-input
-                      type="textarea"
-                      placeholder="请输入内容"
-                      v-model="textarea2"
-                      maxlength="30"
-                      :autosize="{ minRows: 4, maxRows: 4}"
-                      show-word-limit
-                    >
-                    </el-input>
-                    <div style="width: 100%;margin-top: 20px">
-                      <!--<el-button type="primary" plain>图片</el-button>-->
-                      <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply(item)">发表评论</el-button>
+                  </div>
+                  <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                    <span>{{item.createtime | timestampToTime}}</span>
+                    <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>10
+                    <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>3
+                    <span style="margin-left: 20px;cursor: pointer" @click="showText2(index)">回复</span>
+                    <div style="margin-top: 10px" v-show="showIndex === index">
+                      <el-input
+                        type="textarea"
+                        placeholder="请输入内容"
+                        v-model="textarea2"
+                        :autosize="{ minRows: 4, maxRows: 4}"
+                      >
+                      </el-input>
+                      <div style="width: 100%;margin-top: 20px">
+                        <!--<el-button type="primary" plain>图片</el-button>-->
+                        <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply(item)">发表评论</el-button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div style="margin-left: 30px;margin-top: 10px" v-for="(item2, index2) in item.takeInfos" :key="index2">
-                <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-                <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                  <span style="font-size: 12px">{{item2.username}}</span>
-                  <span>回复</span>
-                  <span style="color: #3a8ee6">{{'@' + item2.askuser}}</span>
-                  <span style="margin-left: 40px">
+                <div style="margin-left: 30px;margin-top: 10px" v-for="(item2, index2) in item.takeInfos" :key="index2">
+                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
+                  <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
+                    <span style="font-size: 12px">{{item2.username}}</span>
+                    <span>回复</span>
+                    <span style="color: #3a8ee6">{{'@' + item2.askuser}}</span>
+                    <span style="margin-left: 40px">
                     {{item2.ask}}
                   </span>
-                </div>
-                <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
-                  <span>{{item2.createtime | timestampToTime}}</span>
-                  <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>23
-                  <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>5
-                  <span style="margin-left: 20px" @click="showText3(item2)">回复</span>
-                  <div style="margin-top: 10px" v-show="showIndex2 === item2">
-                    <el-input
-                      type="textarea"
-                      placeholder="请输入内容"
-                      v-model="textarea2"
-                      maxlength="30"
-                      :autosize="{ minRows: 4, maxRows: 4}"
-                      show-word-limit
-                    >
-                    </el-input>
-                    <div style="width: 100%;margin-top: 20px">
-                      <!--<el-button type="primary" plain>图片</el-button>-->
-                      <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply2(item2, item.takeid)">发表评论</el-button>
+                  </div>
+                  <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                    <span>{{item2.createtime | timestampToTime}}</span>
+                    <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>23
+                    <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>5
+                    <span style="margin-left: 20px;cursor: pointer" @click="showText3(item2)">回复</span>
+                    <div style="margin-top: 10px" v-show="showIndex2 === item2">
+                      <el-input
+                        type="textarea"
+                        placeholder="请输入内容"
+                        v-model="textarea2"
+                        :autosize="{ minRows: 4, maxRows: 4}"
+                      >
+                      </el-input>
+                      <div style="width: 100%;margin-top: 20px">
+                        <!--<el-button type="primary" plain>图片</el-button>-->
+                        <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply2(item2, item.takeid)">发表评论</el-button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
               <!--<div>-->
-                <!--<img src="http://image.biaobaiju.com/uploads/20180803/23/1533308847-sJINRfclxg.jpeg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
-                <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-                  <!--<span>展梦</span>-->
-                <!--</div>-->
-                <!--<div style="margin-top: 10px">-->
-                  <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-                    <!--<span>什么是函数？</span>-->
-                    <!--<div>-->
-                      <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div style="float: right;font-size: 12px">-->
-                    <!--<i class="iconfont ymq-iconlike"></i>-->
-                    <!--<span>0</span>-->
-                    <!--<span> | </span>-->
-                    <!--<i class="el-icon-chat-dot-square"></i>-->
-                    <!--<span>1</span>-->
-                  <!--</div>-->
-                <!--</div>-->
+              <!--<img src="http://image.biaobaiju.com/uploads/20180803/23/1533308847-sJINRfclxg.jpeg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
+              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
+              <!--<span>展梦</span>-->
+              <!--</div>-->
+              <!--<div style="margin-top: 10px">-->
+              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+              <!--<span>什么是函数？</span>-->
+              <!--<div>-->
+              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div style="float: right;font-size: 12px">-->
+              <!--<i class="iconfont ymq-iconlike"></i>-->
+              <!--<span>0</span>-->
+              <!--<span> | </span>-->
+              <!--<i class="el-icon-chat-dot-square"></i>-->
+              <!--<span>1</span>-->
+              <!--</div>-->
+              <!--</div>-->
               <!--</div>-->
 
-            <!--</div>-->
-            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--</div>-->
+              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
               <!--<img src="http://pic4.zhimg.com/50/v2-8f994b17abb6299eb65084b505b9872f_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
               <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-                <!--<span>yjn345</span>-->
+              <!--<span>yjn345</span>-->
               <!--</div>-->
               <!--<div style="margin-top: 10px">-->
-                <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-                  <!--<span>函数的形参与实参是什么意思？</span>-->
-                  <!--<div>-->
-                    <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: right;font-size: 12px">-->
-                  <!--<i class="iconfont ymq-iconlike"></i>-->
-                  <!--<span>0</span>-->
-                  <!--<span> | </span>-->
-                  <!--<i class="el-icon-chat-dot-square"></i>-->
-                  <!--<span>1</span>-->
-                <!--</div>-->
+              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+              <!--<span>函数的形参与实参是什么意思？</span>-->
+              <!--<div>-->
+              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
               <!--</div>-->
-            <!--</div>-->
-            <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
+              <!--</div>-->
+              <!--<div style="float: right;font-size: 12px">-->
+              <!--<i class="iconfont ymq-iconlike"></i>-->
+              <!--<span>0</span>-->
+              <!--<span> | </span>-->
+              <!--<i class="el-icon-chat-dot-square"></i>-->
+              <!--<span>1</span>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
               <!--<img src="http://pic1.zhimg.com/50/v2-0d9c0088606a09bedb29e91c1aca4893_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
               <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-                <!--<span>云风</span>-->
+              <!--<span>云风</span>-->
               <!--</div>-->
               <!--<div style="margin-top: 10px">-->
-                <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-                  <!--<span>数据结构怎么这么难？</span>-->
-                  <!--<div>-->
-                    <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: right;font-size: 12px">-->
-                  <!--<i class="iconfont ymq-iconlike"></i>-->
-                  <!--<span>0</span>-->
-                  <!--<span> | </span>-->
-                  <!--<i class="el-icon-chat-dot-square"></i>-->
-                  <!--<span>1</span>-->
-                <!--</div>-->
+              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
+              <!--<span>数据结构怎么这么难？</span>-->
+              <!--<div>-->
+              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
               <!--</div>-->
-            <!--</div>-->
+              <!--</div>-->
+              <!--<div style="float: right;font-size: 12px">-->
+              <!--<i class="iconfont ymq-iconlike"></i>-->
+              <!--<span>0</span>-->
+              <!--<span> | </span>-->
+              <!--<i class="el-icon-chat-dot-square"></i>-->
+              <!--<span>1</span>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+            </div>
           </div>
+          <div v-show="updateImg">
+            上传图片
+            <el-upload
+              action="http://58.119.112.14:11020/cms//filesystem/upload"
+              list-type="picture-card"
+              :on-preview="handlePictureCardPreview"
+              :before-upload="setuploaddata"
+              :on-success="handleAvatarSuccess"
+              :on-exceed="rejectupload"
+              :before-remove="handleRemove"
+              name="multipartFile">
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+          </div>
+
         </el-main>
       </el-container>
     </div>
@@ -431,6 +396,10 @@ export default {
       video_url: '',
       text: '',
       textarea: '',
+      contentShow: true,
+      updateImg: false,
+      dialogImageUrl: '',
+      dialogVisible: false,
       playerOptions: {
         // 播放速度
         playbackRates: [0.5, 1, 1.5, 2],
@@ -546,6 +515,29 @@ export default {
     }
   },
   methods: {
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    setuploaddata(res, file) {
+
+    },
+    handleAvatarSuccess(res, file) {
+      console.log(res)
+      this.$message.success(res.message)
+    },
+    rejectupload(file) {
+
+    },
+    click_content() {
+      this.updateImg = false
+      this.contentShow = true
+
+    },
+    click_update () {
+      this.contentShow = false
+      this.updateImg = true
+    },
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },

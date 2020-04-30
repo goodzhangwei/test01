@@ -1,34 +1,73 @@
 <template>
   <div>
-    <header>
-      <nav>
+    <!--<div class="navbar-container">-->
+      <!--<div class="logo">-->
+        <!--&lt;!&ndash;<img src="../../assets/logo.png" width="80">&ndash;&gt;-->
+      <!--</div>-->
+      <!--<div class="nav-list">-->
+        <!--<ul>-->
+          <!--<li>首页</li>-->
+          <!--<li>全部课程</li>-->
+          <!--<li>编程比赛</li>-->
+          <!--<li>作品擂台</li>-->
+          <!--<li>关于我们</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+      <!--<div class="header-img">-->
+        <!--<user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>-->
+        <!--<Logout v-if="flag_login !== '已登录'"></Logout>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="navbar-wrapper">
+      <div class="container">
 
-        <div class="logo">
-          <div style="float: left">
-            <i class="iconfont ymq-iconQ" style="font-size: 35px;color: #16bcb4;font-weight: bolder;line-height: 40px"></i>
-          </div>
-          <div style="float: left;width: 150px">
-            <img src="../../assets/image1.png">
-            <div style="font-size: 10px;color: #16bcb4;font-weight: bolder;letter-spacing: 2px;">智慧编程 · 青程倾心</div>
-          </div>
+        <nav class="navbar navbar-inverse navbar-static-top nav_border">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">LOGO</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse nav_ul">
+              <ul class="nav navbar-nav ">
+                <li  @click="gotoHomepage"><a>首页</a></li>
+                <li @click="gotoAllclasses"><a>全部课程</a></li>
+                <li @click="gotoCompetition"><a>编程比赛</a></li>
+                <li><a>作品擂台</a></li>
+                <!--<li><a>关于我们</a></li>-->
+                <!--<li class="dropdown">-->
+                  <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
+                  <!--<ul class="dropdown-menu">-->
+                    <!--<li><a href="#">Action</a></li>-->
+                    <!--<li><a href="#">Another action</a></li>-->
+                    <!--<li><a href="#">Something else here</a></li>-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li class="dropdown-header">Nav header</li>-->
+                    <!--<li><a href="#">Separated link</a></li>-->
+                    <!--<li><a href="#">One more separated link</a></li>-->
+                  <!--</ul>-->
+                <!--</li>-->
+              </ul>
+              <ul class="nav navbar-nav ul2_nav">
+                <li>
+                  <user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>
 
-        </div>
-        <div class="navbar">
-          <ul>
-            <li @click="gotoHomepage"><span>首页</span></li>
-            <li @click="gotoAllclasses"><span>全部课程</span></li>
-            <li @click="gotoCompetition"><span>编程比赛</span></li>
-            <li><span>作品擂台</span></li>
-          </ul>
-        </div>
-        <div class="personal">
-          <user-setting-popover v-show="flag_login === '已登录'"></user-setting-popover>
-          <Logout v-show="flag_login !== '已登录'"></Logout>
-          <!--          <el-button @click="gotonima">点我跳</el-button>-->
-          <!--          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
-        </div>
-      </nav>
-    </header>
+                  <a v-if="flag_login !== '已登录'">
+                    <Logout ></Logout>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -79,60 +118,76 @@ export default {
       console.log('我要跳转界面了')
       this.$router.push('/codingCompetition')
     },
+    gotoAboutUs() {
+      this.$router.push('/AboutUs')
+    }
   }
 }
 </script>
 
 <style scoped>
-  header{
-    height: 70px;
-    background-color: white;
-    overflow: hidden;
+  /*.navbar-container {*/
+    /*!*height: 80px;*!*/
+    /*padding: 20px;*/
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*left: 0;*/
+    /*z-index: 20;*/
+  /*}*/
+  /*.logo {*/
+    /*float: left;*/
+  /*}*/
+  /*.nav-list {*/
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+    /*float: left;*/
+    /*margin-left: 500px;*/
+    /*!*line-height: 80px;*!*/
+  /*}*/
+  /*.nav-list ul li {*/
+    /*float: left;*/
+    /*list-style: none;*/
+    /*color: white;*/
+    /*margin-right: 60px;*/
+  /*}*/
+  /*.header-img {*/
+    /*float: right;*/
+  /*}*/
+  @import "carousel.css";
+  .nav li {
+    margin-right: 80px;
   }
-  nav {
-    width: 1400px;
-    height: 40px;
-    background-color: white;
-    margin: 0 auto;
-    margin-top: 15px;
+  .nav li a {
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
   }
-  .logo {
-    float: left;
-    margin-left: 5%;
-    width: 200px;
-    text-align: center;
+  .nav li a:hover {
+   color: #16bcb4;
+    font-weight: bolder;
+  }
+  .container {
+    width: 100%;
+
   }
   .navbar {
-    float: left;
-    height: 40px;
-    line-height: 40px;
-    margin-left: 100px;
+    background-color: rgba(0, 0,0,0.3);
+    /*padding: 5px;*/
   }
-  .navbar li {
-    float: left;
-    list-style-type: none;
-    margin-left: 100px;
-    height: 40px;
-    cursor: pointer;
+  .nav_ul {
+    /*margin-left: 10%;*/
+    margin-left: 600px;
   }
-  .logo img {
-    height: 35px;
-  }
-  .navbar li span {
-    padding:0 8px;
-    /*border-bottom: 1px solid red ;*/
-    height: 40px;
-    display: block;
-    cursor: pointer;
-  }
-  .navbar li span:hover {
-    border-bottom: 2px solid #a68b56;
-    cursor: pointer;
-  }
-  .personal {
+  .ul2_nav {
+    margin-right: 20px;
     float: right;
-    height: 40px;
-    line-height: 40px;
-    margin-right: 15px;
   }
+  .nav_border {
+    border-bottom: rgba(0, 0, 0, 0);
+  }
+  /*.nav>li>a {*/
+    /*padding: 17px 0;*/
+  /*}*/
 </style>

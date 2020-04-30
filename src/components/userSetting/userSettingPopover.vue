@@ -31,13 +31,11 @@
         </div>
       </div>
       <div class="personal" slot="reference" >
-        <a href="#">
-          <img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">
-          <span style="display: block;float: right;">
+        <img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%;margin-top: 5px">
+        <span style="display: block;float: right;margin-top: 15px;color: white">
             {{name}}
-          </span>
+            </span>
 
-        </a>
       </div>
 <!--      <i class="el-icon-s-custom" slot="reference"></i>-->
 <!--      <span slot="reference">杨启航</span>-->
@@ -123,7 +121,7 @@ export default {
 
 <style scoped>
   a {
-    color: #050505;
+    color: white;
     text-decoration: none;
   }
   .content{
