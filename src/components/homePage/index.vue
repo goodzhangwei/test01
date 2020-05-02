@@ -2,12 +2,12 @@
   <div class="app_container">
     <transition name="fade">
       <div  v-if="navBarFixed" class="header-show">
-        <Header :flags = flag_class class="header"></Header>
+        <HeaderTwo :flags = flag_class class="header "></HeaderTwo>
       </div>
     </transition>
 
-
     <Header :flags = flag_class class="header"></Header>
+
     <div >
       <el-carousel class="carousel-img" height="665px" @change="carouselChange">
         <el-carousel-item  v-for="(item, index) in schna" :key="index">
@@ -186,20 +186,259 @@
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">13人评价</span>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card"></div>
+              <div class="xl-card">
+                <div class="xl-card-img xl-card-img2"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">13人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card"></div>
+              <div class="xl-card">
+                <div class="xl-card-img xl-card-img3"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">13人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card"></div>
+              <div class="xl-card">
+                <div class="xl-card-img xl-card-img4"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">13人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </el-col>
           </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="hot-course">
+      <div class="content-hot">
+        <div class="kp-title">
+          <span>热门课程</span>
+          <div class="hot-icon-util">
+            <span class="hot-icon-util-de"><i class="iconfont ymq-iconhuanyipi"></i> 换一批</span>
+            <span class="hot-icon-util-de">更多 > ></span>
+          </div>
+
+        </div>
+        <div class="hot-content">
+          <el-row :gutter="20">
+            <el-col :span="4">
+              <div class="hot-card hot-card-left">
+                <div class="hot-card-left-text1">
+                  <span>热门课程</span>
+                </div>
+                <div class="hot-card-left-text2">
+                  <span>共1970节课</span>
+                </div>
+                <div class="hot-card-left-text3">
+                  <a>查看更多教程>></a>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="5" v-for="(item, index) in list" :key="index">
+              <div class="hot-card">
+                <div class="hot-card-img" @click="gotocontent(item.id)">
+                  <img :src="imgList[index]" class="hot-img-style">
+                </div>
+                <div class="hot-card-right-text">
+                  <div class="hot-card-right-title" @click="gotocontent(item.id)">
+                    <span>{{item.name.substring(0, 10)}}</span>
+                  </div>
+                  <div class="hot-card-right-icon">
+                    <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="hot-icon-right">4步骤·6门课</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="live-course">
+      <div class="live-content">
+        <div class="kp-title">
+          <span>热门直播</span>
+          <div class="hot-icon-util">
+            <span class="hot-icon-util-de"><i class="iconfont ymq-iconhuanyipi"></i> 换一批</span>
+            <span class="hot-icon-util-de">更多 > ></span>
+          </div>
+
+        </div>
+        <div class="content-live">
+          <el-row :gutter="15">
+            <el-col :span="6">
+              <div class="live-card">
+                <div class="live-card-img">
+                  <img src="../../assets/live-card-img-bg1.png" class="live-card-img-bg">
+                  <img src="../../assets/live-card-img-bg2.png" class="live-card-img-bg2">
+                </div>
+                <div class="live-card-text">
+                  <div class="live-card-title">
+                    <span>自然语言处理</span>
+                  </div>
+                  <div class="live-card-icon">
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-right">初级练习</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="live-card">
+                <div class="live-card-img">
+                  <img src="../../assets/live-card-img2.png" class="live-card-img-bg">
+                </div>
+                <div class="live-card-text">
+                  <div class="live-card-title">
+                    <span>图像处理</span>
+                  </div>
+                  <div class="live-card-icon">
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-right2">中级拔高</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="live-card">
+                <div class="live-card-img">
+                  <img src="../../assets/live-card-img3.png" class="live-card-img-bg">
+                </div>
+                <div class="live-card-text">
+                  <div class="live-card-title">
+                    <span>大数据技术</span>
+                  </div>
+                  <div class="live-card-icon">
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-right3">新手入门</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="live-card">
+                <div class="live-card-img">
+                  <img src="../../assets/live-card-img4.png" class="live-card-img-bg">
+                </div>
+                <div class="live-card-text">
+                  <div class="live-card-title">
+                    <span>Python数据分析</span>
+                  </div>
+                  <div class="live-card-icon">
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-right3">新手入门</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="sz-project">
+      <div class="sz-top">
+        <div class="sz-content">
+          <div class="sz-content-title">
+            <span>实战项目</span>
+          </div>
+          <div class="sz-content-card">
+            <el-row>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img1">
+                  <img src="../../assets/sz-text-img1.png" class="sz-text-img">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img2">
+                  <img src="../../assets/sz-text-img2.png" class="sz-text-img">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img3">
+                  <img src="../../assets/sz-text-img3.png" class="sz-text-img3">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img4">
+                  <img src="../../assets/sz-text-img4.png" class="sz-text-img3">
+                </div>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img5">
+                  <img src="../../assets/sz-text-img5.png" class="sz-text-img">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img6">
+                  <img src="../../assets/sz-text-img6.png" class="sz-text-img3">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img7">
+                  <img src="../../assets/sz-text-img7.png" class="sz-text-img3">
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="sz-card sz-card-img8">
+                  <img src="../../assets/sz-text-img8.png" class="sz-text-img8">
+                </div>
+              </el-col>
+            </el-row>
+          </div>
         </div>
       </div>
     </div>
@@ -1005,17 +1244,20 @@
 
 
 
-    <div class="copyrightContainer">
-      <span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>
-    </div>
+    <!--<div class="copyrightContainer">-->
+      <!--<span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>-->
+    <!--</div>-->
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/common/header'
+import HeaderTwo from '@/components/common/header2'
+import Footer from '@/components/common/footer'
 export default {
   name: 'index',
-  components: { Header },
+  components: { Header, HeaderTwo, Footer },
   data () {
     return {
       value1: '5',
@@ -1028,7 +1270,8 @@ export default {
       flag_class: '未登录',
       flag_state: true,
       bannerStyle: 'background-banner',
-      LiveList: []
+      LiveList: [],
+      imgList: ['http://58.119.112.12/CCZX_image/hot-card-img1.png','http://58.119.112.12/CCZX_image/hot-card-img2.png','http://58.119.112.12/CCZX_image/hot-card-img3.png', 'http://58.119.112.12/CCZX_image/hot-card-img4.png']
 
     }
   },
@@ -1132,7 +1375,7 @@ export default {
     },
     getList () {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
-      var url = 'http://58.119.112.14:11020/cms/user/coursePub/mylist/1/10?username=' + this.username
+      var url = 'http://58.119.112.14:11020/cms/user/coursePub/mylist/1/4?username=' + this.username
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
       })
@@ -1269,7 +1512,7 @@ export default {
   }
   .kp-tag-card:hover {
     transform: scale(1.2);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
   }
   .kp-text-title {
     color: white;
@@ -1404,6 +1647,13 @@ export default {
   }
   .xl-card {
     height: 411px;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+  .xl-card:hover {
+    transform: scale(1.2);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+
   }
   .xl-card-img {
     height: 270px;
@@ -1415,6 +1665,15 @@ export default {
     height: 141px;
   }
   .xl-card-img1 {
+    background-image: url("../../assets/xl-card-img4.png");
+  }
+  .xl-card-img2 {
+    background-image: url("../../assets/xl-card-img3.png");
+  }
+  .xl-card-img3 {
+    background-image: url("../../assets/xl-card-img2.png");
+  }
+  .xl-card-img4 {
     background-image: url("../../assets/xl-card-img1.png");
   }
   .xl-card-title {
@@ -1430,7 +1689,290 @@ export default {
     padding: 5px 10px 5px 10px;
     color: white;
     background-color: #f4ab00;
+    font-size: 16px;
+    letter-spacing: 3px;
+    border-radius: 5px;
+  }
+  .xl-footer-icon {
+    float: right;
+  }
+  .xl-iconfont {
+    font-size: 20px;
+    color: #bababa;
+  }
+  .xl-footer-text1 {
+    font-size: 16px;
+    color: #bababa;
+  }
+  .xl-footer-text2 {
+    font-size: 16px;
+    color: #3dc5a4;
+    letter-spacing: 2px;
+  }
+  .hot-course {
+    width: 100%;
+    height: 434px;
+  }
+  .content-hot {
+    width: 1500px;
+    margin: 0 auto;
+    padding-top: 70px;
+  }
+  .hot-icon-util {
+    float: right;
+  }
+  .hot-icon-util-de {
+    padding: 5px 10px 5px 10px;
+    border: #dfdfdf solid 1px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+  }
+  .hot-icon-util-de i {
+    font-size: 14px;
+  }
+  .hot-icon-util-de:hover {
+    background-color: #16bcb4;
+    color: white;
+  }
+  .hot-content {
+    margin-top: 36px;
+  }
+  .hot-card {
+    height: 290px;
+  }
+  .hot-card-left {
+    background-image: url("../../assets/hot-card-left.png");
+    background-size: 100% 100%;
+    text-align: center;
+    padding: 10px 30px 10px 30px;
+  }
+  .hot-card-left-text1 {
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-top: 30px;
+  }
+  .hot-card-left-text2 {
+    color: white;
+    /*font-weight: bold;*/
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+  }
+  .hot-card-left-text3 {
+    /*font-weight: bold;*/
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+  }
+  .hot-card-left-text3 a {
+    color: white;
+    cursor: pointer;
+  }
+  .hot-card-img {
+    height: 179px;
+    overflow: hidden;
+
+  }
+  .hot-img-style {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.6s;
+  }
+  .hot-card:hover .hot-img-style {
+    transform: scale(1.2);
+  }
+  .hot-card-right-text {
+    height: 111px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    background-color: #f7f8fa;
+  }
+  .hot-card-right-title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+
+  }
+  .hot-card-right-icon {
     font-size: 18px;
+    margin-top: 20px;
+  }
+  .hot-icon-text {
+    color: #959493;
+    font-weight: bold;
+  }
+  .hot-icon-text i {
+    color: #d81e06;
+    margin-right: 10px;
+  }
+  .hot-icon-right {
+    float: right;
+    color: #fe6549;
+    font-weight: bold;
+  }
+  .live-course {
+    height: 575px;
+  }
+  .live-content {
+    width: 1500px;
+    margin: 0 auto;
+    padding-top: 64px;
+  }
+  .content-live {
+    margin-top: 36px;
+  }
+  .live-card {
+    height: 372px;
+  }
+  .live-card-img {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+  .live-card-img-bg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+  .live-card:hover .live-card-img-bg{
+    transform: scale(1.2);
+  }
+  .live-card-img-bg2 {
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .live-card-text {
+    height: 132px;
+    background-color: #f7f8fa;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 25px;
+  }
+  .live-card-title {
+    font-size: 24px;
+    font-weight: bold;
     letter-spacing: 3px;
   }
+  .live-card-icon {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  .live-icon-text {
+    color: #959493;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  .live-card-text i {
+    color: #d81e06;
+    margin-right: 10px;
+  }
+  .live-icon-right {
+    float: right;
+    color: #fe6549;
+    font-weight: bold;
+  }
+  .live-icon-right2 {
+    float: right;
+    color: #f9ad3c;
+    font-weight: bold;
+  }
+  .live-icon-right3 {
+    float: right;
+    color: #3dc5a4;
+    font-weight: bold;
+  }
+  .sz-project {
+    width: 100%;
+    height: 983px;
+    margin-top: 10px;
+
+  }
+  .sz-top {
+    height: 502px;
+    width: 100%;
+    background-image: url("../../assets/sz-bg.png");
+    background-size: 100% 100%;
+    /*position: relative;*/
+
+  }
+  .sz-content {
+    width: 1500px;
+    padding-top: 40px;
+    /*height: 983px;*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    margin: 0 auto;
+  }
+  .sz-content-title {
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+  .sz-content-card {
+    margin-top: 39px;
+  }
+  .sz-card {
+    height: 373px;
+    background-size: 100% 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.6s;
+  }
+  .sz-card:hover {
+    transform: scale(1.2);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+  }
+  .sz-card-img1 {
+    background-image: url("../../assets/sz-img1.png");
+  }
+  .sz-card-img2 {
+    background-image: url("../../assets/sz-img2.png");
+  }
+  .sz-card-img3 {
+    background-image: url("../../assets/sz-img3.png");
+  }
+  .sz-card-img4 {
+    background-image: url("../../assets/sz-img4.png");
+  }
+  .sz-card-img5 {
+    background-image: url("../../assets/sz-img5.png");
+  }
+  .sz-card-img1 {
+    background-image: url("../../assets/sz-img1.png");
+  }
+  .sz-card-img6 {
+    background-image: url("../../assets/sz-img6.png");
+  }
+  .sz-card-img7 {
+    background-image: url("../../assets/sz-img7.png");
+  }
+  .sz-card-img8 {
+    background-image: url("../../assets/sz-img8.png");
+  }
+  .sz-text-img {
+    width: 240px;
+    margin-top: 40px;
+  }
+  .sz-text-img3 {
+    margin-top: 40px;
+    width: 260px;
+  }
+  .sz-text-img8 {
+    margin-top: 40px;
+    width: 280px;
+  }
+
 </style>
