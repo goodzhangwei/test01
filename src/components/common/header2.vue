@@ -30,7 +30,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">LOGO</a>
+              <a class="navbar-brand" href="#" @click="gotoHomepage">
+                <img src="../../assets/header-logo.png" class="img-logo">
+              </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse nav_ul">
               <ul class="nav navbar-nav ">
@@ -54,7 +56,10 @@
               </ul>
               <ul class="nav navbar-nav ul2_nav">
                 <li>
-                  <user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>
+                  <a class="nav_a" v-if="flag_login === '已登录'">
+                    <user-setting-popover ></user-setting-popover>
+                  </a>
+
 
                   <a v-if="flag_login !== '已登录'">
                     <Logout ></Logout>
@@ -190,4 +195,16 @@
   /*.nav>li>a {*/
   /*padding: 17px 0;*/
   /*}*/
+  .nav_a {
+    padding: 0;
+    margin-top: 10px;
+  }
+  .img-logo {
+    height: 50px;
+    margin-left: 60px;
+    /*margin-top: 5px;*/
+  }
+  .navbar-brand {
+    padding: 15px;
+  }
 </style>

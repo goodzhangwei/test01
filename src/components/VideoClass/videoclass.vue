@@ -1,141 +1,14 @@
 <template>
   <div>
     <Header></Header>
-    <div class="container">
-      <div style="margin-bottom: 15px;margin-left: 28%">
-        <h2>{{class_header}}</h2>
-      </div>
-      <el-container>
-        <el-aside width="25%" style="max-height: 600px">
-          <div class="left_container">
-            <div class="left_nav">
-              <!--<el-menu-->
-                <!--router-->
-                <!--:default-active="$route.path"-->
-                <!--class="el-menu-vertical-demo"-->
-                <!--@open="handleOpen"-->
-                <!--@close="handleClose">-->
-                <!--<el-submenu index="1">-->
-                  <!--<template slot="title">-->
-                    <!--<i class="el-icon-menu"></i>-->
-                    <!--<span>Python计算思维基础课程</span>-->
-                  <!--</template>-->
-                  <!--<el-menu-item-group>-->
-                    <!--&lt;!&ndash;                    <template slot="title">分组一</template>&ndash;&gt;-->
-                    <!--<el-menu-item index="/videoclass">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第一章 初识python</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第二章 海龟画图</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第三章 旋转的海龟</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第四章 变量与数据类型</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第五章 控制语句</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第六章 数据结构</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第七章 函数</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第八章 递归</span>-->
-                    <!--</el-menu-item>-->
-                    <!--<el-menu-item index="#">-->
-                      <!--<i class=" iconfont ymq-iconyunhang"></i>-->
-                      <!--<span slot="title">第六章 控制语句</span>-->
-                    <!--</el-menu-item>-->
-                  <!--</el-menu-item-group>-->
-                <!--</el-submenu>-->
-                <!--&lt;!&ndash;<el-submenu index="2">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<template slot="title">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<i class="el-icon-location"></i>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span>在线比赛</span>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</template>&ndash;&gt;-->
-                  <!--&lt;!&ndash;<el-menu-item-group>&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;                    <template slot="title">分组一</template>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;<el-menu-item index="">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<i class="el-icon-menu"></i>&ndash;&gt;-->
-                      <!--&lt;!&ndash;<span slot="title">小学组</span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</el-menu-item>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<el-menu-item index="">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<i class="el-icon-document"></i>&ndash;&gt;-->
-                      <!--&lt;!&ndash;<span slot="title">中学组</span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</el-menu-item>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</el-menu-item-group>&ndash;&gt;-->
-                <!--&lt;!&ndash;</el-submenu>&ndash;&gt;-->
-              <!--</el-menu>-->
-              <el-menu
-               default-active="0-0"
-               :default-openeds="open_list"
-                class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose">
-                <el-submenu v-for="(item, index) in list" :key="index" :index="index">
-                  <template slot="title">
-                    <i class="el-icon-menu"></i>
-                    <span>{{item.pname}}</span>
-                  </template>
-                  <el-menu-item-group>
-                    <!--                    <template slot="title">分组一</template>-->
-                    <el-menu-item v-for="(item2, index2) in item.children" :key="index2" :index="index+ '-' + index2" @click="openVideo(item2)">
-                      <i class=" iconfont ymq-iconyunhang" v-show="item2.ptype === '1'"></i>
-                      <i class=" iconfont ymq-iconDOC" v-show="item2.ptype !== '1'"></i>
-                      <span slot="title">{{item2.pname}}</span>
-                    </el-menu-item>
-                  </el-menu-item-group>
-                </el-submenu>
-                <!--<el-submenu index="2">-->
-                <!--<template slot="title">-->
-                <!--<i class="el-icon-location"></i>-->
-                <!--<span>在线比赛</span>-->
-                <!--</template>-->
-                <!--<el-menu-item-group>-->
-                <!--&lt;!&ndash;                    <template slot="title">分组一</template>&ndash;&gt;-->
-                <!--<el-menu-item index="">-->
-                <!--<i class="el-icon-menu"></i>-->
-                <!--<span slot="title">小学组</span>-->
-                <!--</el-menu-item>-->
-                <!--<el-menu-item index="">-->
-                <!--<i class="el-icon-document"></i>-->
-                <!--<span slot="title">中学组</span>-->
-                <!--</el-menu-item>-->
-                <!--</el-menu-item-group>-->
-                <!--</el-submenu>-->
-              </el-menu>
-            </div>
-          </div>
-        </el-aside>
-        <el-main>
-          <div class="main_content">
-            <!--<div class='demo'>-->
-              <!--<video-player class="video-player vjs-custom-skin"-->
-                            <!--ref="videoPlayer"-->
-                            <!--:playsinline="true"-->
-                            <!--:options="playerOptions">-->
-              <!--</video-player>-->
-            <!--</div>-->
-            <div style="margin-bottom: 5px;width: 100%;height: 20px">
-              <div class="logos">
-              </div>
-              <div style="margin-left: 20px">
-                <span>{{class_title_1}}</span>
-              </div>
-            </div>
-            <div @contextmenu.prevent="disPlayer">
+    <div class="video-content">
+      <div class="video-container">
+        <div class="video-header">
+          <span>{{class_title_1}}</span>
+        </div>
+        <el-container class="video-container-content">
+          <el-main class="video-main">
+            <div @contextmenu.prevent="disPlayer" class="video-bg">
               <video-player class="video-player vjs-custom-skin"
                             ref="videoPlayer"
                             id="video"
@@ -148,239 +21,242 @@
                             @ready="playerReadied">
               </video-player>
             </div>
+            <div class="video-footer">
+              <span class="video-span span-icon1">
+                <i class="iconfont ymq-iconxiaoxi"></i> 1900
+              </span>
+              <span class="video-span">
+                <i class="iconfont ymq-iconaixin"></i> 12万
+              </span>
+              <span class="video-span ">
+                <i class="iconfont ymq-iconshoucang1"></i> 收藏
+              </span>
+              <span class="span-icon3">
+                &nbsp;
+              </span>
+              <span class="class-text">
+                {{class_header}}
+              </span>
+              <span class="footer-right">
+                  <el-tooltip class="item" effect="dark" content="分享" placement="bottom">
+                   <i class="iconfont ymq-iconfenxiangfangshi"></i>
+                 </el-tooltip>
+                 <el-tooltip class="item" effect="dark" content="帮助" placement="bottom">
+                   <i class="iconfont ymq-iconicon_yiwenkongxin"></i>
+                 </el-tooltip>
+                <el-tooltip class="item" effect="dark" content="举报" placement="bottom">
+                   <i class="iconfont ymq-iconjubao"></i>
+                 </el-tooltip>
 
-          </div>
-        </el-main>
-      </el-container>
-      <div style="margin-top: 50px">
-        <span>讨论区</span>
-      </div>
-      <el-container style="margin-top: 20px">
-        <el-aside width="25%" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);background-color: white">
-          <div style="padding: 20px">
-            <el-input placeholder="请输入要搜索的帖子">
-              <el-button slot="append" icon="el-icon-search"></el-button>
-            </el-input>
-          </div>
-          <el-menu
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose" style="min-height: 500px">
-            <el-menu-item index="1-11" @click="click_content">
-              <i class="el-icon-chat-dot-round"></i>
-              <span>全部帖子</span>
-            </el-menu-item>
-            <el-menu-item index="4-11" @click="click_update">
-              <i class="el-icon-set-up"></i>
-              <span>上传作业</span>
-            </el-menu-item>
-            <el-menu-item index="2-11">
-              <i class="el-icon-coin"></i>
-              <span>我的发布</span>
-            </el-menu-item>
-            <el-menu-item index="3-11">
-              <i class="el-icon-user"></i>
-              <span>老师参与</span>
-            </el-menu-item>
-
-
-          </el-menu>
-        </el-aside>
-        <el-main style="padding: 0;padding-left: 40px;padding-right: 40px">
-          <div v-show="contentShow">
-            <el-card style="height: 200px;padding-right: 40px;padding-left: 40px">
-              <el-input
-                type="textarea"
-                placeholder="请输入内容"
-                v-model="textarea"
-                maxlength="30"
-                :autosize="{ minRows: 4, maxRows: 4}"
-                show-word-limit
-              >
-              </el-input>
-              <div style="width: 100%;margin-top: 20px">
-                <!--<el-button type="primary" plain>图片</el-button>-->
-                <el-button type="primary" :disabled="textarea===''" style="float: right" @click="submit_content">发表评论</el-button>
+              </span>
+            </div>
+          </el-main>
+          <el-aside class="video-aside">
+            <div class="aside-header">
+              <div class="aside-header-content">
+                <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=594235885,3965721747&fm=11&gp=0.jpg" class="aside-img">
+                <div class="aside-header-text">
+                  <div class="aside-header-text1">
+                    <span>课程讲师</span>
+                  </div>
+                  <div class="aside-header-text2">
+                    <span>{{teacher_name}}</span>
+                  </div>
+                </div>
               </div>
-            </el-card>
+
+            </div>
+            <div class="aside-content">
+              <div class="content-tag">
+                <el-row>
+                  <el-col :span="12" class="tag-col">
+                    <div class="tags mulu-tag">
+                      目录
+                    </div>
+                  </el-col>
+                  <el-col :span="12" class="tag-col">
+                    <div class="tags biji-tag">
+                      笔记
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+              <div class="aside-contents">
+                <div v-for="(item, index) in list" :key="index" :index="index" class="content-text">
+                  <span>{{item.pname}}</span>
+                  <div v-for="(item2, index2) in item.children" :key="index2" :index="index+ '-' + index2" @click="openVideo(item2)" class="content-class-text">
+                    <i class=" iconfont ymq-iconyunhang" v-show="item2.ptype === '1'"></i>
+                    <i class=" iconfont ymq-iconDOC" v-show="item2.ptype !== '1'"></i>
+                    <span slot="title">{{item2.pname}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="aside-footer">
+              <el-button class="button-style" type="primary"> <i class="iconfont ymq-iconshoucang1"></i>收藏</el-button>
+            </div>
+          </el-aside>
+        </el-container>
+      </div>
+
+    </div>
+    <div class="content-container">
+      <el-row :gutter="20">
+        <el-col :span="18">
+          <div class="content-card">
+            <div class="content-card-header">
+              <div class="content-card-header-text">
+                学员评论<span>{{'(' + content_list.length + '条评论)'}}</span>
+              </div>
+
+            </div>
+            <div class="content-input">
+              <div class="class-start">
+                <span>为课程评分：</span>
+                <el-rate
+                  class="star-rate"
+                  v-model="value2"
+                  :colors="colors">
+                </el-rate>
+              </div>
+              <div class="class-tags">
+                <span>难易度程度：</span>
+                <el-tag type="info" size="small" class="class-tag">太简单</el-tag>
+                <el-tag type="info" size="small" class="class-tag">简单</el-tag>
+                <el-tag type="info" size="small" class="class-tag">适中</el-tag>
+                <el-tag type="info" size="small" class="class-tag">有点难</el-tag>
+                <el-tag type="info" size="small" class="class-tag">太难了</el-tag>
+              </div>
+              <div class="class-input">
+                <el-input
+                  type="textarea"
+                  placeholder="请输入内容"
+                  v-model="textarea"
+                  maxlength="200"
+                  style="font-size: medium"
+                  :autosize="{ minRows: 7, maxRows: 7}"
+                  show-word-limit
+                >
+                </el-input>
+                <div class="class-button">
+                  <el-button type="success"  :disabled="textarea===''" @click="submit_content" class="button-input">发表评论</el-button>
+                </div>
+              </div>
+
+            </div>
             <div class="line_style">
-              <!--<div style="margin-top: 20px">-->
-              <!--<span>{{'#' + class_header + '-&#45;&#45;' + class_title_1}}</span>-->
-              <!--</div>-->
-              <!--<div class="video_text">-->
-              <!--<div class="video_img">-->
-              <!--<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3228285589,4093988690&fm=11&gp=0.jpg" style="height: 100%;width: 100%;border-radius: 5px">-->
-              <!--<i class="el-icon-video-play" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-size: 40px"></i>-->
-              <!--</div>-->
-              <!--<div style="float: left;line-height: 100px;margin-left: 20px">-->
-              <!--<span><i class="iconfont ymq-iconyunhang"></i>{{class_title_1}}</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div style="float: right;margin-top: 10px">-->
-              <!--<i class="iconfont ymq-iconlike"></i>-->
-              <!--<span>0</span>-->
-              <!--<span> | </span>-->
-              <!--<i class="el-icon-chat-dot-square"></i>-->
-              <!--<span>1</span>-->
-              <!--</div>-->
-              <div style="margin-top: 30px;border-top: 1px solid #C1C1C1;padding-top: 20px;padding-bottom: 20px" v-for="(item, index) in content_list" :key="index">
+              <div class="content-text-peop" v-for="(item, index) in content_list.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="index">
                 <div>
-                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-                  <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                    <span style="font-size: 12px">{{item.username}}</span>
+                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg"  class="content-img">
+                  <div class="content-name">
+                    <span>{{item.username}}</span>
                     <!--<span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>-->
                   </div>
-                  <div style="margin-top: 10px;margin-left: 30px">
-                  <span>
-                    {{item.info}}
-                  </span>
+                  <div class="content-info">
+                    <span>{{item.info}}</span>
                   </div>
-                  <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                  <div  class="content-reply">
                     <span>{{item.createtime | timestampToTime}}</span>
-                    <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>10
-                    <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>3
-                    <span style="margin-left: 20px;cursor: pointer" @click="showText2(index)">回复</span>
-                    <div style="margin-top: 10px" v-show="showIndex === index">
+                    <i class="iconfont ymq-iconlike" ></i>10
+                    <i class="iconfont ymq-iconunlike"></i>3
+                    <span  @click="showText2(index)" class="content-span">回复</span>
+                    <div v-show="showIndex === index" class="content-reply-input">
                       <el-input
                         type="textarea"
                         placeholder="请输入内容"
                         v-model="textarea2"
-                        :autosize="{ minRows: 4, maxRows: 4}"
+                        :autosize="{ minRows: 6, maxRows: 6}"
                       >
                       </el-input>
-                      <div style="width: 100%;margin-top: 20px">
+                      <div class="input2-style">
                         <!--<el-button type="primary" plain>图片</el-button>-->
-                        <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply(item)">发表评论</el-button>
+                        <el-button type="success" :disabled="textarea2===''"  @click="submit_reply(item)" class="button-input2">发表评论</el-button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div style="margin-left: 30px;margin-top: 10px" v-for="(item2, index2) in item.takeInfos" :key="index2">
-                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">
-                  <div style="margin-left: 30px;font-size: 14px;line-height: 25px">
-                    <span style="font-size: 12px">{{item2.username}}</span>
+                <div v-for="(item2, index2) in item.takeInfos" :key="index2" class="content-input3">
+                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" class="img_class3">
+                  <div  class="reply_info">
+                    <span>{{item2.username}}</span>
                     <span>回复</span>
-                    <span style="color: #3a8ee6">{{'@' + item2.askuser}}</span>
-                    <span style="margin-left: 40px">
+                    <span class="askuser">{{'@' + item2.askuser}}</span>
+                    <span class="ask">
                     {{item2.ask}}
                   </span>
                   </div>
-                  <div style="margin-top: 10px;margin-left: 30px;font-size: 12px;color: grey">
+                  <div class="reply_info2">
                     <span>{{item2.createtime | timestampToTime}}</span>
-                    <i class="iconfont ymq-iconlike" style="margin-left: 20px"></i>23
-                    <i class="iconfont ymq-iconunlike" style="margin-left: 20px"></i>5
-                    <span style="margin-left: 20px;cursor: pointer" @click="showText3(item2)">回复</span>
-                    <div style="margin-top: 10px" v-show="showIndex2 === item2">
+                    <i class="iconfont ymq-iconlike"></i>23
+                    <i class="iconfont ymq-iconunlike"></i>5
+                    <span  @click="showText3(item2)" class="reply_button">回复</span>
+                    <div  v-show="showIndex2 === item2" class="reply_input2">
                       <el-input
                         type="textarea"
                         placeholder="请输入内容"
                         v-model="textarea2"
-                        :autosize="{ minRows: 4, maxRows: 4}"
+                        :autosize="{ minRows: 6, maxRows: 6}"
                       >
                       </el-input>
-                      <div style="width: 100%;margin-top: 20px">
+                      <div class="input3-style">
                         <!--<el-button type="primary" plain>图片</el-button>-->
-                        <el-button type="primary" :disabled="textarea2===''" style="float: right" @click="submit_reply2(item2, item.takeid)">发表评论</el-button>
+                        <el-button type="success" :disabled="textarea2===''" @click="submit_reply2(item2, item.takeid)" class="button-input3">发表评论</el-button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
-              <!--<div>-->
-              <!--<img src="http://image.biaobaiju.com/uploads/20180803/23/1533308847-sJINRfclxg.jpeg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
-              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-              <!--<span>展梦</span>-->
-              <!--</div>-->
-              <!--<div style="margin-top: 10px">-->
-              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-              <!--<span>什么是函数？</span>-->
-              <!--<div>-->
-              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div style="float: right;font-size: 12px">-->
-              <!--<i class="iconfont ymq-iconlike"></i>-->
-              <!--<span>0</span>-->
-              <!--<span> | </span>-->
-              <!--<i class="el-icon-chat-dot-square"></i>-->
-              <!--<span>1</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-
-              <!--</div>-->
-              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
-              <!--<img src="http://pic4.zhimg.com/50/v2-8f994b17abb6299eb65084b505b9872f_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
-              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-              <!--<span>yjn345</span>-->
-              <!--</div>-->
-              <!--<div style="margin-top: 10px">-->
-              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-              <!--<span>函数的形参与实参是什么意思？</span>-->
-              <!--<div>-->
-              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div style="float: right;font-size: 12px">-->
-              <!--<i class="iconfont ymq-iconlike"></i>-->
-              <!--<span>0</span>-->
-              <!--<span> | </span>-->
-              <!--<i class="el-icon-chat-dot-square"></i>-->
-              <!--<span>1</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div style="width: 700px;margin: 10px auto;height: 100px;border-top: 1px solid #C1C1C1;padding-top: 10px">-->
-              <!--<img src="http://pic1.zhimg.com/50/v2-0d9c0088606a09bedb29e91c1aca4893_hd.jpg" style="width: 25px;height: 25px;border-radius: 50%;float: left">-->
-              <!--<div style="margin-left: 30px;font-size: 14px;line-height: 25px">-->
-              <!--<span>云风</span>-->
-              <!--</div>-->
-              <!--<div style="margin-top: 10px">-->
-              <!--<div style="font-size: 12px;float: left;margin-left: 40px">-->
-              <!--<span>数据结构怎么这么难？</span>-->
-              <!--<div>-->
-              <!--<span style="font-size: 12px;color: grey">2020-02-11/11:30</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div style="float: right;font-size: 12px">-->
-              <!--<i class="iconfont ymq-iconlike"></i>-->
-              <!--<span>0</span>-->
-              <!--<span> | </span>-->
-              <!--<i class="el-icon-chat-dot-square"></i>-->
-              <!--<span>1</span>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
+            </div>
+            <div class="paginations">
+              <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[5, 10, 20, 50, 100]"
+                :page-size="pagesize"
+                layout="total, sizes, prev, pager, next, jumper"
+                background
+                :total="content_list.length">
+              </el-pagination>
             </div>
           </div>
-          <div v-show="updateImg">
-            上传图片
-            <el-upload
-              action="http://58.119.112.14:11020/cms//filesystem/upload"
-              list-type="picture-card"
-              :on-preview="handlePictureCardPreview"
-              :before-upload="setuploaddata"
-              :on-success="handleAvatarSuccess"
-              :on-exceed="rejectupload"
-              :before-remove="handleRemove"
-              name="multipartFile">
-              <i class="el-icon-plus"></i>
-            </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
-              <img width="100%" :src="dialogImageUrl" alt="">
-            </el-dialog>
+        </el-col>
+        <el-col :span="6">
+          <div>
+            <div class="video-right-content">
+              <img src="../../assets/video-img4.png">
+              <div class="video-img-text">
+                <span>全部帖子</span>
+              </div>
+            </div>
+            <div class="video-right-content">
+              <img src="../../assets/video-img3.png">
+              <div class="video-img-text">
+                <span>上传作业</span>
+              </div>
+            </div>
+            <div class="video-right-content">
+              <img src="../../assets/video-img2.png">
+              <div class="video-img-text">
+                <span>老师参与</span>
+              </div>
+            </div>
+            <div class="video-right-content">
+              <img src="../../assets/video-img1.png">
+              <div class="video-img-text">
+                <span>我的发布</span>
+              </div>
+            </div>
           </div>
-
-        </el-main>
-      </el-container>
+        </el-col>
+      </el-row>
     </div>
-    <Footer style="margin-top: 50px"></Footer>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Header from '@/components/common/header'
+import Header from '@/components/common/header3'
 import Footer from '@/components/common/footer'
 import $ from 'jquery'
 export default {
@@ -394,6 +270,10 @@ export default {
   data () {
     return {
       video_url: '',
+      currentPage:1,
+      pagesize:5,
+      value2: null,
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900'],  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
       text: '',
       textarea: '',
       contentShow: true,
@@ -437,6 +317,7 @@ export default {
       },
       class_id: '',
       class_header: '',
+      teacher_name: '',
       list: [],
       class_title_1: '',
       open_list: [],
@@ -515,6 +396,12 @@ export default {
     }
   },
   methods: {
+    handleSizeChange: function (size) {
+      this.pagesize = size;
+    },
+    handleCurrentChange: function(currentPage){
+      this.currentPage = currentPage;
+    },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
@@ -563,6 +450,7 @@ export default {
         console.log(this.teachPlanId)
         // this.playerOptions.sources[0].src = res.data.teachplanNode.children[0].children[0].mediaUrl
         this.class_header = res.data.courseBase.name
+        this.teacher_name = res.data.teacher.teachername
         this.playerOptions.poster = res.data.coursePic.pic
         this.class_title_1 = res.data.teachplanNode.children[0].children[0].pname
         for (var i = 0; i < res.data.teachplanNode.children.length; i++) {
@@ -842,8 +730,8 @@ export default {
 
 <style scoped>
 .container {
-  width: 1200px;
-  margin: 30px auto;
+  width: 1500px;
+  margin: 80px auto;
 }
   .main_content {
     padding-left: 30px;
@@ -873,10 +761,11 @@ export default {
     float: left;
   }
   .line_style {
+    padding: 50px;
     /*height: 380px;*/
     /*border-bottom: 1px #C1C1C1 solid;*/
     /*border-top: 1px #C1C1C1 solid;*/
-    margin-top: 50px;
+    /*margin-top: 50px;*/
   }
   .video_text {
     margin-top: 20px;
@@ -890,5 +779,341 @@ export default {
     border-radius: 5px;
     float: left;
     position: relative;
+  }
+  .video-content {
+    height: 910px;
+    background-color: #191919;
+  }
+  .video-container {
+    width: 1500px;
+    margin: 0 auto;
+    padding-top: 60px;
+  }
+  .video-header {
+    color: white;
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+  .video-container-content {
+    /*height: 690px;*/
+    /*background-color: white;*/
+    margin-top: 60px;
+  }
+  .video-main {
+    width: 1090px;
+    background-color: #2d2d2d;
+    padding: 0;
+    border-right: #2d2d2d solid 1px;
+  }
+  /*.video-player {*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+  /*}*/
+  /*.video-bg {*/
+    /*background-color: #333333;*/
+  /*}*/
+  .video-aside {
+    /*width: 410px;*/
+    background-color: #333333;
+  }
+  .aside-header {
+    height: 139px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    /*background-color: #333333;*/
+  }
+  .aside-header-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .aside-content {
+    /*height: 458px;*/
+    background-color: #2d2d2d;
+
+  }
+  .video-footer {
+    padding: 20px;
+    font-size: 20px;
+  }
+  .video-span {
+    color: #999999;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+  .span-icon1 {
+    color: rgb(17,204,54);
+  }
+  .video-span:hover {
+    color: rgb(17,204,54);
+  }
+  .span-icon3 {
+    border-right: #999999 solid 1px;
+  }
+  .class-text {
+    color: #999999;
+    margin-left: 60px;
+    letter-spacing: 3px;
+  }
+  .footer-right {
+    float: right;
+    color: #999999;
+    border-left: #999999 solid 1px;
+  }
+  .footer-right i {
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  .footer-right i:hover {
+    color: rgb(17,204,54);
+  }
+  .aside-img {
+    border-radius: 50%;
+    width: 87px;
+    float: left;
+    margin-left: 20px;
+  }
+  .aside-header-text {
+    float: left;
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+  .aside-header-text .aside-header-text1{
+    color: white;
+    font-size: 22px;
+  }
+  .aside-header-text .aside-header-text2 {
+    margin-top: 10px;
+    color: #a1a2a3;
+    font-size: 22px;
+  }
+  .content-tag {
+    text-align: center;
+    color: #9c9c9c;
+    font-size: 22px;
+    border-bottom: #27272b solid 1px;
+  }
+  .tag-col {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .mulu-tag {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    border-bottom: #66d5cd solid 1px;
+  }
+  .biji-tag {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .aside-contents {
+    overflow: hidden;
+    height: 400px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+  }
+  .aside-contents::-webkit-scrollbar {
+    width: 5px;
+    /*height: 5px;*/
+  }
+  .aside-contents::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #999999;
+  }
+  .aside-contents::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+  }
+  .content-text {
+    color: #9c9c9c;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  .content-class-text {
+   padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+  }
+  .content-class-text:hover {
+    background-color: #333333;
+  }
+  .aside-footer {
+    text-align: center;
+  }
+  .button-style {
+    margin-top: 25px;
+    width: 300px;
+    background-color: #66d5cd;
+    /*color: white;*/
+  }
+  .button-style {
+    border: 0px;
+    color: white;
+    letter-spacing: 10px;
+    font-size: 16px;
+  }
+  .button-style:hover {
+    color: black;
+  }
+  .content-container {
+    width: 1500px;
+    margin: 89px auto;
+  }
+  .content-card {
+    border-radius: 5px;
+    border: #e8e8e8 solid 2px;
+  }
+  .content-card-header {
+
+    font-size: 24px;
+    border-bottom:  #e8e8e8 solid 2px;
+  }
+  .content-card-header-text {
+    padding: 20px 0 20px 0;
+    margin-left: 30px;
+  }
+  .content-card-header-text {
+    color: #919293;
+  }
+  .content-input {
+    height: 483px;
+    background-color: #fafafa;
+    padding-top: 43px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: #e8e8e8 solid 2px;
+  }
+  .class-start {
+    font-size: 24px;
+    /*font-family: "Microsoft YaHei";*/
+  }
+  .class-start span {
+    float: left;
+    margin-right: 20px;
+
+  }
+  .star-rate {
+    float: left;
+    margin-top: 5px;
+  }
+  .class-tags {
+    margin-top: 60px;
+    font-size: 24px;
+  }
+  .class-tag {
+    margin-left: 20px;
+  }
+  .class-input {
+    margin-top: 50px;
+  }
+  .class-button {
+    width: 100%;margin-top: 20px
+  }
+  .button-input {
+    float: right
+  }
+  .content-text-peop {
+    border-bottom: 1px solid #C1C1C1;padding-top: 50px;padding-bottom: 50px
+  }
+  .content-img {
+    width: 50px;height: 50px;border-radius: 50%;float: left;margin-right: 20px;
+  }
+  .content-name {
+    font-size: 20px;line-height: 50px;
+  }
+  .content-info {
+    margin-top: 10px;margin-left: 70px
+  }
+  .content-reply {
+    margin-top: 10px;margin-left: 70px;font-size: 16px;color: grey
+  }
+  .content-reply i {
+    margin-left: 20px
+  }
+  .content-span {
+    margin-left: 20px;cursor: pointer
+  }
+  .content-reply-input {
+    margin-top: 10px
+  }
+  .input2-style {
+    width: 100%;margin-top: 20px
+  }
+  .button-input2 {
+    float: right
+  }
+  .content-input3 {
+    margin-left: 70px;margin-top: 10px
+  }
+  .img_class3 {
+    width: 50px;height: 50px;border-radius: 50%;float: left;margin-right: 20px;
+  }
+  .reply_info {
+    margin-left: 30px;font-size: 20px;line-height: 50px
+  }
+  .askuser {
+    color: #3a8ee6
+  }
+  .ask {
+    margin-left: 40px
+  }
+  .reply_info2 {
+    margin-top: 10px;margin-left: 70px;font-size: 16px;color: grey
+  }
+  .reply_info2 i {
+    margin-left: 20px;
+  }
+  .reply_button {
+    margin-left: 20px;cursor: pointer
+  }
+  .reply_input2 {
+    margin-top: 10px
+  }
+  .input3-style {
+    width: 100%;margin-top: 20px
+  }
+  .button-input3 {
+    float: right
+  }
+  .paginations {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .video-right-content {
+    height: 173px;
+    margin-bottom: 15px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+
+  }
+
+  .video-right-content img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.6s;
+  }
+  .video-right-content:hover img {
+    transform: scale(1.2);
+  }
+
+  .video-img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 43px;
+    transition: all 0.6s;
+  }
+  .video-right-content:hover .video-img-text {
+    color: #66d5cd;
   }
 </style>

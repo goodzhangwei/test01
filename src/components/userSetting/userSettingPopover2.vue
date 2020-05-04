@@ -5,8 +5,8 @@
       width="200"
       trigger="hover">
       <div class="content">
-<!--        <span style="font-weight: bolder">当前用户：</span>-->
-<!--        <span>{{this.toPopoverData}}</span>-->
+        <!--        <span style="font-weight: bolder">当前用户：</span>-->
+        <!--        <span>{{this.toPopoverData}}</span>-->
         <span @click="gotoMyclass">我的课程</span>
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
@@ -37,8 +37,8 @@
             </span>
 
       </div>
-<!--      <i class="el-icon-s-custom" slot="reference"></i>-->
-<!--      <span slot="reference">杨启航</span>-->
+      <!--      <i class="el-icon-s-custom" slot="reference"></i>-->
+      <!--      <span slot="reference">杨启航</span>-->
     </el-popover>
     <el-dialog
       title="直播推流地址"
@@ -54,69 +54,69 @@
 </template>
 
 <script>
-export default {
-  name: 'userSettingPopover',
-  data () {
-    return {
-      role: '',
-      name: '',
-      LiveUrl: '',
-      dialogVisible: false
-    }
-  },
-  created () {
-    this.role = localStorage.getItem('role')
-    this.name = localStorage.getItem('name')
-  },
-  methods: {
-    gotoUserSetting: function () {
-      console.log('我要跳转界面了')
-      this.$router.push('/userSetting')
+  export default {
+    name: 'userSettingPopover',
+    data () {
+      return {
+        role: '',
+        name: '',
+        LiveUrl: '',
+        dialogVisible: false
+      }
     },
-    gotoMyclass: function () {
-      console.log('我要跳转界面了')
-      this.$router.push('/userSetting/myLesson')
+    created () {
+      this.role = localStorage.getItem('role')
+      this.name = localStorage.getItem('name')
     },
-    gotoLiveclass: function () {
-      console.log('我要跳转界面了')
-      this.$router.push('/userSetting/liveLesson')
-    },
-    gotoInformation: function () {
-      console.log('我要跳转界面了')
-      this.$router.push('/userSetting/personalInformation')
-    },
-    gotoupdate () {
-      var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + this.name
-      window.open(url)
-    },
-    gotolive () {
-      var url = 'http://58.119.112.14:11020/cms/video/pushVideo?username=' + this.name
-      this.$axios.get(url).then((res) => {
-       this.LiveUrl = res.data
-        this.dialogVisible = true
-      })
-    },
-    copyUrl () {
-      let _this = this;
-      let clipboard = new this.clipboard(".cobyOrderSn");
-      clipboard.on('success', function () {
-        _this.dialogVisible = false
-        _this.$message.success('复制成功')
+    methods: {
+      gotoUserSetting: function () {
+        console.log('我要跳转界面了')
+        this.$router.push('/userSetting')
+      },
+      gotoMyclass: function () {
+        console.log('我要跳转界面了')
+        this.$router.push('/userSetting/myLesson')
+      },
+      gotoLiveclass: function () {
+        console.log('我要跳转界面了')
+        this.$router.push('/userSetting/liveLesson')
+      },
+      gotoInformation: function () {
+        console.log('我要跳转界面了')
+        this.$router.push('/userSetting/personalInformation')
+      },
+      gotoupdate () {
+        var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + this.name
+        window.open(url)
+      },
+      gotolive () {
+        var url = 'http://58.119.112.14:11020/cms/video/pushVideo?username=' + this.name
+        this.$axios.get(url).then((res) => {
+          this.LiveUrl = res.data
+          this.dialogVisible = true
+        })
+      },
+      copyUrl () {
+        let _this = this;
+        let clipboard = new this.clipboard(".cobyOrderSn");
+        clipboard.on('success', function () {
+          _this.dialogVisible = false
+          _this.$message.success('复制成功')
+          clipboard.destroyed()
+        })
+        clipboard.on('error', function () {
+          _this.$message.error('复制失败')
+        })
         clipboard.destroyed()
-      })
-      clipboard.on('error', function () {
-        _this.$message.error('复制失败')
-      })
-      clipboard.destroyed()
-    },
-    logout () {
-      localStorage.clear()
-      this.$router.push('/')
-      this.$router.go(0)
-      this.$message.info('已退出')
+      },
+      logout () {
+        localStorage.clear()
+        this.$router.push('/')
+        this.$router.go(0)
+        this.$message.info('已退出')
+      }
     }
   }
-}
 </script>
 
 <style scoped>
@@ -146,11 +146,11 @@ export default {
     cursor: pointer;
   }
   .img-header {
-    width: 40px;height: 40px;margin-right:20px;border-radius: 50%;
+    width: 50px;height: 50px;margin-right:20px;border-radius: 50%;
   }
   .name-text {
     float: right;color: white;
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 </style>
