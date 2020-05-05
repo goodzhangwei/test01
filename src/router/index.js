@@ -26,6 +26,8 @@ import ContentClass from '@/components/VideoClass/ContentClass'
 import login from '@/components/login/index'
 import VideoLive from '@/components/VideoClass/VideoLive'
 import AboutUs from "@/components/aboutUs/AboutUs";
+import WorkIndex from "@/components/WorkChallenge/WorkIndex";
+import WorkDetail from "@/components/WorkChallenge/WorkDetail";
 Vue.use(Router)
 
 export default new Router({
@@ -162,6 +164,16 @@ export default new Router({
       path: '/AboutUs',
       name: 'AboutUs',
       component: AboutUs
+    },
+    {
+      path: '/WorkIndex',
+      name: 'WorkIndex',
+      component: WorkIndex
+    },
+    {
+      path: '/WorkDetail',
+      name: 'WorkDetail',
+      component: WorkDetail
     }
   ]
 })

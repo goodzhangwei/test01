@@ -12,7 +12,7 @@
         <span @click="gotoInformation">个人信息</span>
         <span @click="gotoupdate" v-show="role === '1'">上传课程</span>
         <span @click="gotolive" v-show="role === '1'">我要直播</span>
-        <el-divider style="padding-top: 10px"></el-divider>
+        <el-divider></el-divider>
         <div class="function_item">
           <div class="functionLogo">
             <i class="el-icon-unlock"></i>
@@ -126,10 +126,12 @@
   }
   .content{
     text-align: center;
+    font-size: 16px;
   }
   .function_item{
     float: left;
     display: inline-block;
+    font-size: 16px;
   }
   .functionLogo{
     float: left;

@@ -1262,6 +1262,7 @@ export default {
     return {
       value1: '5',
       navBarFixed: false,
+      bannerH: '',
       schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,

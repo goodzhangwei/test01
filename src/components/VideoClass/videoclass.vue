@@ -84,7 +84,7 @@
               <div class="aside-contents">
                 <div v-for="(item, index) in list" :key="index" :index="index" class="content-text">
                   <span>{{item.pname}}</span>
-                  <div v-for="(item2, index2) in item.children" :key="index2" :index="index+ '-' + index2" @click="openVideo(item2)" class="content-class-text">
+                  <div v-for="(item2, index2) in item.children" :key="index2" :index="index+ '-' + index2" @click="openVideo(item2, index2)" class="content-class-text" :class="isactive === item2.id && item2.ptype === '1'? 'addclass' : ''">
                     <i class=" iconfont ymq-iconyunhang" v-show="item2.ptype === '1'"></i>
                     <i class=" iconfont ymq-iconDOC" v-show="item2.ptype !== '1'"></i>
                     <span slot="title">{{item2.pname}}</span>
@@ -271,6 +271,7 @@ export default {
     return {
       video_url: '',
       currentPage:1,
+      isactive: '',
       pagesize:5,
       value2: null,
       colors: ['#99A9BF', '#F7BA2A', '#FF9900'],  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
@@ -453,6 +454,7 @@ export default {
         this.teacher_name = res.data.teacher.teachername
         this.playerOptions.poster = res.data.coursePic.pic
         this.class_title_1 = res.data.teachplanNode.children[0].children[0].pname
+        this.isactive = res.data.teachplanNode.children[0].children[0].id
         for (var i = 0; i < res.data.teachplanNode.children.length; i++) {
           list.push(i)
         }
@@ -471,7 +473,10 @@ export default {
         }
       })
     },
-    openVideo (item) {
+    openVideo (item, index) {
+      if (item.ptype === '1') {
+        this.isactive = item.id
+      }
       this.TimeList = []
       if (item.ptype === '1') {
         var url = 'http://58.119.112.14:11020/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
@@ -942,6 +947,9 @@ export default {
   }
   .content-class-text:hover {
     background-color: #333333;
+  }
+  .addclass {
+    color: #66d5cd;
   }
   .aside-footer {
     text-align: center;

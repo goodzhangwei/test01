@@ -39,7 +39,7 @@
                 <li  @click="gotoHomepage"><a>首页</a></li>
                 <li @click="gotoAllclasses"><a>全部课程</a></li>
                 <li @click="gotoCompetition"><a>编程比赛</a></li>
-                <li><a>作品擂台</a></li>
+                <li @click="gotoWork"><a>作品擂台</a></li>
                 <!--<li><a>关于我们</a></li>-->
                 <!--<li class="dropdown">-->
                 <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
@@ -115,6 +115,15 @@
         }
         console.log('我要跳转界面了')
 
+      },
+      gotoWork () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/WorkIndex')
+        }
+        console.log('我要跳转界面了')
       },
       gotoHomepage () {
         this.$router.push('/')

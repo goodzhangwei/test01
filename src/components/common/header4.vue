@@ -21,54 +21,54 @@
       </div>
     </div>
     <!--<div class="navbar-wrapper">-->
-      <!--<div class="container">-->
+    <!--<div class="container">-->
 
-        <!--<nav class="navbar navbar-inverse navbar-static-top nav_border">-->
-          <!--<div class="container">-->
-            <!--<div class="navbar-header">-->
-              <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-              <!--</button>-->
-              <!--<a class="navbar-brand" href="#">LOGO</a>-->
-            <!--</div>-->
-            <!--<div id="navbar" class="navbar-collapse collapse nav_ul">-->
-              <!--<ul class="nav navbar-nav ">-->
-                <!--<li  @click="gotoHomepage"><a>首页</a></li>-->
-                <!--<li @click="gotoAllclasses"><a>全部课程</a></li>-->
-                <!--<li @click="gotoCompetition"><a>编程比赛</a></li>-->
-                <!--<li><a>作品擂台</a></li>-->
-                <!--&lt;!&ndash;<li><a>关于我们</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li class="dropdown">&ndash;&gt;-->
-                <!--&lt;!&ndash;<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="#">Action</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="#">Another action</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="#">Something else here</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li class="dropdown-header">Nav header</li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="#">Separated link</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;<li><a href="#">One more separated link</a></li>&ndash;&gt;-->
-                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                <!--&lt;!&ndash;</li>&ndash;&gt;-->
-              <!--</ul>-->
-              <!--<ul class="nav navbar-nav ul2_nav">-->
-                <!--<li>-->
-                  <!--<user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>-->
+    <!--<nav class="navbar navbar-inverse navbar-static-top nav_border">-->
+    <!--<div class="container">-->
+    <!--<div class="navbar-header">-->
+    <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
+    <!--<span class="sr-only">Toggle navigation</span>-->
+    <!--<span class="icon-bar"></span>-->
+    <!--<span class="icon-bar"></span>-->
+    <!--<span class="icon-bar"></span>-->
+    <!--</button>-->
+    <!--<a class="navbar-brand" href="#">LOGO</a>-->
+    <!--</div>-->
+    <!--<div id="navbar" class="navbar-collapse collapse nav_ul">-->
+    <!--<ul class="nav navbar-nav ">-->
+    <!--<li  @click="gotoHomepage"><a>首页</a></li>-->
+    <!--<li @click="gotoAllclasses"><a>全部课程</a></li>-->
+    <!--<li @click="gotoCompetition"><a>编程比赛</a></li>-->
+    <!--<li><a>作品擂台</a></li>-->
+    <!--&lt;!&ndash;<li><a>关于我们</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li class="dropdown">&ndash;&gt;-->
+    <!--&lt;!&ndash;<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+    <!--&lt;!&ndash;<li><a href="#">Action</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li><a href="#">Another action</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li><a href="#">Something else here</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li role="separator" class="divider"></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li class="dropdown-header">Nav header</li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li><a href="#">Separated link</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li><a href="#">One more separated link</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+    <!--</ul>-->
+    <!--<ul class="nav navbar-nav ul2_nav">-->
+    <!--<li>-->
+    <!--<user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>-->
 
-                  <!--<a v-if="flag_login !== '已登录'">-->
-                    <!--<Logout ></Logout>-->
-                  <!--</a>-->
-                <!--</li>-->
+    <!--<a v-if="flag_login !== '已登录'">-->
+    <!--<Logout ></Logout>-->
+    <!--</a>-->
+    <!--</li>-->
 
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</nav>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</nav>-->
 
-      <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
   </div>
 </template>
@@ -141,7 +141,7 @@
   .header-video {
     width: 100%;
     height: 80px;
-    background-color: #66d5cd;
+    /*background-color: #66d5cd;*/
   }
   .header-text {
     width: 1500px;
@@ -178,35 +178,35 @@
   }
   /*@import "carousel.css";*/
   /*.nav li {*/
-    /*margin-right: 80px;*/
+  /*margin-right: 80px;*/
   /*}*/
   /*.nav li a {*/
-    /*color: white;*/
-    /*cursor: pointer;*/
-    /*font-size: 20px;*/
+  /*color: white;*/
+  /*cursor: pointer;*/
+  /*font-size: 20px;*/
   /*}*/
   /*.nav li a:hover {*/
-    /*color: #16bcb4;*/
-    /*font-weight: bolder;*/
+  /*color: #16bcb4;*/
+  /*font-weight: bolder;*/
   /*}*/
   /*.container {*/
-    /*width: 100%;*/
+  /*width: 100%;*/
 
   /*}*/
   /*.navbar {*/
-    /*background-color: rgba(43,51,59, 1);*/
-    /*!*padding: 5px;*!*/
+  /*background-color: rgba(43,51,59, 1);*/
+  /*!*padding: 5px;*!*/
   /*}*/
   /*.nav_ul {*/
-    /*!*margin-left: 10%;*!*/
-    /*margin-left: 600px;*/
+  /*!*margin-left: 10%;*!*/
+  /*margin-left: 600px;*/
   /*}*/
   /*.ul2_nav {*/
-    /*margin-right: 20px;*/
-    /*float: right;*/
+  /*margin-right: 20px;*/
+  /*float: right;*/
   /*}*/
   /*.nav_border {*/
-    /*border-bottom: rgba(0, 0, 0, 0);*/
+  /*border-bottom: rgba(0, 0, 0, 0);*/
   /*}*/
   /*!*.nav>li>a {*!*/
   /*!*padding: 17px 0;*!*/
