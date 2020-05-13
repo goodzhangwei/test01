@@ -6,9 +6,9 @@
         <el-aside width="25%">
           <div class="left_head">
             <div class="left_head_picture">
-              <img src="../../assets/touxiang.jpg" style="width: 80px;height: 80px;border-radius: 50%">
+              <img src="../../assets/logo-header2.jpg">
             </div>
-            <div style="margin-top: 30px">
+            <div class="left_head_name">
               <span>{{username}}</span>
             </div>
           </div>
@@ -24,17 +24,17 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">我的课程</span>
                 </el-menu-item>
-<!--                <el-menu-item index="/userSetting/myClass">-->
-<!--                  <i class="el-icon-document"></i>-->
-<!--                  <span slot="title">我的班级</span>-->
-<!--                </el-menu-item>-->
-                <el-menu-item index="/userSetting/liveLesson">
-                  <i class="el-icon-document"></i>
-                  <span slot="title">直播课程</span>
-                </el-menu-item>
                 <el-menu-item index="/userSetting/personalInformation">
                   <i class="el-icon-document"></i>
                   <span slot="title">个人信息</span>
+                </el-menu-item>
+                <el-menu-item @click="gotoupdate">
+                  <i class="el-icon-document"></i>
+                  <span slot="title">录播教学</span>
+                </el-menu-item>
+                <el-menu-item>
+                  <i class="el-icon-document"></i>
+                  <span slot="title">直播教学</span>
                 </el-menu-item>
               </el-menu>
             </div>
@@ -47,12 +47,12 @@
         </el-main>
       </el-container>
     </div>
-    <Footer style="margin-top: 50px"></Footer>
+    <Footer class="footer-style"></Footer>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/common/header'
+  import Header from '@/components/common/header3'
   import Footer from '@/components/common/footer'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
@@ -60,7 +60,16 @@ export default {
   components: { userSettingPopover, Header, Footer },
   data () {
     return {
-      username: localStorage.getItem('name')
+
+    }
+  },
+  computed: {
+    username() {
+      if (localStorage.getItem('name') === 'admin') {
+        return '教师用户'
+      } else {
+        return localStorage.getItem('name')
+      }
     }
   },
   methods: {
@@ -74,6 +83,10 @@ export default {
       console.log('我要跳转界面了')
       this.$router.push('/codingCompetition')
     },
+    gotoupdate () {
+      var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + localStorage.getItem('name')
+      window.open(url)
+    },
     gotoHomePage: function () {
       console.log('我要跳转界面了')
       this.$router.push('/')
@@ -84,7 +97,7 @@ export default {
 
 <style scoped>
   .contaier {
-    width: 1400px;
+    width: 1500px;
     margin: 0 auto;
   }
   a {
@@ -147,27 +160,40 @@ export default {
   }
   .left_head {
     height: 200px;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border-right-style: solid;
     border-right-color: #e6e6e6;
     border-right-width: 1px;
     margin: 30px 30px -30px 30px;
     text-align: center;
     padding-top: 30px;
+    padding-right: 90px;
   }
   .left_head_picture {
     margin-top: 20px;
   }
+  .left_head_name {
+    margin-top: 20px;
+  }
+  .left_head_picture img {
+    width: 80px;height: 80px;border-radius: 50%
+  }
   .left_nav {
+  }
+  .el-menu-vertical-demo >>> .el-menu-item{
+    font-size: 18px;
   }
   .main_content {
     border-radius: 20px;
     /*height: 600px;*/
-    background-color: white;
+    /*background-color: white;*/
   }
   .copyrightContainer {
     text-align: center;
     margin-top: 60px;
     margin-bottom: 20px;
+  }
+  .footer-style {
+    margin-top: 200px;
   }
 </style>

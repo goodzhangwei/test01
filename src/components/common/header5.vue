@@ -8,13 +8,13 @@
           <span @click="gotoAllclasses">全部课程</span>
           <span @click="gotoCompetition">编程比赛</span>
           <span @click="gotoWork">作品擂台</span>
-          <span @click="gotoWorkUpdate">作品提交</span>
+          <span>作品提交</span>
         </div>
-        <el-input
-          placeholder="请搜索课程或关键字"
-          v-model="input1" class="header-input">
-          <i slot="suffix" class="el-input__icon el-icon-search input-icon"></i>
-        </el-input>
+        <!--<el-input-->
+          <!--placeholder="请搜索课程或关键字"-->
+          <!--v-model="input1" class="header-input">-->
+          <!--<i slot="suffix" class="el-input__icon el-icon-search input-icon"></i>-->
+        <!--</el-input>-->
         <div class="header-name">
           <user-setting-popover v-if="flag_login === '已登录'"></user-setting-popover>
           <Logout v-if="flag_login !== '已登录'"></Logout>
@@ -124,19 +124,9 @@
         }
         console.log('我要跳转界面了')
       },
-      gotoWorkUpdate () {
-        if (this.flag_state === true) {
-          alert('请先登录！')
-          this.$router.push('/login')
-        } else {
-          this.$router.push('/WorkUpdate')
-        }
-        console.log('我要跳转界面了')
-      },
       gotoHomepage () {
         this.$router.push('/')
       },
-
       gotoCompetition: function () {
         if (this.flag_state === true) {
           alert('请先登录！')
@@ -157,6 +147,12 @@
   .header-video {
     width: 100%;
     height: 80px;
+    background-color: rgba(0, 0,0,0.3);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
     /*background-color: #66d5cd;*/
   }
   .header-text {
@@ -174,11 +170,15 @@
     line-height: 80px;
     font-size: 24px;
     float: left;
+    margin-left: 20px;
 
   }
   .header-text-center span {
-    margin-left: 70px;
+    margin-left: 90px;
     cursor: pointer;
+  }
+  .header-text-center span:hover {
+    color: #16bcb4;
   }
   .header-input {
     width: 200px;
@@ -192,39 +192,4 @@
     float: right;
     line-height: 80px;
   }
-  /*@import "carousel.css";*/
-  /*.nav li {*/
-  /*margin-right: 80px;*/
-  /*}*/
-  /*.nav li a {*/
-  /*color: white;*/
-  /*cursor: pointer;*/
-  /*font-size: 20px;*/
-  /*}*/
-  /*.nav li a:hover {*/
-  /*color: #16bcb4;*/
-  /*font-weight: bolder;*/
-  /*}*/
-  /*.container {*/
-  /*width: 100%;*/
-
-  /*}*/
-  /*.navbar {*/
-  /*background-color: rgba(43,51,59, 1);*/
-  /*!*padding: 5px;*!*/
-  /*}*/
-  /*.nav_ul {*/
-  /*!*margin-left: 10%;*!*/
-  /*margin-left: 600px;*/
-  /*}*/
-  /*.ul2_nav {*/
-  /*margin-right: 20px;*/
-  /*float: right;*/
-  /*}*/
-  /*.nav_border {*/
-  /*border-bottom: rgba(0, 0, 0, 0);*/
-  /*}*/
-  /*!*.nav>li>a {*!*/
-  /*!*padding: 17px 0;*!*/
-  /*!*}*!*/
 </style>

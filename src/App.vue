@@ -12,18 +12,13 @@ export default {
     this.$router.afterEach((to, from, next) => {
       window.scrollTo(0, 0)
     })
+
   }
 }
 </script>
 
 <style>
 #app {
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-  /*text-align: center;*/
-  /*color: #2c3e50;*/
-  /*margin-top: 60px;*/
   width: 100%;
   height: 100%;
 }
@@ -32,9 +27,8 @@ export default {
     padding: 0;
   }
 html,body {
-    /*background-color: #f7f7fb;*/
     width:100%;
     height: 100%;
+  /*overflow:-Scroll;overflow:hidden;*/
   }
-
 </style>

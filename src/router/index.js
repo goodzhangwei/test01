@@ -28,6 +28,8 @@ import VideoLive from '@/components/VideoClass/VideoLive'
 import AboutUs from "@/components/aboutUs/AboutUs";
 import WorkIndex from "@/components/WorkChallenge/WorkIndex";
 import WorkDetail from "@/components/WorkChallenge/WorkDetail";
+import WorkUpdate from "@/components/WorkChallenge/WorkUpdate";
+import competition from "@/components/codingCompetition/competition";
 Vue.use(Router)
 
 export default new Router({
@@ -174,6 +176,16 @@ export default new Router({
       path: '/WorkDetail',
       name: 'WorkDetail',
       component: WorkDetail
+    },
+    {
+      path: '/WorkUpdate',
+      name: 'WorkUpdate',
+      component: WorkUpdate
+    },
+    {
+      path: '/competition',
+      name: 'competition',
+      component: competition
     }
   ]
 })

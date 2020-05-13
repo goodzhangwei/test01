@@ -1,108 +1,116 @@
 <template>
-  <div>
-    <div class="head_title">
-      <span>在线学习平台</span>
-    </div>
-    <transition name="formlogins">
-      <div class="login" v-if="show1">
-        <div class="wordlogin"><span>登录</span></div>
-        <div style="width: 100%">
-          <div class="loginform">
-            <el-row>
-              <el-col :span="4">
-                <i class="iconfont ymq-iconuser formicon"></i>
-              </el-col>
-              <el-col :span="20">
-                <el-input  placeholder="用户名" class="forminput" v-model="ruleForm1.username" clearable></el-input>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="4">
-                <i class="iconfont ymq-iconlock formicon"></i>
-              </el-col>
-              <el-col :span="20">
-                <el-input  placeholder="密码" class="forminput" v-model="ruleForm1.password" type="password" :show-password="showpassword" @keyup.enter.native="login" clearable></el-input>
-              </el-col>
-            </el-row>
-            <div>
-              <span class="spans1">忘记密码</span>
-              <span class="spans2" @click="applyuser">新用户注册</span>
+  <div class="login-bg">
+    <div class="login-content">
+      <el-row>
+        <el-col :span="15">
+          <div class="col-left">
+            <img src="../../assets/bg-login1.jpg">
+            <div class="left-icon">
+              <i class="iconfont ymq-iconwechat-fill"></i>
+              <i class="iconfont ymq-iconQQ"></i>
+              <i class="iconfont ymq-iconweibo"></i>
             </div>
-            <el-button type="primary" style="width: 200px" size="large" @click.native.prevent="login">登录</el-button>
           </div>
-        </div>
-
-      </div>
-
-    </transition>
-    <transition name="formlogins">
-      <div  class="login" v-if="!show1">
-        <div  class="iconreturn">
-          <i class="iconfont ymq-iconarrowleft" style="font-size: 32px;" @click="returnlogin"></i>
-        </div>
-        <div class="wordlogin" style="margin-top: 50px">
-          <span>注册</span>
-        </div>
-        <div style="width: 100%">
-          <el-form :model="ruleForm2" status-icon :rules="rules" ref="ruleForm2">
-            <div class="loginform2">
-              <el-form-item prop="username" style="margin-top: 20px">
+        </el-col>
+        <el-col :span="9">
+          <div class="login-form">
+            <div  class="iconreturn" v-if="!show1">
+              <i class="iconfont ymq-iconarrowleft" @click="returnlogin"></i>
+            </div>
+            <div class="login-img">
+              <img src="../../assets/logo34.png">
+            </div>
+            <div class="login-form-content">
+              <div class="loginform" v-if="show1">
                 <el-row>
                   <el-col :span="4">
                     <i class="iconfont ymq-iconuser formicon"></i>
                   </el-col>
                   <el-col :span="20">
-                    <el-input  placeholder="用户名" class="forminput" v-model="ruleForm2.username" clearable></el-input>
+                    <el-input  placeholder="用户名" class="forminput" v-model="ruleForm1.username" clearable></el-input>
                   </el-col>
                 </el-row>
-              </el-form-item>
-              <el-form-item prop="password1" style="margin-top: 30px">
                 <el-row>
                   <el-col :span="4">
                     <i class="iconfont ymq-iconlock formicon"></i>
                   </el-col>
                   <el-col :span="20">
-                    <el-input  placeholder="请输入密码" class="forminput" v-model="ruleForm2.password1" type="password" :show-password="showpassword" autocomplete="off" clearable></el-input>
+                    <el-input  placeholder="密码" class="forminput" v-model="ruleForm1.password" type="password" :show-password="showpassword" @keyup.enter.native="login" clearable></el-input>
                   </el-col>
                 </el-row>
-              </el-form-item>
-              <el-form-item prop="password2" style="margin-top: 30px">
-                <el-row>
-                  <el-col :span="4">
-                    <i class="iconfont ymq-iconlock formicon"></i>
-                  </el-col>
-                  <el-col :span="20">
-                    <el-input  placeholder="确认密码" class="forminput" v-model="ruleForm2.password2" type="password" :show-password="showpassword" autocomplete="off" clearable></el-input>
-                  </el-col>
-                </el-row>
-              </el-form-item>
-              <el-form-item prop="class_name" style="margin-top: 10px">
-                <el-row>
-                  <el-col :span="4">
-                    <i class="iconfont ymq-iconchengshi formicon"></i>
-                  </el-col>
-                  <el-col :span="20">
-                    <el-input  placeholder="学校" class="forminput" v-model="ruleForm2.class_name" clearable></el-input>
-                  </el-col>
-                </el-row>
-              </el-form-item>
-              <!--<el-radio-group v-model="radio">-->
-                <!--<el-radio :label="2">学生</el-radio>-->
-                <!--<el-radio :label="1">老师</el-radio>-->
-              <!--</el-radio-group>-->
-              <el-button type="primary" style="width: 200px" size="large" @click="userregister('ruleForm2')">注册</el-button>
-            </div>
-          </el-form>
-        </div>
+                <div class="spans">
+                  <span class="spans1">忘记密码</span>
+                  <span class="spans2" @click="applyuser">新用户注册</span>
+                </div>
+                <el-button type="primary" size="large" @click.native.prevent="login" class="login-button">登录</el-button>
+              </div>
+              <div v-if="!show1">
+                <el-form :model="ruleForm2" status-icon :rules="rules" ref="ruleForm2">
+                  <div class="loginform2">
+                    <el-form-item prop="username">
+                      <el-row>
+                        <el-col :span="4">
+                          <i class="iconfont ymq-iconuser formicon"></i>
+                        </el-col>
+                        <el-col :span="20">
+                          <el-input  placeholder="用户名" class="forminput" v-model="ruleForm2.username" clearable></el-input>
+                        </el-col>
+                      </el-row>
+                    </el-form-item>
+                    <el-form-item prop="password1" class="form-items">
+                      <el-row>
+                        <el-col :span="4">
+                          <i class="iconfont ymq-iconlock formicon"></i>
+                        </el-col>
+                        <el-col :span="20">
+                          <el-input  placeholder="请输入密码" class="forminput" v-model="ruleForm2.password1" type="password" :show-password="showpassword" autocomplete="off" clearable></el-input>
+                        </el-col>
+                      </el-row>
+                    </el-form-item>
+                    <el-form-item prop="password2" class="form-items">
+                      <el-row>
+                        <el-col :span="4">
+                          <i class="iconfont ymq-iconlock formicon"></i>
+                        </el-col>
+                        <el-col :span="20">
+                          <el-input  placeholder="确认密码" class="forminput" v-model="ruleForm2.password2" type="password" :show-password="showpassword" autocomplete="off" clearable></el-input>
+                        </el-col>
+                      </el-row>
+                    </el-form-item>
+                    <el-form-item prop="class_name" class="form-items">
+                      <el-row>
+                        <el-col :span="4">
+                          <i class="iconfont ymq-iconchengshi formicon"></i>
+                        </el-col>
+                        <el-col :span="20">
+                          <el-input  placeholder="学校" class="forminput" v-model="ruleForm2.class_name" clearable></el-input>
+                        </el-col>
+                      </el-row>
+                    </el-form-item>
+                    <!--<el-radio-group v-model="radio">-->
+                    <!--<el-radio :label="2">学生</el-radio>-->
+                    <!--<el-radio :label="1">老师</el-radio>-->
+                    <!--</el-radio-group>-->
+                    <el-button type="primary" class="login-button" size="large" @click="userregister('ruleForm2')">注册</el-button>
+                  </div>
+                </el-form>
+              </div>
 
-      </div>
-    </transition>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+
   </div>
 </template>
 
 <script>
+  import Footer from '@/components/common/footer'
+  import $ from 'jquery'
 export default {
   name: 'index',
+  components: { Footer },
   data () {
     var checkName = (rule, value, callback) => {
       if (!value) {
@@ -171,6 +179,8 @@ export default {
       }
     }
   },
+  mounted() {
+  },
   methods: {
     applyuser () {
       this.show1 = false
@@ -226,12 +236,88 @@ export default {
 </script>
 
 <style scoped>
+  .login-bg {
+    height: 100%;
+    width: 100%;
+    background-image: url("../../assets/hot-work-img.png");
+    background-size: 100% 100%;
+    /*background-color: #33BA9A;*/
+    position: relative;
+  }
+  .login-bg img {
+    width: 100%;
+    height: 100%;
+  }
+  .header-title {
+    font-size: 50px;
+    text-align: center;
+    color: #16bcb4;
+    letter-spacing: 3px;
+    font-family: 'STKaiti';
+  }
+  .header-title-mini {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 3px;
+    font-family: 'STKaiti';
+    margin-top: 10px;
+    color: black;
+  }
+  .login-content {
+    width: 1100px;
+    height: 600px;
+    background-color: white;
+    /*border-radius: 20px;*/
+    box-shadow: -10px 10px 12px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .col-left {
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+  }
+  .left-icon {
+    position: absolute;
+    top: 90%;
+    left: 5%;
+  }
+  .col-left:hover img {
+    transform: scale(1.2);
+  }
+  .left-icon i {
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .left-icon i:hover {
+    color: #16bcb4;
+  }
+  .col-left img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.6s;
+  }
+  .login-form {
+    padding: 20px;
+  }
+  .login-img {
+    height: 95px;
+    margin-top: 30px;
+  }
+  .login-img img {
+    width: 100%;
+    height: 100%;
+  }
   .head_title {
     text-align: center;
     font-size: 40px;
     color: #3a8ee6;
     font-weight: bolder;
-    margin-top: 50px;
   }
   .login {
     width: 380px;
@@ -259,11 +345,11 @@ export default {
     border-radius: 0;
   }
   .loginform {
-    width: 250px; margin: 0 auto;
+    width: 250px; margin: 40px auto;
     line-height: 70px;
   }
   .loginform2 {
-    width: 250px; margin: 0 auto;
+    width: 250px; margin: 20px auto;
     line-height: 40px;
   }
   .formicon {
@@ -273,20 +359,35 @@ export default {
   }
   .forminput {
     /*float: left;*/
-    width: 200px;
+    width: 100%;
+    font-size: 16px;
+  }
+  .form-items {
+    margin-top: 30px
   }
   /*.spans2 {*/
   /*margin-right: 20px*/
   /*}*/
+  .spans {
+    text-align: center;
+  }
   .spans1 {
     margin-right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
   }
   .spans1:hover {
-    cursor: pointer;
+
     color: red;
   }
-  .spans2:hover {
+  .spans2 {
+    font-size: 18px;
     cursor: pointer;
+    color: black;
+  }
+  .spans2:hover {
+
     color: red;
   }
   .formlogins-enter-active, .formlogins-leave-active {
@@ -297,8 +398,11 @@ export default {
     opacity: 0;
   }
   .iconreturn {
-    line-height: 0;float: left;margin-top: 30px;margin-left: 10px;
+    line-height: 0;float: left;
     transition: all 0.6s;
+  }
+  .iconreturn i {
+    font-size: 32px;
   }
   .iconreturn:hover {
     cursor: pointer;
@@ -306,5 +410,8 @@ export default {
   }
   .hover_a:hover {
     cursor: pointer;
+  }
+  .login-button {
+    width: 100%;
   }
 </style>

@@ -319,7 +319,7 @@
         <div class="content-live">
           <el-row :gutter="15">
             <el-col :span="6">
-              <div class="live-card">
+              <div class="live-card" @click="gotoVideoLive">
                 <div class="live-card-img">
                   <img src="../../assets/live-card-img-bg1.png" class="live-card-img-bg">
                   <img src="../../assets/live-card-img-bg2.png" class="live-card-img-bg2">
@@ -383,6 +383,22 @@
                 </div>
               </div>
             </el-col>
+            <!--<el-col :span="6" v-for="(item, index) in LiveList" :key="index" v-if="LiveList.length !== 0">-->
+              <!--<div class="live-card" @click="gotoVideoLive(item)">-->
+                <!--<div class="live-card-img">-->
+                  <!--<img src="../../assets/live-card-img4.png" class="live-card-img-bg">-->
+                <!--</div>-->
+                <!--<div class="live-card-text">-->
+                  <!--<div class="live-card-title">-->
+                    <!--<span>{{item.schoolname}}</span>-->
+                  <!--</div>-->
+                  <!--<div class="live-card-icon">-->
+                    <!--<span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>-->
+                    <!--<span class="live-icon-right3">新手入门</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-col>-->
           </el-row>
         </div>
       </div>
@@ -443,810 +459,7 @@
       </div>
     </div>
 
-    <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-     <!---->
-      <!--&lt;!&ndash; Indicators &ndash;&gt;-->
-      <!--&lt;!&ndash;<ol class="carousel-indicators">&ndash;&gt;-->
-        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="0" class="active"></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="1"></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li data-target="#myCarousel" data-slide-to="2"></li>&ndash;&gt;-->
-      <!--&lt;!&ndash;</ol>&ndash;&gt;-->
-      <!--&lt;!&ndash;<div class="carousel-inner" role="listbox">&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
-          <!--&lt;!&ndash;<img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
-              <!--&lt;!&ndash;<h1>Example headline.</h1>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
-          <!--&lt;!&ndash;<img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
-              <!--&lt;!&ndash;<h1>Another example headline.</h1>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
-          <!--&lt;!&ndash;<img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="carousel-caption">&ndash;&gt;-->
-              <!--&lt;!&ndash;<h1>One more for good measure.</h1>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>&ndash;&gt;-->
-              <!--&lt;!&ndash;<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--&lt;!&ndash;<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="sr-only">Previous</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</a>&ndash;&gt;-->
-      <!--&lt;!&ndash;<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="sr-only">Next</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</a>&ndash;&gt;-->
-    <!--</div>-->
-    <!--<div :class="bannerStyle" class="background-style">-->
-      <!--<el-row style="width: 1150px;margin: 0 auto;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);border-radius: 10px;">-->
-        <!--<el-col :span="5">-->
-          <!--<div class="nav-back">-->
-            <!--<ul>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--Python智能编程-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--Python少儿趣味编程-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--StarT项目-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--博弈算法大赛-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--信息奥赛课程-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--在线课堂-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-              <!--<li>-->
-                <!--<p class="p-word">-->
-                  <!--直播大讲堂-->
-                  <!--<i class="iconfont ymq-iconcaret-right" style="font-size: 10px;float: right;margin-top: 3px"></i>-->
-                <!--</p>-->
-              <!--</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-        <!--</el-col>-->
-        <!--<el-col :span="19">-->
-          <!--<div class="banner">-->
-            <!--<div class="banner-in">-->
-              <!--<el-carousel height="400px" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;" @change="carouselChange">-->
-                <!--<el-carousel-item  v-for="(item, index) in schna" :key="index">-->
-                  <!--<img :src="item" alt="" style="width: 100%;height: 100%">-->
-                <!--</el-carousel-item>-->
-              <!--</el-carousel>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</el-col>-->
-      <!--</el-row>-->
 
-    <!--</div>-->
-    <!--<div style="background-color: white;padding-top: 20px;  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)">-->
-      <!--<div class="content_two">-->
-        <!--<div>-->
-          <!--<span class="word_two">科普大讲堂</span>-->
-          <!--&nbsp;&nbsp;-->
-          <!--&lt;!&ndash;<span class="word_three">从入门到具备1年开发经验</span>&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="list">-->
-          <!--<div class="list-div">-->
-            <!--<div class="two-img">-->
-              <!--<img src="http://img1.mukewang.com/szimg/5d25400a08fa408c06000338-360-202.jpg" width="100%" height="100%">-->
-            <!--</div>-->
-            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
-              <!--<p style="font-weight: bolder">AI&机器人</p>-->
-              <!--<p style="font-size: 12px;margin-top: 5px">从未接触过编程的爱好者</p>-->
-            <!--</div>-->
-
-          <!--</div>-->
-          <!--<div class="list-div">-->
-            <!--<div class="two-img">-->
-              <!--<img src="http://img4.mukewang.com/szimg/5b4bfb7000019d2e10800600-360-202.jpg" width="100%" height="100%">-->
-            <!--</div>-->
-            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
-              <!--<p style="font-weight: bolder">自然语言处理</p>-->
-              <!--<p style="font-size: 12px;margin-top: 5px">人工智能和语言学领域的分支学科</p>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list-div">-->
-            <!--<div class="two-img">-->
-              <!--<img src="http://img1.mukewang.com/szimg/5e1d990f0885d97306000338-360-202.jpg" width="100%" height="100%">-->
-            <!--</div>-->
-            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
-              <!--<p style="font-weight: bolder">机器学习</p>-->
-              <!--<p style="font-size: 12px;margin-top: 5px">应用领域最为广泛</p>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list-div">-->
-            <!--<div class="two-img">-->
-              <!--<img src="http://img2.sycdn.imooc.com/szimg/5e4644f609ffdfa312000676-360-202.png" width="100%" height="100%">-->
-            <!--</div>-->
-            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
-              <!--<p style="font-weight: bolder">深度学习</p>-->
-              <!--<p style="font-size: 12px;margin-top: 5px">人工智能新方向</p>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list-div">-->
-            <!--<div class="two-img">-->
-              <!--<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=729506782,1707648579&fm=11&gp=0.jpg" width="100%" height="100%">-->
-            <!--</div>-->
-            <!--<div style="float: left;width: 120px;margin-left: 10px;margin-top: 15px">-->
-              <!--<p style="font-weight: bolder">前端开发</p>-->
-              <!--<p style="font-size: 12px;margin-top: 5px">web开发首选</p>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="content_two">-->
-        <!--<div>-->
-          <!--<span class="word_two">职场认知体验</span>-->
-          <!--&nbsp;&nbsp;-->
-          <!--&lt;!&ndash;<span class="word_three">一年以上开发经验系统成长</span>&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="list2">-->
-          <!--<div class="list2-div list2-img1">-->
-            <!--&lt;!&ndash;<div class="list2-word">&ndash;&gt;-->
-              <!--&lt;!&ndash;<div class="list2-word-title">&ndash;&gt;-->
-                <!--&lt;!&ndash;<span>从Java后端到全栈</span>&ndash;&gt;-->
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--&lt;!&ndash;<div class="list2-word-content">&ndash;&gt;-->
-                <!--&lt;!&ndash;<span>浓缩7月从工程师到CTO的十年成长经历</span>&ndash;&gt;-->
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--</div>-->
-          <!--<div class="list2-div list2-img2">-->
-          <!--</div>-->
-          <!--<div class="list2-div list2-img3">-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="content_tag">-->
-      <!--<ul>-->
-        <!--<li>-->
-          <!--Python智能编程-->
-        <!--</li>-->
-        <!--<li>Python少儿趣味编程</li>-->
-        <!--<li>StarT项目</li>-->
-        <!--<li>博弈算法大赛</li>-->
-        <!--<li>信息奥赛课程</li>-->
-        <!--<li>在线课堂</li>-->
-        <!--<li>直播大讲堂</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-
-
-    <!--<div class="content_two" style="margin-top: 40px;margin-bottom: 450px">-->
-      <!--<div>-->
-        <!--<span class="word_two">系列课程</span>-->
-      <!--</div>-->
-      <!--<div class="list3">-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">python</el-tag>-->
-              <!--<el-tag size="mini">算法</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>python计算思维实践基础课 适合零基础的同学</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img2">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">C</el-tag>-->
-              <!--<el-tag size="mini">C++</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>2020 重学C++ 重构你的C++知识体系</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img5">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">React.js</el-tag>-->
-              <!--<el-tag size="mini">vue.js</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>前端框架及项目面试 聚焦 Vue/React/Webpack</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img3">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Linux</el-tag>-->
-              <!--<el-tag size="mini">计算机网络</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>编程必备基础 计算机组成原理+操作系统+计算机网络</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list3" style="margin-top: 30px">-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img4">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Android</el-tag>-->
-              <!--<el-tag size="mini">React native</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>新版React Native从入门到实战打造高质量上线App（再升级）</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img6">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">python</el-tag>-->
-              <!--<el-tag size="mini">算法</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>剑指Java自研框架，决胜Spring源码</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img7">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">算法</el-tag>-->
-              <!--<el-tag size="mini">算法与数据结构</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>Python3入门机器学习 经典算法与应用 轻松入行人工智能</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>推荐</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img8">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Spark</el-tag>-->
-              <!--<el-tag size="mini">Hadoop</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>玩转热门框架 用企业级思维 开发通用够硬的大数据平台</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-
-
-    <!--<div class="recom-products contaier" style="margin-top: 400px">-->
-      <!--<div class="recom-hd">-->
-        <!--<h4>推荐课程</h4>-->
-        <!--<a>查看全部</a>-->
-      <!--</div>-->
-      <!--<div class="recom-bd contaier" style=" display: table;content: none;">-->
-        <!--<ul>-->
-          <!--<li>-->
-            <!--<img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/picturetwo.jpg">-->
-            <!--<h5 @click="goToCourseIndex">python计算思维实践基础课</h5>-->
-            <!--<p>适合零基础的同学，学会简单语法和简单编程逻辑思维，掌握调用模块的能力，然后独立完成小型项目。</p>-->
-            <!--<div style="margin-top: 12px;"></div>-->
-            <!--<h5>推荐指数:</h5>-->
-            <!--<span class="star"><el-rate v-model="value1" disabled></el-rate></span>-->
-          <!--</li>-->
-          <!--<li>-->
-            <!--<img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/classpicture.jpg">-->
-            <!--<h5>python机器人实践课</h5>-->
-            <!--<p>适合python零基础的同学，学习使用python编程语言控制智能机器人，锻炼动手能力，掌握python编程语言，最后完成智能机器人相关项目。</p>-->
-            <!--<h5>推荐指数:</h5>-->
-            <!--<span class="star"><el-rate v-model="value1" disabled></el-rate></span>-->
-          <!--</li>-->
-          <!--<li>-->
-            <!--<img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/classpicture3.jpg">-->
-            <!--<h5>python算法实践高阶课程</h5>-->
-            <!--<p>适合python算法零基础的同学，使用python编程语言完成算法实验，学习递归、贪心、排序等主流算法与python编程语言基础，最后完成python算法实践相关项目。</p>-->
-            <!--<h5>推荐指数:</h5>-->
-            <!--<span class="star"><el-rate v-model="value1" disabled></el-rate></span>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="fea-class contaier">-->
-      <!--<div class="fea-head">-->
-        <!--<h4>精选直播课程</h4>-->
-      <!--</div>-->
-      <!--<div class="fea-body">-->
-        <!--<el-row>-->
-          <!--<el-col :span="12">-->
-            <!--<div class="fea-img">-->
-              <!--<img style="width: 600px;height: 250px;background-color: #a68b56" src="../../assets/pictureone.jpg">-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="12">-->
-            <!--<div class="fea-content">-->
-              <!--<ul>-->
-                <!--<li>-->
-                  <!--<div>-->
-                    <!--<el-row>-->
-                      <!--<el-col :span="8">-->
-                        <!--<h4>Python人工智能大讲堂系列五</h4>-->
-                        <!--<p>2019-06-01  16:00</p>-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<span style="font-size: 16px;color: skyblue">直播中</span>-->
-                        <!--<img src="../../assets/zhibo.png">-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<el-button type="primary">观看直播</el-button>-->
-                      <!--</el-col>-->
-                    <!--</el-row>-->
-                  <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<div>-->
-                    <!--<el-row>-->
-                      <!--<el-col :span="8">-->
-                        <!--<h4>Python人工智能大讲堂系列四</h4>-->
-                        <!--<p>2019-05-01  14:00</p>-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<span style="font-size: 16px;color: skyblue">直播中</span>-->
-                        <!--<img src="../../assets/zhibo.png">-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<el-button type="primary">观看直播</el-button>-->
-                      <!--</el-col>-->
-                    <!--</el-row>-->
-                  <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<div>-->
-                    <!--<el-row>-->
-                      <!--<el-col :span="8">-->
-                        <!--<h4>Python人工智能大讲堂系列三</h4>-->
-                        <!--<p>2019-04-01  16:00</p>-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<span style="font-size: 16px;color: skyblue">直播中</span>-->
-                        <!--<img src="../../assets/zhibo.png">-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<el-button type="primary">观看直播</el-button>-->
-                      <!--</el-col>-->
-                    <!--</el-row>-->
-                  <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<div>-->
-                    <!--<el-row>-->
-                      <!--<el-col :span="8">-->
-                        <!--<h4>Python人工智能大讲堂系列二</h4>-->
-                        <!--<p>2019-03-01  14:00</p>-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<span style="font-size: 16px;color: skyblue">直播中</span>-->
-                        <!--<img src="../../assets/zhibo.png">-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<el-button type="primary">观看直播</el-button>-->
-                      <!--</el-col>-->
-                    <!--</el-row>-->
-                  <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<div>-->
-                    <!--<el-row>-->
-                      <!--<el-col :span="8">-->
-                        <!--<h4>Python人工智能大讲堂系列一</h4>-->
-                        <!--<p>2019-02-01  14:00</p>-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<span style="font-size: 16px;color: skyblue">直播中</span>-->
-                        <!--<img src="../../assets/zhibo.png">-->
-                      <!--</el-col>-->
-                      <!--<el-col :span="8">-->
-                        <!--<el-button type="primary">观看直播</el-button>-->
-                      <!--</el-col>-->
-                    <!--</el-row>-->
-                  <!--</div>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div  style=" width: 1150px;margin: 0 auto">-->
-      <!--<div>-->
-        <!--<span class="word_two">热门课程</span>-->
-      <!--</div>-->
-      <!--<div style="margin: 0 auto;height: 20px;">-->
-        <!--<div class="link">-->
-          <!--<span @click="gotoContentClass">查看全部</span>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div>-->
-        <!--<el-row>-->
-          <!--<el-col :span="12" class="col_style" v-for="(item, index) in list" :key="index">-->
-            <!--<div class="img_div">-->
-              <!--<img v-if="item.pic === null" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3111860246,1925938903&fm=26&gp=0.jpg" class="img_class" @click="gotocontent(item.id)">-->
-              <!--<img v-else :src="'http://'+item.pic" class="img_class" @click="gotocontent(item.id)">-->
-            <!--</div>-->
-            <!--<div class="class_text">-->
-              <!--<h3 @click="gotocontent(item.id)">-->
-                <!--{{item.name}}-->
-              <!--</h3>-->
-              <!--<div class="content_class">-->
-                <!--<span>{{item.description}}</span>-->
-              <!--</div>-->
-              <!--<div class="content_class_start">-->
-                <!--<span>4步骤 · 6门课</span>-->
-                <!--<span style="margin-left: 40px"><i class="iconfont ymq-iconshoucang_shixin star_icon"></i>8848人收藏</span>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="content_twos" v-show="LiveList.length !== 0">-->
-      <!--<div>-->
-        <!--<span class="word_two">热门直播</span>-->
-      <!--</div>-->
-      <!--<el-row>-->
-        <!--<el-col :span="6" class="col_div" v-for="(item, index) in LiveList" :key="index">-->
-          <!--<div class="list4-div">-->
-            <!--<div class="icon-lists">-->
-              <!--<div class="icon-list-content">-->
-                <!--<span>直播</span>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="list3-img1 list3-img11" @click="goToLive(item)">-->
-              <!--<div class="img1-icon">-->
-                <!--<el-tag size="mini">数据分析&挖掘</el-tag>-->
-                <!--<el-tag size="mini">算法与数据结构</el-tag>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="list4-word" @click="goToLive(item)">-->
-              <!--<span>{{item.schoolname}}</span>-->
-            <!--</div>-->
-            <!--<div class="list3-icon-word">-->
-              <!--<span>中级</span>-->
-              <!--&nbsp;&nbsp;-->
-              <!--<i class="el-icon-user"></i>-->
-              <!--<span>456</span>-->
-              <!--<span style="float: right">13人评价</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</el-col>-->
-      <!--</el-row>-->
-    <!--</div>-->
-    <!--<div class="content_two" style="margin-top: 80px;margin-bottom: 450px">-->
-      <!--<div>-->
-        <!--<span class="word_two">实践项目</span>-->
-      <!--</div>-->
-      <!--<div class="list3">-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img11" @click="goToCourseIndex">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">数据分析&挖掘</el-tag>-->
-              <!--<el-tag size="mini">算法与数据结构</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word" @click="goToCourseIndex">-->
-            <!--<span>玩转算法系列&#45;&#45;数据结构精讲 更适合0算法基础入门到进阶（java版）</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img21" @click="gotoVideoLive">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">JavaScript</el-tag>-->
-              <!--&lt;!&ndash;<el-tag size="mini">C++</el-tag>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>抓紧面试前的宝贵时间 快速搞定前端JavaScript面试</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img51">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">SpringBoot</el-tag>-->
-              <!--<el-tag size="mini">SSM</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>Java主流技术栈SSM+SpringBoot商铺系统</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img31">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Node.js</el-tag>-->
-              <!--<el-tag size="mini">Vue.js</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>Vue Element+Node.js开发企业通用管理后台系统</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list3" style="margin-top: 30px">-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img41">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Python</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>全面系统Python3.8入门+进阶 (程序员必备第二语言)</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img61">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Node.js</el-tag>-->
-              <!--<el-tag size="mini">React.js</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>TypeScript 系统入门到项目实战 趁早学习提高职场竞争力</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img71">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">Go</el-tag>-->
-              <!--<el-tag size="mini">爬虫</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>Google资深工程师深度讲解Go语言</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="list3-div">-->
-          <!--<div class="icon-lists">-->
-            <!--<div class="icon-list-content">-->
-              <!--<span>直播</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-img1 list3-img81">-->
-            <!--<div class="img1-icon">-->
-              <!--<el-tag size="mini">JavaScript</el-tag>-->
-              <!--<el-tag size="mini">小程序</el-tag>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="list3-word">-->
-            <!--<span>纯正商业级应用-微信小程序开发实战</span>-->
-          <!--</div>-->
-          <!--<div class="list3-icon-word">-->
-            <!--<span>中级</span>-->
-            <!--&nbsp;&nbsp;-->
-            <!--<i class="el-icon-user"></i>-->
-            <!--<span>456</span>-->
-            <!--<span style="float: right">13人评价</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-
-    <!--<div class="copyrightContainer">-->
-      <!--<span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>-->
-    <!--</div>-->
     <Footer></Footer>
   </div>
 </template>
@@ -1263,7 +476,7 @@ export default {
       value1: '5',
       navBarFixed: false,
       bannerH: '',
-      schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
+      schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
@@ -1457,7 +670,7 @@ export default {
     font-size: 20px;
     line-height: 100px;
     font-weight: bold;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
   }
   .content-tag div:hover {
     color: #16bcb4;
@@ -1483,8 +696,8 @@ export default {
   }
   .kp-con {
     background-color: #f7f8fa;
-    padding-top: 70px;
-    height: 665px;
+    padding-top: 50px;
+    height: 615px;
   }
   .content-kp {
     width: 1500px;
@@ -1492,12 +705,12 @@ export default {
     margin: 0 auto;
   }
   .kp-title {
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 36px;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
   }
   .kp-tag {
-    margin-top: 70px;
+    margin-top: 30px;
     height: 406px;
     width: 100%;
     display: flex;
@@ -1555,16 +768,16 @@ export default {
     background-image: url("../../assets/circle5.png");
   }
   .zhichang-con {
-    height: 458px;
+    height: 418px;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 50px;
   }
   .content-zc {
     width: 1500px;
     margin: 0 auto;
   }
   .zc-tag {
-    margin-top: 70px;
+    margin-top: 30px;
     width: 100%;
     /*height: 214px;*/
   }
@@ -1602,11 +815,11 @@ export default {
     background-image: url("../../assets/zc-bg3.png");
   }
   .xl-course {
-    height: 805px;
+    height: 760px;
     width: 100%;
     background-color: #3dc5a4;
     margin-top: 23px;
-    padding-top: 70px;
+    padding-top: 50px;
   }
   .content-xl {
     width: 1500px;
@@ -1614,12 +827,12 @@ export default {
   }
   .xl-title {
     font-size: 36px;
-    font-weight: bold;
-    letter-spacing: 3px;
+    /*font-weight: bold;*/
+    /*letter-spacing: 3px;*/
     color: white;
   }
   .xl-tag {
-    margin-top: 70px;
+    margin-top: 30px;
     /*height: 86px;*/
     background-color: #d2fff4;
     padding: 30px 18px 30px 18px;
@@ -1717,7 +930,7 @@ export default {
   .content-hot {
     width: 1500px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 50px;
   }
   .hot-icon-util {
     float: right;
@@ -1819,12 +1032,12 @@ export default {
     font-weight: bold;
   }
   .live-course {
-    height: 575px;
+    padding-bottom: 50px;
   }
   .live-content {
     width: 1500px;
     margin: 0 auto;
-    padding-top: 64px;
+    padding-top: 50px;
   }
   .content-live {
     margin-top: 36px;
@@ -1919,7 +1132,7 @@ export default {
   .sz-content-title {
     color: white;
     font-size: 36px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     letter-spacing: 3px;
   }
   .sz-content-card {

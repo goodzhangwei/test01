@@ -8,6 +8,7 @@
           <span @click="gotoAllclasses">全部课程</span>
           <span @click="gotoCompetition">编程比赛</span>
           <span @click="gotoWork">作品擂台</span>
+          <span @click="gotoWorkUpdate">作品提交</span>
         </div>
         <el-input
           placeholder="请搜索课程或关键字"
@@ -109,7 +110,7 @@
           alert('请先登录！')
           this.$router.push('/login')
         } else {
-          this.$router.push('/allclasses')
+          this.$router.push('/userSetting/myLesson')
         }
         console.log('我要跳转界面了')
 
@@ -123,16 +124,31 @@
         }
         console.log('我要跳转界面了')
       },
+      gotoWorkUpdate () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/WorkUpdate')
+        }
+        console.log('我要跳转界面了')
+      },
       gotoHomepage () {
         this.$router.push('/')
       },
       gotoCompetition: function () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/competition')
+        }
         console.log('我要跳转界面了')
-        this.$router.push('/codingCompetition')
       },
       gotoAboutUs() {
         this.$router.push('/AboutUs')
       }
+
     }
   }
 </script>
@@ -161,7 +177,7 @@
 
   }
   .header-text-center span {
-    margin-left: 100px;
+    margin-left: 70px;
     cursor: pointer;
   }
   .header-input {

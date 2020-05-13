@@ -10,8 +10,8 @@
         <span @click="gotoMyclass">我的课程</span>
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
-        <span @click="gotoupdate" v-show="role === '1'">上传课程</span>
-        <span @click="gotolive" v-show="role === '1'">我要直播</span>
+        <span @click="gotoupdate" v-show="role === '1'">录播教学</span>
+        <span @click="gotolive" v-show="role === '1'">直播教学</span>
         <el-divider class="divider-style"></el-divider>
         <div class="function_item">
           <div class="functionLogo">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="personal" slot="reference" >
-        <img src="../../assets/touxiang.jpg" class="img-header">
+        <img src="../../assets/logo-header2.jpg" class="img-header">
         <span class="name-text">
             {{name}}
             </span>
@@ -43,6 +43,7 @@
     <el-dialog
       title="直播推流地址"
       :visible.sync="dialogVisible"
+      :modal="false"
       width="30%">
       <span>{{LiveUrl}}</span>
       <span slot="footer" class="dialog-footer">
@@ -66,8 +67,22 @@ export default {
   },
   created () {
     this.role = localStorage.getItem('role')
-    this.name = localStorage.getItem('name')
+    if (localStorage.getItem('name') === 'admin') {
+      this.name = '教师用户'
+    } else {
+      this.name = localStorage.getItem('name')
+    }
+    // this.name = localStorage.getItem('name')
   },
+  // computed: {
+  //   name() {
+  //     if (localStorage.getItem('name') === 'admin') {
+  //       return '教师用户'
+  //     } else {
+  //       return localStorage.getItem('name')
+  //     }
+  //   }
+  // },
   methods: {
     gotoUserSetting: function () {
       console.log('我要跳转界面了')

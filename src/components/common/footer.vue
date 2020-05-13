@@ -71,16 +71,16 @@ export default {
     margin-top: 28px;
   }
   .footer-text-content {
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 34px;
-    font-family: 'STKaiti';
+    /*font-family: 'STKaiti';*/
     color: white;
     letter-spacing: 5px;
     /*font-weight: bold;*/
   }
   .footer-text-content2 {
     margin-top: 20px;
-    font-family: 'STKaiti';
+    /*font-family: 'STKaiti';*/
     /*font-weight: bold;*/
     color: white;
     font-size: 28px;

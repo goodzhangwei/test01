@@ -40,6 +40,7 @@
                 <li @click="gotoAllclasses"><a>全部课程</a></li>
                 <li @click="gotoCompetition"><a>编程比赛</a></li>
                 <li @click="gotoWork"><a>作品擂台</a></li>
+                <li @click="gotoWorkUpdate"><a>作品提交</a></li>
                 <!--<li><a>关于我们</a></li>-->
                 <!--<li class="dropdown">-->
                 <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
@@ -111,7 +112,7 @@
           alert('请先登录！')
           this.$router.push('/login')
         } else {
-          this.$router.push('/allclasses')
+          this.$router.push('/userSetting/myLesson')
         }
         console.log('我要跳转界面了')
 
@@ -129,12 +130,27 @@
         this.$router.push('/')
       },
       gotoCompetition: function () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/competition')
+        }
         console.log('我要跳转界面了')
-        this.$router.push('/codingCompetition')
       },
       gotoAboutUs() {
         this.$router.push('/AboutUs')
-      }
+      },
+      gotoWorkUpdate () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/WorkUpdate')
+        }
+        console.log('我要跳转界面了')
+      },
+
     }
   }
 </script>
@@ -192,7 +208,7 @@
   }
   .nav_ul {
     /*margin-left: 10%;*/
-    margin-left: 600px;
+    margin-left: 500px;
   }
   .ul2_nav {
     margin-right: 20px;

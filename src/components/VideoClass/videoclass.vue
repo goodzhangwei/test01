@@ -1027,7 +1027,7 @@ export default {
     float: right
   }
   .content-text-peop {
-    border-bottom: 1px solid #C1C1C1;padding-top: 50px;padding-bottom: 50px
+    border-bottom: 1px solid #C1C1C1;padding-top: 30px;padding-bottom: 30px
   }
   .content-img {
     width: 50px;height: 50px;border-radius: 50%;float: left;margin-right: 20px;
@@ -1118,7 +1118,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 43px;
+    font-size: 30px;
     transition: all 0.6s;
   }
   .video-right-content:hover .video-img-text {
