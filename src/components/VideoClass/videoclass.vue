@@ -147,7 +147,7 @@
             <div class="line_style">
               <div class="content-text-peop" v-for="(item, index) in content_list.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="index">
                 <div>
-                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg"  class="content-img">
+                  <img src="../../assets/logo-header2.jpg"  class="content-img">
                   <div class="content-name">
                     <span>{{item.username}}</span>
                     <!--<span style="margin-left: 20px;font-size: 12px;color: grey">2020-02-11/11:30</span>-->
@@ -176,7 +176,7 @@
                   </div>
                 </div>
                 <div v-for="(item2, index2) in item.takeInfos" :key="index2" class="content-input3">
-                  <img src="http://img.qqzhi.com/uploads/2018-12-10/132631700.jpg" class="img_class3">
+                  <img src="../../assets/logo-header2.jpg" class="img_class3">
                   <div  class="reply_info">
                     <span>{{item2.username}}</span>
                     <span>回复</span>
@@ -443,7 +443,7 @@ export default {
     getList () {
       var list = []
       this.class_id = this.$route.query.class_id
-      var url = 'http://58.119.112.14:11020/cms/course/courseview/' + this.class_id
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.class_id
       this.$axios.get(url).then((res) => {
         this.list = res.data.teachplanNode.children
         this.teachPlanId = res.data.teachplanNode.children[0].children[0].id
@@ -451,7 +451,7 @@ export default {
         console.log(this.teachPlanId)
         // this.playerOptions.sources[0].src = res.data.teachplanNode.children[0].children[0].mediaUrl
         this.class_header = res.data.courseBase.name
-        this.teacher_name = res.data.teacher.teachername
+        this.teacher_name = res.data.teacher === null ? '' : res.data.teacher.teachername
         this.playerOptions.poster = res.data.coursePic.pic
         this.class_title_1 = res.data.teachplanNode.children[0].children[0].pname
         this.isactive = res.data.teachplanNode.children[0].children[0].id
@@ -463,23 +463,30 @@ export default {
       })
     },
     getStatue () {
-      var url = 'http://58.119.112.14:11020/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
         this.videoState = res.data
         if (res.data === 1) {
           this.playerOptions.notSupportedMessage = '暂未开播'
         } else {
           this.playerOptions.sources[0].src = this.list[0].children[0].mediaUrl
+          // console.log(this.list[0].children[0].mediaUrl.slice(32))
         }
       })
     },
+    getStr(val) {
+      var url = ''
+      url = 'https://zhongkeruitong.top/qiniuyun/' + val.slice(32)
+      return url
+    },
     openVideo (item, index) {
+      console.log(item)
       if (item.ptype === '1') {
         this.isactive = item.id
       }
       this.TimeList = []
       if (item.ptype === '1') {
-        var url = 'http://58.119.112.14:11020/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
+        var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
         this.$axios.get(url).then((res) => {
           this.videoState = res.data
           if (res.data === 1) {
@@ -492,10 +499,12 @@ export default {
             this.isMousedown = false
             this.playerOptions.sources[0].src = item.mediaUrl
             this.playerOptions.playbackRates = []
+            // console.log(this.playerOptions.sources[0].src)
             this.videoRules()
           } else if (res.data === 3) {
             this.playerOptions.sources[0].src = item.mediaUrl
             this.playerOptions.playbackRates = [0.5, 1, 1.5, 2]
+            // console.log(this.playerOptions.sources[0].src)
           }
         })
         this.class_title_1 = item.pname
@@ -505,7 +514,7 @@ export default {
         }, 200)
 
       } else if (item.ptype === '2') {
-        window.open(item.mediaUrl )
+        window.open(item.mediaUrl)
       }
 
     },
@@ -663,13 +672,13 @@ export default {
     },
     getContent() {
       this.courseIdFirst = this.$route.query.class_id
-      var url = 'http://58.119.112.14:11020/cms/take/findList?courseId=' + this.$route.query.class_id
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/findList?courseId=' + this.$route.query.class_id
       this.$axios.get(url).then((res) => {
         this.content_list = res.data.queryResult.list
       })
     },
     submit_content() {
-      var url = 'http://58.119.112.14:11030/cms/take/publicTake?courseId=' + this.courseIdFirst + '&username=' + this.username + '&info=' + this.textarea
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicTake?courseId=' + this.courseIdFirst + '&username=' + this.username + '&info=' + this.textarea
       this.$axios.get(url).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')
@@ -679,7 +688,7 @@ export default {
       })
     },
     submit_reply(item) {
-      var url = 'http://58.119.112.14:11030/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' + item.takeid
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' + item.takeid
       this.$axios.get(url).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')
@@ -691,7 +700,7 @@ export default {
       })
     },
     submit_reply2(item, takeid) {
-      var url = 'http://58.119.112.14:11030/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' +  takeid
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' +  takeid
       this.$axios.get(url).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')

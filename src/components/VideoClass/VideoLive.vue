@@ -239,7 +239,7 @@
       init() {
         var username = ''
         username = this.$route.query.username
-        var url = 'http://58.119.112.14:11030/cms/video/pullVideo?username=' + username
+        var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pullVideo?username=' + username
         this.$axios.get(url).then((res) => {
           if (res.data.code === undefined) {
             this.initLive(res.data)

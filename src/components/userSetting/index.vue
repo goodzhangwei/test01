@@ -3,10 +3,41 @@
     <Header></Header>
     <div class="contaier">
       <el-container>
-        <el-aside width="25%">
+        <el-aside width="25%" class="aside-style">
+          <el-dialog
+            title="点击上传头像"
+            :visible.sync="dialogVisible"
+            width="30%">
+            <div class="uploads">
+              <el-upload
+                :action="updateUrl"
+                list-type="picture-card"
+                name="filename"
+                :data="updateobj"
+                class="upload-demo"
+                :on-preview="handlePictureCardPreview"
+                :on-success="handleAvatarSuccess"
+                :on-remove="handleRemove">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+
+            </div>
+
+            <span slot="footer" class="dialog-footer">
+                  <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+                  <el-button type="primary" @click="closeDia">关 闭</el-button>
+                </span>
+          </el-dialog>
+          <el-dialog :visible.sync="dialogVisible2">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
           <div class="left_head">
             <div class="left_head_picture">
-              <img src="../../assets/logo-header2.jpg">
+              <el-tooltip class="item" effect="dark" content="更换头像"  placement="bottom">
+                <img :src=headimg @click="update_img">
+              </el-tooltip>
+
+              <!--<div class="img-diagle"></div>-->
             </div>
             <div class="left_head_name">
               <span>{{username}}</span>
@@ -19,23 +50,28 @@
                 :default-active="$route.path"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
-                @close="handleClose">
-                <el-menu-item index="/userSetting/myLesson">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">我的课程</span>
-                </el-menu-item>
+                @close="handleClose"
+              >
                 <el-menu-item index="/userSetting/personalInformation">
                   <i class="el-icon-document"></i>
                   <span slot="title">个人信息</span>
                 </el-menu-item>
-                <el-menu-item @click="gotoupdate">
-                  <i class="el-icon-document"></i>
+                <el-menu-item index="/userSetting/myLesson">
+                  <i class="el-icon-collection"></i>
+                  <span slot="title">我的课程</span>
+                </el-menu-item>
+                <el-menu-item index="/userSetting/UpdatePassword">
+                  <i class="el-icon-unlock"></i>
+                  <span slot="title">修改密码</span>
+                </el-menu-item>
+                <el-menu-item @click="gotoupdate" v-if="role === '1'">
+                  <i class="el-icon-monitor"></i>
                   <span slot="title">录播教学</span>
                 </el-menu-item>
-                <el-menu-item>
-                  <i class="el-icon-document"></i>
-                  <span slot="title">直播教学</span>
-                </el-menu-item>
+                <!--<el-menu-item>-->
+                  <!--<i class="el-icon-document"></i>-->
+                  <!--<span slot="title">直播教学</span>-->
+                <!--</el-menu-item>-->
               </el-menu>
             </div>
           </div>
@@ -47,6 +83,8 @@
         </el-main>
       </el-container>
     </div>
+
+
     <Footer class="footer-style"></Footer>
   </div>
 </template>
@@ -56,21 +94,34 @@
   import Footer from '@/components/common/footer'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
+  inject:['reload'],
   name: 'index',
   components: { userSettingPopover, Header, Footer },
   data () {
     return {
-
+      dialogVisible: false,
+      dialogImageUrl: '',
+      dialogVisible2: false,
+      role: localStorage.getItem('role'),
+      headimg: '',
+      updateUrl: 'https://zhongkeruitong.top/towerImg/cms/user/resetHeadImg',
+      name: localStorage.getItem('name'),
+      updateobj: {
+        username: localStorage.getItem('name')
+      }
     }
   },
   computed: {
     username() {
       if (localStorage.getItem('name') === 'admin') {
-        return '教师用户'
+        return '管理员'
       } else {
         return localStorage.getItem('name')
       }
     }
+  },
+  mounted() {
+    this.getInfo()
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -84,12 +135,39 @@ export default {
       this.$router.push('/codingCompetition')
     },
     gotoupdate () {
-      var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + localStorage.getItem('name')
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/#/course/list?username=' + localStorage.getItem('name')
       window.open(url)
     },
     gotoHomePage: function () {
       console.log('我要跳转界面了')
       this.$router.push('/')
+    },
+    update_img() {
+      this.dialogVisible = true
+    },
+    getInfo() {
+      var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.name
+      this.$axios.get(url).then((res) => {
+        this.headimg = res.data.userInfo.headimg
+      })
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible2 = true;
+    },
+    handleAvatarSuccess(res, file) {
+      this.$message.success('头像上传成功！')
+      this.headimg = res.userInfo.headimg
+      localStorage.setItem('headimg', res.userInfo.headimg)
+      this.dialogVisible = false
+      this.reload()
+    },
+    closeDia() {
+      this.dialogVisible = false
+
     }
   }
 }
@@ -170,13 +248,30 @@ export default {
     padding-right: 90px;
   }
   .left_head_picture {
+    /*height: 80%;*/
+    /*width: 80%;*/
+    /*width: 80px;*/
+    /*height: 80px;*/
     margin-top: 20px;
+    /*position: relative;*/
+    /*overflow: hidden;*/
   }
+  /*.img-diagle {*/
+    /*height: 30px;*/
+    /*width: 80px;*/
+    /*background-color: rgba(0,0,0,0.3);*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    /*overflow: hidden;*/
+    /*!*border-radius: 50%;*!*/
+  /*}*/
   .left_head_name {
     margin-top: 20px;
   }
   .left_head_picture img {
-    width: 80px;height: 80px;border-radius: 50%
+    width: 80px;height: 80px;border-radius: 50%;cursor: pointer;
   }
   .left_nav {
   }
@@ -195,5 +290,14 @@ export default {
   }
   .footer-style {
     margin-top: 200px;
+  }
+  .aside-style {
+    padding-top: 120px;
+  }
+  .uploads {
+    text-align: center;
+  }
+  .uploads>>> .upload-demo>div>input{
+    display: none!important;
   }
 </style>

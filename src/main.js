@@ -11,19 +11,21 @@ import 'vue-video-player/src/custom-theme.css'
 import 'video.js/dist/video-js.css'
 import clipboard from 'clipboard'
 import 'videojs-flash'
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-
 Vue.use(VideoPlayer)
 Vue.prototype.$axios = axios
 
 Vue.prototype.clipboard = clipboard
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: { App},
   template: '<App/>'
 })

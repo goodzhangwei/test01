@@ -45,6 +45,7 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     })
+
   ],
   module: {
     rules: [

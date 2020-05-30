@@ -8,7 +8,7 @@
           <span @click="gotoAllclasses">全部课程</span>
           <span @click="gotoCompetition">编程比赛</span>
           <span @click="gotoWork">作品擂台</span>
-          <span>作品提交</span>
+          <span @click="gotoWorkUpdate">作品提交</span>
         </div>
         <!--<el-input-->
           <!--placeholder="请搜索课程或关键字"-->
@@ -84,7 +84,8 @@
       return {
         flag_login: '未登录',
         flag_state: true,
-        input1: ''
+        input1: '',
+        infoState: false
       }
     },
     props: {
@@ -99,8 +100,28 @@
       }
     },
     mounted () {
+      this.getInfo()
     },
     methods: {
+      getInfo() {
+        if (this.flag_state === false) {
+          var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + localStorage.getItem('name')
+          this.$axios.get(url).then((res) => {
+            // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+            this.infoState = res.data.infoState
+          })
+        }
+      },
+      openInfo() {
+        this.$confirm('请尽快完善个人资料,完善个人资料后开放此模块', '提示信息', {
+          confirmButtonText: '立即前往',
+          type: 'warning',
+          center: true,
+        }).then(() => {
+          this.$router.push('/userSetting/personalInformation')
+        }).catch(() => {
+        })
+      },
       goToCourseIndex: function () {
         console.log('我要跳转界面了')
         this.$router.push('/coursestudy')
@@ -121,6 +142,19 @@
           this.$router.push('/login')
         } else {
           this.$router.push('/WorkIndex')
+        }
+        console.log('我要跳转界面了')
+      },
+      gotoWorkUpdate () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          if (this.infoState === false) {
+            this.openInfo()
+          } else {
+            this.$router.push('/WorkUpdate')
+          }
         }
         console.log('我要跳转界面了')
       },

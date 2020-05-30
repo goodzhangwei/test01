@@ -41,7 +41,7 @@
                 <li @click="gotoCompetition"><a>编程比赛</a></li>
                 <li @click="gotoWork"><a>作品擂台</a></li>
                 <li @click="gotoWorkUpdate"><a>作品提交</a></li>
-                <!--<li><a>关于我们</a></li>-->
+                <li @click="gotoAboutUs"><a>关于我们</a></li>
                 <!--<li class="dropdown">-->
                   <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
                   <!--<ul class="dropdown-menu">-->
@@ -86,11 +86,12 @@ export default {
   data () {
     return {
       flag_login: '未登录',
-      flag_state: true,
+      flag_state: true
     }
   },
   props: {
-    flags: String
+    flags: String,
+    flagInfo: Boolean
   },
   created () {
     this.flag_login = localStorage.getItem('flag_class')
@@ -112,28 +113,51 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
+        // if (this.flagInfo === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/userSetting/myLesson')
+        // }
         this.$router.push('/userSetting/myLesson')
       }
-      console.log('我要跳转界面了')
 
+    },
+    openInfo() {
+      this.$confirm('请尽快完善个人资料,完善个人资料后开放此模块', '提示信息', {
+        confirmButtonText: '立即前往',
+        type: 'warning',
+        center: true,
+      }).then(() => {
+        this.$router.push('/userSetting/personalInformation')
+      }).catch(() => {
+      })
     },
     gotoWork () {
       if (this.flag_state === true) {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
+        // if (this.flagInfo === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/WorkIndex')
+        // }
         this.$router.push('/WorkIndex')
       }
-      console.log('我要跳转界面了')
+
     },
     gotoWorkUpdate () {
       if (this.flag_state === true) {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
-        this.$router.push('/WorkUpdate')
+        if (this.flagInfo === false) {
+          this.openInfo()
+        } else {
+          this.$router.push('/WorkUpdate')
+        }
+
       }
-      console.log('我要跳转界面了')
     },
     gotoHomepage () {
       this.$router.push('/')
@@ -207,7 +231,7 @@ export default {
   }
   .nav_ul {
     /*margin-left: 10%;*/
-    margin-left: 500px;
+    margin-left: 400px;
   }
   .ul2_nav {
     margin-right: 20px;

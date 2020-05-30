@@ -18,7 +18,7 @@
             <i class="el-icon-unlock"></i>
           </div>
           <div class="functionTitle">
-            <el-button type="text">修改密码</el-button>
+            <el-button type="text" @click="gotoupdatePass">修改密码</el-button>
           </div>
         </div>
         <div class="function_item">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="personal" slot="reference" >
-        <img src="../../assets/logo-header2.jpg" class="img-header">
+        <img :src="headerImg" class="img-header">
         <span class="name-text">
             {{name}}
             </span>
@@ -56,19 +56,25 @@
 
 <script>
 export default {
+  inject:['reload'],
   name: 'userSettingPopover',
   data () {
     return {
       role: '',
       name: '',
       LiveUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      username: '',
+      headerImg: '',
+      infoState: false
     }
   },
   created () {
     this.role = localStorage.getItem('role')
+    // this.headerImg = localStorage.getItem('headimg')
+    this.username = localStorage.getItem('name')
     if (localStorage.getItem('name') === 'admin') {
-      this.name = '教师用户'
+      this.name = '管理员'
     } else {
       this.name = localStorage.getItem('name')
     }
@@ -83,34 +89,63 @@ export default {
   //     }
   //   }
   // },
+  mounted() {
+    this.getInfo()
+  },
   methods: {
     gotoUserSetting: function () {
       console.log('我要跳转界面了')
       this.$router.push('/userSetting')
     },
     gotoMyclass: function () {
-      console.log('我要跳转界面了')
-      this.$router.push('/userSetting/myLesson')
+      if(this.infoState === false) {
+        this.openInfo()
+      } else {
+        this.$router.push('/userSetting/myLesson')
+      }
+
     },
     gotoLiveclass: function () {
       console.log('我要跳转界面了')
-      this.$router.push('/userSetting/liveLesson')
+      if(this.infoState === false) {
+        this.openInfo()
+      } else {
+        this.$router.push('/userSetting/liveLesson')
+      }
+
     },
     gotoInformation: function () {
       console.log('我要跳转界面了')
       this.$router.push('/userSetting/personalInformation')
     },
     gotoupdate () {
-      var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + this.name
-      window.open(url)
+      if(this.infoState === false) {
+        this.openInfo()
+      } else {
+        var url = 'http://58.119.112.14:11020/cms/#/course/list?username=' + this.username
+        window.open(url)
+      }
+
+
     },
     gotolive () {
-      var url = 'http://58.119.112.14:11020/cms/video/pushVideo?username=' + this.name
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pushVideo?username=' + this.username
       this.$axios.get(url).then((res) => {
        this.LiveUrl = res.data
         this.dialogVisible = true
       })
     },
+    openInfo() {
+      this.$confirm('请尽快完善个人资料', '提示信息', {
+        confirmButtonText: '立即前往',
+        type: 'warning',
+        center: true,
+      }).then(() => {
+        this.$router.push('/userSetting/personalInformation')
+      }).catch(() => {
+      })
+    },
+
     copyUrl () {
       let _this = this;
       let clipboard = new this.clipboard(".cobyOrderSn");
@@ -126,9 +161,24 @@ export default {
     },
     logout () {
       localStorage.clear()
+
       this.$router.push('/')
-      this.$router.go(0)
+      this.reload()
       this.$message.info('已退出')
+    },
+    getInfo() {
+      var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+      this.$axios.get(url).then((res) => {
+        // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+        localStorage.setItem('headimg', res.data.userInfo.headimg)
+        this.headerImg = res.data.userInfo.headimg
+        this.infoState = res.data.infoState
+
+      })
+    },
+    gotoupdatePass() {
+      this.$router.push('/userSetting/UpdatePassword')
+      console.log('修改密码')
     }
   }
 }

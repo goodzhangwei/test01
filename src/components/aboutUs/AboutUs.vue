@@ -1,14 +1,15 @@
 <template>
     <div class="contents">
         <div class="move_header" v-if="navBarFixed">
-            <HomeHeader v-on:flaglogin="flaglogin" :dashow="dashow"></HomeHeader>
+            <HomeHeader2 :flagInfo="infoState"></HomeHeader2>
         </div>
         <div>
-            <HomeHeader v-on:flaglogin="flaglogin" :dashow="dashow"></HomeHeader>
+            <HomeHeader :flagInfo="infoState"></HomeHeader>
         </div>
         <div class="bg_img">
-            <div style="height: 500px;background-color: rgba(0, 0, 0, 0.6);position: absolute;width: 100%;text-align: center">
-                <h4 >大数据技术与认知智能实验室</h4 >
+            <div  class="bg-img-da">
+                <h3 >中科智禾.青程在线</h3 >
+              <h4>—青少年科技编程学习及实践平台</h4>
                 <div class="line"></div>
                 <!--<p>-->
                     <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大数据技术与认知智能实验室专注在大数据与人工智能技术的应用研究领域，旨在建设大数据分析技术研发与应用平台，结合人工智能技术形成系列与行业融合的具有实践引领价值的智能化产品与服务。<br/>-->
@@ -21,72 +22,79 @@
         </div>
         <div class="text_shi">
             <div class="word_text">
-                <span>实验室简介</span>
+                <span>平台简介</span>
             </div>
-            <div style="width:70%;margin: 20px auto;background-color: rgba(0, 0, 0, 0.2);height: 1px;"></div>
+            <div class="line-text"></div>
             <div class="text_ss">
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大数据技术与认知智能实验室专注在大数据与人工智能技术的应用研究领域，旨在建设大数据分析技术研发与应用平台，结合人工智能技术形成系列与行业融合的具有实践引领价值的智能化产品与服务。
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青程在线定位于服务青少年科技编程实践的学习与交互平台，提供在线教与学、在线编程实现、作品擂台分享交流、学习分析与无感评价等多种智能化功能。
                 </p>
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验室通过可持续的产学研协同创新机制，整合中科院信息科技领域科研专家、山东大学专家教授、中科瑞通等产业资深产品与技术专家，通过发挥在大数据与人工智能技术上的优势，在科技咨询、产品研发、技术服务、以及高端教育培训方向，为行业发展提供整合的数据产品与服务方案。
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青程在线为开放式平台，为课程合作伙伴提供课程教学辅助、学生课下实践指导、师生教学与学习分析库。另一方面，为其他类别课程提供使用平台，为科技编程的兴趣学生提供更多的选择和服务。
                 </p>
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验室定位在前沿科技研发与行业及市场需求相结合，形成助推产业发展的科技智库与产学研协同创新技术实践服务与AI产品研发平台。
-                </p>
-                <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验室在与政府、园区、产业对接融合过程中，有效汇聚产业资源和创新需求，逐步搭建科研与产业融合及科技转移转化平台，同时推进大数据与人工智能领域高层次实用型人才培养，实现在产学研融合驱动下政府科技战略实施与产业创新落地标杆和示范。
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平台包括直播、录播、板书式图文教学等方式，可实现在线的编程学习与比赛、具有互动的作品擂台展示交流，涵盖了以 Python 人工智能等科技类实践课程的前沿科技实践内容。
                 </p>
             </div>
         </div>
         <!--研究团队-->
         <div class="details">
             <div class="word_text">
-                <span>研究团队</span>
+                <span>平台定位</span>
             </div>
-            <div style="width:70%;margin: 20px auto;background-color: rgba(0, 0, 0, 0.2);height: 1px;"></div>
-            <div class="details_left">
-                <img src="../../assets/tuandui_4.jpg">
-            </div>
+            <div class="line-text"></div>
+          <div class="details-text">
+            <el-row>
+              <el-col :span="12">
+                <div class="details_left">
+                  <img src="../../assets/dingwei.jpg">
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="details_right">
+                  <!--<div style="width:70%;margin-left: 58px;background-color: rgba(0, 0, 0, 0.2);height: 1px;margin-top: 30px"></div>-->
+                  <div class="details_right_p">
+                    <h3>平台定位于 AI 科技前沿内容</h3>
+                    <p>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;瞄准启动智能社会的AI技术方向，选择人工智能Python为编程语言，以不断进阶的科技实践课程，为青少年科技专长的学习和人工智能的启迪提供教育模式和方案。<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为人工智能语言，python入门友好且与数学逻辑为基础，在培养科技编程特长时亦可训练解决问题的学习思维，提升综合的学习能力，服务于学生科技能力与科技特长的培养。<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;课程包括：Python编程与计算思维、智能驾驶车、智能机器人、脑控与注意力训练等。<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以Python课程为例，课程分为初级入门、进阶实践、高级项目等不同阶段，针对不同阶段和层次水平的学生。在不同层次的课程中，涉及计算机认知、编程实践、面向问题解决的数学算法分析、计算思维培养等不同阶段的不同方面。在课程项目设计时，与实践问题结合、与芯片或智能硬件结合、与游戏方式的交互对抗程序结合，有益、有趣、能动手、引导方法训练和思考，提升学习能力。如贪吃蛇博弈、智能家居、智能人脸识别、乐高python系列等。
+                    </p>
+                  </div>
+
+                </div>
+              </el-col>
+            </el-row>
+
             <!--<img src="../../assets/tuandui_2.jpg">-->
-            <div class="details_right">
-                <!--<div style="width:70%;margin-left: 58px;background-color: rgba(0, 0, 0, 0.2);height: 1px;margin-top: 30px"></div>-->
-                <p style="margin-top: 100px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">李学庆</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;教  授/首席专家，软件工程、教育技术、智能人机交互<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">付立军</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究员/实验室主任，数据分析、知识图谱<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<span class="name_style">王永吉</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二级研究员/特聘专家，实时系统、网络技术、人工智能<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">刘&nbsp;&nbsp;&nbsp;&nbsp;峰</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究员/特聘专家，物联网，智能制造<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">常志军</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;副研究员，大数据技术<br/>
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">刘&nbsp;&nbsp;&nbsp;&nbsp;锦</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;副教授,计算机视觉、医学影像<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">杨&nbsp;&nbsp;&nbsp;&nbsp;威</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;副教授，信息安全，物联网<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">李&nbsp;&nbsp;&nbsp;&nbsp;响</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，知识图谱、智能问答<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">陆&nbsp;&nbsp;&nbsp;&nbsp;明</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，资深架构师，大数据、云计算方向<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">武靖恺</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，智慧城市深度信息化资深产品专家<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">韩&nbsp;&nbsp;&nbsp;&nbsp;晋</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，物联网领域资深产业专家<br/>-->
-                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">胡晓峰</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，数据分析，信息安全<br/>-->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">安梦飞</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级工程师，知识图谱、金融风险研究<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">展&nbsp;&nbsp;&nbsp;&nbsp;鹏</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程师，软件工程、人工智能<br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="name_style">以及博士硕士研究生，形成了科研、产业及实施团队30余人</span><br/>
-                </p>
-            </div>
+
+          </div>
+
         </div>
         <div class="direction">
             <div class="word_text">
-                <span>研究方向</span>
+                <span>项目式学习</span>
             </div>
-            <div style="width:70%;margin: 20px auto;background-color: rgba(0, 0, 0, 0.2);height: 1px;"></div>
-            <div style="margin-top: 40px">
-                <div class="direction_left">
-                    <div class="direction_word">
-                        <p>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;围绕基于数据的行业信息化升级和智能化推进，重点在教育AI、智慧城市大脑、文情大数据、舆情风控、行业发展预测、物联网与安全硬件、大健康等领域，开展行业应用研究与前沿技术服务实践。<br/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术方向上，开展在大数据技术、知识图谱、计算机视觉等技术等研究，开展大数据融合与智能化技术的创新落地应用。
-                        </p>
-                    </div>
-                </div>
-                <div class="direction_right">
-                    <img src="../../assets/tupian1.png" style="width: 80%;margin-left: 40px">
-                </div>
+            <div class="line-text"></div>
+            <div class="details-text">
+              <el-row>
+                <el-col :span="12">
+                  <div class="direction_word">
+                    <p>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以PBL（Problem-Based Learning method基于项目的学习方法）的项目实践式学习模式，突破单纯知识点的学习和记忆，重点通过围绕解决项目问题的实践方式，引导学生以问题为导向进行科技实践训练，形成在科技编程实践过程中对所学知识的掌握与问题的解决能力。<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计算机编程的魅力所在是通过不断解决实践问题而进阶的成就感。同时，与书本知识不同，在计算机编程实践中，针对实现同一个功能进行编码设计时，每个人的代码可能都有所不同，这既是编程的魅力所在，也是能启迪思考能力的根本。如果把编写代码的过程比作绘画，那么每个人都是艺术家。<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这也正是国家教育部推动STEAM教育所追求的目标，实现其有效落地。
+                    </p>
+                  </div>
+                </el-col>
+                <el-col :span="12">
+                  <div class="direction-img">
+                    <img src="../../assets/xuexi.jpg">
+                  </div>
+                </el-col>
+              </el-row>
+
             </div>
 
             <!--<div style="position: absolute;height: 600px;width: 100%;background-color: rgba(0, 0, 0, 0.3);">-->
@@ -98,36 +106,6 @@
                 <!--<img src="../../assets/table.png">-->
             <!--</div>-->
         </div>
-        <div class="direction">
-            <div class="word_text">
-                <span>产学研共赢合作</span>
-            </div>
-            <div style="width:70%;margin: 20px auto;background-color: rgba(0, 0, 0, 0.2);height: 1px;"></div>
-            <div style="margin-top: 40px">
-                <div  style="width: 5%;height: 100%;float: left">
-                    <img src="../../assets/chanxue.jpg" style="height: 250px;margin-left: 250px;filter: blur(0.6px)">
-                </div>
-                <div style="width: 50%;height: 100%;float: right">
-                    <div  style="width: 60%;float: left;margin-left: 50px;">
-                        <p style="line-height: 25px">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>宗旨：整合多方资源 创建共赢平台</span><br/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验室聚焦数据科学与智能化技术融合，面向产业信息化发展前沿，服务于行业合作伙伴智能化的发展与提升。在行业合作实践过程中，把前沿科技研发与产品市场化落地相结合，在科技咨询、技术研发与AI服务、高端教育培训与方向，形成可持续的共赢合作平台。<br/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过委托项目、科技攻关、联合项目研发、联合应用实验室或研究中心、研究生基地等合作方式，联合推进如教育AI、医养大健康、金融科技、文情图谱、智能制造、智慧城市等领域与方向。<br/>
-                        </p>
-                    </div>
-                    <!--<img src="../../assets/tupian1.png" style="width: 80%;margin-left: 40px">-->
-                </div>
-            </div>
-
-            <!--<div style="position: absolute;height: 600px;width: 100%;background-color: rgba(0, 0, 0, 0.3);">-->
-            <!---->
-            <!--</div>-->
-
-
-            <!--<div>-->
-            <!--<img src="../../assets/table.png">-->
-            <!--</div>-->
-        </div>
       <Footer/>
 
     </div>
@@ -135,16 +113,19 @@
 
 <script>
     import HomeHeader from '@/components/common/header'
+    import HomeHeader2 from '@/components/common/header2'
     import Footer from '@/components/common/footer'
     export default {
         name: "AboutUs",
         components: {
             Footer,
             HomeHeader,
+          HomeHeader2
         },
         data () {
             return {
-                navBarFixed: false
+                navBarFixed: false,
+              infoState: false
             }
         },
         mounted () {
@@ -153,6 +134,7 @@
             window.addEventListener('resize', () => {
                 this.setBannerH()
             }, false)
+          this.getInfo()
         },
         methods: {
             setBannerH(){
@@ -167,6 +149,13 @@
                 }
                 console.log(scrollTop)
             },
+          getInfo() {
+            var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+            this.$axios.get(url).then((res) => {
+              // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+              this.infoState = res.data.infoState
+            })
+          },
         }
     }
 </script>
@@ -175,26 +164,34 @@
     .contents {
         /*width: 100%;*/
         /*height: 100%;*/
-        background-color: #FCFCFC;
+        /*background-color: #FCFCFC;*/
     }
     .move_header {
         background-color: rgba(255, 255, 255, 0.9);position: fixed;width: 100%;z-index: 999
     }
     .bg_img {
         width: 100%;
-        height: 500px;
+        height: 600px;
         background-image: url("../../assets/bg_23.jpg");
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-position: center center;
     }
-    .bg_img h4{
+    .bg_img h3{
         display: block;
         padding-top: 200px;
         /*margin-left: 30%;*/
-        font-size:36px;
+        font-size:46px;
         font-family:MicrosoftYaHei;
-        color:rgba(255,255,255,1);
+        color: #16bcb4;
+
+    }
+    .bg_img h4{
+      display: block;
+      /*margin-left: 30%;*/
+      font-size:30px;
+      font-family:MicrosoftYaHei;
+      color: white;
     }
     .bg_img .line{
         /*margin-left: 35%;*/
@@ -224,25 +221,24 @@
         line-height:24px;
     }
     .details {
-        height: 550px;
-        margin-top: 100px;
+        /*height: 550px;*/
+        margin-top: 70px;
         background-color: #ffffff;
     }
     .details_left {
-        float: left;
-        width: 50%;
+        /*width: 50%;*/
         height: 100%;
     }
     .details_left img {
-        width: 60%;
-        height: 380px;
+        width: 500px;
+        height: 450px;
         float: right;
         border-radius: 4px;
-        margin-top: 80px;
+        margin-top: 90px;
     }
     .details_right {
         float: right;
-        width: 50%;
+        /*width: 50%;*/
         height: 100%;
     }
     .details_right h4 {
@@ -252,13 +248,14 @@
     }
     .details_right p {
         margin-left: 58px;
-        margin-top: 50px;
+        /*margin-top: 50px;*/
         color:rgba(51,51,51,1);
         line-height:28px;
     }
     .direction {
         /*margin-top: 50px;*/
         margin-bottom: 100px;
+      margin-top: 70px;
         height: 400px;
         background-color: #ffffff;
         /*background-image: url("../../assets/yanjiufangxiang.jpg");*/
@@ -277,30 +274,68 @@
         float: left;
     }
     .direction_word {
-        width: 50%;
         float: right;
+      margin-top: 20px;
     }
     .direction_word p {
         /*font-size: 24px;*/
         line-height: 28px;
+      font-size: 20px;
     }
     .direction_right {
         width: 60%;
+      max-width: 1500px;
         height: 100%;
         float: right;
     }
     .text_shi {
         /*height: 600px;*/
-        margin-top: 100px;
+        margin-top: 70px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      background-color: #FCFCFC;
     }
     .text_ss {
-        width: 60%;
+        width: 50%;
+      max-width: 1500px;
         margin: 25px auto;
     }
     .text_ss p {
         margin-top: 10px;
-        font-size: 18px;
+        font-size: 22px;
         line-height: 28px;
     }
+  .bg-img-da {
+    height: 600px;background-color: rgba(0, 0, 0, 0.5);position: absolute;width: 100%;text-align: center
+  }
+  .line-text {
+    width:70%;margin: 20px auto;background-color: rgba(0, 0, 0, 0.2);height: 1px;
+    max-width: 1500px;
+  }
+
+  .details_right_p {
+    /*margin-top: 100px;*/
+  }
+  .details_right_p p {
+    font-size: 20px;
+  }
+  .details_right_p h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .details-text {
+    width: 60%;
+    margin: 0 auto;
+    max-width: 1500px;
+  }
+  .direction-img {
+    float: left;
+    margin-left: 58px;
+  }
+  .direction-img img {
+    width: 500px;
+  }
 </style>
 

@@ -54,7 +54,7 @@ export default {
       pictwo: require('@/assets/picturetwo.jpg'),
       nocontent: require('@/assets/nocontent.png'),
       list: [],
-      imgList: ['http://58.119.112.12/CCZX_image/hot-card-img1.png','http://58.119.112.12/CCZX_image/hot-card-img2.png','http://58.119.112.12/CCZX_image/hot-card-img3.png', 'http://58.119.112.12/CCZX_image/hot-card-img4.png']
+      imgList: ['https://www.zhongkeruitong.top/CCZX_image/hot-card-img1.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img2.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img3.png', 'https://www.zhongkeruitong.top/CCZX_image/hot-card-img4.png']
     }
   },
   mounted() {
@@ -66,9 +66,28 @@ export default {
     },
     getList () {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
-      var url = 'http://58.119.112.14:11020/cms/user/coursePub/mylist/1/4?username=' + localStorage.getItem('name')
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/1/4?username=' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
+      })
+    },
+    gotocontent (id) {
+      // if (this.flag_state === true) {
+      //   alert('请先登录！')
+      //   this.$router.push('/login')
+      // } else {
+      //   this.$router.push({
+      //     path: '/videoclass',
+      //     query: {
+      //       class_id: id
+      //     }
+      //   })
+      // }
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: id
+        }
       })
     },
   }

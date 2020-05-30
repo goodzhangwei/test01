@@ -128,7 +128,7 @@
                     2020年5月：各县市区组织单位发动本地中小学生积极参与大赛，创作、推选出晋级作品，名额不限；
                   </p>
                   <p>
-                    2020年6月8 日-6月12日：请各组织单位将晋级作品信息及汇总表（见附件2）按报送要求发送到市科技馆邮箱:tasqfx@ 163.com（逾期不予受理）；
+                    2020年6月8 日-6月12日：请各组织单位将晋级作品信息及汇总表（见附件2）按报送要求在本网站“作品提交”模块进行提交；<span class="tijiao-icon" @click="gotoUpdate">提交入口 <i class="iconfont ymq-iconrukou"></i> </span>
                   </p>
                   <p>
                     2020年6月16日-6月22日：专家对作品进行评审，确定入围终评选手名单；
@@ -385,6 +385,9 @@
         },
         downTaian() {
           window.open('http://58.119.112.12/CCZX_image/taian.docx')
+        },
+        gotoUpdate () {
+          this.$router.push('/WorkUpdate')
         }
       }
     }
@@ -555,5 +558,13 @@
   }
   .photo-container img {
     width: 600px;
+  }
+  .tijiao-icon {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  .tijiao-icon:hover {
+    color: red;
+    cursor: pointer;
   }
 </style>

@@ -37,7 +37,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>自然语言处理</span>
+                      <span>贪吃蛇吃果子</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -53,7 +53,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>图像处理</span>
+                      <span>贪吃蛇对抗挑战</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -69,7 +69,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>大数据技术</span>
+                      <span>四色圆形螺旋图形</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>python数据分析</span>
+                      <span>六边六色螺旋图形</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -103,7 +103,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>自然语言处理</span>
+                      <span>航空母舰大战外星人</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -119,7 +119,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>图像处理</span>
+                      <span>智能控制家居产品</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -135,7 +135,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>大数据技术</span>
+                      <span>乐高智能机器人</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -151,7 +151,7 @@
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
-                      <span>python数据分析</span>
+                      <span>智能地理信息系统</span>
                     </div>
                     <div class="hot-card-right-icon">
                       <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
@@ -173,7 +173,7 @@
             <el-row>
               <el-col :span="6">
                 <div class="sz-card sz-card-img1">
-                  <img src="../../assets/sz-text-img1.png" class="sz-text-img">
+                  <img src="../../assets/sz-text1-img1.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
@@ -183,34 +183,34 @@
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img3">
-                  <img src="../../assets/sz-text-img3.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img3.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img4">
-                  <img src="../../assets/sz-text-img4.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img4.png" class="sz-text-img3">
                 </div>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
                 <div class="sz-card sz-card-img5">
-                  <img src="../../assets/sz-text-img5.png" class="sz-text-img">
+                  <img src="../../assets/sz-text1-img5.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img6">
-                  <img src="../../assets/sz-text-img6.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img6.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img7">
-                  <img src="../../assets/sz-text-img7.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img7.png" class="sz-text-img7">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img8">
-                  <img src="../../assets/sz-text-img8.png" class="sz-text-img8">
+                  <img src="../../assets/sz-text1-img8.png" class="sz-text-img8">
                 </div>
               </el-col>
             </el-row>
@@ -229,7 +229,7 @@
       components: { HeaderOne, Footer },
       data() {
           return {
-            schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg','http://58.119.112.12/CCZX_image/photo4.jpg'],
+            schna: [ 'https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg','https://www.zhongkeruitong.top/CCZX_image/photo4.jpg'],
             navBarFixed: false,
             bannerH: ''
           }
@@ -436,11 +436,15 @@
   }
   .sz-text-img3 {
     margin-top: 40px;
-    width: 260px;
+    width: 280px;
+  }
+  .sz-text-img7 {
+    margin-top: 40px;
+    width: 220px;
   }
   .sz-text-img8 {
     margin-top: 40px;
-    width: 280px;
+    width: 230px;
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity 1s;

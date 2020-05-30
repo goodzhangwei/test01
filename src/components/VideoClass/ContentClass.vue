@@ -63,7 +63,7 @@ export default {
       }
     },
     getList () {
-      var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/100'
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/list/1/100'
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
       })

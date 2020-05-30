@@ -2,11 +2,11 @@
   <div class="app_container">
     <transition name="fade">
       <div  v-if="navBarFixed" class="header-show">
-        <HeaderTwo :flags = flag_class class="header "></HeaderTwo>
+        <HeaderTwo :flags = flag_class class="header" :flagInfo="infoState"></HeaderTwo>
       </div>
     </transition>
 
-    <Header :flags = flag_class class="header"></Header>
+    <Header :flags = flag_class class="header" :flagInfo="infoState"></Header>
 
     <div >
       <el-carousel class="carousel-img" height="665px" @change="carouselChange">
@@ -56,14 +56,14 @@
           </div>
           <div class="kp-tag-card kp-bg2">
             <div class="kp-text-title">
-              <span>自然语言处理</span>
+              <span>儿童编程思维</span>
             </div>
             <div class="kp-text-con">
               <div>
-                <span>人工智能和语言学</span>
+                <span>迈入AI时代学习</span>
               </div>
               <div>
-                <span>领域的分支学科</span>
+                <span>的启蒙指导</span>
               </div>
             </div>
 
@@ -71,33 +71,38 @@
           </div>
           <div class="kp-tag-card kp-bg3">
             <div class="kp-text-title">
-              <span>机器学习</span>
+              <span>Python编程</span>
             </div>
             <div class="kp-text-con">
-              <span>应用领域最为广泛</span>
+              <span>人工智能领域的重要工具</span>
             </div>
 
             <img src="../../assets/circle3-icon.png" class="tag-img">
           </div>
           <div class="kp-tag-card kp-bg4">
             <div class="kp-text-title">
-              <span>深度学习</span>
+              <span>硬件编程</span>
             </div>
             <div class="kp-text-con">
-              <span>人工智能新方向</span>
+              <span>软硬件结合编程新体验</span>
             </div>
 
             <img src="../../assets/circle4-icon.png" class="tag-img">
           </div>
           <div class="kp-tag-card kp-bg5">
             <div class="kp-text-title">
-              <span>前端开发</span>
+              <span>编程考试指导</span>
             </div>
             <div class="kp-text-con">
-              <span>Web开发首选</span>
+              <div>
+                <span>全国青少年编程能力</span>
+              </div>
+              <div>
+                <span>等级评测（CPA）</span>
+              </div>
             </div>
 
-            <img src="../../assets/circle5-icon.png" class="tag-img">
+            <img src="../../assets/circle5-icon.png" class="tag-img2">
           </div>
         </div>
       </div>
@@ -105,14 +110,14 @@
     <div class="zhichang-con">
       <div class="content-zc">
         <div class="kp-title">
-          <span>职场认知体验</span>
+          <span>编程认知体验</span>
         </div>
         <div class="zc-tag">
           <el-row :gutter="20">
             <el-col :span="8">
               <div class="zc-card zc-bg1">
                 <div class="zc-card-title">
-                  <span>从Java后端到全栈</span>
+                  <span>青少面编程课程</span>
                 </div>
                 <div class="zc-card-con">
                   <span>浓缩从工程师到CTO的10年成长经验</span>
@@ -122,7 +127,7 @@
             <el-col :span="8">
               <div class="zc-card zc-bg2">
                 <div class="zc-card-title">
-                  <span>大前端--前端高级进阶</span>
+                  <span>算法博弈挑战赛</span>
                 </div>
                 <div class="zc-card-con">
                   <div>
@@ -138,7 +143,7 @@
             <el-col :span="8">
               <div class="zc-card zc-bg3">
                 <div class="zc-card-title">
-                  <span>Java架构师</span>
+                  <span>青少年编程能力等级测试</span>
                 </div>
                 <div class="zc-card-con">
                   <span>跟随千万级项目从0-100一起成长</span>
@@ -156,22 +161,19 @@
         </div>
         <div class="xl-tag">
          <span class="xl-tags">
-              Python
+              Python编程
             </span>
           <span class="xl-tags">
-             C++
+            智能机器人编程
             </span>
           <span class="xl-tags">
-             计算机组成原理
+             硬件编程
             </span>
           <span class="xl-tags">
-             React Native
+             数学算法编程
             </span>
           <span class="xl-tags">
-             玩转热门框架
-            </span>
-          <span class="xl-tags">
-             机器学习&人工智能
+             青少年编程能力测试
             </span>
           <span class="xl-tags-more">查看更多课程 > ></span>
         </div>
@@ -202,7 +204,7 @@
                 <div class="xl-card-img xl-card-img2"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                    <span>乐高智能机器人实践编程课</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -222,7 +224,7 @@
                 <div class="xl-card-img xl-card-img3"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                    <span>青少年python编程进阶课</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -242,7 +244,7 @@
                 <div class="xl-card-img xl-card-img4"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                    <span>编程能力等级考试指导课</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -413,44 +415,44 @@
             <el-row>
               <el-col :span="6">
                 <div class="sz-card sz-card-img1">
-                  <img src="../../assets/sz-text-img1.png" class="sz-text-img">
+                  <img src="../../assets/sz-text1-img1.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img2">
-                  <img src="../../assets/sz-text-img2.png" class="sz-text-img">
+                  <img src="../../assets/sz-text1-img2.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img3">
-                  <img src="../../assets/sz-text-img3.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img3.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img4">
-                  <img src="../../assets/sz-text-img4.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img4.png" class="sz-text-img3">
                 </div>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
                 <div class="sz-card sz-card-img5">
-                  <img src="../../assets/sz-text-img5.png" class="sz-text-img">
+                  <img src="../../assets/sz-text1-img5.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img6">
-                  <img src="../../assets/sz-text-img6.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img6.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img7">
-                  <img src="../../assets/sz-text-img7.png" class="sz-text-img3">
+                  <img src="../../assets/sz-text1-img7.png" class="sz-text-img7">
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="sz-card sz-card-img8">
-                  <img src="../../assets/sz-text-img8.png" class="sz-text-img8">
+                  <img src="../../assets/sz-text1-img8.png" class="sz-text-img8">
                 </div>
               </el-col>
             </el-row>
@@ -476,16 +478,17 @@ export default {
       value1: '5',
       navBarFixed: false,
       bannerH: '',
-      schna: [ 'http://58.119.112.12/CCZX_image/banner5.png','http://58.119.112.12/CCZX_image/photo2.jpg'],
+      schna: [ 'https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
       list: [],
+      infoState: false,
       flag_class: '未登录',
       flag_state: true,
       bannerStyle: 'background-banner',
       LiveList: [],
-      imgList: ['http://58.119.112.12/CCZX_image/hot-card-img1.png','http://58.119.112.12/CCZX_image/hot-card-img2.png','http://58.119.112.12/CCZX_image/hot-card-img3.png', 'http://58.119.112.12/CCZX_image/hot-card-img4.png']
+      imgList: ['https://www.zhongkeruitong.top/CCZX_image/hot-card-img1.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img2.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img3.png', 'https://www.zhongkeruitong.top/CCZX_image/hot-card-img4.png']
 
     }
   },
@@ -511,6 +514,7 @@ export default {
     window.addEventListener('resize', () => {
       this.setBannerH()
     }, false)
+    this.getInfo()
     this.getList()
     this.getLive()
     // console.log(this.$route.query.flag_class)
@@ -539,6 +543,7 @@ export default {
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       if (scrollTop > 49) {
         this.navBarFixed = true
+
       } else {
         this.navBarFixed = false
       }
@@ -550,7 +555,13 @@ export default {
         this.$router.push('/login')
       } else {
         console.log('我要跳转界面了')
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/codingCompetition')
+        // }
         this.$router.push('/codingCompetition')
+
       }
     },
     goToCourseIndex: function () {
@@ -558,8 +569,13 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
-        console.log('我要跳转界面了')
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/coursestudy')
+        // }
         this.$router.push('/coursestudy')
+
       }
     },
     gotoVideoLive () {
@@ -567,6 +583,11 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/VideoLive')
+        // }
         this.$router.push('/VideoLive')
       }
     },
@@ -575,8 +596,13 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
-        console.log('我要跳转界面了')
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/allclasses')
+        // }
         this.$router.push('/allclasses')
+
       }
     },
     gotoVideoClass () {
@@ -584,12 +610,18 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //
+        // }
         this.$router.push('/videoclass')
+
       }
     },
     getList () {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
-      var url = 'http://58.119.112.14:11020/cms/user/coursePub/mylist/1/4?username=' + this.username
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/1/4?username=' + this.username
       this.$axios.get(url).then((res) => {
         this.list = res.data.queryResult.list
       })
@@ -599,12 +631,18 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //
+        // }
         this.$router.push({
           path: '/videoclass',
           query: {
             class_id: id
           }
         })
+
       }
     },
     gotoContentClass () {
@@ -626,7 +664,7 @@ export default {
       }
     },
     getLive() {
-      var url = 'http://58.119.112.14:11030/cms/video/getVideos?username=' + this.username
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/getVideos?username=' + this.username
       this.$axios.get(url).then((res) => {
         if (res.data.queryResult.total === 0) {
           this.LiveList = []
@@ -640,7 +678,7 @@ export default {
         alert('请先登录！')
         this.$router.push('/login')
       } else {
-        var url = 'http://58.119.112.14:11030/cms/video/pullVideo?username=' + item.username
+        var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pullVideo?username=' + item.username
         this.$axios.get(url).then((res) => {
           if (res.data.code === undefined) {
             this.$router.push({
@@ -653,6 +691,31 @@ export default {
         })
 
       }
+    },
+    getInfo() {
+      if (this.flag_state === false) {
+        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+        this.$axios.get(url).then((res) => {
+          // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+          localStorage.setItem('headimg', res.data.userInfo.headimg)
+          this.infoState = res.data.infoState
+          if (res.data.infoState === false) {
+            setTimeout(() => {
+              this.openInfo()
+            }, 1000)
+          }
+        })
+      }
+    },
+    openInfo() {
+      this.$confirm('请尽快完善个人资料', '提示信息', {
+        confirmButtonText: '立即前往',
+        type: 'warning',
+        center: true,
+      }).then(() => {
+        this.$router.push('/userSetting/personalInformation')
+      }).catch(() => {
+      })
     }
   }
 }
@@ -733,14 +796,14 @@ export default {
     font-weight: bold;
     font-size: 30px;
     margin-top: 44px;
-    letter-spacing: 4px;
+    /*letter-spacing: 4px;*/
   }
   .kp-text-con {
     color: white;
     /*font-weight: bold;*/
     margin-top: 22px;
     font-size: 18px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
   }
   .tag-img2 {
     height: 205px;
@@ -845,7 +908,7 @@ export default {
     border-radius: 5px;
     border: #249094 solid 1px;
     margin-left: 20px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-size: 18px;
   }
   .xl-tags-more {
@@ -894,7 +957,7 @@ export default {
     font-size: 20px;
     font-weight: bold;
     color: #333333;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
   .xl-card-footer {
     margin-top: 20px;
@@ -904,7 +967,7 @@ export default {
     color: white;
     background-color: #f4ab00;
     font-size: 16px;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
     border-radius: 5px;
   }
   .xl-footer-icon {
@@ -973,13 +1036,13 @@ export default {
     color: white;
     /*font-weight: bold;*/
     font-size: 26px;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
     margin-top: 35px;
   }
   .hot-card-left-text3 {
     /*font-weight: bold;*/
     font-size: 22px;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
     margin-top: 35px;
   }
   .hot-card-left-text3 a {
@@ -1010,7 +1073,7 @@ export default {
   .hot-card-right-title {
     font-size: 24px;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     cursor: pointer;
 
   }
@@ -1076,7 +1139,7 @@ export default {
   .live-card-title {
     font-size: 24px;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
   .live-card-icon {
     margin-top: 20px;
@@ -1182,11 +1245,23 @@ export default {
   }
   .sz-text-img3 {
     margin-top: 40px;
-    width: 260px;
+    width: 280px;
+  }
+  .sz-text-img7 {
+    margin-top: 40px;
+    width: 220px;
   }
   .sz-text-img8 {
     margin-top: 40px;
-    width: 280px;
+    width: 230px;
   }
-
+  .sz-text-style {
+    font-size: 16px;
+    color: #8937b2;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  .el-message-box__content {
+    font-size: 18px;
+  }
 </style>

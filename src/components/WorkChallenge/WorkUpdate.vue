@@ -236,19 +236,20 @@
         submitInfo (formName) {
           this.$refs[formName].validate((valid) => {
             if (valid) {
-             var url = 'http://58.119.112.14:11030/cms/competition/create?username=' + localStorage.getItem('name') + '&groupname=' + this.form.groupname + '&majorname=' + this.form.majorname + '&secproject=' + this.form.secproject + '&group=' + this.form.group + '&projectname=' + this.form.projectname
+             var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/create?username=' + localStorage.getItem('name') + '&groupname=' + this.form.groupname + '&majorname=' + this.form.majorname + '&secproject=' + this.form.secproject + '&group=' + this.form.group + '&projectname=' + this.form.projectname
               this.$axios.get(url).then((res) => {
-                // if (res.data.code === 10004) {
-                //   this.$message.warning('你已经提交过了，不能重复提交')
-                // } else {
-                //   this.next()
-                //   this.title1 = '已完成'
-                //   this.title2 = '进行中'
-                // }
-                this.$message.success('提交成功！')
+                if (res.data.code === 10004) {
+                  this.$message.warning('你已经提交过了，不能重复提交')
+                } else {
+                  this.$message.success('提交成功！')
                   this.next()
                   this.title1 = '已完成'
                   this.title2 = '进行中'
+                }
+
+                  // this.next()
+                  // this.title1 = '已完成'
+                  // this.title2 = '进行中'
 
               })
             } else {
@@ -266,7 +267,7 @@
             chunk_size: '4mb',
             uptoken: '',
             get_new_uptoken: false, // 设置上传文件的时候是否每次都重新获取新的uptoken
-            uptoken_url: 'http://58.119.112.14:11030/cms/filesystem/getToken',
+            uptoken_url: 'https://www.zhongkeruitong.top/towerImg/cms/filesystem/getToken',
             uptoken_func: function(){        // 在需要获取uptoken时，该方法会被调用
               // do something(一般是发送手动发送ajax获取到token，如果后端返回格式不跟官方一致又不想该懂源代码可以通过这个方式调整)
               return uptoken;
@@ -301,7 +302,7 @@
                 var str = JSON.parse(info.response)
                 // console.log(JSON.parse(info.response).key)
                 var str_url = 'http://qiniu.zhongkeruitong.top/' + str.key
-                var url = 'http://58.119.112.14:11030/cms/competition/savelink?username=' + localStorage.getItem('name') + '&projectlink=' + str_url
+                var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/savelink?username=' + localStorage.getItem('name') + '&projectlink=' + str_url
                 this.$axios.get(url).then((res) => {
                   console.log('文件上传完毕')
                   this.$message.success('作品上传成功！')
@@ -320,7 +321,7 @@
           });
         },
         getInfo() {
-          var url = 'http://58.119.112.14:11030/cms/competition/findbyusername?username=' + localStorage.getItem('name')
+          var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findbyusername?username=' + localStorage.getItem('name')
           this.$axios.get(url).then((res) => {
             this.projectname = res.data.projectname
             this.groupname = res.data.groupname
