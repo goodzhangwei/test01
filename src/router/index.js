@@ -195,6 +195,66 @@ export default new Router({
       component: resolve => require(['@/components/WorkChallenge/WorkUpdate'],resolve)
     },
     {
+      path: '/WorkShow',
+      name: 'WorkShow',
+      component: resolve => require(['@/components/WorkChallenge/workShow'],resolve)
+    },
+    {
+      path: '/Workinfo',
+      name: 'Workinfo',
+      component: resolve => require(['@/components/WorkChallenge/Workinfo'],resolve)
+    },
+    {
+      path: '/WorkOne',
+      name: 'WorkOne',
+      component: resolve => require(['@/components/WorkChallenge/WorkOne'],resolve)
+    },
+    {
+      path: '/WorkTwo',
+      name: 'WorkTwo',
+      component: resolve => require(['@/components/WorkChallenge/WorkTwo'],resolve)
+    },
+    {
+      path: '/WorkThree',
+      name: 'WorkThree',
+      component: resolve => require(['@/components/WorkChallenge/WorkThree'],resolve)
+    },
+    {
+      path: '/WorkFour',
+      name: 'WorkFour',
+      component: resolve => require(['@/components/WorkChallenge/WorkFour'],resolve)
+    },
+    {
+      path: '/WorkFive',
+      name: 'WorkFive',
+      component: resolve => require(['@/components/WorkChallenge/WorkFive'],resolve)
+    },
+    {
+      path: '/WorkSix',
+      name: 'WorkSix',
+      component: resolve => require(['@/components/WorkChallenge/WorkSix'],resolve)
+    },
+    {
+      path: '/WorkSeven',
+      name: 'WorkSeven',
+      component: resolve => require(['@/components/WorkChallenge/WorkSeven'],resolve)
+    },
+    {
+      path: '/WorkEight',
+      name: 'WorkEight',
+      component: resolve => require(['@/components/WorkChallenge/WorkEight'],resolve)
+    },
+    {
+      path: '/competitionOne',
+      name: 'competitionOne',
+      component: resolve => require(['@/components/codingCompetition/competitionOne'],resolve)
+    },
+    {
+      path: '/competitionTwo',
+      name: 'competitionTwo',
+      component: resolve => require(['@/components/codingCompetition/competitionTwo'],resolve)
+    },
+    {
       path: '/competition',
       name: 'competition',
       component: resolve => require(['@/components/codingCompetition/competition'],resolve)
@@ -203,6 +263,21 @@ export default new Router({
       path: '/aboutUs',
       name: 'aboutUs',
       component: resolve => require(['@/components/aboutUs/AboutUs'],resolve)
+    },
+    {
+      path: '/ClassShowOne',
+      name: 'ClassShowOne',
+      component: resolve => require(['@/components/ClassShow/ClassShowOne'],resolve)
+    },
+    {
+      path: '/StudyProject',
+      name: 'StudyProject',
+      component: resolve => require(['@/components/StudyProject/StudyProject'],resolve)
+    },
+    {
+      path: '/BlogRoll',
+      name: 'BlogRoll',
+      component: resolve => require(['@/components/BlogRoll/BlogRoll'],resolve)
     }
   ]
 })

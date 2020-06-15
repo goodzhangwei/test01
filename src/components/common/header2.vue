@@ -134,36 +134,38 @@
 
       },
       gotoWork () {
-        if (this.flag_state === true) {
-          alert('请先登录！')
-          this.$router.push('/login')
-        } else {
-          // if (this.flagInfo === false) {
-          //   this.openInfo()
-          // } else {
-          //   this.$router.push('/WorkIndex')
-          // }
-          this.$router.push('/WorkIndex')
-        }
-        console.log('我要跳转界面了')
+        // if (this.flag_state === true) {
+        //   alert('请先登录！')
+        //   this.$router.push('/login')
+        // } else {
+        //   // if (this.flagInfo === false) {
+        //   //   this.openInfo()
+        //   // } else {
+        //   //   this.$router.push('/WorkIndex')
+        //   // }
+        //   this.$router.push('/WorkIndex')
+        // }
+        // console.log('我要跳转界面了')
+        this.$router.push('/WorkIndex')
       },
       gotoHomepage () {
         this.$router.push('/')
       },
       gotoCompetition: function () {
-        if (this.flag_state === true) {
-          alert('请先登录！')
-          this.$router.push('/login')
-        } else {
-          // if (this.flagInfo === false) {
-          //   this.openInfo()
-          // } else {
-          //   this.$router.push('/competition')
-          // }
-          this.$router.push('/competition')
-
-        }
-        console.log('我要跳转界面了')
+        // if (this.flag_state === true) {
+        //   alert('请先登录！')
+        //   this.$router.push('/login')
+        // } else {
+        //   // if (this.flagInfo === false) {
+        //   //   this.openInfo()
+        //   // } else {
+        //   //   this.$router.push('/competition')
+        //   // }
+        //   this.$router.push('/competition')
+        //
+        // }
+        // console.log('我要跳转界面了')
+        this.$router.push('/competition')
       },
       gotoAboutUs() {
         this.$router.push('/AboutUs')

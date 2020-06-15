@@ -224,6 +224,7 @@ export default {
         this.form.profession = res.data.userInfo.profession
         this.form.province = res.data.userInfo.province
         this.form.city = res.data.userInfo.city
+        localStorage.setItem('city', res.data.userInfo.city)
         this.form.district = res.data.userInfo.district
         this.form.mail = res.data.userInfo.mail
       })

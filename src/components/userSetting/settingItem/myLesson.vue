@@ -5,14 +5,14 @@
         <el-tab-pane label="正在学习" name="first" class="tabPane">
           <div class="studying">
             <el-row :gutter="10">
-              <el-col :span="6" v-for="(item, index) in list" :key="index">
+              <el-col :span="6" v-for="(item, index) in list" :key="index" class="col-style">
                 <div class="hot-card">
                   <div class="hot-card-img" @click="gotocontent(item.id)">
                     <img :src="imgList[index]" class="hot-img-style">
                   </div>
                   <div class="hot-card-right-text">
                     <div class="hot-card-right-title" @click="gotocontent(item.id)">
-                      <span>{{item.name.substring(0, 10)}}</span>
+                      <span>{{item.name}}</span>
                     </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ export default {
       pictwo: require('@/assets/picturetwo.jpg'),
       nocontent: require('@/assets/nocontent.png'),
       list: [],
-      imgList: ['https://www.zhongkeruitong.top/CCZX_image/hot-card-img1.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img2.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img3.png', 'https://www.zhongkeruitong.top/CCZX_image/hot-card-img4.png']
+      imgList: ['https://www.zhongkeruitong.top/CCZX_image/hot-card-img1.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img2.png','https://www.zhongkeruitong.top/CCZX_image/hot-card-img3.png', 'https://www.zhongkeruitong.top/CCZX_image/hot-card-img4.png', 'https://www.zhongkeruitong.top/CCZX_image/timg590.jpg', 'https://www.zhongkeruitong.top/CCZX_image/timg5678.jpg', 'https://www.zhongkeruitong.top/CCZX_image/timg9090.jpg']
     }
   },
   mounted() {
@@ -66,9 +66,9 @@ export default {
     },
     getList () {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
-      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/1/4?username=' + localStorage.getItem('name')
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/2/10?username=' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
-        this.list = res.data.queryResult.list
+        this.list = res.data.queryResult.list.slice(0,7)
       })
     },
     gotocontent (id) {
@@ -168,5 +168,8 @@ export default {
     float: right;
     color: #fe6549;
     font-weight: bold;
+  }
+  .col-style {
+    margin-top: 10px;
   }
 </style>

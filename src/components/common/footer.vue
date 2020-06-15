@@ -4,9 +4,10 @@
       <div class="footer-color">
         <div class="footer-text">
           <div class="footer-text-title">
-            <span class="a-text">关于我们</span>
+            <span class="a-text" @click="gotoAboutUs">关于我们</span>
             <span class="a-text">联系我们</span>
             <span class="a-text">常见问题</span>
+            <span class="a-text" @click="gotoLink">友情链接</span>
           </div>
           <div class="line-text"></div>
           <div class="footer-text-content">
@@ -30,7 +31,15 @@
 
 <script>
 export default {
-  name: 'footer'
+  name: 'footer',
+  methods: {
+    gotoAboutUs() {
+      this.$router.push('/AboutUs')
+    },
+    gotoLink() {
+      this.$router.push('/BlogRoll')
+    }
+  }
 }
 </script>
 
@@ -99,5 +108,8 @@ export default {
   .code-bg img {
     width: 100%;
     height: 100%;
+  }
+  .a-text:hover {
+    color: #99a1a6;
   }
 </style>

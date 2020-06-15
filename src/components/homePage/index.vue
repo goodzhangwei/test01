@@ -1,4 +1,5 @@
 <template>
+
   <div class="app_container">
     <transition name="fade">
       <div  v-if="navBarFixed" class="header-show">
@@ -16,25 +17,25 @@
       </el-carousel>
     </div>
     <div class="content-tag">
-      <div>
+      <div @click="gotopszn">
         <span>Python智能编程</span>
       </div>
-      <div>
+      <div @click="gotose">
         <span>Python少儿趣味编程</span>
       </div>
-      <div>
-        <span>StarT项目</span>
+      <div @click="gotoStudy">
+        <span>研学项目</span>
       </div>
-      <div>
+      <div @click="gotocomOne">
         <span>博弈算法大赛</span>
       </div>
-      <div>
-        <span>信息奥赛课程</span>
+      <div @click="gotocomTwo">
+        <span>青少年创意编程大赛</span>
       </div>
-      <div>
+      <div @click="gotozaixian">
         <span>在线课堂</span>
       </div>
-      <div>
+      <div @click="gotozhibo">
         <span>直播大讲堂</span>
       </div>
     </div>
@@ -44,7 +45,7 @@
           <span>科普大讲堂</span>
         </div>
         <div class="kp-tag">
-          <div class="kp-tag-card kp-bg1">
+          <div class="kp-tag-card kp-bg1" @click="gotoAIkepu">
             <div class="kp-text-title">
               <span>AI&机器人</span>
             </div>
@@ -54,7 +55,7 @@
 
             <img src="../../assets/circle1-icon.png" class="tag-img">
           </div>
-          <div class="kp-tag-card kp-bg2">
+          <div class="kp-tag-card kp-bg2" @click="gotoERtong">
             <div class="kp-text-title">
               <span>儿童编程思维</span>
             </div>
@@ -69,7 +70,7 @@
 
             <img src="../../assets/circle2-icon.png" class="tag-img2">
           </div>
-          <div class="kp-tag-card kp-bg3">
+          <div class="kp-tag-card kp-bg3" @click="gotoPyAI">
             <div class="kp-text-title">
               <span>Python编程</span>
             </div>
@@ -79,7 +80,7 @@
 
             <img src="../../assets/circle3-icon.png" class="tag-img">
           </div>
-          <div class="kp-tag-card kp-bg4">
+          <div class="kp-tag-card kp-bg4" @click="gotoYingjian">
             <div class="kp-text-title">
               <span>硬件编程</span>
             </div>
@@ -89,16 +90,13 @@
 
             <img src="../../assets/circle4-icon.png" class="tag-img">
           </div>
-          <div class="kp-tag-card kp-bg5">
+          <div class="kp-tag-card kp-bg5" @click="gotoRenlian">
             <div class="kp-text-title">
-              <span>编程考试指导</span>
+              <span>人脸识别</span>
             </div>
             <div class="kp-text-con">
               <div>
-                <span>全国青少年编程能力</span>
-              </div>
-              <div>
-                <span>等级评测（CPA）</span>
+                <span>深度学习&图像处理</span>
               </div>
             </div>
 
@@ -107,7 +105,7 @@
         </div>
       </div>
     </div>
-    <div class="zhichang-con">
+    <div class="zhichang-con"id="pszn">
       <div class="content-zc">
         <div class="kp-title">
           <span>编程认知体验</span>
@@ -115,9 +113,9 @@
         <div class="zc-tag">
           <el-row :gutter="20">
             <el-col :span="8">
-              <div class="zc-card zc-bg1">
+              <div class="zc-card zc-bg1" @click="gotoqinsho">
                 <div class="zc-card-title">
-                  <span>青少面编程课程</span>
+                  <span>青少年编程课程</span>
                 </div>
                 <div class="zc-card-con">
                   <span>浓缩从工程师到CTO的10年成长经验</span>
@@ -125,25 +123,25 @@
               </div>
             </el-col>
             <el-col :span="8">
-              <div class="zc-card zc-bg2">
+              <div class="zc-card zc-bg2" @click="gotocomOne">
                 <div class="zc-card-title">
-                  <span>算法博弈挑战赛</span>
+                  <span>博弈算法挑战赛</span>
                 </div>
                 <div class="zc-card-con">
                   <div>
-                    <span>覆盖前端全栈+全周期</span>
+                    <span>高含金量+全周期</span>
                   </div>
                   <div>
-                    <span>+多端应用的体系大课</span>
+                    <span>+高水平大赛</span>
                   </div>
 
                 </div>
               </div>
             </el-col>
             <el-col :span="8">
-              <div class="zc-card zc-bg3">
+              <div class="zc-card zc-bg3" @click="gotoPyjc">
                 <div class="zc-card-title">
-                  <span>青少年编程能力等级测试</span>
+                  <span>Python数据科学基础</span>
                 </div>
                 <div class="zc-card-con">
                   <span>跟随千万级项目从0-100一起成长</span>
@@ -154,10 +152,10 @@
         </div>
       </div>
     </div>
-    <div class="xl-course">
+    <div class="xl-course" id="zaixian">
       <div class="content-xl">
         <div class="xl-title">
-          <span>系列课程</span>
+          <span>系列学习课程</span>
         </div>
         <div class="xl-tag">
          <span class="xl-tags">
@@ -180,17 +178,17 @@
         <div class="xl-course-card">
           <el-row :gutter="30">
             <el-col :span="6">
-              <div class="xl-card">
+              <div class="xl-card" @click="gotoLeGo">
                 <div class="xl-card-img xl-card-img1"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>Python计算思维实践基础课 适合零基础同学</span>
+                    <span>Python入门兴趣编程</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
                     <div class="xl-footer-icon">
                       <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                      <span class="xl-footer-text1">4-6年级</span>
                       <!--<span> | </span>-->
                       <span class="xl-footer-text2">13人评价</span>
                     </div>
@@ -200,11 +198,11 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card">
+              <div class="xl-card" @click="gotoPy">
                 <div class="xl-card-img xl-card-img2"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>乐高智能机器人实践编程课</span>
+                    <span>Python进阶—编程与逻辑能力训练</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -220,11 +218,11 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card">
+              <div class="xl-card" @click="gotoPyAIface">
                 <div class="xl-card-img xl-card-img3"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>青少年python编程进阶课</span>
+                    <span>Python专题—人脸识别等</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -240,11 +238,11 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="xl-card">
+              <div class="xl-card" @click="gotoZhineng">
                 <div class="xl-card-img xl-card-img4"></div>
                 <div class="xl-card-text">
                   <div class="xl-card-title">
-                    <span>编程能力等级考试指导课</span>
+                    <span>Python高阶—项目实战与编程大赛</span>
                   </div>
                   <div class="xl-card-footer">
                     <span class="xl-footer-tag">适中</span>
@@ -308,7 +306,7 @@
         </div>
       </div>
     </div>
-    <div class="live-course">
+    <div class="live-course" id="zhibo">
       <div class="live-content">
         <div class="kp-title">
           <span>热门直播</span>
@@ -338,7 +336,7 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="live-card">
+              <div class="live-card" @click="open2">
                 <div class="live-card-img">
                   <img src="../../assets/live-card-img2.png" class="live-card-img-bg">
                 </div>
@@ -354,7 +352,7 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="live-card">
+              <div class="live-card" @click="open2">
                 <div class="live-card-img">
                   <img src="../../assets/live-card-img3.png" class="live-card-img-bg">
                 </div>
@@ -370,7 +368,7 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="live-card">
+              <div class="live-card" @click="open2">
                 <div class="live-card-img">
                   <img src="../../assets/live-card-img4.png" class="live-card-img-bg">
                 </div>
@@ -406,7 +404,7 @@
       </div>
     </div>
     <div class="sz-project">
-      <div class="sz-top">
+      <div class="sz-top" id="shaoer">
         <div class="sz-content">
           <div class="sz-content-title">
             <span>实战项目</span>
@@ -414,44 +412,44 @@
           <div class="sz-content-card">
             <el-row>
               <el-col :span="6">
-                <div class="sz-card sz-card-img1">
+                <div class="sz-card sz-card-img1" @click="gotoWorkOne">
                   <img src="../../assets/sz-text1-img1.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img2">
+                <div class="sz-card sz-card-img2" @click="gotoWorkTwo">
                   <img src="../../assets/sz-text1-img2.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img3">
+                <div class="sz-card sz-card-img3" @click="gotoWorkThree">
                   <img src="../../assets/sz-text1-img3.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img4">
+                <div class="sz-card sz-card-img4" @click="gotoWorkFour">
                   <img src="../../assets/sz-text1-img4.png" class="sz-text-img3">
                 </div>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
-                <div class="sz-card sz-card-img5">
+                <div class="sz-card sz-card-img5" @click="gotoWorkFive">
                   <img src="../../assets/sz-text1-img5.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img6">
+                <div class="sz-card sz-card-img6" @click="gotoWorkSix">
                   <img src="../../assets/sz-text1-img6.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img7">
+                <div class="sz-card sz-card-img7" @click="gotoWorkSeven">
                   <img src="../../assets/sz-text1-img7.png" class="sz-text-img7">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img8">
+                <div class="sz-card sz-card-img8" @click="gotoWorkEight">
                   <img src="../../assets/sz-text1-img8.png" class="sz-text-img8">
                 </div>
               </el-col>
@@ -461,15 +459,24 @@
       </div>
     </div>
 
+    <el-backtop :bottom="60" class="backtop-style">
+      <div class="backtop-text">
+        <span>返回顶部</span>
+      </div>
+      <i class="el-icon-caret-top backtop-icon" ></i>
+
+    </el-backtop>
 
     <Footer></Footer>
   </div>
+
 </template>
 
 <script>
 import Header from '@/components/common/header'
 import HeaderTwo from '@/components/common/header2'
 import Footer from '@/components/common/footer'
+import $ from 'jquery'
 export default {
   name: 'index',
   components: { Header, HeaderTwo, Footer },
@@ -621,10 +628,55 @@ export default {
     },
     getList () {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
-      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/1/4?username=' + this.username
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/2/10?username=' + this.username
       this.$axios.get(url).then((res) => {
-        this.list = res.data.queryResult.list
+        this.list = res.data.queryResult.list.slice(0, 4)
       })
+    },
+    gotoWorkOne() {
+      this.$router.push('/WorkOne')
+    },
+    gotoWorkTwo () {
+      this.$router.push('/WorkTwo')
+    },
+    gotoWorkThree () {
+      this.$router.push('/WorkThree')
+    },
+    gotoWorkFour () {
+      this.$router.push('/WorkFour')
+    },
+    gotoWorkFive () {
+      this.$router.push('/WorkFive')
+    },
+    gotoWorkSix () {
+      this.$router.push('/WorkSix')
+    },
+    gotoWorkSeven () {
+      this.$router.push('/WorkSeven')
+    },
+    gotoWorkEight () {
+      this.$router.push('/WorkEight')
+    },
+    open2() {
+      if (this.flag_state === true) {
+        alert('请先登录！')
+        this.$router.push('/login')
+      } else {
+        this.$notify({
+          title: '提示',
+          message: '对不起，此模块暂未对您开放！',
+          type: 'warning',
+          duration: 3000
+        });
+      }
+    },
+    open3() {
+      this.$notify({
+        title: '提示',
+        message: '对不起，此模块暂未对您开放！',
+        type: 'warning',
+        duration: 3000
+      });
     },
     gotocontent (id) {
       if (this.flag_state === true) {
@@ -644,6 +696,148 @@ export default {
         })
 
       }
+    },
+    gotoPy() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff808081704e6a9b01705121995f0000'
+        }
+      })
+      // this.$router.push('/ClassShowOne')
+    },
+    gotoPyAI() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7a6ec5d00a3'
+        }
+      })
+    },
+    gotoPyjc() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7f6d8830108'
+        }
+      })
+    },
+    gotoPyAIface() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7ad263100b2'
+        }
+      })
+    },
+    gotoqinsho() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a88a98c70192'
+        }
+      })
+    },
+    gotobs() {
+      var url = 'http://istpa.cas.cn/acme/ssgz/201909/t20190912_4552494.html'
+      window.open(url)
+    },
+    gotoLeGo() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a8765d35017c'
+        }
+      })
+    },
+    gotoYingjian() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7bc0a9f00d5'
+        }
+      })
+    },
+    gotoRenlian() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a88f020d0199'
+        }
+      })
+    },
+    gotoAIkepu() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a892f36401a0'
+        }
+      })
+    },
+    gotozaixian () {
+      if (this.flag_state === true) {
+        alert('网站提供教师录制视频，学生观看视频的在线学习方式，请先注册登录！')
+      } else {
+        setTimeout(() => {
+          var hshight = $($('#zaixian')).offset().top
+          $('html,body').animate({
+            scrollTop: hshight
+          }, 700)
+        })
+      }
+    },
+    gotose() {
+      setTimeout(() => {
+        var hshight = $($('#shaoer')).offset().top
+        $('html,body').animate({
+          scrollTop: hshight
+        }, 700)
+      })
+    },
+    gotoStudy() {
+      this.$router.push('/StudyProject')
+    },
+    gotopszn() {
+      setTimeout(() => {
+        var hshight = $($('#pszn')).offset().top
+        $('html,body').animate({
+          scrollTop: hshight
+        }, 700)
+      })
+    },
+    gotozhibo() {
+      if (this.flag_state === true) {
+        alert('网站提供教师直播，学生观看直播的在线学习方式，请先注册登录！')
+      } else {
+        setTimeout(() => {
+          var hshight = $($('#zhibo')).offset().top
+          $('html,body').animate({
+            scrollTop: hshight
+          }, 700)
+        })
+      }
+    },
+    gotoERtong() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7c51bbe00df'
+        }
+      })
+    },
+    gotocomOne() {
+      this.$router.push('/competitionOne')
+    },
+    gotocomTwo () {
+      this.$router.push('/competitionTwo')
+    },
+    gotoZhineng() {
+      this.$router.push({
+        path: '/videoclass',
+        query: {
+          class_id: 'ff80808172a7363b0172a7dfcc8a00f1'
+        }
+      })
     },
     gotoContentClass () {
       if (this.flag_state === true) {
@@ -698,6 +892,7 @@ export default {
         this.$axios.get(url).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
           localStorage.setItem('headimg', res.data.userInfo.headimg)
+          localStorage.setItem('city', res.data.userInfo.city)
           this.infoState = res.data.infoState
           if (res.data.infoState === false) {
             setTimeout(() => {
@@ -942,7 +1137,7 @@ export default {
     height: 141px;
   }
   .xl-card-img1 {
-    background-image: url("../../assets/xl-card-img4.png");
+    background-image: url("../../assets/Python.jpg");
   }
   .xl-card-img2 {
     background-image: url("../../assets/xl-card-img3.png");
@@ -1263,5 +1458,22 @@ export default {
   }
   .el-message-box__content {
     font-size: 18px;
+  }
+  .backtop-style {
+    width: 45px;height: 45px;text-align: center;padding: 5px;
+  }
+  .backtop-text {
+    font-size: 14px;
+    display: none;
+  }
+  .backtop-icon {
+    font-size: 24px;
+
+  }
+  .backtop-style:hover .backtop-text{
+    display: block;
+  }
+  .backtop-style:hover .backtop-icon {
+    display: none;
   }
 </style>

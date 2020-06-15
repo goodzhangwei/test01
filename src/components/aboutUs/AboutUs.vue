@@ -125,7 +125,8 @@
         data () {
             return {
                 navBarFixed: false,
-              infoState: false
+              infoState: false,
+              bannerH: ''
             }
         },
         mounted () {

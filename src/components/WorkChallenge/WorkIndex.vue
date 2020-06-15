@@ -47,7 +47,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img2.png">
                   </div>
@@ -63,7 +63,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img3.png">
                   </div>
@@ -79,7 +79,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img4.png">
                   </div>
@@ -97,7 +97,7 @@
             </el-row>
             <el-row :gutter="15" class="row-two">
               <el-col :span="6">
-                <div class="js-work-card" @click="gotoDetail">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img5.png">
                   </div>
@@ -113,7 +113,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img2.png">
                   </div>
@@ -129,7 +129,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img7.png">
                   </div>
@@ -145,7 +145,7 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card">
+                <div class="js-work-card" @click="open2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img8.png">
                   </div>
@@ -172,44 +172,44 @@
           <div class="sz-content-card">
             <el-row>
               <el-col :span="6">
-                <div class="sz-card sz-card-img1">
+                <div class="sz-card sz-card-img1" @click="gotoWorkOne">
                   <img src="../../assets/sz-text1-img1.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img2">
+                <div class="sz-card sz-card-img2" @click="gotoWorkTwo">
                   <img src="../../assets/sz-text-img2.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img3">
+                <div class="sz-card sz-card-img3" @click="gotoWorkThree">
                   <img src="../../assets/sz-text1-img3.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img4">
+                <div class="sz-card sz-card-img4" @click="gotoWorkFour">
                   <img src="../../assets/sz-text1-img4.png" class="sz-text-img3">
                 </div>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
-                <div class="sz-card sz-card-img5">
+                <div class="sz-card sz-card-img5" @click="gotoWorkFive">
                   <img src="../../assets/sz-text1-img5.png" class="sz-text-img">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img6">
+                <div class="sz-card sz-card-img6" @click="gotoWorkSix">
                   <img src="../../assets/sz-text1-img6.png" class="sz-text-img3">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img7">
+                <div class="sz-card sz-card-img7" @click="gotoWorkSeven">
                   <img src="../../assets/sz-text1-img7.png" class="sz-text-img7">
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="sz-card sz-card-img8">
+                <div class="sz-card sz-card-img8" @click="gotoWorkEight">
                   <img src="../../assets/sz-text1-img8.png" class="sz-text-img8">
                 </div>
               </el-col>
@@ -259,7 +259,39 @@
         },
         carouselChange() {
 
-        }
+        },
+        open2() {
+          this.$notify({
+            title: '提示',
+            message: '对不起，此模块暂未对您开放！',
+            type: 'warning',
+            duration: 3000
+          });
+        },
+        gotoWorkOne() {
+          this.$router.push('/WorkOne')
+        },
+        gotoWorkTwo () {
+          this.$router.push('/WorkTwo')
+        },
+        gotoWorkThree () {
+          this.$router.push('/WorkThree')
+        },
+        gotoWorkFour () {
+          this.$router.push('/WorkFour')
+        },
+        gotoWorkFive () {
+          this.$router.push('/WorkFive')
+        },
+        gotoWorkSix () {
+          this.$router.push('/WorkSix')
+        },
+        gotoWorkSeven () {
+          this.$router.push('/WorkSeven')
+        },
+        gotoWorkEight () {
+          this.$router.push('/WorkEight')
+        },
       }
     }
 </script>

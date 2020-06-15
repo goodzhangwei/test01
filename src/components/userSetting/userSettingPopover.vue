@@ -10,6 +10,8 @@
         <span @click="gotoMyclass">我的课程</span>
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
+        <span @click="gotoworked" v-show="role !== '3'">查看作品</span>
+        <span @click="gotoinfo" v-show="role === '3'">提交信息</span>
         <span @click="gotoupdate" v-show="role === '1'">录播教学</span>
         <span @click="gotolive" v-show="role === '1'">直播教学</span>
         <el-divider class="divider-style"></el-divider>
@@ -117,6 +119,12 @@ export default {
     gotoInformation: function () {
       console.log('我要跳转界面了')
       this.$router.push('/userSetting/personalInformation')
+    },
+    gotoworked() {
+      this.$router.push('/WorkShow')
+    },
+    gotoinfo() {
+      this.$router.push('/Workinfo')
     },
     gotoupdate () {
       if(this.infoState === false) {

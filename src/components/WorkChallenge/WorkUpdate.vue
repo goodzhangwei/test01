@@ -13,7 +13,7 @@
         </div>
         <div>
           <el-alert
-            title="请认真填写下列基本信息，每组参赛选手只允许提交一次"
+            title="请认真填写下列基本信息，在截止日期之前参赛选手可以重复提交"
             type="warning"
             class="alert-style"
             v-show="active === 0"
@@ -28,7 +28,7 @@
               <el-input placeholder="请填写小组名称或者作品上传者姓名" class="input-style" v-model="form.groupname"></el-input>
             </el-form-item>
             <el-form-item class="form-item-style" label="参赛类别：" prop="majorname">
-              <el-select placeholder="请选择参赛类别" class="select-style input-style" v-model="form.majorname">
+              <el-select placeholder="请选择参赛类别" class="select-style input-style" v-model="form.majorname"  @change="changeOne">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -61,7 +61,7 @@
         </div>
         <div v-show="active === 1" class="update-content">
           <el-alert
-            title="每组参赛选手只允许上传一次作品"
+            title="在截止日期之前参赛选手可以重复提交"
             type="warning"
             class="alert-style2"
             v-show="active === 1"
@@ -74,7 +74,7 @@
             </div>
             <div class="update-work-text">
               <p>
-                首届泰安市青少年创意编程与智能设计大赛
+                {{'首届'+citys+'青少年创意编程与智能设计大赛'}}
               </p>
             </div>
             <div class="update-button">
@@ -139,6 +139,7 @@
             active: 0,
             progressShow: false,
             progress: 0,
+            citys: localStorage.getItem('city'),
             qiniuToken: '',
             projectname: '',
             groupname: '',
@@ -192,25 +193,7 @@
               value: '人工智能挑战赛',
               label: '人工智能挑战赛'
             }],
-            options2: [{
-              value: 'Scratch比赛',
-              label: 'Scratch比赛'
-            }, {
-              value: 'Python比赛',
-              label: 'Python比赛'
-            }, {
-              value: 'Arduino比赛',
-              label: 'Arduino比赛'
-            }, {
-              value: 'Micro: bit比赛',
-              label: 'Micro: bit比赛'
-            }, {
-              value: '贪吃蛇博弈算法挑战赛',
-              label: '贪吃蛇博弈算法挑战赛'
-            }, {
-              value: '智能人脸识别挑战赛',
-              label: '智能人脸识别挑战赛'
-            }],
+            options2: [],
             options3: [{
               value: '小学组（1-3年级）',
               label: '小学组（1-3年级）'
@@ -228,6 +211,7 @@
       },
       mounted () {
         this.initQiniu()
+        this.getInfoTwo()
       },
       methods: {
         next() {
@@ -238,18 +222,18 @@
             if (valid) {
              var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/create?username=' + localStorage.getItem('name') + '&groupname=' + this.form.groupname + '&majorname=' + this.form.majorname + '&secproject=' + this.form.secproject + '&group=' + this.form.group + '&projectname=' + this.form.projectname
               this.$axios.get(url).then((res) => {
-                if (res.data.code === 10004) {
-                  this.$message.warning('你已经提交过了，不能重复提交')
-                } else {
-                  this.$message.success('提交成功！')
+                // if (res.data.code === 10004) {
+                //   this.$message.warning('你已经提交过了，不能重复提交')
+                // } else {
+                //   this.$message.success('提交成功！')
+                //   this.next()
+                //   this.title1 = '已完成'
+                //   this.title2 = '进行中'
+                // }
+                this.$message.success('提交成功！')
                   this.next()
                   this.title1 = '已完成'
                   this.title2 = '进行中'
-                }
-
-                  // this.next()
-                  // this.title1 = '已完成'
-                  // this.title2 = '进行中'
 
               })
             } else {
@@ -335,8 +319,20 @@
             this.title3 = '已完成'
           })
         },
+        getInfoTwo() {
+          var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findbyusername?username=' + localStorage.getItem('name')
+          this.$axios.get(url).then((res) => {
+            this.form.projectname = res.data.projectname
+            this.form.groupname = res.data.groupname
+            this.form.majorname =res.data.majorproject
+            this.form.secproject = res.data.secproject
+            this.form.group = res.data.maingroup
+            // this.projectlink = res.data.projectlink
+          })
+        },
         downloadFile () {
-          window.open(this.projectlink)
+          var url = this.projectlink
+          window.open(url)
         },
         customColorMethod(percentage) {
           if (percentage < 30) {
@@ -347,6 +343,57 @@
             return '#67c23a';
           }
         },
+        changeOne(val) {
+          console.log(val)
+
+          var option1 = [
+            {
+              value: 'Scratch比赛',
+              label: 'Scratch比赛'
+            }, {
+              value: 'Python比赛',
+              label: 'Python比赛'
+            }
+          ]
+          var option2 = [
+            {
+              value: 'Arduino比赛',
+              label: 'Arduino比赛'
+            },{
+              value: 'Micro: bit比赛',
+              label: 'Micro: bit比赛'
+            },{
+              value: 'ESP32 智慧物联项目',
+              label: 'ESP32 智慧物联项目'
+            }
+          ]
+          var option3 = [
+            {
+              value: '贪吃蛇博弈算法挑战赛',
+              label: '贪吃蛇博弈算法挑战赛'
+            }, {
+              value: '智能人脸识别挑战赛',
+              label: '智能人脸识别挑战赛'
+            }
+          ]
+
+          if (val === '创意编程大赛') {
+            this.options2 = option1
+          } else if (val === '智能设计大赛') {
+            this.options2 = option2
+          } else if (val === '人工智能挑战赛') {
+            this.options2 = option3
+          }
+        },
+        changeTwo(val) {
+          if (this.form.secproject === '') {
+            this.$notify({
+              title: '警告',
+              message: '请先选择参赛类别',
+              type: 'warning'
+            });
+          }
+        }
       }
     }
 </script>

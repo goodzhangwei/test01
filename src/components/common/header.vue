@@ -18,6 +18,7 @@
         <!--<Logout v-if="flag_login !== '已登录'"></Logout>-->
       <!--</div>-->
     <!--</div>-->
+
     <div class="navbar-wrapper">
       <div class="container">
 
@@ -133,18 +134,18 @@ export default {
       })
     },
     gotoWork () {
-      if (this.flag_state === true) {
-        alert('请先登录！')
-        this.$router.push('/login')
-      } else {
-        // if (this.flagInfo === false) {
-        //   this.openInfo()
-        // } else {
-        //   this.$router.push('/WorkIndex')
-        // }
-        this.$router.push('/WorkIndex')
-      }
-
+      // if (this.flag_state === true) {
+      //   alert('请先登录！')
+      //   this.$router.push('/login')
+      // } else {
+      //   // if (this.flagInfo === false) {
+      //   //   this.openInfo()
+      //   // } else {
+      //   //   this.$router.push('/WorkIndex')
+      //   // }
+      //   this.$router.push('/WorkIndex')
+      // }
+      this.$router.push('/WorkIndex')
     },
     gotoWorkUpdate () {
       if (this.flag_state === true) {
@@ -163,13 +164,14 @@ export default {
       this.$router.push('/')
     },
     gotoCompetition: function () {
-      if (this.flag_state === true) {
-        alert('请先登录！')
-        this.$router.push('/login')
-      } else {
-        this.$router.push('/competition')
-      }
-      console.log('我要跳转界面了')
+      // if (this.flag_state === true) {
+      //   alert('请先登录！')
+      //   this.$router.push('/login')
+      // } else {
+      //   this.$router.push('/competition')
+      // }
+      // console.log('我要跳转界面了')
+      this.$router.push('/competition')
     },
     gotoAboutUs() {
       this.$router.push('/AboutUs')
