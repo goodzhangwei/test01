@@ -39,10 +39,253 @@
         <span>直播大讲堂</span>
       </div>
     </div>
+    <div class="xl-course" id="zaixian">
+      <div class="content-xl">
+        <div class="xl-title">
+          <span>系列学习课程</span>
+        </div>
+        <div class="xl-tag">
+         <span class="xl-tags">
+              Python编程
+            </span>
+          <span class="xl-tags">
+            智能机器人编程
+            </span>
+          <span class="xl-tags">
+             硬件编程
+            </span>
+          <span class="xl-tags">
+             数学算法编程
+            </span>
+          <span class="xl-tags">
+             青少年编程能力测试
+            </span>
+          <span class="xl-tags-more">查看更多课程 > ></span>
+        </div>
+        <div class="xl-course-card">
+          <el-row :gutter="30">
+            <el-col :span="6">
+              <div class="xl-card" @click="gotoLeGo">
+                <div class="xl-card-img xl-card-img1"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python入门兴趣编程</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">4-6年级</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">13人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card" @click="gotoPy">
+                <div class="xl-card-img xl-card-img2"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python进阶—编程与逻辑能力训练</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">6-9年级</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">136人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card" @click="gotoPyAIface">
+                <div class="xl-card-img xl-card-img3"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python专题—人脸识别等</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">中学</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">67人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="xl-card" @click="gotoZhineng">
+                <div class="xl-card-img xl-card-img4"></div>
+                <div class="xl-card-text">
+                  <div class="xl-card-title">
+                    <span>Python高阶—项目实战与编程大赛</span>
+                  </div>
+                  <div class="xl-card-footer">
+                    <span class="xl-footer-tag">适中</span>
+                    <div class="xl-footer-icon">
+                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
+                      <span class="xl-footer-text1">中学</span>
+                      <!--<span> | </span>-->
+                      <span class="xl-footer-text2">163人评价</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="detailCont">
+      <div class="detail-content">
+        <div class="detail-head-text" @click="gotoTen">
+          <h1 >Python人工智能编程--师资培训与课程研讨班</h1>
+          <h4>专为教师授课打造的Python人工智能编程基石课程，为辅助科技老师提升人工智能编程类课程教学实践</h4>
+        </div>
+        <div class="detail-left">
+        </div>
+        <div class="detail-cards">
+          <div>
+            <div class="detail-card1-left">
+              <div class="box">
+                <div class="box-icon">
+                  <i class="iconfont ymq-iconshebeizhuangtai"></i>
+                </div>
+                <div class="box-title">
+                  <span>
+                    Python知识系统化讲解
+                  </span>
+                </div>
+                <div class="box-content">
+                  梳理Python核心知识点+项目实战+
+                  <br>
+                  案例讲解+算法涉及
+                </div>
+              </div>
+            </div>
+            <div class="detail-card1-right">
+              <div class="box">
+                <div class="box-icon">
+                  <i class="iconfont ymq-iconcharutupian"></i>
+                </div>
+                <div class="box-title">
+                  <span>
+                    PBL教学研讨
+                  </span>
+                </div>
+                <div class="box-content">
+                  研讨学习如何设置实践教学
+                  <br>
+                  PBL教学模式实践
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-card-bottom">
+            <div class="detail-card2-left">
+              <div class="box">
+                <div class="box-icon">
+                  <i class="iconfont ymq-iconzhunbeiliangchan"></i>
+                </div>
+                <div class="box-title">
+                  <span>
+                    项目实践
+                  </span>
+                </div>
+                <div class="box-content">
+                  在实战案例中穿插知识点
+                  <br>
+                  在动手操作中融会贯通
+                </div>
+              </div>
+            </div>
+            <div class="detail-card2-right">
+              <div class="box">
+                <div class="box-icon">
+                  <i class="iconfont ymq-iconkongxinwenhao"></i>
+                </div>
+                <div class="box-title">
+                  <span>
+                   专家分享
+                  </span>
+                </div>
+                <div class="box-content">
+                  与产业界的资深专家
+                  <br>
+                  交流分享
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-icon" @click="gotoTen">
+          <i class="iconfont ymq-iconlogout"></i>
+          <span>查看课程详情>>></span>
+
+        </div>
+      </div>
+    </div>
+    <div class="hot-course">
+      <div class="content-hot">
+        <div class="kp-title">
+          <span>热门课程</span>
+          <div class="hot-icon-util">
+            <span class="hot-icon-util-de"><i class="iconfont ymq-iconhuanyipi"></i> 换一批</span>
+            <span class="hot-icon-util-de">更多 > ></span>
+          </div>
+
+        </div>
+        <div class="hot-content">
+          <el-row :gutter="20">
+            <el-col :span="4">
+              <div class="hot-card hot-card-left">
+                <div class="hot-card-left-text1">
+                  <span>热门课程</span>
+                </div>
+                <div class="hot-card-left-text2">
+                  <span>共1970节课</span>
+                </div>
+                <div class="hot-card-left-text3">
+                  <a>查看更多教程>></a>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="5" v-for="(item, index) in list" :key="index">
+              <div class="hot-card">
+                <div class="hot-card-img" @click="gotocontent(item.id)">
+                  <img :src="imgList[index]" class="hot-img-style">
+                </div>
+                <div class="hot-card-right-text">
+                  <div class="hot-card-right-title" @click="gotocontent(item.id)">
+                    <span>{{item.name.substring(0, 10)}}</span>
+                  </div>
+                  <div class="hot-card-right-icon">
+                    <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="hot-icon-right">4步骤·6门课</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
     <div class="kp-con">
       <div class="content-kp">
         <div class="kp-title">
-          <span>科普大讲堂</span>
+          <span>公益大讲堂</span>
         </div>
         <div class="kp-tag">
           <div class="kp-tag-card kp-bg1" @click="gotoAIkepu">
@@ -152,160 +395,7 @@
         </div>
       </div>
     </div>
-    <div class="xl-course" id="zaixian">
-      <div class="content-xl">
-        <div class="xl-title">
-          <span>系列学习课程</span>
-        </div>
-        <div class="xl-tag">
-         <span class="xl-tags">
-              Python编程
-            </span>
-          <span class="xl-tags">
-            智能机器人编程
-            </span>
-          <span class="xl-tags">
-             硬件编程
-            </span>
-          <span class="xl-tags">
-             数学算法编程
-            </span>
-          <span class="xl-tags">
-             青少年编程能力测试
-            </span>
-          <span class="xl-tags-more">查看更多课程 > ></span>
-        </div>
-        <div class="xl-course-card">
-          <el-row :gutter="30">
-            <el-col :span="6">
-              <div class="xl-card" @click="gotoLeGo">
-                <div class="xl-card-img xl-card-img1"></div>
-                <div class="xl-card-text">
-                  <div class="xl-card-title">
-                    <span>Python入门兴趣编程</span>
-                  </div>
-                  <div class="xl-card-footer">
-                    <span class="xl-footer-tag">适中</span>
-                    <div class="xl-footer-icon">
-                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                      <span class="xl-footer-text1">4-6年级</span>
-                      <!--<span> | </span>-->
-                      <span class="xl-footer-text2">13人评价</span>
-                    </div>
 
-                  </div>
-                </div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="xl-card" @click="gotoPy">
-                <div class="xl-card-img xl-card-img2"></div>
-                <div class="xl-card-text">
-                  <div class="xl-card-title">
-                    <span>Python进阶—编程与逻辑能力训练</span>
-                  </div>
-                  <div class="xl-card-footer">
-                    <span class="xl-footer-tag">适中</span>
-                    <div class="xl-footer-icon">
-                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                      <!--<span> | </span>-->
-                      <span class="xl-footer-text2">13人评价</span>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="xl-card" @click="gotoPyAIface">
-                <div class="xl-card-img xl-card-img3"></div>
-                <div class="xl-card-text">
-                  <div class="xl-card-title">
-                    <span>Python专题—人脸识别等</span>
-                  </div>
-                  <div class="xl-card-footer">
-                    <span class="xl-footer-tag">适中</span>
-                    <div class="xl-footer-icon">
-                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                      <!--<span> | </span>-->
-                      <span class="xl-footer-text2">13人评价</span>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="xl-card" @click="gotoZhineng">
-                <div class="xl-card-img xl-card-img4"></div>
-                <div class="xl-card-text">
-                  <div class="xl-card-title">
-                    <span>Python高阶—项目实战与编程大赛</span>
-                  </div>
-                  <div class="xl-card-footer">
-                    <span class="xl-footer-tag">适中</span>
-                    <div class="xl-footer-icon">
-                      <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                      <span class="xl-footer-text1">456&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                      <!--<span> | </span>-->
-                      <span class="xl-footer-text2">13人评价</span>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
-    <div class="hot-course">
-      <div class="content-hot">
-        <div class="kp-title">
-          <span>热门课程</span>
-          <div class="hot-icon-util">
-            <span class="hot-icon-util-de"><i class="iconfont ymq-iconhuanyipi"></i> 换一批</span>
-            <span class="hot-icon-util-de">更多 > ></span>
-          </div>
-
-        </div>
-        <div class="hot-content">
-          <el-row :gutter="20">
-            <el-col :span="4">
-              <div class="hot-card hot-card-left">
-                <div class="hot-card-left-text1">
-                  <span>热门课程</span>
-                </div>
-                <div class="hot-card-left-text2">
-                  <span>共1970节课</span>
-                </div>
-                <div class="hot-card-left-text3">
-                  <a>查看更多教程>></a>
-                </div>
-              </div>
-            </el-col>
-            <el-col :span="5" v-for="(item, index) in list" :key="index">
-              <div class="hot-card">
-                <div class="hot-card-img" @click="gotocontent(item.id)">
-                  <img :src="imgList[index]" class="hot-img-style">
-                </div>
-                <div class="hot-card-right-text">
-                  <div class="hot-card-right-title" @click="gotocontent(item.id)">
-                    <span>{{item.name.substring(0, 10)}}</span>
-                  </div>
-                  <div class="hot-card-right-icon">
-                    <span class="hot-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
-                    <span class="hot-icon-right">4步骤·6门课</span>
-                  </div>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
     <div class="live-course" id="zhibo">
       <div class="live-content">
         <div class="kp-title">
@@ -329,7 +419,7 @@
                     <span>自然语言处理</span>
                   </div>
                   <div class="live-card-icon">
-                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8456人收藏</span>
                     <span class="live-icon-right">初级练习</span>
                   </div>
                 </div>
@@ -342,10 +432,10 @@
                 </div>
                 <div class="live-card-text">
                   <div class="live-card-title">
-                    <span>图像处理</span>
+                    <span>Linux入门</span>
                   </div>
                   <div class="live-card-icon">
-                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>6742人收藏</span>
                     <span class="live-icon-right2">中级拔高</span>
                   </div>
                 </div>
@@ -361,7 +451,7 @@
                     <span>大数据技术</span>
                   </div>
                   <div class="live-card-icon">
-                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>9742人收藏</span>
                     <span class="live-icon-right3">新手入门</span>
                   </div>
                 </div>
@@ -383,22 +473,22 @@
                 </div>
               </div>
             </el-col>
-            <!--<el-col :span="6" v-for="(item, index) in LiveList" :key="index" v-if="LiveList.length !== 0">-->
-              <!--<div class="live-card" @click="gotoVideoLive(item)">-->
-                <!--<div class="live-card-img">-->
-                  <!--<img src="../../assets/live-card-img4.png" class="live-card-img-bg">-->
-                <!--</div>-->
-                <!--<div class="live-card-text">-->
-                  <!--<div class="live-card-title">-->
-                    <!--<span>{{item.schoolname}}</span>-->
-                  <!--</div>-->
-                  <!--<div class="live-card-icon">-->
-                    <!--<span class="live-icon-text"><i class="el-icon-star-on"></i>8848人收藏</span>-->
-                    <!--<span class="live-icon-right3">新手入门</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</el-col>-->
+            <el-col :span="6" v-for="(item, index) in LiveList" :key="index" v-if="LiveList.length !== 0">
+              <div class="live-card" @click="gotoVideoLive(item)">
+                <div class="live-card-img">
+                  <img src="../../assets/live-card-img4.png" class="live-card-img-bg">
+                </div>
+                <div class="live-card-text">
+                  <div class="live-card-title">
+                    <span>{{item.schoolname}}</span>
+                  </div>
+                  <div class="live-card-icon">
+                    <span class="live-icon-text"><i class="el-icon-star-on"></i>8765人收藏</span>
+                    <span class="live-icon-right3">新手入门</span>
+                  </div>
+                </div>
+              </div>
+            </el-col>
           </el-row>
         </div>
       </div>
@@ -595,7 +685,12 @@ export default {
         // } else {
         //   this.$router.push('/VideoLive')
         // }
-        this.$router.push('/VideoLive')
+        this.$router.push({
+          path: '/VideoLive',
+          query: {
+            username: localStorage.getItem('name')
+          }
+        })
       }
     },
     gotoAllclasses: function () {
@@ -630,7 +725,7 @@ export default {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/2/10?username=' + this.username
       this.$axios.get(url).then((res) => {
-        this.list = res.data.queryResult.list.slice(0, 4)
+        this.list = res.data.queryResult.list.slice(2, 6)
       })
     },
     gotoWorkOne() {
@@ -698,21 +793,36 @@ export default {
       }
     },
     gotoPy() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff808081704e6a9b01705121995f0000'
-        }
-      })
-      // this.$router.push('/ClassShowOne')
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff808081704e6a9b01705121995f0000'
+      //   }
+      // })
+      this.$router.push('/ClassShowOne')
     },
     gotoPyAI() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff80808172a7363b0172a7a6ec5d00a3'
-        }
-      })
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff80808172a7363b0172a7a6ec5d00a3'
+      //   }
+      // })
+      if (this.flag_state === true) {
+        this.$router.push('/ClassShowEleven')
+      } else {
+        // if (this.infoState === false) {
+        //   this.openInfo()
+        // } else {
+        //   this.$router.push('/ClassShowEleven')
+        // }
+        this.$router.push('/ClassShowEleven')
+      }
+      // if (this.infoState === false) {
+      //   this.openInfo()
+      // } else {
+      //   this.$router.push('/ClassShowEleven')
+      // }
     },
     gotoPyjc() {
       this.$router.push({
@@ -723,12 +833,14 @@ export default {
       })
     },
     gotoPyAIface() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff80808172a7363b0172a7ad263100b2'
-        }
-      })
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff80808172a7363b0172a7ad263100b2'
+      //   }
+      // })
+      // this.open2()
+      this.$router.push('/ClassShowThree')
     },
     gotoqinsho() {
       this.$router.push({
@@ -738,17 +850,22 @@ export default {
         }
       })
     },
+
     gotobs() {
       var url = 'http://istpa.cas.cn/acme/ssgz/201909/t20190912_4552494.html'
       window.open(url)
     },
     gotoLeGo() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff80808172a7363b0172a8765d35017c'
-        }
-      })
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff80808172a7363b0172a8765d35017c'
+      //   }
+      // })
+      this.$router.push('/ClassShowTwo')
+    },
+    gotoTen() {
+      this.$router.push('/ClassShowTen')
     },
     gotoYingjian() {
       this.$router.push({
@@ -824,6 +941,7 @@ export default {
           class_id: 'ff80808172a7363b0172a7c51bbe00df'
         }
       })
+
     },
     gotocomOne() {
       this.$router.push('/competitionOne')
@@ -832,12 +950,14 @@ export default {
       this.$router.push('/competitionTwo')
     },
     gotoZhineng() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff80808172a7363b0172a7dfcc8a00f1'
-        }
-      })
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff80808172a7363b0172a7dfcc8a00f1'
+      //   }
+      // })
+      // this.open2()
+      this.$router.push('/ClassShowFour')
     },
     gotoContentClass () {
       if (this.flag_state === true) {
@@ -1137,16 +1257,17 @@ export default {
     height: 141px;
   }
   .xl-card-img1 {
-    background-image: url("../../assets/Python.jpg");
+
+    background-image: url("../../assets/class_bg10.jpg");
   }
   .xl-card-img2 {
-    background-image: url("../../assets/xl-card-img3.png");
+    background-image: url("../../assets/Python.jpg");
   }
   .xl-card-img3 {
-    background-image: url("../../assets/xl-card-img2.png");
+    background-image: url("../../assets/class_bg11.jpg");
   }
   .xl-card-img4 {
-    background-image: url("../../assets/xl-card-img1.png");
+    background-image: url("../../assets/class_bg12.jpg");
   }
   .xl-card-title {
     font-size: 20px;
@@ -1184,6 +1305,7 @@ export default {
   .hot-course {
     width: 100%;
     height: 434px;
+    margin-bottom: 20px;
   }
   .content-hot {
     width: 1500px;
@@ -1475,5 +1597,147 @@ export default {
   }
   .backtop-style:hover .backtop-icon {
     display: none;
+  }
+  .detailCont {
+    height: 760px;
+    /*margin-top: 70px;*/
+    width: 100%;
+    background-image: url("../../assets/section0.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .detail-content {
+    height: 100%;
+    width: 1400px;
+    margin: 0 auto;
+    padding-top: 64px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .detail-icon {
+    position: absolute;
+    right: 50px;
+    text-align: center;
+    top: 200px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .detail-icon:hover {
+    color: #e6a23c;
+  }
+  .detail-head-text {
+    text-align: center;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+  .detail-head-text h1 {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 48px;
+    margin-bottom: 10px;
+
+
+  }
+  .detail-head-text:hover {
+    transform: translateY(-10px);
+  }
+  .detail-head-text h4 {
+    font-size: 22px;
+    line-height: 24px;
+    color: #fff;
+  }
+  .detail-left {
+    width: 1018px;
+    height: 517px;
+    background-image: url("../../assets/section0-img.png");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 160px;
+    left: -300px;
+  }
+  .detail-cards {
+    width: 740px;
+    /*height: 400px;*/
+    /*background-color: black;*/
+    position: absolute;
+    top: 260px;
+    left: 500px;
+    /*clear: both;*/
+  }
+  .detail-card1-left {
+    float: left;
+    width: 350px;
+    height: 175px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .detail-card1-right {
+    float: right;
+    width: 350px;
+    height: 175px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .detail-card2-left {
+    float: left;
+    width: 350px;
+    height: 175px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .detail-card2-right {
+    float: right;
+    width: 350px;
+    height: 175px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .detail-card-bottom {
+    margin-top: 240px;
+  }
+  .box {
+    width: 100%;
+    padding-top: 50px;
+    background-color: #fff;
+    position: relative;
+  }
+  .box-title {
+    text-align: center;
+    font-size: 20px;
+    color: #1c1f21;
+    line-height: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .box-content {
+    text-align: center;
+    color: #1c1f21;
+    line-height: 22px;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .box-icon {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #2e52ad;
+    background: #fff;
+    border-radius: 30px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -30px;
+    margin: 0 auto;
+    /*font-size: 24px;*/
+    line-height: 50px;
+    color: #ff8539;
+    text-align: center;
+  }
+  .box-icon i {
+    font-size: 24px;
   }
 </style>

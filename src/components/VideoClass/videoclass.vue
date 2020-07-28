@@ -443,7 +443,7 @@ export default {
     getList () {
       var list = []
       this.class_id = this.$route.query.class_id
-      var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.class_id
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.class_id + '/' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
         this.list = res.data.teachplanNode.children
         this.teachPlanId = res.data.teachplanNode.children[0].children[0].id

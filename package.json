@@ -17,6 +17,7 @@
     "echarts": "^4.8.0",
     "element-ui": "^2.13.0",
     "jquery": "^3.4.1",
+    "js-md5": "^0.7.3",
     "lib-flexible": "^0.3.2",
     "px2rem-loader": "^0.1.9",
     "v-distpicker": "^1.2.3",

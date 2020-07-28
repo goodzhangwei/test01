@@ -181,7 +181,7 @@
   .bg_img {
     width: 100%;
     height: 600px;
-    background-image: url("../../assets/bg_23.jpg");
+    background-image: url("../../assets/yanxue.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center center;

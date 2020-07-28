@@ -68,7 +68,12 @@ export default {
       // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/2/10?username=' + localStorage.getItem('name')
       this.$axios.get(url).then((res) => {
-        this.list = res.data.queryResult.list.slice(0,7)
+        if (localStorage.getItem('city') === '临沂市' || localStorage.getItem('city') === '泰安市') {
+          this.list = res.data.queryResult.list.slice(2,9)
+        } else {
+          this.list = res.data.queryResult.list.slice(2, 6)
+        }
+
       })
     },
     gotocontent (id) {

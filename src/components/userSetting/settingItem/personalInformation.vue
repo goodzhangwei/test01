@@ -15,6 +15,18 @@
         <div class="information_content">
           <div class="information_content_div">
             <div class="title-text">
+              手机
+            </div>
+            <div class="title-text2">
+              {{gettext(phoneNum)}}
+              <el-button type="text" class="text-button" @click="showDis" v-if="phoneNum===  ''">绑定手机号</el-button>
+              <el-button type="text" class="text-button" @click="showDis" v-else>修改</el-button>
+              <!--<div class="clearfloat"></div>-->
+            </div>
+            <div class="clearfloat"></div>
+          </div>
+          <div class="information_content_div">
+            <div class="title-text">
               昵称
             </div>
             <div class="title-text2">
@@ -69,6 +81,7 @@
               {{gettext(form.mail)}}
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -118,6 +131,36 @@
         <el-button type="primary" @click="onSubmit_info('ruleForm')">保 存</el-button>
       </span>
     </el-dialog>
+    <el-dialog
+      title="绑定手机号"
+      :visible.sync="dialogVisible2"
+      width="35%">
+      <div class="register-forms">
+        <div>
+          <el-input  placeholder="请输入手机号" class="forminput2" v-model="phoneNum" clearable>
+            <template slot="prepend">+86</template>
+          </el-input>
+          <div class="input-course-text" v-show="showNum">
+            <span>请填写手机号</span>
+          </div>
+          <el-input placeholder="请输入短信验证码" class="forminput3" v-model="duanxinNum" clearable>
+            <template slot="append">
+              <div class="yanzheng-button">
+                <el-button type="text" @click="getCodes" v-if="showCountNum">获取验证码</el-button>
+                <span v-else class="yanzheng-text">{{'重新发送'+countNum+ 's'}}</span>
+              </div>
+            </template>
+          </el-input>
+          <div class="login-button-style" @click="nextButton">
+            确 定
+          </div>
+        </div>
+      </div>
+      <!--<span slot="footer" class="dialog-footer">-->
+        <!--<el-button @click="dialogVisible2 = false">取 消</el-button>-->
+        <!--<el-button type="primary" @click="onSubmit_info('ruleForm')">确 定</el-button>-->
+      <!--</span>-->
+    </el-dialog>
     <!--<div class="distpickerss">-->
      <!---->
     <!--</div>-->
@@ -127,6 +170,7 @@
 
 <script>
   import VDistpicker from 'v-distpicker'
+  import md5 from 'js-md5';
 export default {
   inject:['reload'],
   name: 'personalInformation',
@@ -153,6 +197,12 @@ export default {
         district: '',
         mail: ''
       },
+      phoneNum: '',
+      duanxinNum: '',
+      showCountNum: true,
+      countNum: 60,
+      timeCode: '',
+      strCode: '',
       rules: {
         nickname: [{required: true, message: '请输入昵称', trigger: 'blur' }],
         profession: [{
@@ -207,11 +257,22 @@ export default {
         value: '博士',
         label: '博士'
       }],
-      dialogVisible: false
+      dialogVisible: false,
+      dialogVisible2: false
+    }
+  },
+  computed: {
+    showNum() {
+      if (this.phoneNum === '') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   mounted() {
     this.getInfo()
+    this.getPhone()
   },
   methods: {
     getInfo() {
@@ -227,6 +288,45 @@ export default {
         localStorage.setItem('city', res.data.userInfo.city)
         this.form.district = res.data.userInfo.district
         this.form.mail = res.data.userInfo.mail
+      })
+    },
+    showDis() {
+      this.dialogVisible2 = true
+    },
+    getCodes() {
+      if (this.phoneNum !== '') {
+        var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/getCode?phone='+this.phoneNum
+        this.$axios.get(url).then((res)=> {
+          this.timeCode = res.data.data.time
+          this.strCode = res.data.data.str
+        })
+        this.countNum = 60
+        this.showCountNum = false
+        setInterval(()=> {
+          this.countNum = this.countNum-1
+          if (this.countNum === -1) {
+            // this.countNum = 0
+            clearInterval();
+            this.showCountNum = true
+          }
+        }, 1000)
+      }
+    },
+    getPhone() {
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/ifPhone?username='+this.username
+      this.$axios.post(url).then((res) => {
+        if (res.data.code === 10009) {
+          this.$confirm('请尽快绑定手机号', '提示信息', {
+            confirmButtonText: '确定',
+            type: 'warning',
+            center: true,
+          }).then(() => {
+            // this.$router.push('/userSetting/personalInformation')
+          }).catch(() => {
+          })
+        } else {
+          this.phoneNum = res.data.user.phone
+        }
       })
     },
     gettext(item) {
@@ -266,6 +366,30 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields()
       this.dialogVisible = false
+    },
+    nextButton() {
+      var num = this.duanxinNum.toString()+this.timeCode.toString()
+      // console.log(num)
+      var str = md5(num)
+      // console.log(str)
+      // console.log(this.strCode)
+      if (this.strCode === str) {
+        this.resetPhone()
+      } else {
+        alert('验证码输入错误！')
+      }
+    },
+    resetPhone() {
+      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/resetPhone?phone=' + this.phoneNum + '&username=' + this.username
+      this.$axios.post(url).then((res) => {
+        if (res.data.code === 10000) {
+          this.$message.success('手机号绑定成功')
+          this.dialogVisible2 = false
+          this.reload()
+        } else {
+          this.$message.warning('系统繁忙，请稍后再试！')
+        }
+      })
     }
   }
 }
@@ -363,5 +487,104 @@ export default {
     padding: 5px;
     border-radius: 5px;
     line-height: 40px;
+  }
+  .text-button {
+    /*float: right;*/
+    font-size: 16px;
+    margin-left: 50px;
+  }
+  .clearfloat {
+    clear: both;
+  }
+  .forminput2 {
+    /*float: left;*/
+    width: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 40px;
+  }
+  .forminput2 >>> .el-input-group__prepend {
+    border: 0;
+    /*border: 1px solid #DCDFE6;*/
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(28,31,33,.06);
+    height: 60px;
+    line-height: 60px;
+  }
+  .forminput2 >>> .el-input__inner {
+    border: 0;
+    /*border: 1px solid #DCDFE6;*/
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(28,31,33,.06);
+    height: 60px;
+    line-height: 60px;
+  }
+  .input-course-text {
+    color: red;
+    font-size: 14px;
+  }
+  .forminput3 {
+    width: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 40px;
+  }
+  .forminput2 >>> .el-input__clear {
+    font-size: 20px;
+  }
+  .forminput3 >>> .el-input__clear {
+    font-size: 20px;
+  }
+  .forminput3 >>> .el-input__inner {
+    border: 0;
+    /*border: 1px solid #DCDFE6;*/
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(28,31,33,.06);
+    height: 60px;
+    line-height: 60px;
+  }
+  .forminput3 >>> .el-input-group__append {
+    border: 0;
+    /*border: 1px solid #DCDFE6;*/
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(28,31,33,.06);
+    height: 60px;
+    line-height: 60px;
+  }
+  .yanzheng-button {
+    padding-right: 10px;
+    color: #1481b8;
+  }
+  .yanzheng-button:hover {
+    color: #19a1e6;
+  }
+  .yanzheng-text {
+    color: #9199a1;
+    font-size: 18px;
+  }
+  .login-button-style {
+    height: 60px;
+    width: 100%;
+    color: #fff;
+    background-color: #f20d0d;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 22px;
+    margin-top: 40px;
+    cursor: pointer;
+  }
+  .login-button-style:hover {
+    border: #c20a0a;
+    background-color: #c20a0a;
+  }
+  .register-forms {
+    width: 450px;
+    margin: 0 auto;
   }
 </style>

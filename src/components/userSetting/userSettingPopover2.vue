@@ -10,8 +10,10 @@
         <span @click="gotoMyclass">我的课程</span>
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
+        <span @click="gotoOrderCenter">订单中心</span>
         <span @click="gotoworked" v-show="role !== '3'">查看作品</span>
         <span @click="gotoinfo" v-show="role === '3'">提交信息</span>
+        <span @click="gotoVideoShow" v-show="role === '3'">统计信息</span>
         <span @click="gotoupdate" v-show="role === '1'">录播教学</span>
         <span @click="gotolive" v-show="role === '1'">直播教学</span>
         <el-divider></el-divider>
@@ -116,6 +118,9 @@
       gotoInformation: function () {
         this.$router.push('/userSetting/personalInformation')
       },
+      gotoOrderCenter() {
+        this.$router.push('/OrderCenter')
+      },
       gotoupdate () {
         if(this.infoState === false) {
           this.openInfo()
@@ -130,6 +135,9 @@
       },
       gotoinfo() {
         this.$router.push('/Workinfo')
+      },
+      gotoVideoShow () {
+        this.$router.push('/videoShow')
       },
       gotolive () {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pushVideo?username=' + this.username

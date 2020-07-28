@@ -8,6 +8,7 @@
             <span class="a-text">联系我们</span>
             <span class="a-text">常见问题</span>
             <span class="a-text" @click="gotoLink">友情链接</span>
+            <span class="a-text" @click="gotoCooper">合作联系</span>
           </div>
           <div class="line-text"></div>
           <div class="footer-text-content">
@@ -38,6 +39,9 @@ export default {
     },
     gotoLink() {
       this.$router.push('/BlogRoll')
+    },
+    gotoCooper() {
+      this.$router.push('/cooperation')
     }
   }
 }

@@ -270,6 +270,66 @@ export default new Router({
       component: resolve => require(['@/components/ClassShow/ClassShowOne'],resolve)
     },
     {
+      path: '/ClassShowTwo',
+      name: 'ClassShowTwo',
+      component: resolve => require(['@/components/ClassShow/ClassShowTwo'],resolve)
+    },
+    {
+      path: '/ClassShowThree',
+      name: 'ClassShowThree',
+      component: resolve => require(['@/components/ClassShow/ClassShowThree'],resolve)
+    },
+    {
+      path: '/ClassShowFour',
+      name: 'ClassShowFour',
+      component: resolve => require(['@/components/ClassShow/ClassShowFour'],resolve)
+    },
+    {
+      path: '/ClassShowFive',
+      name: 'ClassShowFive',
+      component: resolve => require(['@/components/ClassShow/ClassShowFive'],resolve)
+    },
+    {
+      path: '/ClassShowSix',
+      name: 'ClassShowSix',
+      component: resolve => require(['@/components/ClassShow/ClassShowSix'],resolve)
+    },
+    {
+      path: '/ClassShowSeven',
+      name: 'ClassShowSeven',
+      component: resolve => require(['@/components/ClassShow/ClassShowSeven'],resolve)
+    },
+    {
+      path: '/ClassShowEight',
+      name: 'ClassShowEight',
+      component: resolve => require(['@/components/ClassShow/ClassShowEight'],resolve)
+    },
+    {
+      path: '/ClassShowNine',
+      name: 'ClassShowNine',
+      component: resolve => require(['@/components/ClassShow/ClassShowNine'],resolve)
+    },
+    {
+      path: '/ClassShowTen',
+      name: 'ClassShowTen',
+      component: resolve => require(['@/components/ClassShow/ClassShowTen'],resolve)
+    },
+    {
+      path: '/ClassShowEleven',
+      name: 'ClassShowEleven',
+      component: resolve => require(['@/components/ClassShow/ClassShowEleven'],resolve)
+    },
+    {
+      path: '/applyPage',
+      name: 'applyPage',
+      component: resolve => require(['@/components/ClassShow/applyPage'],resolve)
+    },
+    {
+      path: '/applySuccess',
+      name: 'applySuccess',
+      component: resolve => require(['@/components/ClassShow/applySuccess'],resolve)
+    },
+    {
       path: '/StudyProject',
       name: 'StudyProject',
       component: resolve => require(['@/components/StudyProject/StudyProject'],resolve)
@@ -278,6 +338,36 @@ export default new Router({
       path: '/BlogRoll',
       name: 'BlogRoll',
       component: resolve => require(['@/components/BlogRoll/BlogRoll'],resolve)
+    },
+    {
+      path: '/videoShow',
+      name: 'videoShow',
+      component: resolve => require(['@/components/VideoClass/videoShow'],resolve)
+    },
+    {
+      path: '/cooperation',
+      name: 'cooperation',
+      component: resolve => require(['@/components/aboutUs/cooperation'],resolve)
+    },
+    {
+      path: '/ClassPay',
+      name: 'ClassPay',
+      component: resolve => require(['@/components/ClassPay/ClassPay'],resolve)
+    },
+    {
+      path: '/PayCenter',
+      name: 'PayCenter',
+      component: resolve => require(['@/components/ClassPay/PayCenter'],resolve)
+    },
+    {
+      path: '/PaySuccess',
+      name: 'PaySuccess',
+      component: resolve => require(['@/components/ClassPay/PaySuccess'],resolve)
+    },
+    {
+      path: '/OrderCenter',
+      name: 'OrderCenter',
+      component: resolve => require(['@/components/ClassPay/OrderCenter'],resolve)
     }
   ]
 })

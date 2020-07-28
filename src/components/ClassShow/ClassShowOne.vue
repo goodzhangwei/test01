@@ -10,15 +10,15 @@
           <div class="con">
             <div>
               <div class="money-text">
-                 <span >
-                   ￥ 299.00
-                 </span>
+                 <!--<span >-->
+                   <!--￥ 999.00-->
+                 <!--</span>-->
               </div>
               <div class="icon-pay">
-                <span>花呗付款</span>
+                <span>微信付款</span>
               </div>
               <div class="icon-pay-two">
-                <span>京东白条</span>
+                <span>支付宝付款</span>
               </div>
             </div>
             <div class="icon-pay-text">
@@ -36,8 +36,11 @@
               <span class="nodistance">10.00</span>
             </div>
           </div>
-          <div class="btns">
+          <div class="btns" @click="gotoPay" v-if="Paystatus !== 1">
             <span>立即购买</span>
+          </div>
+          <div class="btns" v-else @click="gotoPy">
+            <span>立即观看</span>
           </div>
         </div>
       </div>
@@ -275,7 +278,7 @@
               </h1>
               <div class="line-left" v-for="(item2, index2) in item.children" :key="index2">
                 <i class="iconfont ymq-iconcaret-right"></i>
-                <span>{{item2.pname}}</span>
+                <span class="namestyle">{{item2.pname}}</span>
                 <span class="sikan" style="font-size: 12px" v-if="index2 === 0 && index === 0" @click="gotoPy">试看</span>
               </div>
             </div>
@@ -312,6 +315,28 @@
         </div>
 
       </div>
+      <div v-show="tagsShow === '售前咨询'">
+        <div class="consult">
+          <h1>
+            若有咨询需要，请用手机扫描下面二维码
+          </h1>
+          <img src="../../assets/code2.jpg">
+          <div class="icontent">
+            <i class="iconfont ymq-iconphone"></i>
+            <span>联系电话：13381173397</span>
+          </div>
+        </div>
+      </div>
+      <div v-show="tagsShow === '用户评价'">
+        <div class="second-container">
+          <div class="picture">
+            <img src="../../assets/nocontent.png">
+          </div>
+          <div class="picture-text">
+            <span >暂无内容</span>
+          </div>
+        </div>
+      </div>
 
       <Footer class="footer"></Footer>
     </div>
@@ -329,8 +354,17 @@
       data() {
           return {
             tagsShow: '课程介绍',
-            list: []
+            list: [],
+            Paystatus: -1,
+            flag_state: false
           }
+      },
+      created () {
+        if (localStorage.getItem('flag_class') === null) {
+          this.flag_state = true
+        } else {
+          this.flag_state = false
+        }
       },
       mounted() {
         this.getClassList()
@@ -357,11 +391,25 @@
           })
         },
         getClassList() {
-            var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff808081704e6a9b01705121995f0000'
+            var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff808081704e6a9b01705121995f0000/' + localStorage.getItem('name')
             this.$axios.get(url).then((res) => {
               this.list = res.data.teachplanNode.children
+              this.Paystatus = res.data.status
             })
-        }
+        },
+        gotoPay() {
+          if (this.flag_state === true) {
+            alert('请先登录！')
+            this.$router.push('/login')
+          } else {
+            this.$router.push({
+              path: '/ClassPay',
+              query: {
+                class_id: 'ff808081704e6a9b01705121995f0000'
+              }
+            })
+          }
+        },
       }
     }
 </script>
@@ -526,8 +574,8 @@
     margin-top: 12px;
   }
   .borderLine2 {
-    display: block;
-  }
+     display: block;
+   }
   .content-intro {
     height: 550px;
     margin-top: 50px;
@@ -1036,4 +1084,36 @@
     word-break: break-all;
     margin-top: 10px;
   }
+  .consult {
+    width: 1400px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  .consult h1{
+    text-align: center;
+    font-size: 20px;
+    color: #07111b;
+    font-weight: 700;
+  }
+  .consult img {
+    width: 400px;
+    margin-top: 30px;
+  }
+  .second-container {
+    width: 1400px;
+    margin: 50px auto;
+  }
+  .picture {
+    text-align: center;
+  }
+  .picture-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #636363;
+  }
+  .icontent {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+
 </style>

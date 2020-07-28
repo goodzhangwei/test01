@@ -43,6 +43,7 @@
                 <li @click="gotoWork"><a>作品擂台</a></li>
                 <li @click="gotoWorkUpdate"><a>作品提交</a></li>
                 <li @click="gotoAboutUs"><a>关于我们</a></li>
+                <li @click="gotocooperation"><a>合作联系</a></li>
                 <!--<li class="dropdown">-->
                   <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
                   <!--<ul class="dropdown-menu">-->
@@ -175,6 +176,9 @@ export default {
     },
     gotoAboutUs() {
       this.$router.push('/AboutUs')
+    },
+    gotocooperation() {
+      this.$router.push('/cooperation')
     }
   }
 }
@@ -212,7 +216,7 @@ export default {
   /*}*/
   @import "carousel.css";
   .nav li {
-    margin-right: 80px;
+    margin-right: 70px;
   }
   .nav li a {
     color: white;
@@ -233,7 +237,7 @@ export default {
   }
   .nav_ul {
     /*margin-left: 10%;*/
-    margin-left: 400px;
+    margin-left: 300px;
   }
   .ul2_nav {
     margin-right: 20px;

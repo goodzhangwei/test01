@@ -1,5 +1,20 @@
 <template>
     <div>
+      <div class="bgstyle" v-show="citys === '临沂市'">
+        <div class="cards">
+          <div class="title-cards">
+            <span>提示</span>
+          </div>
+          <div class="content-cards">
+            <i class="iconfont ymq-icontixingshixin iconstyle"></i>
+            <span>首届临沂市青少年编程大赛作品提交已经截止，若有其他问题请致电临沂市科技馆</span>
+          </div>
+          <div class="content-cards">
+            <span>联系方式：0539-8605602</span>
+          </div>
+          <el-button type="primary" class="button-re" @click="gotohome">返回主页</el-button>
+        </div>
+      </div>
       <Header></Header>
       <div class="content-words">
         <div class="content-work">
@@ -393,6 +408,9 @@
               type: 'warning'
             });
           }
+        },
+        gotohome() {
+          this.$router.push('/')
         }
       }
     }
@@ -518,5 +536,39 @@
   .alert-style2 {
     width: 385px;
     margin: 20px auto;
+  }
+  .bgstyle {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    position: fixed;
+
+  }
+  .cards {
+    width: 450px;
+    /*height: 150px;*/
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
+  }
+  .iconstyle {
+    color: #e6a23c;
+    font-size: 20px;
+  }
+  .title-cards {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .content-cards {
+    font-size: 20px;
+  }
+  .button-re {
+    float: right;
   }
 </style>
