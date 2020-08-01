@@ -36,6 +36,19 @@
         <el-table :data="InfoList === 0 ? InfoList : InfoList.slice((currentPage-1)*pagesize,currentPage*pagesize)" class="table-style" :header-cell-style="HeaderStyle"
                   stripe
                   :row-class-name="tableRowClassName">
+          <el-table-column
+            label="序号"
+            width="50"
+            type="index"
+            align="center"
+          >
+            <template slot-scope="scope">
+              <span class="index-style">
+                {{(currentPage - 1) * pagesize + scope.$index + 1 }}
+              </span>
+
+            </template>
+          </el-table-column>
           <el-table-column label="用户名"  align="center">
             <template slot-scope="scope">
               <div class="table-text">
@@ -80,8 +93,12 @@
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="scope">
-              <el-button type="success" @click="download_file">下载</el-button>
-              <el-button type="warning" @click="download_file">评分</el-button>
+              <el-button type="success" @click="download_file(scope.row)">下载</el-button>
+              <el-button type="warning" @click="score_file(scope.row)" v-if="scope.row.evaluate === 0">评分</el-button>
+              <el-tooltip class="item" effect="dark" content="点击查看已评信息" placement="top" v-else>
+                <el-button type="info" @click="score_file(scope.row)">已评</el-button>
+              </el-tooltip>
+
             </template>
           </el-table-column>
         </el-table>
@@ -280,12 +297,22 @@
           }
           return '';
         },
-        download_file() {
-          this.$notify({
-            title: '警告',
-            message: '对不起！暂未对您开放此功能',
-            type: 'warning'
-          });
+        download_file(row) {
+          // this.$notify({
+          //   title: '警告',
+          //   message: '对不起！暂未对您开放此功能',
+          //   type: 'warning'
+          // });
+          window.open(row.projectlink)
+        },
+        score_file(row) {
+            this.$router.push({
+              path: '/ScorePage',
+              query: {
+                row: JSON.stringify(row)
+              }
+            })
+          console.log(row)
         },
         initChartsOne() {
             var _this = this
@@ -497,5 +524,8 @@
   .mychart1-style {
     height: 500px;
     width: 600px;
+  }
+  .index-style {
+    font-size: 20px;
   }
 </style>

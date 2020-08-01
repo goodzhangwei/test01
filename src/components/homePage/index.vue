@@ -1,5 +1,4 @@
 <template>
-
   <div class="app_container">
     <transition name="fade">
       <div  v-if="navBarFixed" class="header-show">
@@ -559,7 +558,6 @@
 
     <Footer></Footer>
   </div>
-
 </template>
 
 <script>
@@ -808,16 +806,17 @@ export default {
       //     class_id: 'ff80808172a7363b0172a7a6ec5d00a3'
       //   }
       // })
-      if (this.flag_state === true) {
-        this.$router.push('/ClassShowEleven')
-      } else {
-        // if (this.infoState === false) {
-        //   this.openInfo()
-        // } else {
-        //   this.$router.push('/ClassShowEleven')
-        // }
-        this.$router.push('/ClassShowEleven')
-      }
+      // if (this.flag_state === true) {
+      //   this.$router.push('/ClassShowEleven')
+      // } else {
+      //   // if (this.infoState === false) {
+      //   //   this.openInfo()
+      //   // } else {
+      //   //   this.$router.push('/ClassShowEleven')
+      //   // }
+      //   this.$router.push('/ClassShowEleven')
+      // }
+      this.$router.push('/ClassShowEleven')
       // if (this.infoState === false) {
       //   this.openInfo()
       // } else {
@@ -935,12 +934,13 @@ export default {
       }
     },
     gotoERtong() {
-      this.$router.push({
-        path: '/videoclass',
-        query: {
-          class_id: 'ff80808172a7363b0172a7c51bbe00df'
-        }
-      })
+      // this.$router.push({
+      //   path: '/videoclass',
+      //   query: {
+      //     class_id: 'ff80808172a7363b0172a7c51bbe00df'
+      //   }
+      // })
+      this.$router.push('/ClassShowTwelve')
 
     },
     gotocomOne() {

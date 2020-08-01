@@ -205,6 +205,11 @@ export default new Router({
       component: resolve => require(['@/components/WorkChallenge/Workinfo'],resolve)
     },
     {
+      path: '/ScorePage',
+      name: 'ScorePage',
+      component: resolve => require(['@/components/WorkChallenge/ScorePage'],resolve)
+    },
+    {
       path: '/WorkOne',
       name: 'WorkOne',
       component: resolve => require(['@/components/WorkChallenge/WorkOne'],resolve)
@@ -318,6 +323,11 @@ export default new Router({
       path: '/ClassShowEleven',
       name: 'ClassShowEleven',
       component: resolve => require(['@/components/ClassShow/ClassShowEleven'],resolve)
+    },
+    {
+      path: '/ClassShowTwelve',
+      name: 'ClassShowTwelve',
+      component: resolve => require(['@/components/ClassShow/ClassShowTwelve'],resolve)
     },
     {
       path: '/applyPage',
