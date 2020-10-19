@@ -10,8 +10,12 @@
 
     <div >
       <el-carousel class="carousel-img" height="665px" @change="carouselChange">
-        <el-carousel-item  v-for="(item, index) in schna" :key="index">
+        <el-carousel-item  v-for="(item, index) in schna" :key="index" class="carousel-item" @click.native="itemClick(item, index)">
           <img :src="item" alt="" >
+          <div class="header-text" v-show="index === 0">
+            <h1>首届泰安市青少年编程与智能设计大赛获奖公告</h1>
+            <span class="header-button">立即查看</span>
+          </div>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -573,7 +577,7 @@ export default {
       value1: '5',
       navBarFixed: false,
       bannerH: '',
-      schna: [ 'https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg'],
+      schna: [ 'https://www.zhongkeruitong.top/CCZX_image/newBanner2.jpg','https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg'],
       bannerthree: require('../../assets/bannerthree.jpg'),
       page: 1,
       size: 100,
@@ -643,6 +647,11 @@ export default {
         this.navBarFixed = false
       }
       console.log(scrollTop)
+    },
+    itemClick(item, index) {
+      if (index === 0) {
+        this.$router.push('/noticePage')
+      }
     },
     gotoCompetition: function () {
       if (this.flag_state === true) {
@@ -1739,5 +1748,43 @@ export default {
   }
   .box-icon i {
     font-size: 24px;
+  }
+  .carousel-item:hover {
+    cursor: pointer;
+  }
+  .header-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    padding: 50px 0 50px 0;
+    background-color: rgba(0,0,0,0.4);
+  }
+  .header-text h1{
+    width: 100%;
+    color: white;
+    font-size: 50px;
+  }
+  .header-button {
+    margin-top: 10px;
+    background: #f01414;
+    border-radius: 34px;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 34px;
+    font-weight: 700;
+    padding: 12px 48px;
+    -webkit-transition: all .3s;
+    cursor: pointer;
+    display: inline-block;
+    transition: all .6s;
+  }
+  .header-button:hover {
+    transform: translateY(-10px);
+    border-color: #c20a0a;
+    background-color: #c20a0a;
   }
 </style>

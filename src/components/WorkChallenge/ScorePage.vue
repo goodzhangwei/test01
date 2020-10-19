@@ -217,6 +217,8 @@
       <div>
         评分人：<el-input class="input-style2" v-model="form.peopleScore" v-if="codeEve !== 0"></el-input>
         <span v-else class="people_name">{{form.peopleScore}}</span>
+        <span class="input-style3">备注：</span><span v-if="codeEve === 0">无</span><el-input class="input-style2" v-model="form.remark" v-if="codeEve !== 0"></el-input>
+
         <el-button type="primary" class="button-style" @click="form_submit" v-if="infoObj.evaluate === 0 && infoObj.secproject === '贪吃蛇博弈算法挑战赛' && codeEve !==0">保存并提交</el-button>
         <el-button type="primary" class="button-style" @click="form_submit3" v-if="infoObj.evaluate === 0 && infoObj.secproject === '智能人脸识别挑战赛' && codeEve !==0">保存并提交</el-button>
         <el-button type="primary" class="button-style" @click="form_submit4" v-if="infoObj.evaluate === 0 && infoObj.majorproject !== '人工智能挑战赛' && codeEve !==0">保存并提交</el-button>
@@ -247,7 +249,8 @@
             richness: '',
             completion: '',
             totalScore: '',
-            peopleScore: ''
+            peopleScore: '',
+            remark: '',
           },
           form2: {
             compititionId: '',
@@ -257,7 +260,8 @@
             face4: '',
             face5: '',
             totalScore: '',
-            peopleScore: ''
+            peopleScore: '',
+            remark: ''
           },
           form3: {
             compititionId: '',
@@ -267,7 +271,8 @@
             tong4: '',
             tong5: '',
             totalScore: '',
-            peopleScore: ''
+            peopleScore: '',
+            remark: ''
           }
         }
       },
@@ -430,6 +435,7 @@
               this.form3.tong3 = res.data.data.tong3
               this.form3.tong4 = res.data.data.tong4
               this.form3.tong5 = res.data.data.tong5
+              this.form.remark = res.data.data.remark
             }
           })
         },
@@ -508,5 +514,8 @@
     /*margin-left: 10px;*/
     font-size: 20px;
     margin-right: 80px;
+  }
+  .input-style3 {
+    margin-left: 40px;
   }
 </style>

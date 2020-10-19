@@ -350,6 +350,11 @@ export default new Router({
       component: resolve => require(['@/components/BlogRoll/BlogRoll'],resolve)
     },
     {
+      path: '/noticePage',
+      name: 'noticePage',
+      component: resolve => require(['@/components/notice/noticePage'],resolve)
+    },
+    {
       path: '/videoShow',
       name: 'videoShow',
       component: resolve => require(['@/components/VideoClass/videoShow'],resolve)
