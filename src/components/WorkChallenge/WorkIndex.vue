@@ -31,9 +31,10 @@
           <div class="jx-work-content">
             <el-row :gutter="15">
               <el-col :span="6">
-                <div class="js-work-card" @click="gotoDetail">
-                  <div class="js-work-card-img">
-                    <img src="../../assets/js-work-img1.png">
+                <div class="js-work-card" >
+                  <div class="js-work-card-img" @click="showVideo">
+                    <img src="../../assets/js-work-img4.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -47,9 +48,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo2">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img2.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -63,9 +65,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo3">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img3.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -79,9 +82,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo4">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img4.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -97,9 +101,10 @@
             </el-row>
             <el-row :gutter="15" class="row-two">
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo5">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img5.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -113,9 +118,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo6">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img2.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -129,9 +135,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo7">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img7.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -145,9 +152,10 @@
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="js-work-card" @click="open2">
+                <div class="js-work-card" @click="showVideo8">
                   <div class="js-work-card-img">
                     <img src="../../assets/js-work-img8.png">
+                    <img src="../../assets/play_05.png"  class="play-btn">
                   </div>
                   <div class="js-work-text">
                     <div class="js-title">
@@ -218,6 +226,23 @@
         </div>
       </div>
       <Footer></Footer>
+      <!-- 视频弹窗 -->
+      <div class="videoPop" >
+        <el-dialog
+          class="videoDialog"
+          :title="videoTitle"
+          :visible.sync="centerDialogVisible"
+          width="50%"
+          center>
+            <video-player class="video-player vjs-custom-skin"
+                ref="videoPlayer"
+                :playsinline="true"
+                :options="playerOptions"
+            ></video-player>
+          
+        </el-dialog>
+
+      </div>
     </div>
 </template>
 
@@ -231,7 +256,33 @@
           return {
             schna: [ 'https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg','https://www.zhongkeruitong.top/CCZX_image/photo4.jpg'],
             navBarFixed: false,
-            bannerH: ''
+            bannerH: '',
+            videoTitle: '',
+            centerDialogVisible: false,
+            playerOptions : {
+              playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+              autoplay: true, //如果true,浏览器准备好时开始回放。
+              muted: false, // 默认情况下将会消除任何音频。
+              loop: false, // 导致视频一结束就重新开始。
+              preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+              language: 'zh-CN',
+              aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+              fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+              sources: [{
+                type: "",
+                src: ''//url地址          
+                // src: "" //url地址
+              }],
+              poster: "", //你的封面地址
+              // width: document.documentElement.clientWidth,
+              notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+              controlBar: {
+                timeDivider: true,
+                durationDisplay: true,
+                remainingTimeDisplay: false,
+                fullscreenToggle: true  //全屏按钮
+              }
+            }
           }
       },
       mounted() {
@@ -292,6 +343,55 @@
         gotoWorkEight () {
           this.$router.push('/WorkEight')
         },
+        showVideo() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '贪吃蛇吃果子'
+          this.playerOptions['sources'][0]['src'] = 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
+        },
+        showVideo2() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '贪吃蛇对抗挑战'
+          this.playerOptions['sources'][0]['src'] = 'http://vjs.zencdn.net/v/oceans.mp4';
+        },
+        showVideo3() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '四色圆形螺旋图形'
+          this.playerOptions['sources'][0]['src'] = 'https://media.w3.org/2010/05/sintel/trailer.mp4';
+        },
+        showVideo4() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '六边六色螺旋图形'
+          this.playerOptions['sources'][0]['src'] = 'http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4';
+        },
+        showVideo5() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '航空母舰大战外星人'
+          this.playerOptions['sources'][0]['src'] = 'http://www.w3school.com.cn/example/html5/mov_bbb.mp4';
+        },
+        showVideo6() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '智能控制家居产品'
+          this.playerOptions['sources'][0]['src'] = 'https://www.w3schools.com/html/movie.mp4';
+        },
+        showVideo7() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '乐高智能机器人'
+          this.playerOptions['sources'][0]['src'] = 'https://player.vimeo.com/external/188355959.sd.mp4?s=e5eea0f749282013db81a7e5cd047c57e066e2b9&profile_id=164';
+        },
+        showVideo8() {
+          console.log("123")
+          this.centerDialogVisible = true
+          this.videoTitle = '智能地理信息系统'
+          this.playerOptions['sources'][0]['src'] = 'https://player.vimeo.com/external/188421287.sd.mp4?s=bdbf8a61c40502211971571fef384f52fe79dbbe&profile_id=164';
+        },
+        
       }
     }
 </script>
@@ -363,14 +463,23 @@
   .js-work-card-img {
     height: 220px;
     overflow: hidden;
+    position: relative;
   }
   .js-work-card-img img {
-    width: 100%;
-    height: 100%;
-    transition: all 0.6s;
+    /* width: 100%;
+    height: 100%; */
+    /* transition: all 0.6s; */
   }
-  .js-work-card:hover img{
+  /* .js-work-card:hover img{
     transform: scale(1.2);
+  } */
+  .play-btn {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 100;
+    top:30%;
+    right: 30%;
   }
   .js-work-text {
     height: 135px;
@@ -483,5 +592,23 @@
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+  }
+  .videoDialog {
+    color: white;
+  }
+  .videoPop >>> .el-dialog--center  {
+    padding: 0;
+  }
+  .videoPop >>> .el-dialog__body {
+    padding: 0;
+  }
+  .videoPop >>> .el-dialog__header {
+    background:#0a0505;
+    
+  }
+  .videoPop >>> .el-dialog__title {
+    color: white;
+    /* font-size: 16px; */
+    
   }
 </style>
