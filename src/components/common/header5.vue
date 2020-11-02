@@ -8,7 +8,7 @@
           <span @click="gotoAllclasses">全部课程</span>
           <span @click="gotoCompetition">编程比赛</span>
           <span @click="gotoWork">作品擂台</span>
-          <span @click="gotoWorkUpdate">作品提交</span>
+          <!-- <span @click="gotoWorkUpdate">作品提交</span> -->
         </div>
         <!--<el-input-->
           <!--placeholder="请搜索课程或关键字"-->

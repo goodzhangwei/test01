@@ -38,11 +38,13 @@
               <ul class="nav navbar-nav ">
                 <li  @click="gotoHomepage"><a>首页</a></li>
                 <li @click="gotoAllclasses"><a>全部课程</a></li>
-                <li @click="gotoCompetition"><a>编程比赛</a></li>
-                <li @click="gotoWork"><a>作品擂台</a></li>
-                <li @click="gotoWorkUpdate"><a>作品提交</a></li>
-                <li @click="gotoAboutUs"><a>关于我们</a></li>
-                <li @click="gotocooperation"><a>合作联系</a></li>
+                <li @click="gotoAllclasses"><a>在线课堂</a></li>
+                <li @click="gotoOnline"><a>在线教学</a></li>
+                <li @click="gotoStudy"><a>科技研学</a></li>
+                <!-- <li @click="gotoTeacher"><a>师资培训</a></li> -->
+                
+                <li @click="gotoPlat"><a>教学资源平台</a></li>
+                <li @click="gotoCompetition"><a>比赛服务</a></li>
                 <!--<li><a>关于我们</a></li>-->
                 <!--<li class="dropdown">-->
                 <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品擂台 <span class="caret"></span></a>-->
@@ -152,18 +154,21 @@
       gotoHomepage () {
         this.$router.push('/')
       },
+      gotoStudy() {
+        this.$router.push('/StudyProject')
+      },
+      gotoTeacher() {
+        
+        this.$router.push('/ClassShowTen')
+      },
+      gotoOnline() {},
+      gotoPlat() {},
       gotoCompetition: function () {
         // if (this.flag_state === true) {
         //   alert('请先登录！')
         //   this.$router.push('/login')
         // } else {
-        //   // if (this.flagInfo === false) {
-        //   //   this.openInfo()
-        //   // } else {
-        //   //   this.$router.push('/competition')
-        //   // }
         //   this.$router.push('/competition')
-        //
         // }
         // console.log('我要跳转界面了')
         this.$router.push('/competition')

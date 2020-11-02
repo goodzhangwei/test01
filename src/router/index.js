@@ -383,6 +383,11 @@ export default new Router({
       path: '/OrderCenter',
       name: 'OrderCenter',
       component: resolve => require(['@/components/ClassPay/OrderCenter'],resolve)
+    },
+    {
+      path: '/AllCourses',
+      name: 'AllCourses',
+      component: resolve => require(['@/components/allCourses/index'],resolve)
     }
   ]
 })

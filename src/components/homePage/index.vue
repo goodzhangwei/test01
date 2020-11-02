@@ -21,27 +21,27 @@
     </div>
     <div class="content-tag">
       <div @click="gotopszn">
-        <span>Python智能编程</span>
+        <span>AI系列课程</span>
       </div>
-      <div @click="gotose">
+      <!-- <div @click="gotose">
         <span>Python少儿趣味编程</span>
-      </div>
+      </div> -->
       <div @click="gotoStudy">
         <span>研学项目</span>
       </div>
       <div @click="gotocomOne">
-        <span>博弈算法大赛</span>
+        <span>师资培训</span>
       </div>
-      <div @click="gotocomTwo">
-        <span>青少年创意编程大赛</span>
+      <div @click="gotoBisai">
+        <span>编程比赛</span>
       </div>
       <div @click="gotozaixian">
-        <span>在线课堂</span>
+        <span>在线教学</span>
       </div>
       <div @click="gotozhibo">
-        <span>直播大讲堂</span>
+        <span>资源云平台</span>
       </div>
-    </div>
+    </div> 
     <div class="xl-course" id="zaixian">
       <div class="content-xl">
         <div class="xl-title">
@@ -288,7 +288,7 @@
     <div class="kp-con">
       <div class="content-kp">
         <div class="kp-title">
-          <span>公益大讲堂</span>
+          <span>AI大讲堂</span>
         </div>
         <div class="kp-tag">
           <div class="kp-tag-card kp-bg1" @click="gotoAIkepu">
@@ -957,6 +957,9 @@ export default {
     },
     gotocomTwo () {
       this.$router.push('/competitionTwo')
+    },
+    gotoBisai() {
+      this.$router.push('/competition')
     },
     gotoZhineng() {
       // this.$router.push({

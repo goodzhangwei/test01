@@ -1,6 +1,12 @@
 <template>
   <div class="container-style">
-    <Header></Header>
+    <!-- <Header></Header> -->
+    <div class="move_header" v-if="navBarFixed">
+      <HomeHeader2 :flagInfo="infoState"></HomeHeader2>
+    </div>
+    <div>
+      <HomeHeader :flagInfo="infoState"></HomeHeader>
+    </div>
     <div class="background-style">
       <div class="back-text">
         <h1>Python人工智能编程--师资培训与课程研讨班</h1>
@@ -375,19 +381,24 @@
 
 <script>
   import Footer from '@/components/common/footer'
-  import Header from '@/components/common/header5'
+  import HomeHeader from '@/components/common/header'
+  import HomeHeader2 from '@/components/common/header2'
   export default {
     name: "ClassShowOne",
     components: {
-      Header,
-      Footer
+      // Header,
+      Footer,
+      HomeHeader,
+      HomeHeader2
     },
     data() {
       return {
         tagsShow: '课程介绍',
         list: [],
         Paystatus: -1,
-        flag_state: false
+        flag_state: false,
+        navBarFixed: false,
+        infoState: false,
       }
     },
     created () {
@@ -398,9 +409,19 @@
       }
     },
     mounted() {
+      window.addEventListener('scroll', this.watchScroll)
       this.getClassList()
     },
     methods: {
+      watchScroll () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        if (scrollTop > 49) {
+          this.navBarFixed = true
+        } else {
+          this.navBarFixed = false
+        }
+        console.log(scrollTop)
+      },
       getClassIntroduce() {
         this.tagsShow = '课程介绍'
       },
@@ -448,6 +469,9 @@
 <style scoped>
   .container-style {
 
+  }
+  .move_header {
+    background-color: rgba(255, 255, 255, 0.9);position: fixed;width: 100%;z-index: 999
   }
   .background-style {
     background-image: url("../../assets/class_ten_bg1.png");
