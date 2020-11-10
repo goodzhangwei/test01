@@ -116,10 +116,63 @@
     </div>
     <Footer/>
 
+    <div id="udesk_container" @click="clickShowModel">
+      <div id="udesk_btn">
+        <a class="zixunBtn">
+          <span class="zixunSpan">
+            <img src="https://static-ud.udesk.cn/img/msg2@68x66.png" class="zixunImg">
+          </span>
+          <span class="zixunSpan2"></span>
+          <span id="udesk_btn_text" class="zixunSpan3">
+            在线咨询
+          </span>
+          <span id="udesk_btn_circle" class="zixunSpan4">
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <el-dialog :visible.sync="showModel" title="提交资料" width="600px" >
+      <div>
+        <el-form :model="submitStudyInfo" :rules="rules" ref="submitStudyInfo" label-width="100px">
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="submitStudyInfo.name" placeholder="请输入您的姓名"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号" prop="tel">
+            <el-input v-model="submitStudyInfo.tel" placeholder="请输入您的手机号"></el-input>
+          </el-form-item>
+          <el-form-item label="学校" prop="school">
+            <el-input v-model="submitStudyInfo.school" placeholder="请输入您的学校名称"></el-input>
+          </el-form-item>
+          <el-form-item label="地区" prop="addr" class="area">
+            <el-cascader
+              size="large"
+              :options="options"
+              v-model="selectedOptions"
+              @change="handleChange">
+            </el-cascader>
+          </el-form-item>
+          <el-form-item label="年级" prop="grade" class="area">
+            <el-select v-model="submitStudyInfo.grade" placeholder="请选择您的年级" @change="getChange" class="gradeStyle">
+              <el-option v-for="(item,index) in gradeList" :key="index" :label="item" :value="item"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button size="mini" @click="backTable">返回</el-button>
+            <el-button size="mini" type="primary" @click="submitForm('submitStudyInfo')">提交</el-button>
+            
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-dialog>
+
+
   </div>
 </template>
 
 <script>
+import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
+
   import HomeHeader from '@/components/common/header'
   import HomeHeader2 from '@/components/common/header2'
   import Footer from '@/components/common/footer'
@@ -132,9 +185,38 @@
     },
     data () {
       return {
+        options: regionData,
+        selectedOptions: [],
         navBarFixed: false,
         infoState: false,
-        bannerH: ''
+        bannerH: '',
+        showModel: false,
+        gradeList: ["五年级", "六年级", "初一", "初二", "初三", "高一", "高二", "高三"],
+        submitStudyInfo: {
+          name: '',   // 姓名
+          tel: '',    // 手机号
+          school: '', // 学校名称
+          grade: '',   // 年级
+          addr: ''
+        },
+        rules: {
+          name:[
+            { required: true, message: "姓名不能为空", trigger: "blur" },
+          ],
+          tel:[
+            { required: true, message: "手机号不能为空", trigger: "blur" },
+          ],
+          school:[
+            { required: true, message: "学校不能为空", trigger: "blur" },
+          ],
+          grade: [
+            { required: true, message: "年纪不能为空", trigger: "blur" },
+          ],
+          addr: [
+            { required: true, message: "地区不能为空", trigger: "blur" },
+          ],
+          
+        }
       }
     },
     mounted () {
@@ -146,6 +228,15 @@
       this.getInfo()
     },
     methods: {
+      handleChange (arr) {
+        console.log(arr)
+        console.log(CodeToText[arr[0]], CodeToText[arr[1]], CodeToText[arr[2]])
+        this.submitStudyInfo.addr = `${CodeToText[arr[0]]}-${CodeToText[arr[1]]}-${CodeToText[arr[2]]}`
+      },
+      getChange(e) {
+        console.log(e)
+        this.submitStudyInfo.grade = e
+      },
       setBannerH(){
         this.bannerH = document.body.clientWidth / 4
       },
@@ -165,6 +256,49 @@
           this.infoState = res.data.infoState
         })
       },
+      clickShowModel() {
+        this.showModel = true
+        this.$refs['submitStudyInfo'].clearValidate();
+      },
+      resetForm() {
+        this.submitStudyInfo.name = ''
+        this.submitStudyInfo.addr = ''
+        this.submitStudyInfo.grade = ''
+        this.submitStudyInfo.tel = ''
+        this.submitStudyInfo.school = ''
+        this.selectedOptions = []
+      },
+      submitForm() {
+        // var params = {
+        //   grade: 
+        // }
+        console.log(this.submitStudyInfo)
+        //var url = `http://58.119.112.14:11020/cms/ScienceStudy/ScienceStudy/add?addr=${this.submitStudyInfo.addr}&grade=${this.submitStudyInfo.grade}&name=${this.submitStudyInfo.name}&school=${this.submitStudyInfo.school}&tel=${this.submitStudyInfo.tel}`
+        var url = "http://58.119.112.14:11020/cms/ScienceStudy/ScienceStudy/add"
+        var params = JSON.stringify(this.submitStudyInfo)
+        this.$axios.post(url, params, {headers: {'Content-Type': 'application/json'}}).then((res) => {
+          console.log("QQQ", res.data)
+          if(res.data.code === 10000) {
+            this.showModel = false
+            this.resetForm()
+            this.$message({
+              message: res.data.message,
+              type: 'success'
+            });
+          } else {
+             this.$message({
+              message: res.data.message,
+              type: 'warning'
+            });
+          }
+        })
+        
+
+      },
+      backTable() {
+        this.showModel = !this.showModel
+        this.resetForm()
+      }
     }
   }
 </script>
@@ -367,5 +501,95 @@
   .img4 {
     text-align: center;
   }
+  .zixunBtn {
+    display: block; 
+    position: fixed;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1000000000;
+    border-width: 1px 1px 0px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.1); 
+    border-right-color: rgba(0, 0, 0, 0.1);
+    border-left-color: rgba(0, 0, 0, 0.1);
+    border-image: initial; 
+    border-bottom-style: initial; 
+    border-bottom-color: initial; 
+    background-color: rgb(48, 122, 232);
+    width: 40px; 
+    height: auto; 
+    padding: 10px 0px; 
+    right: 0px; 
+    top: 398px;
+  }
+  .zixunnSpan {
+    display:block;
+    float:left;
+    width:24px;
+    height:24px;
+    margin:0 7px 10px;
+  }
+  .zixunImg {
+   width:80%;
+   height:80%;
+  }
+  .zixunSpan2 {
+    display:block;
+    float:left;
+    background-color:rgba(0, 0, 0, 0.08);
+    width:100%;
+    height:1px;
+    vertical-align:middle;
+    width:1px;
+    height:100%;
+    
+    
+  }
+  .zixunSpan3 {
+    display: block;
+    float: left;
+    margin: 0 10px;
+    font-size: 13px;
+    color: #fff;
+    width: 40px;
+    height: auto;
+    word-break: break-all;
+    line-height: 20px;
+    letter-spacing: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 10px;
+    padding-left: 2px;
+  }
+  .zixunSpan4 {
+    display: none;
+    position: absolute;
+    top: -13px;
+    right: -13px;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 15px;
+    background-color: #ff3b30;
+    left: -13px;
+  }
+  .area >>> .el-cascader {
+    width:390px;
+  }
+  .area >>> .el-select {
+     width:390px;
+  }
+  
+  
+                
 </style>
 
