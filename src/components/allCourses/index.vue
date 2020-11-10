@@ -8,39 +8,47 @@
     </div>
     <div class="bg_img">
       <div class="searchCourse">  
-        <el-input  v-model="interestingCourse" placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search"></el-input>
+        <el-input  v-model="interestingCourse" placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search" @keyup.enter.native="searchCourse"></el-input>
       </div>
     </div>
     <div class="courseNav">
-      <div class="courseType">
+      <div class="courseType clearfix">
         <span class="hd l">课程类型:</span>
         <div class="bd">
           <ul>
-            <li :class="{navList:itemStyle, on:selectIndex1 === item.value}" v-for="(item, index) in courseTypes" @click="selectTypeItem(index, item.label)">{{item.label}}</li>
+            <li :class="{navList:itemStyle, on:selectIndex1 === index}" v-for="(item, index) in teachmodeList" @click="selectTypeItem(index, item)">{{item.label}}</li>
           </ul>
         </div>
       </div>
-      <div class="courseType">
+      <div class="courseType clearfix">
         <span class="hd l">学习模式:</span>
         <div class="bd">
           <ul>
-            <li :class="{navList:itemStyle, on:selectIndex2 === item.value}" v-for="(item, index) in studyTypes" @click="selectStudyItem(index, item.label)">{{item.label}}</li>
+            <li :class="{navList:itemStyle, on:selectIndex2 === index}" v-for="(item, index) in studymodelList" @click="selectStudyItem(index, item)">{{item.label}}</li>
           </ul>
         </div>
       </div>
-      <div class="courseType">
+      <div class="courseType clearfix">
+        <span class="hd l">方向:</span>
+        <div class="bd">
+          <ul>
+            <li :class="{navList:itemStyle, on:selectIndex5 === index}" v-for="(item, index) in mtList" @click="selectDirectionItem(index, item)">{{item.label}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="courseType maxh courseKind clearfix">
         <span class="hd l">分类:</span>
         <div class="bd">
           <ul>
-            <li :class="{navList:itemStyle, on:selectIndex3 === item.value}" v-for="(item, index) in kindsTypes" @click="selectKindItem(index, item.label)">{{item.label}}</li>
+            <li :class="{navList:itemStyle, on:selectIndex3 === index}" v-for="(item, index) in stList" @click="selectKindItem(index, item)">{{item.label}}</li>
           </ul>
         </div>
       </div>
-      <div class="courseType">
+      <div class="courseType clearfix">
         <span class="hd l">难度:</span>
         <div class="bd">
           <ul>
-            <li :class="{navList:itemStyle, on:selectIndex4 === item.value}" v-for="(item, index) in difficultTypes" @click="selectDifficultItem(index, item.label)">{{item.label}}</li>
+            <li :class="{navList:itemStyle, on:selectIndex4 === index}" v-for="(item, index) in difficultTypes" @click="selectDifficultItem(index, item)">{{item.label}}</li>
           </ul>
         </div>
       </div>
@@ -51,18 +59,18 @@
       <!-- <div class="coursesList"> -->
          <div class="course-card-container">
            <div class="course-card-top">
-             <img class="course-banner" :src="item.src"/>
+             <img class="course-banner" :src="getImgUrl(item.pic)"/>
            </div>
            <div class="course-card-content">
              <h3 class="course-card-name">{{item.name}}</h3>
              <div class="course-card-bottom">
                <div class="course-card-info">
-                 <span class="courseType">{{item.courseType}}</span>
+                 <span class="courseType">{{getDifficult(item.grade)}}</span>
                  <span>
                    <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                   {{item.coursePerson}}
+                   {{getPeople()}}
                  </span>
-                 <span class="coursePrice">{{item.coursePrice}}</span>
+                 <span class="coursePrice">¥{{item.price}}</span>
                </div>
                
              </div>
@@ -74,10 +82,15 @@
 
       <div class="pagination">
         <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[5, 10, 20, 50,100]"
+          :page-size="pagesize"
+          layout="total, sizes, prev, pager, next, jumper"
           background
-          layout="prev, pager, next"
-          :total="1000">
-        </el-pagination>
+          :total="totalList"
+        ></el-pagination>
       </div>
 
       
@@ -106,191 +119,184 @@
     },
     data () {
       return {
+        currentPage: 1,
+        pagesize: 10,
+        page: 0,
+        size: 10,
+        totalList:0,
+        navBarFixed: false,
+        infoState: false,
         itemStyle: true,
-        selectIndex1: 100,
-        selectIndex2: 100,
-        selectIndex3: 100,
-        selectIndex4: 100,
+        selectIndex1: 0,
+        selectIndex2: 0,
+        selectIndex3: 0,
+        selectIndex4: 0,
+        selectIndex5: 0,
         interestingCourse: '',
-        courseTypes: [
+        teachmodeList: [
+          
           {
-            value: 100,
-            label: "全部"
+            value: "201001",
+            label: '免费课程'
           },
           {
-            value: 0,
-            label: "免费课程"
-          },
-          {
-            value: 1,
-            label: "付费课程"
+            value: "201002",
+            label: '付费课程'
           }
         ],
-        studyTypes: [
+        studymodelList: [
+          
           {
-            value: 100,
-            label: "全部"
+            value: "201001",
+            label: '自由式学习'
           },
           {
-            value: 0,
-            label: "自由式学习"
-          },
-          {
-            value: 1,
-            label: "任务式学习"
+            value: "201002",
+            label: '任务式学习'
           }
         ],
-        kindsTypes: [
-          {
-            value: 100,
-            label: "全部"
-          },
-          {
-            value: 0,
-            label: "TypeScript"
-          },
-          {
-            value: 1,
-            label: "计算机网络"
-          },
-          {
-            value: 2,
-            label: "Java"
-          },
-          {
-            value: 3,
-            label: "Python"
-          },
-          {
-            value: 4,
-            label: "Vue"
-          },
-          {
-            value: 5,
-            label: "SpringBoot"
-          },
-          {
-            value: 6,
-            label: "Spark"
-          },
-          {
-            value: 7,
-            label: "Spring Cloud"
-          },
-          {
-            value: 8,
-            label: "React"
-          }
-        ],
+        mtList: [], // 方向
+        stList: [], // 分类
         difficultTypes: [
+          
           {
-            value: 100,
-            label: "全部"
+            value: "200001",
+            label: '简单'
           },
           {
-            value: 0,
-            label: "入门"
+            value: "200002",
+            label: '中等'
           },
           {
-            value: 1,
-            label: "初级"
-          }, 
-          {
-            value: 2,
-            label: "进阶"
-          },
-          {
-            value: 3,
-            label: "专题"
-          }, 
+            value: "200003",
+            label: '困难'
+          }
         ],
-        courseList: [
-          {
-            src: require("../../assets/course_1.png"),
-            name: '六个案例学会响应式布局',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "2222"
-          },
-          {
-            src: require("../../assets/course_2.png"),
-            name: 'Tensorflow.js 实现垃圾分类',
-            courseType: '初级',
-            coursePrice: '¥999',
-            coursePerson: "2345"
-          },
-          {
-            src: require("../../assets/course_3.png"),
-            name: '基于WebAR实现3D任务书桌上跳舞',
-            courseType: '进阶',
-            coursePrice: '¥999',
-            coursePerson: "6438"
-          },
-          {
-            src: require("../../assets/course_4.png"),
-            name: '带你快速入坑ES6',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "32412"
-          },
-          {
-            src: require("../../assets/course_5.png"),
-            name: '切图基础教程-前端工程师版',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "4322"
-          },
-          {
-            src: require("../../assets/course_5.png"),
-            name: '切图基础教程-前端工程师版',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "4322"
-          },
-          {
-            src: require("../../assets/course_5.png"),
-            name: '切图基础教程-前端工程师版',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "4322"
-          },
-          {
-            src: require("../../assets/course_5.png"),
-            name: '切图基础教程-前端工程师版',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "4322"
-          },
-          {
-            src: require("../../assets/course_5.png"),
-            name: '切图基础教程-前端工程师版',
-            courseType: '入门',
-            coursePrice: '免费',
-            coursePerson: "4322"
-          },
-
-        ]
+        courseList: [],
+        
       }
     },
     mounted () {
-     
+      window.addEventListener('scroll', this.watchScroll)
+      this.setBannerH()
+      window.addEventListener('resize', () => {
+        this.setBannerH()
+      }, false)
+      this.getInfo()
+      this.getCategory()
+      this.getKinds()
+      this.getAllCourses()
     },
     methods: {
-      selectTypeItem(index, name) {
-        console.log(index)
-        this.selectIndex1 = index - 1
+      selectTypeItem(index, item) {
+        this.selectIndex1 = index
+        console.log("IIII", item)
+        this.getClassByType("teachmode", item.value)
+        
       },
-      selectStudyItem(index, name) {
-        console.log(index)
-        this.selectIndex2 = index - 1
+      selectStudyItem(index, item) {
+        this.selectIndex2 = index
+        this.getClassByType("studymodel", item.value)
       },
-      selectKindItem(index, name) {
-        console.log(index)
-        this.selectIndex3 = index - 1
+      selectDirectionItem(index, item) {
+        this.selectIndex5 = index
+        this.getClassByType("mt", item.id)
+        this.getKindList(item.id)
       },
-      selectDifficultItem(index, name) {
-        console.log(index)
-        this.selectIndex4 = index - 1
+      selectKindItem(index, item) {
+        this.selectIndex3 = index 
+        this.getClassByType("st", item.id)
+      },
+      selectDifficultItem(index, item) {
+        this.selectIndex4 = index
+        this.getClassByType("grade", item.value) 
+      },
+      getKindList(id) {
+        var url = `http://58.119.112.14:11020/cms/category/listThree?id=${id}`
+        this.$axios.get(url).then((res) => {
+          this.stList = res.data.data
+        })
+      },
+      getClassByType(type, name) {
+        var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10&${type}=${name}`
+        this.$axios.get(url).then((res) => {
+          console.log("bbb", res.data)
+          this.courseList = res.data.data.list
+          this.totalList = res.data.data.total
+        })
+      },
+      setBannerH(){
+        this.bannerH = document.body.clientWidth / 4
+      },
+      watchScroll () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        if (scrollTop > 49) {
+          this.navBarFixed = true
+        } else {
+          this.navBarFixed = false
+        }
+       // console.log(scrollTop)
+      },
+      getInfo() {
+        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+        this.$axios.get(url).then((res) => {
+          this.infoState = res.data.infoState
+        })
+      },
+      
+      getCategory() {
+        var url = 'http://58.119.112.14:11020/cms/category/listTwo'
+        this.$axios.get(url).then((res) => {
+          this.mtList = res.data.data
+        })
+      },
+      getKinds() {
+        var url = 'http://58.119.112.14:11020/cms/category/listThree'
+        this.$axios.get(url).then((res) => {
+          this.stList = res.data.data
+        })
+      },
+      
+      getAllCourses() {
+        var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10`
+        this.$axios.get(url).then((res) => {
+          
+          this.courseList = res.data.data.list
+          this.totalList = res.data.data.total
+        })
+      }, 
+      searchCourse(name) {
+        console.log("nname", name)
+        var url = `http://58.119.112.14:11020/cms/allCourses/allCourses/list?name=${name}`
+        this.$axios.get(url).then((res) => {
+          this.courseList = res.data.rows
+        })
+      },
+
+      handleSizeChange(size) {
+        this.size = size;
+        
+      },
+
+      handleCurrentChange(currentPage) {
+        this.page = currentPage - 1;
+        this.getAllCourses()
+      },
+      getImgUrl(url) {
+        return `http://${url}`
+      },
+      getPeople() {
+        var num = Math.ceil(Math.random()*10000) + 1000; 
+        return num;
+      },
+      getDifficult(code) {
+        if(code === '200001') {
+          return "简单"
+        } else if(code === '200002') {
+          return '中等'
+        } else {
+          return '困难'
+        }
       }
     }
   }
@@ -318,19 +324,22 @@
   .courseNav {
     width: 85%;
     margin: 0 auto;
+    
+   
     /* background: #b0c6db; */
   }
   .courseType {
     position: relative;
     padding: 16px 0 5px;
     border-bottom: 1px solid #edf1f2;
+    
   }
   .courseType .hd {
     
     height: 20px;
     line-height: 30px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
     color: #07111b;
     text-align: left;
   }
@@ -342,10 +351,21 @@
   }
   .bd ul {
     list-style: none;
+    font-size: 14px;
+  }
+  .maxh {
+    max-height: 132px;
+  }
+  .courseKind .bd {
+    max-height: 130px;
+    overflow: hidden;
   }
   .navList {
     display: inline-block;
-    margin: 0 30px;
+    margin: 0.06rem 0.3rem 0.3rem 0rem;
+    
+    /* padding-bottom: 0.2rem; */
+    margin-bottom: 0.15rem;
   }
   .on {
     background: rgba(242,13,13,.06);
@@ -422,6 +442,13 @@
     /* margin: 0 auto; */
     text-align: center;
   }
+  .clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
   
 
 
