@@ -10,6 +10,7 @@
         <span @click="gotoMyclass">我的课程</span>
         <!--<span @click="gotoLiveclass">我的直播</span>-->
         <span @click="gotoInformation">个人信息</span>
+        <span @click="gotoInformation">本周课表</span>
         <span @click="gotoOrderCenter">订单中心</span>
         <span @click="gotoworked" v-show="role !== '3'">查看作品</span>
         <span @click="gotoinfo" v-show="role === '3'">提交信息</span>

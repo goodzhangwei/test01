@@ -36,12 +36,23 @@
             <span class="nodistance">10.00</span>
           </div>
         </div>
-        <div class="btns" @click="gotoPay" v-if="Paystatus !== 1">
-          <span>立即购买</span>
+        <div v-if="studymodel !== '201002'">
+          <div class="btns" @click="gotoPay" v-if="Paystatus !== 1">
+            <span>立即购买</span>
+          </div>
+          <div class="btns" v-else @click="gotoPy">
+            <span>立即观看</span>
+          </div>
         </div>
-        <div class="btns" v-else @click="gotoPy">
-          <span>立即观看</span>
+        <div v-else>
+          <div class="btns" @click="gotoSecret" v-if="Paystatus !== 1">
+            <span>输入密钥</span>
+          </div>
+          <div class="btns" v-else @click="gotoPy">
+            <span>立即观看</span>
+          </div>
         </div>
+        
       </div>
     </div>
     <div class="tags">
@@ -338,6 +349,8 @@
       </div>
     </div>
 
+    
+
     <Footer class="footer"></Footer>
   </div>
 </template>
@@ -353,6 +366,7 @@
     },
     data() {
       return {
+        studymodel: '201002',
         tagsShow: '课程介绍',
         list: [],
         Paystatus: -1,
@@ -389,6 +403,22 @@
             class_id: 'ff80808172a7363b0172a8765d35017c'
           }
         })
+      },
+      gotoSecret() {
+        this.$prompt('请输入密钥', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '你输入的密钥是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });       
+        });
       },
       getClassList() {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff80808172a7363b0172a8765d35017c/' + localStorage.getItem('name')

@@ -60,6 +60,10 @@
                   <i class="el-icon-collection"></i>
                   <span slot="title">我的课程</span>
                 </el-menu-item>
+                <el-menu-item index="/userSetting/mySchedule">
+                  <i class="el-icon-collection"></i>
+                  <span slot="title">本周课表</span>
+                </el-menu-item>
                 <el-menu-item index="/userSetting/UpdatePassword">
                   <i class="el-icon-unlock"></i>
                   <span slot="title">修改密码</span>

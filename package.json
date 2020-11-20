@@ -17,6 +17,7 @@
     "echarts": "^4.8.0",
     "element-china-area-data": "^5.0.2",
     "element-ui": "^2.13.0",
+    "is-obj": "^2.0.0",
     "jquery": "^3.4.1",
     "js-md5": "^0.7.3",
     "lib-flexible": "^0.3.2",

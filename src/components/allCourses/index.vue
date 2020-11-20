@@ -8,7 +8,7 @@
     </div>
     <div class="bg_img">
       <div class="searchCourse">  
-        <el-input  v-model="interestingCourse" placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search" @keyup.enter.native="searchCourse"></el-input>
+        <el-input  v-model="interestingCourse" clearable placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search" @keyup.enter.native="searchCourse" @clear="clearValue"></el-input>
       </div>
     </div>
     <div class="courseNav">
@@ -68,7 +68,7 @@
                  <span class="courseType">{{getDifficult(item.grade)}}</span>
                  <span>
                    <i class="iconfont ymq-iconuser xl-iconfont"></i>
-                   {{getPeople()}}
+                   {{item.people}}
                  </span>
                  <span class="coursePrice">¥{{item.price}}</span>
                </div>
@@ -184,7 +184,7 @@
       }, false)
       this.getInfo()
       this.getCategory()
-      this.getKinds()
+      //this.getKinds()
       this.getAllCourses()
     },
     methods: {
@@ -248,9 +248,14 @@
         var url = 'http://58.119.112.14:11020/cms/category/listTwo'
         this.$axios.get(url).then((res) => {
           this.mtList = res.data.data
+          console.log("SelectIndex5", this.selectIndex5)
+          var item = this.mtList[this.selectIndex5]
+          console.log(item.id)
+          this.getKindList(item.id)
         })
       },
       getKinds() {
+       // console.log("SelectIndex5", this.selectIndex5)
         var url = 'http://58.119.112.14:11020/cms/category/listThree'
         this.$axios.get(url).then((res) => {
           this.stList = res.data.data
@@ -261,15 +266,21 @@
         var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10`
         this.$axios.get(url).then((res) => {
           
-          this.courseList = res.data.data.list
+          var arr = res.data.data.list
+           
+          for(var i = 0; i < arr.length; i++) {
+            arr[i].people = Math.ceil(Math.random()*10000) + 1000;
+          }
+          this.courseList = arr
           this.totalList = res.data.data.total
         })
       }, 
-      searchCourse(name) {
-        console.log("nname", name)
-        var url = `http://58.119.112.14:11020/cms/allCourses/allCourses/list?name=${name}`
+      searchCourse() {
+        
+        var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10&name=${this.interestingCourse}`
         this.$axios.get(url).then((res) => {
-          this.courseList = res.data.rows
+          this.courseList = res.data.data.list
+          this.totalList = res.data.data.total
         })
       },
 
@@ -277,10 +288,18 @@
         this.size = size;
         
       },
+      clearValue() {
+        this.getAllCourses()
+      },
 
       handleCurrentChange(currentPage) {
         this.page = currentPage - 1;
-        this.getAllCourses()
+        if(this.interestingCourse === '') {
+          this.getAllCourses()
+        } else {
+          this.searchCourse()
+        }
+        
       },
       getImgUrl(url) {
         return `http://${url}`
