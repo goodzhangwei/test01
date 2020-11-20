@@ -90,6 +90,12 @@ export default new Router({
           component: resolve => require(['@/components/userSetting/settingItem/myLesson'],resolve)
         },
         {
+          path: '/userSetting/mySchedule',
+          name: 'mySchedule',
+          // component: mySchedule
+          component: resolve => require(['@/components/userSetting/settingItem/mySchedule'],resolve)
+        },
+        {
           path: '/userSetting/UpdatePassword',
           name: 'UpdatePassword',
           // component: UpdatePassword

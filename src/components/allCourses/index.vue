@@ -8,7 +8,7 @@
     </div>
     <div class="bg_img">
       <div class="searchCourse">  
-        <el-input  v-model="interestingCourse" placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search" @keyup.enter.native="searchCourse"></el-input>
+        <el-input  v-model="interestingCourse" clearable placeholder="请输入感兴趣的课程" suffix-icon="el-icon-search" @keyup.enter.native="searchCourse" @clear="clearValue"></el-input>
       </div>
     </div>
     <div class="courseNav">
@@ -275,11 +275,12 @@
           this.totalList = res.data.data.total
         })
       }, 
-      searchCourse(name) {
-        console.log("nname", name)
-        var url = `http://58.119.112.14:11020/cms/allCourses/allCourses/list?name=${name}`
+      searchCourse() {
+        
+        var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10&name=${this.interestingCourse}`
         this.$axios.get(url).then((res) => {
-          this.courseList = res.data.rows
+          this.courseList = res.data.data.list
+          this.totalList = res.data.data.total
         })
       },
 
@@ -287,10 +288,18 @@
         this.size = size;
         
       },
+      clearValue() {
+        this.getAllCourses()
+      },
 
       handleCurrentChange(currentPage) {
         this.page = currentPage - 1;
-        this.getAllCourses()
+        if(this.interestingCourse === '') {
+          this.getAllCourses()
+        } else {
+          this.searchCourse()
+        }
+        
       },
       getImgUrl(url) {
         return `http://${url}`
