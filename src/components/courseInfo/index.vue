@@ -9,18 +9,16 @@
     </div>
     <div class="background-style">
       <div class="back-text">
-        <h1>Python人工智能编程--师资培训与课程研讨班</h1>
-        <p>
-          专为教师授课打造的Python人工智能编程基石课程，为辅助科技老师提升人工智能编程类课程教学实践
-        </p>
+        <h1>{{courseInfo.name}}</h1>
+        <p>{{courseInfo.subtitle}}</p>
       </div>
       <div class="fixed_bg">
         <div class="con">
           <div>
             <div class="money-text">
-              <!--<span >-->
-              <!--￥ 999.00-->
-              <!--</span>-->
+                 <!--<span >-->
+                   <!--￥ 999.00-->
+                 <!--</span>-->
             </div>
             <div class="icon-pay">
               <span>微信付款</span>
@@ -44,12 +42,38 @@
             <span class="nodistance">10.00</span>
           </div>
         </div>
-        <div class="btns" @click="gotoPay" v-if="Paystatus !== 1">
-          <span>立即购买</span>
+        <!-- <div v-if="enrollStatus ">
+          <div class="btns" @click="gotoPay" v-if="Paystatus !== 1">
+            <span>立即购买</span>
+          </div>
+          <div class="btns" v-else @click="gotoPy">
+            <span>立即观看</span>
+          </div>
         </div>
-        <div class="btns" v-else @click="gotoPy">
-          <span>立即观看</span>
+        <div v-else>
+          <div class="btns" @click="gotoSecret" v-if="Paystatus !== 1">
+            <span>立即报名</span>
+          </div>
+          <div class="btns" v-else @click="gotoPy">
+            <span>立即观看</span>
+          </div>
+        </div> -->
+        <div v-if="Paystatus !== 1 && courseInfo.studymodel === '201001'">
+          <div class="btns" @click="gotoPay" >
+            <span>立即购买</span>
+          </div>
         </div>
+        <div v-if="enrollStatus === false && courseInfo.studymodel === '201002'">
+          <div class="btns" @click="gotoSecret" >
+            <span>输入密钥</span>
+          </div>
+        </div>
+        <div v-if="enrollStatus === true || Paystatus == 1">
+          <div class="btns" @click="gotoView" >
+            <span>立即观看</span>
+          </div>
+        </div>
+        
       </div>
     </div>
     <div class="tags">
@@ -64,13 +88,13 @@
             <div class="borderLine" :class="{borderLine2: tagsShow === '章节目录'}"></div>
           </li>
           <li @click="getConsult">
-            <div :class="{tagstext : tagsShow === '售前咨询'}">售前咨询</div>
-            <div class="borderLine" :class="{borderLine2: tagsShow === '售前咨询'}"></div>
+            <div :class="{tagstext : tagsShow === '课程咨询'}">课程咨询</div>
+            <div class="borderLine" :class="{borderLine2: tagsShow === '课程咨询'}"></div>
           </li>
-          <li @click="getEvaluate">
+          <!-- <li @click="getEvaluate">
             <div :class="{tagstext : tagsShow === '用户评价'}">用户评价</div>
             <div class="borderLine" :class="{borderLine2: tagsShow === '用户评价'}"></div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -89,30 +113,30 @@
             </div>
             <div class="intro-text-content">
               <div class="introP">
-                <h1>Python人工智能编程</h1>
-                <p>本套课程为Python人工智能编程基石课程。课程在系统性知识讲解和项目实践基础上，增加了对Python的知识体系梳理、分析课程特点、探讨如何设置实践项目、剖析实践项目中所包含知识点，以及每个章节之间的连贯性。这样参加培训的老师不仅获得Python人工智能编程的初步掌握，同时对学生的辅导就更加清晰明，对课程的讲解以及未来大赛都会有很大的帮助。</p>
+                <h1>{{courseInfo.name}}</h1>
+                <p>{{courseInfo.description}}</p>
               </div>
               <div class="line"></div>
             </div>
           </div>
           <div class="intro-header">
             <div class="intro-img">
-              <img src="../../assets/class_himg1.jpg"/>
+              <img :src="teacherInfo.src"/>
               <div class="nickname">
-                <span>SYM</span>
+                <span>{{teacherInfo.teachername}}</span>
               </div>
               <div class="nickdetail">
-                <span>python讲师</span>
+                <span>{{teacherInfo.des}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="detailCont">
+      <!-- <div class="detailCont">
         <div class="detail-content">
           <div class="detail-head-text">
-            <h1>Python人工智能编程--师资培训与课程研讨班</h1>
-            <h4>专为教师授课打造的Python人工智能编程基石课程，为辅助科技老师提升人工智能编程类课程教学实践</h4>
+            <h1>Python趣味编程+乐高MINDSTORMS®头脑风暴EV3机器人</h1>
+            <h4>编程很难？不要紧，跟随着有趣的案例走，实践出真知，在实践中学习！</h4>
           </div>
           <div class="detail-left">
           </div>
@@ -125,13 +149,13 @@
                   </div>
                   <div class="box-title">
                   <span>
-                    Python知识系统化讲解
+                    自己动手创作机器人
                   </span>
                   </div>
                   <div class="box-content">
-                    梳理Python核心知识点+项目实战+
+                    同学可以发挥想象制作
                     <br>
-                    案例讲解+算法涉及
+                    不同的乐高机器人
                   </div>
                 </div>
               </div>
@@ -142,13 +166,13 @@
                   </div>
                   <div class="box-title">
                   <span>
-                    PBL教学研讨
+                    图文结合讲解
                   </span>
                   </div>
                   <div class="box-content">
-                    研讨学习如何设置实践教学
+                    面对生硬数据上图说话，直观且通俗
                     <br>
-                    PBL教学模式实践
+                    易懂，学习过程不再枯燥
                   </div>
                 </div>
               </div>
@@ -161,13 +185,13 @@
                   </div>
                   <div class="box-title">
                   <span>
-                    项目实践
+                    十几种实战案例
                   </span>
                   </div>
                   <div class="box-content">
-                    在实战案例中穿插知识点
+                    在实战案例中让学生
                     <br>
-                    在动手操作中融会贯通
+                    感觉到编程的乐趣
                   </div>
                 </div>
               </div>
@@ -178,58 +202,29 @@
                   </div>
                   <div class="box-title">
                   <span>
-                   专家分享
+                   设计互动问答环节
                   </span>
                   </div>
                   <div class="box-content">
-                    与产业界的资深专家
+                    课程中穿插互动问答
                     <br>
-                    交流分享
+                    带你吃透核心知识点
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="section1">
-        <div class="section-content">
-          <h1>结合实战案例----构建完整知识体系</h1>
-          <h4>50%原理讲解+50%项目实战，知识点与实战完美结合</h4>
-          <div class="section-detail">
-            <img src="../../assets/zhishitu.png">
-          </div>
-        </div>
-      </div>
-      <div class="section3">
-        <div class="section3-content">
-          <h1>
-            培训模式：采用线上授课方式，同时增加线下巩固和交流模式。
-          </h1>
-          <div class="section3-cards">
-            <div class="section3-left-card">
-              <img src="../../assets/class_ten_img.png"/>
-            </div>
-            <div class="section3-right-card">
-              <div class="box2">
-                <div class="box-icon">
-                  <i class="iconfont ymq-iconcharutupian"></i>
-                </div>
-                <div class="box-title2">
-                  <span>
-                    采用PBL教学法实践
-                  </span>
-                </div>
-                <div class="box-content2">
-                  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;采用PBL教学法实践：PBL（Problem-Based Learning method）教学法，是基于项目的学习方法和项目实践式教学模式，突破单纯知识点的学习和记忆，重点通过围绕解决项目问题的实践方式，引导学生以问题为导向进行科技实践训练，形成在科技编程实践过程中对所学知识的掌握与问题的解决能力。
-                  <br>
-                  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;课程沿基础向上扩展：考虑到了不同老师的基础差异， Python课程从基础讲起，梳理好重点内容，既保证了初步入门老师的需求，同时也增加了更多实践，满足具有一定基础老师的提升。
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> -->
+      <!--<div class="section1">-->
+        <!--<div class="section-content">-->
+          <!--<h1>结合实战案例&#45;&#45;&#45;&#45;构建完整知识体系</h1>-->
+          <!--<h4>50%原理讲解+50%项目实战，知识点与实战完美结合</h4>-->
+          <!--<div class="section-detail">-->
+            <!--<img src="../../assets/zhishitu.png">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="section2">
         <div class="section2-content">
           <div class="section2-card1">
@@ -280,9 +275,9 @@
                     适合人群
                   </div>
                   <div class="card2-left-content">
-                    对编程感兴趣，没有编程基础。
+                    只要你对编程感兴趣，想要在系统的学习Python之前
                     <br>
-                    针对教师群体，并感兴趣参加培训。
+                    那本课程非常适合你，针对没有编程基础的小学生。
                   </div>
                 </div>
               </el-col>
@@ -292,9 +287,7 @@
                     技术储备要求
                   </div>
                   <div class="card2-left-content">
-                    需要有基本的计算能力
-                    <br>
-                    有良好的思维逻辑能力
+                    {{courseInfo.requireskill}}
                   </div>
                 </div>
               </el-col>
@@ -315,8 +308,10 @@
             </h1>
             <div class="line-left" v-for="(item2, index2) in item.children" :key="index2">
               <i class="iconfont ymq-iconcaret-right"></i>
-              <span class="namestyle">{{item2.pname}}</span>
+              <span>{{item2.pname}}</span>
               <span class="sikan" style="font-size: 12px" v-if="index2 === 0 && index === 0" @click="gotoPy">试看</span>
+              <span class="sikan2" style="font-size: 12px" v-if="item2.already === null">未观看</span>
+              <span class="sikan3" style="font-size: 12px" v-else>已观看</span>
             </div>
           </div>
         </div>
@@ -337,10 +332,10 @@
           <div class="eval-top-right">
             <h2>讲师</h2>
             <div style="overflow: hidden">
-              <img src="../../assets/class_himg1.jpg" class="eval-img"/>
+              <img :src="teacherInfo.src" class="eval-img"/>
               <div class="eval-img-text">
-                <div class="text1">SYM</div>
-                <div class="text2">Python讲师</div>
+                <div class="text1">{{teacherInfo.teachername}}</div>
+                <div class="text2">{{teacherInfo.des}}</div>
               </div>
             </div>
             <p class="eval-content">
@@ -352,19 +347,19 @@
       </div>
 
     </div>
-    <div v-show="tagsShow === '售前咨询'">
+    <div v-show="tagsShow === '课程咨询'">
       <div class="consult">
         <h1>
-          若有咨询需要，请用手机扫描下面二维码
+          若有咨询需要，请用发送邮件到教师邮箱
         </h1>
-        <img src="../../assets/code2.jpg">
+        <img :src="teacherInfo.src">
         <div class="icontent">
-          <i class="iconfont ymq-iconphone"></i>
-          <span>联系电话：13381173397</span>
+          <!-- <i class="iconfont ymq-iconphone"></i> -->
+          <span>邮箱：{{teacherInfo.email}}</span>
         </div>
       </div>
     </div>
-    <div v-show="tagsShow === '用户评价'">
+    <!-- <div v-show="tagsShow === '用户评价'">
       <div class="second-container">
         <div class="picture">
           <img src="../../assets/nocontent.png">
@@ -373,7 +368,9 @@
           <span >暂无内容</span>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    
 
     <Footer class="footer"></Footer>
   </div>
@@ -381,24 +378,40 @@
 
 <script>
   import Footer from '@/components/common/footer'
+  // import Header from '@/components/common/header5'
   import HomeHeader from '@/components/common/header'
   import HomeHeader2 from '@/components/common/header2'
   export default {
-    name: "ClassShowOne",
+    name: "CourseInfo",
     components: {
-      // Header,
-      Footer,
       HomeHeader,
-      HomeHeader2
+      HomeHeader2,
+      Footer
     },
     data() {
       return {
+        navBarFixed: false,
+        infoState: false,
+        enrollStatus: false,
         tagsShow: '课程介绍',
         list: [],
         Paystatus: -1,
         flag_state: false,
-        navBarFixed: false,
-        infoState: false,
+        courseId: '',
+        courseInfo: {
+            name: '',
+            description: '',
+            price: '',
+            subtitle: '',
+            requireskill: '',
+            studymodel: ''
+        },
+        teacherInfo: {
+          teachername: '',
+          des: '',
+          src: '',
+          email: ''
+        }
       }
     },
     created () {
@@ -409,8 +422,15 @@
       }
     },
     mounted() {
-      window.addEventListener('scroll', this.watchScroll)
-      this.getClassList()
+        console.log("课程ID", this.$route.query.courseId)
+        this.courseId = this.$route.query.courseId
+        this.getCourseInfo(this.courseId)
+        this.getClassList()
+        this.getCourseStatus()
+        this.getTeacherInfo()
+        window.addEventListener('scroll', this.watchScroll)
+        this.getInfo()
+        
     },
     methods: {
       watchScroll () {
@@ -422,6 +442,13 @@
         }
         //console.log(scrollTop)
       },
+      getInfo() {
+        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+        this.$axios.get(url).then((res) => {
+          // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+          this.infoState = res.data.infoState
+        })
+      },
       getClassIntroduce() {
         this.tagsShow = '课程介绍'
       },
@@ -429,7 +456,7 @@
         this.tagsShow = '章节目录'
       },
       getConsult() {
-        this.tagsShow = '售前咨询'
+        this.tagsShow = '课程咨询'
       },
       getEvaluate() {
         this.tagsShow = '用户评价'
@@ -438,15 +465,72 @@
         this.$router.push({
           path: '/videoclass',
           query: {
-            class_id: 'ff808081732c7ece0173413b3e1e0069'
+            class_id: this.courseId
           }
         })
       },
+      gotoSecret() {
+        this.$prompt('请输入密钥', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+        }).then(({ value }) => {
+         
+          var userId = localStorage.getItem('userId')
+          var url = `http://58.119.112.14:11020/cms/chen/course/add?userId=${userId}&courseId=${this.courseId}&uuid=${value}`
+          this.$axios.post(url).then((res) => {
+            console.log("返回的res",res)
+            if(res.data.code === 200) {
+              this.$message({
+                type: 'success',
+                message: res.data.msg
+              });
+              this.enrollStatus = true
+            } else {
+              this.$message({
+                type: 'danger',
+                message: res.data.msg
+              });
+            }
+          })
+          
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });       
+        });
+      },
+      gotoView() {},
       getClassList() {
-        var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff808081732c7ece0173413b3e1e0069/' + localStorage.getItem('name')
+        //var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff80808172a7363b0172a8765d35017c/' + localStorage.getItem('name')
+        var url = `http://58.119.112.14:11020/cms/course/courseview/${this.courseId}/${localStorage.getItem('name')}`
+       // var url = `http://58.119.112.14:11020/cms/course/getTeachPlanFlag?courseid=${this.courseId}&userid=${localStorage.getItem('userId')}`
         this.$axios.get(url).then((res) => {
           this.list = res.data.teachplanNode.children
           this.Paystatus = res.data.status
+        })
+      },
+      getCourseStatus() {
+
+        var userId = localStorage.getItem('userId')
+        var url = `http://58.119.112.14:11020/cms/chen/course/list?userId=${userId}&courseId=${this.courseId}`
+        this.$axios.get(url).then((res) => {
+          if(res.data.rows.length === 0) {
+            this.enrollStatus = false
+          } else {
+            this.enrollStatus = true
+          }
+        })
+      },
+      getTeacherInfo() {
+        var url = `http://58.119.112.14:11020/cms/course/teacher/get/${this.courseId}`
+        this.$axios.get(url).then((res) => {
+          
+          this.teacherInfo.src = res.data.src
+          this.teacherInfo.teachername = res.data.teachername
+          this.teacherInfo.des = res.data.des
+          this.teacherInfo.email = res.data.email
+          console.log("teacherInfo:", this.teacherInfo.teachername )
         })
       },
       gotoPay() {
@@ -457,11 +541,21 @@
           this.$router.push({
             path: '/ClassPay',
             query: {
-              class_id: 'ff808081732c7ece0173413b3e1e0069'
+              class_id: this.courseId
             }
           })
         }
       },
+      getCourseInfo(id) {
+        var url = `http://58.119.112.14:11020/cms/course/coursebase/get/${id}`
+        this.$axios.get(url).then((res) => {
+           console.log("课程信息,",res.data)
+           this.courseInfo = res.data
+          
+
+        })
+       
+      }
     }
   }
 </script>
@@ -474,7 +568,7 @@
     background-color: rgba(255, 255, 255, 0.9);position: fixed;width: 100%;z-index: 999
   }
   .background-style {
-    background-image: url("../../assets/class_ten_bg1.png");
+    background-image: url("../../assets/class_bg6.jpg");
     height: 500px;
     background-size: 100% 100%;
     position: relative;
@@ -634,7 +728,7 @@
   .content-intro {
     height: 550px;
     margin-top: 50px;
-    background-image: url("../../assets/class_ten_bg2.png");
+    background-image: url("../../assets/class_bg7.jpg");
     padding: 74px 0 82px 0;
     border-radius: 16px;
     box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
@@ -742,7 +836,7 @@
     height: 760px;
     margin-top: 70px;
     width: 100%;
-    background-image: url("../../assets/section0.jpg");
+    background-image: url("../../assets/class_bg8.jpg");
     background-size: cover;
     background-position: center;
   }
@@ -770,14 +864,14 @@
     color: #fff;
   }
   .detail-left {
-    width: 1018px;
+    width: 600px;
     height: 517px;
-    background-image: url("../../assets/section0-img.png");
+    background-image: url("../../assets/class_bg99.png");
     background-size: cover;
     background-position: center;
     position: absolute;
     top: 160px;
-    left: -300px;
+    left: -200px;
   }
   .detail-cards {
     width: 740px;
@@ -832,20 +926,6 @@
     line-height: 22px;
     font-weight: 700;
     margin-bottom: 10px;
-  }
-  .box-title2 {
-    text-align: center;
-    font-size: 22px;
-    color: #1c1f21;
-    line-height: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .box-content2 {
-    color: #1c1f21;
-    line-height: 28px;
-    font-size: 20px;
-    margin-top: 10px;
   }
   .box-content {
     text-align: center;
@@ -917,7 +997,8 @@
     text-align: center;
     height: 322px;
     padding-top: 40px;
-    background-image: linear-gradient(90deg,#074381 22%,#3f5ba8 100%);
+    background-color: #FEE140;
+    background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
     border-radius: 24px;
     box-sizing: border-box;
   }
@@ -1087,6 +1168,27 @@
     color: #fff;
     background-color: #f20d0d;
   }
+  .sikan2 {
+    float: right;
+    padding: 2px 20px;
+    /*font-size: 8px;*/
+    background-color:grey;
+    border-radius: 16px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sikan3 {
+    float: right;
+    padding: 2px 20px;
+    /*font-size: 8px;*/
+    background-color:rgb(60, 131, 78);
+    border-radius: 16px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
   .eval-top-right {
     padding: 32px 5px 20px 60px;
     border-bottom: 1px solid rgba(28,31,33,.1);
@@ -1183,51 +1285,5 @@
   .icontent {
     font-size: 20px;
     margin-top: 20px;
-  }
-  .section3 {
-    width: 100%;
-    height: 600px;
-    background-image: url("../../assets/class_ten_bg3.png");
-    background-size: cover;
-    background-position: center;
-  }
-  .section3-content {
-    width: 1400px;
-    margin: 0 auto;
-    padding-top: 30px;
-  }
-  .section3-content h1 {
-    font-size: 40px;
-    color: #fff;
-    font-weight: 700;
-    line-height: 48px;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .section3-cards {
-    margin-top: 30px;
-  }
-  .section3-left-card {
-    float: left;
-    width: 700px;
-    height: 400px;
-  }
-  .section3-left-card img {
-    width: 100%;
-    height: 100%;
-  }
-  .section3-right-card {
-    float: left;
-    width: 700px;
-    height: 400px;
-    padding-left: 30px;
-  }
-  .box2 {
-    width: 100%;
-    height: 100%;
-    padding: 50px 30px 30px 30px;
-    background-color: #fff;
-    position: relative;
-    border-radius: 5px;
   }
 </style>

@@ -2,13 +2,15 @@
     <div>
       <transition name="fade">
         <div class="header-overflow" v-if="navBarFixed">
-          <HeaderOne></HeaderOne>
+          <!-- <HeaderOne></HeaderOne> -->
+          <HomeHeader2 :flagInfo="infoState"></HomeHeader2>
         </div>
       </transition>
 
       <div class="banner">
         <div class="banner-top">
-          <HeaderOne></HeaderOne>
+          <!-- <HeaderOne></HeaderOne> -->
+          <HomeHeader :flagInfo="infoState"></HomeHeader>
           <div class="banner-content">
             <el-carousel class="carousel-img" height="585px" @change="carouselChange">
               <el-carousel-item  v-for="(item, index) in schna" :key="index">
@@ -248,12 +250,15 @@
 
 <script>
   import Footer from '@/components/common/footer'
-  import HeaderOne from '@/components/common/header4'
+  //import HeaderOne from '@/components/common/header4'
+  import HomeHeader from '@/components/common/header'
+  import HomeHeader2 from '@/components/common/header2'
     export default {
         name: "WorkIndex",
-      components: { HeaderOne, Footer },
+      components: { HomeHeader,  HomeHeader2, Footer },
       data() {
           return {
+            infoState: false,
             schna: [ 'https://www.zhongkeruitong.top/CCZX_image/banner5.png','https://www.zhongkeruitong.top/CCZX_image/photo2.jpg','https://www.zhongkeruitong.top/CCZX_image/photo4.jpg'],
             navBarFixed: false,
             bannerH: '',
@@ -291,6 +296,7 @@
         window.addEventListener('resize', () => {
           this.setBannerH()
         }, false)
+        this.getInfo()
       },
       methods: {
         setBannerH(){
@@ -303,7 +309,7 @@
           } else {
             this.navBarFixed = false
           }
-          console.log(scrollTop)
+          //console.log(scrollTop)
         },
         gotoDetail() {
           this.$router.push('/WorkDetail')
@@ -390,6 +396,13 @@
           this.centerDialogVisible = true
           this.videoTitle = '智能地理信息系统'
           this.playerOptions['sources'][0]['src'] = 'https://player.vimeo.com/external/188421287.sd.mp4?s=bdbf8a61c40502211971571fef384f52fe79dbbe&profile_id=164';
+        },
+        getInfo() {
+          var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
+          this.$axios.get(url).then((res) => {
+            // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
+            this.infoState = res.data.infoState
+          })
         },
         
       }

@@ -55,7 +55,7 @@
         } else {
           this.navBarFixed = false
         }
-        console.log(scrollTop)
+        //console.log(scrollTop)
       },
       getInfo() {
         var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username

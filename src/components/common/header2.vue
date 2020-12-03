@@ -161,7 +161,9 @@
         
         this.$router.push('/ClassShowTen')
       },
-      gotoOnline() {},
+      gotoOnline() {
+        this.$router.push('/OnlineTeach')
+      },
       gotoPlat() {},
       gotoCompetition: function () {
         // if (this.flag_state === true) {

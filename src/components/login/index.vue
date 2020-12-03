@@ -357,6 +357,7 @@ export default {
           if (res.data.code === 10000) {
             this.$message.success('登录成功！')
             localStorage.setItem('flag_class', '已登录')
+            localStorage.setItem('userId', res.data.user.id)
             localStorage.setItem('role', res.data.user.role)
             localStorage.setItem('name', res.data.user.username)
             localStorage.setItem('schoolname', res.data.user.schoolname)
