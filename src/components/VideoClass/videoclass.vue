@@ -282,6 +282,7 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       playerOptions: {
+        teachPlanId: '',
         // 播放速度
         playbackRates: [0.5, 1, 1.5, 2],
         // 如果true,浏览器准备好时开始回放。
@@ -480,7 +481,7 @@ export default {
       return url
     },
     openVideo (item, index) {
-      console.log(item)
+      console.log("打开的视频是:",item)
       if (item.ptype === '1') {
         this.isactive = item.id
       }
@@ -492,6 +493,7 @@ export default {
           if (res.data === 1) {
             this.playerOptions.notSupportedMessage = '暂未开播'
             this.playerOptions.sources[0].src = ''
+            // this.teachPlanId = item.id
           } else if (res.data === 2) {
             this.oldTime = 0
             this.newTime = 0
@@ -499,16 +501,18 @@ export default {
             this.isMousedown = false
             this.playerOptions.sources[0].src = item.mediaUrl
             this.playerOptions.playbackRates = []
+            // this.teachPlanId = item.id
             // console.log(this.playerOptions.sources[0].src)
             this.videoRules()
           } else if (res.data === 3) {
             this.playerOptions.sources[0].src = item.mediaUrl
             this.playerOptions.playbackRates = [0.5, 1, 1.5, 2]
+            this.teachPlanId = item.id
             // console.log(this.playerOptions.sources[0].src)
           }
         })
         this.class_title_1 = item.pname
-        console.log('vegggr' + this.playerOptions.sources[0].src)
+        console.log('vegggr:::' + this.playerOptions.sources[0].src)
         setTimeout(() => {
           this.onPlay()
         }, 200)
@@ -561,13 +565,28 @@ export default {
     },
     onPlayerPause (player) {
       // player.pause()
-      console.log('player play!', player)
+      console.log('player Pause!', player)
+      console.log("currentPlanId:", this.teachPlanId)
+      
     },
     onPlayerPlay (player) {
       console.log('player play!', player)
+      console.log("currentPlanId:", this.teachPlanId)
     },
     onPlayerEnded (player) {
       console.log('视频播放完成')
+      console.log("player", player)
+      this.updatePlayerStatus()
+    },
+    updatePlayerStatus() {
+      var url = `http://58.119.112.14:11020/cms//userAttendClass/add?teachPlanId=${this.teachPlanId}&userId=${localStorage.getItem('userId')}`
+      this.$axios.post(url).then((res) => {
+        if (res.data.code === 0) {
+          
+        }else {
+          
+        }
+      })
     },
     onPlayerTimeupdate (player) {
       // console.log('fefefef')

@@ -381,7 +381,7 @@
           } else {
             this.navBarFixed = false
           }
-          console.log(scrollTop)
+          //console.log(scrollTop)
         },
       }
     }

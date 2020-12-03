@@ -57,7 +57,7 @@
     <div class="courseContainer courseNav">
       <div class="coursesList" v-for="(item, index) in courseList">
       <!-- <div class="coursesList"> -->
-         <div class="course-card-container">
+         <div class="course-card-container" @click="jumpPage(item.id)">
            <div class="course-card-top">
              <img class="course-banner" :src="getImgUrl(item.pic)"/>
            </div>
@@ -72,7 +72,6 @@
                  </span>
                  <span class="coursePrice">¥{{item.price}}</span>
                </div>
-               
              </div>
            </div>
         </div>
@@ -316,6 +315,15 @@
         } else {
           return '困难'
         }
+      },
+      jumpPage(id) {
+        console.log("id", id)
+        this.$router.push({
+          path: '/CourseInfo',
+          query: {
+            courseId: id
+          }
+        })
       }
     }
   }

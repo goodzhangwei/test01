@@ -646,7 +646,7 @@ export default {
       } else {
         this.navBarFixed = false
       }
-      console.log(scrollTop)
+      //console.log(scrollTop)
     },
     itemClick(item, index) {
       if (index === 0) {

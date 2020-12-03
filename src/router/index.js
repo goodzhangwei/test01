@@ -394,6 +394,17 @@ export default new Router({
       path: '/AllCourses',
       name: 'AllCourses',
       component: resolve => require(['@/components/allCourses/index'],resolve)
-    }
+    },
+    {
+      path: '/CourseInfo',
+      name: 'CourseInfo',
+      component: resolve => require(['@/components/courseInfo/index'],resolve)
+    },
+    {
+      path: '/OnlineTeach',
+      name: 'OnlineTeach',
+      component: resolve => require(['@/components/onlineTeach/index'],resolve)
+    },
+
   ]
 })
