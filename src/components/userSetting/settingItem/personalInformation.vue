@@ -350,7 +350,7 @@ export default {
         if (valid) {
           var url = 'https://zhongkeruitong.top/towerImg/cms/user/updateUserInfo?username=' + this.username + '&nickname=' + this.form.nickname + '&sex=' + this.form.sex + '&education=' + this.form.education + '&profession=' + this.form.profession + '&province='+ this.form.province + '&city=' + this.form.city + '&district=' + this.form.district + '&mail=' + this.form.mail
           this.$axios.post(url).then((res) => {
-            if (res.data.code === 10000) {
+            if (res.data.code === 200) {
               this.$message.success('修改成功！')
               this.dialogVisible = false
               this.getInfo()
@@ -382,7 +382,7 @@ export default {
     resetPhone() {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/resetPhone?phone=' + this.phoneNum + '&username=' + this.username
       this.$axios.post(url).then((res) => {
-        if (res.data.code === 10000) {
+        if (res.data.code === 200) {
           this.$message.success('手机号绑定成功')
           this.dialogVisible2 = false
           this.reload()

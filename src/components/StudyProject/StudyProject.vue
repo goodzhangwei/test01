@@ -278,7 +278,7 @@ import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
         var params = JSON.stringify(this.submitStudyInfo)
         this.$axios.post(url, params, {headers: {'Content-Type': 'application/json'}}).then((res) => {
           console.log("QQQ", res.data)
-          if(res.data.code === 10000) {
+          if(res.data.code === 200) {
             this.showModel = false
             this.resetForm()
             this.$message({
