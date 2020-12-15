@@ -336,7 +336,7 @@ export default {
           } else {
             var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/register?username=' + this.ruleForm2.username + '&password=' + this.ruleForm2.password1 + '&schoolname=' + this.ruleForm2.class_name + '&role=' + this.radio+ '&phone=' + this.phoneNum
             this.$axios.post(url).then((res) => {
-              if (res.data.code === 10000) {
+              if (res.data.code === 200) {
                 this.$message.success('注册成功！')
                 this.tagsShow = '登录'
                 this.tagsShow2 = '1'
@@ -354,7 +354,9 @@ export default {
       } else {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/login?username=' + this.ruleForm1.username + '&password=' + this.ruleForm1.password
         this.$axios.post(url).then((res) => {
-          if (res.data.code === 10000) {
+          
+          if (res.data.code === 200) {
+            
             this.$message.success('登录成功！')
             localStorage.setItem('flag_class', '已登录')
             localStorage.setItem('userId', res.data.user.id)
@@ -370,6 +372,7 @@ export default {
             //   }
             // })
           } else {
+            
             this.$message.error(res.data.message)
           }
         })
