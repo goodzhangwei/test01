@@ -405,7 +405,7 @@
       },
       getClassList() {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff808081728e1033017292929a790025/' + localStorage.getItem('name')
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.list = res.data.teachplanNode.children
           this.Paystatus = res.data.status
         })

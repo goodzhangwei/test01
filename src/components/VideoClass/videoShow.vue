@@ -92,7 +92,7 @@
       methods: {
           getList() {
             var url = 'https://zhongkeruitong.top/towerImg/cms/competition/countVideoPeople'
-            this.$axios.get(url).then((res) => {
+            this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
              this.a1 = res.data[0]
               this.a2 = res.data[1]
               this.a3 = res.data[2]

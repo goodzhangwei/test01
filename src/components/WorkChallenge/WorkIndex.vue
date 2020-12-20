@@ -398,8 +398,8 @@
           this.playerOptions['sources'][0]['src'] = 'https://player.vimeo.com/external/188421287.sd.mp4?s=bdbf8a61c40502211971571fef384f52fe79dbbe&profile_id=164';
         },
         getInfo() {
-          var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-          this.$axios.get(url).then((res) => {
+          var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
             this.infoState = res.data.infoState
           })

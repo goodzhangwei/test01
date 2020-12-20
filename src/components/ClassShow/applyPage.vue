@@ -335,7 +335,7 @@
             if (valid) {
               this.form.phone = this.$route.query.phoneNum
               var url = 'https://www.zhongkeruitong.top/towerImg/cms/sign/addSignUp'
-              this.$axios.post(url, this.form).then((res) => {
+              this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}, this.form).then((res) => {
                 if (res.data.code === 0) {
                   this.$router.push('/applySuccess')
                 } else {

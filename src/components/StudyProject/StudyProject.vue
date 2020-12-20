@@ -250,8 +250,8 @@ import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
         //console.log(scrollTop)
       },
       getInfo() {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
           this.infoState = res.data.infoState
         })
@@ -276,7 +276,7 @@ import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
         //var url = `http://58.119.112.14:11020/cms/ScienceStudy/ScienceStudy/add?addr=${this.submitStudyInfo.addr}&grade=${this.submitStudyInfo.grade}&name=${this.submitStudyInfo.name}&school=${this.submitStudyInfo.school}&tel=${this.submitStudyInfo.tel}`
         var url = "http://58.119.112.14:11020/cms/ScienceStudy/ScienceStudy/add"
         var params = JSON.stringify(this.submitStudyInfo)
-        this.$axios.post(url, params, {headers: {'Content-Type': 'application/json'}}).then((res) => {
+        this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}, params, {headers: {'Content-Type': 'application/json'}}).then((res) => {
           console.log("QQQ", res.data)
           if(res.data.code === 200) {
             this.showModel = false

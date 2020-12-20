@@ -64,7 +64,7 @@ export default {
     },
     getList () {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/list/1/100'
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         this.list = res.data.queryResult.list
       })
     },

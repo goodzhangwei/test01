@@ -90,7 +90,7 @@
         getClassList() {
           this.classId = this.$route.query.class_id
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.classId + '/' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             this.list = res.data
             this.imageurl = res.data.coursePic.pic
             if (res.data.status === 0) {
@@ -100,7 +100,7 @@
         },
         gotoPay() {
           var url = 'https://zhongkeruitong.top/towerImg/cms/order/addPayOrder?username=' + localStorage.getItem('name') + '&video_id=' +this.classId
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             if (res.data.code === 0) {
               this.$router.push({
                 path: '/PayCenter',

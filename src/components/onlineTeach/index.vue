@@ -82,7 +82,7 @@
     </div>
     <div class="buttons">
          <el-button type="success" @click="gotoTiyan">立即体验</el-button>
-          <el-button type="danger" @click="applyShengji">申请升级权限</el-button>
+          <el-button type="danger" @click="applyShengji">申请使用权限</el-button>
     </div>
    
 
@@ -270,8 +270,8 @@ import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
         //console.log(scrollTop)
       },
       getInfo() {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
           this.infoState = res.data.infoState
         })
@@ -295,7 +295,11 @@ import { regionData, CodeToText, TextToCode } from 'element-china-area-data'
         //var url = "http://58.119.112.14:11020/cms/ScienceStudy/ScienceStudy/add"
         var url = "http://58.119.112.14:11020/cms/chen/auditing/add"
         var params = JSON.stringify(this.submitStudyInfo)
-        this.$axios.post(url, params, {headers: {'Content-Type': 'application/json'}}).then((res) => {
+        this.$axios.post(url, params, {
+          headers:{
+            Authorization:'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+            }} ).then((res) => {
           console.log("QQQ", res.data)
           if(res.data.code === 200) {
             this.showModel = false

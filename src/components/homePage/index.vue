@@ -729,9 +729,9 @@ export default {
       }
     },
     getList () {
-      // var url = 'http://58.119.112.14:11020/cms/user/coursePub/list/1/8'
+      
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/coursePub/mylist/2/10?username=' + this.username
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         this.list = res.data.queryResult.list.slice(2, 6)
       })
     },
@@ -991,7 +991,7 @@ export default {
     },
     getLive() {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/getVideos?username=' + this.username
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.queryResult.total === 0) {
           this.LiveList = []
         } else {
@@ -1005,7 +1005,7 @@ export default {
         this.$router.push('/login')
       } else {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pullVideo?username=' + item.username
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           if (res.data.code === undefined) {
             this.$router.push({
               query: { username: item.username},
@@ -1020,16 +1020,26 @@ export default {
     },
     getInfo() {
       if (this.flag_state === false) {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}},{headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
-          localStorage.setItem('headimg', res.data.userInfo.headimg)
-          localStorage.setItem('city', res.data.userInfo.city)
-          this.infoState = res.data.infoState
-          if (res.data.infoState === false) {
-            setTimeout(() => {
-              this.openInfo()
-            }, 1000)
+          // localStorage.setItem('headimg', res.data.userInfo.headimg)
+          // localStorage.setItem('city', res.data.userInfo.city)
+          // this.infoState = res.data.infoState
+          if(localStorage.getItem('userId')) {
+            this.infoState = false
+          } else {
+            this.infoState = true
+          }
+          // console.log("sss", localStorage.getItem("userId"))
+          // console.log("@!@!@!@",this.infoState)
+          if (this.infoState === true) {
+            this.openInfo()
+            // console.log("@!@!@!@",this.infoState)
+            // setTimeout(() => {
+            //   this.openInfo()
+            // }, 1000)
           }
         })
       }

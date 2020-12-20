@@ -212,7 +212,7 @@
       methods: {
           getInfo() {
             var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findAllProject?username=' + this.username + '&secproject=' + this.secproject + '&majorproject=' + this.majorproject + '&maingroup=' + this.maingroup
-            this.$axios.get(url).then((res) => {
+            this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
               this.InfoList = res.data.competitionList
             })
           },
@@ -230,7 +230,7 @@
         },
         getInfoList() {
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findAllProject?username=' + this.username + '&secproject=python比赛'
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             // this.InfoList = res.data.competitionList
           })
         },
@@ -444,7 +444,7 @@
         },
         getChartsList() {
             var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/countProjectGroupBy?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             var str = []
             str = res.data.split(',')
             console.log(str)

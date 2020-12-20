@@ -443,8 +443,8 @@
         //console.log(scrollTop)
       },
       getInfo() {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
           this.infoState = res.data.infoState
         })
@@ -477,7 +477,7 @@
          
           var userId = localStorage.getItem('userId')
           var url = `http://58.119.112.14:11020/cms/chen/course/add?userId=${userId}&courseId=${this.courseId}&uuid=${value}`
-          this.$axios.post(url).then((res) => {
+          this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             console.log("返回的res",res)
             if(res.data.code === 200) {
               this.$message({
@@ -505,7 +505,7 @@
         //var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff80808172a7363b0172a8765d35017c/' + localStorage.getItem('name')
         var url = `http://58.119.112.14:11020/cms/course/courseview/${this.courseId}/${localStorage.getItem('name')}`
        // var url = `http://58.119.112.14:11020/cms/course/getTeachPlanFlag?courseid=${this.courseId}&userid=${localStorage.getItem('userId')}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.list = res.data.teachplanNode.children
           this.Paystatus = res.data.status
         })
@@ -514,7 +514,7 @@
 
         var userId = localStorage.getItem('userId')
         var url = `http://58.119.112.14:11020/cms/chen/course/list?userId=${userId}&courseId=${this.courseId}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           if(res.data.rows.length === 0) {
             this.enrollStatus = false
           } else {
@@ -524,7 +524,7 @@
       },
       getTeacherInfo() {
         var url = `http://58.119.112.14:11020/cms/course/teacher/get/${this.courseId}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           
           this.teacherInfo.src = res.data.src
           this.teacherInfo.teachername = res.data.teachername
@@ -548,7 +548,7 @@
       },
       getCourseInfo(id) {
         var url = `http://58.119.112.14:11020/cms/course/coursebase/get/${id}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
            console.log("课程信息,",res.data)
            this.courseInfo = res.data
           

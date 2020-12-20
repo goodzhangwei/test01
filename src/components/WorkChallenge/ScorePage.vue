@@ -317,7 +317,7 @@
             } else {
               this.form.compititionId = this.infoObj.id
               var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/evaluateCompetition'
-              this.$axios.post(url, this.form).then((res) => {
+              this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}, this.form).then((res) => {
                 if (res.data.code === 0) {
                   this.$confirm('提交成功', '提示信息', {
                     confirmButtonText: '继续评分',
@@ -355,7 +355,7 @@
               this.form2.compititionId = this.infoObj.id
               this.form2.peopleScore = this.form.peopleScore
               var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/evaluateCompetition'
-              this.$axios.post(url, this.form2).then((res) => {
+              this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}, this.form2).then((res) => {
                 if (res.data.code === 0) {
                   this.$confirm('提交成功', '提示信息', {
                     confirmButtonText: '继续评分',
@@ -393,7 +393,7 @@
               this.form3.compititionId = this.infoObj.id
               this.form3.peopleScore = this.form.peopleScore
               var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/evaluateCompetition'
-              this.$axios.post(url, this.form3).then((res) => {
+              this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}, this.form3).then((res) => {
                 if (res.data.code === 0) {
                   this.$confirm('提交成功', '提示信息', {
                     confirmButtonText: '继续评分',
@@ -417,7 +417,7 @@
         },
         getInfo() {
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/getEvaluate?compitition_id=' + this.infoObj.id
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             this.codeEve = res.data.code
             if (res.data.code === 0) {
               this.form.basic = res.data.data.basic

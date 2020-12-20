@@ -11,8 +11,9 @@
             <div class="uploads">
               <el-upload
                 :action="updateUrl"
+                :headers="uploadHeader"
                 list-type="picture-card"
-                name="filename"
+                name="avatarfile"
                 :data="updateobj"
                 class="upload-demo"
                 :on-preview="handlePictureCardPreview"
@@ -94,7 +95,7 @@
 </template>
 
 <script>
-  import Header from '@/components/common/header3'
+  import Header from '@/components/common/header'
   import Footer from '@/components/common/footer'
 import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
@@ -108,7 +109,8 @@ export default {
       dialogVisible2: false,
       role: localStorage.getItem('role'),
       headimg: '',
-      updateUrl: 'https://zhongkeruitong.top/towerImg/cms/user/resetHeadImg',
+      updateUrl: 'http://58.119.112.14:11020/cms/system/user/profile/avatar',
+      uploadHeader: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
       name: localStorage.getItem('name'),
       updateobj: {
         username: localStorage.getItem('name')
@@ -150,9 +152,11 @@ export default {
       this.dialogVisible = true
     },
     getInfo() {
-      var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.name
-      this.$axios.get(url).then((res) => {
-        this.headimg = res.data.userInfo.headimg
+      // var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+      var url = `http://58.119.112.14:11020/cms/system/user/profile`
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
+        
+        this.headimg = `http://58.119.112.14:11013/cms-manager${res.data.data.avatar}`
       })
     },
     handleRemove(file, fileList) {
@@ -163,11 +167,20 @@ export default {
       this.dialogVisible2 = true;
     },
     handleAvatarSuccess(res, file) {
-      this.$message.success('头像上传成功！')
-      this.headimg = res.userInfo.headimg
-      localStorage.setItem('headimg', res.userInfo.headimg)
-      this.dialogVisible = false
-      this.reload()
+      if(res.code === 200) {
+        console.log("SSSSSS", res)
+        this.$message.success('头像上传成功！')
+        // var str = res.imgUrl
+        // str.slice(0,5)
+        this.headimg = `http://58.119.112.14:11013/cms-manager${res.imgUrl}`
+        localStorage.setItem('headimg', this.headimg)
+        this.dialogVisible = false
+        this.reload()
+      } else {
+        this.$message.error('头像上传失败，请重新上传！')
+        this.dialogVisible = false
+      }
+      
     },
     closeDia() {
       this.dialogVisible = false
@@ -181,6 +194,7 @@ export default {
   .contaier {
     width: 1500px;
     margin: 0 auto;
+    margin-top: 120px; 
   }
   a {
     color: #050505;

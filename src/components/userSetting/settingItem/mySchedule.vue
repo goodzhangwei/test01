@@ -36,7 +36,7 @@ export default {
     
     getList () {
         var url =  `http://58.119.112.14:11020/cms/course/currWeekCourse?userId=${this.userId}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             console.log(res.data.data)
             var arr = res.data.data
             // var arrTmp = []

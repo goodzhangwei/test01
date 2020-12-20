@@ -236,7 +236,7 @@
           this.$refs[formName].validate((valid) => {
             if (valid) {
              var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/create?username=' + localStorage.getItem('name') + '&groupname=' + this.form.groupname + '&majorname=' + this.form.majorname + '&secproject=' + this.form.secproject + '&group=' + this.form.group + '&projectname=' + this.form.projectname
-              this.$axios.get(url).then((res) => {
+              this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
                 // if (res.data.code === 10004) {
                 //   this.$message.warning('你已经提交过了，不能重复提交')
                 // } else {
@@ -302,7 +302,7 @@
                 // console.log(JSON.parse(info.response).key)
                 var str_url = 'http://qiniu.zhongkeruitong.top/' + str.key
                 var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/savelink?username=' + localStorage.getItem('name') + '&projectlink=' + str_url
-                this.$axios.get(url).then((res) => {
+                this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
                   console.log('文件上传完毕')
                   this.$message.success('作品上传成功！')
                   // this.next()
@@ -321,7 +321,7 @@
         },
         getInfo() {
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findbyusername?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             this.projectname = res.data.projectname
             this.groupname = res.data.groupname
             this.majorname =res.data.majorproject
@@ -336,7 +336,7 @@
         },
         getInfoTwo() {
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findbyusername?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             this.form.projectname = res.data.projectname
             this.form.groupname = res.data.groupname
             this.form.majorname =res.data.majorproject

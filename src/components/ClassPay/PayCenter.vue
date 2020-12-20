@@ -126,7 +126,7 @@
         this.classId = this.$route.query.class_id
         this.outTradeNo = this.$route.query.outTradeNo
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.classId + '/' + localStorage.getItem('name')
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.list = res.data
           this.imageurl = res.data.coursePic.pic
           // this.countDown(res.data.endTime)
@@ -147,7 +147,7 @@
       pay_submit() {
         if (this.showPay === '微信') {
           var url = 'https://zhongkeruitong.top/towerImg/cms/order/weiXinPay?out_trade_no=' + this.outTradeNo
-          // this.$axios.get(url).then((res) => {
+          // this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           //   console.log(res)
           // })
           this.Paycode = url
@@ -168,7 +168,7 @@
       },
       checkPay() {
         var url = 'https://zhongkeruitong.top/towerImg/cms/order/orderPayState?out_trade_no=' + this.outTradeNo
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.checkCode = res.data.code
           console.log(res.data.msg)
           console.log(this.checkCode)

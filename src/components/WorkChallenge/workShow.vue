@@ -67,7 +67,7 @@
       methods: {
         getInfo() {
           var url = 'https://www.zhongkeruitong.top/towerImg/cms/competition/findbyusername?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             this.projectname = res.data.projectname
             this.groupname = res.data.groupname
             this.majorname =res.data.majorproject

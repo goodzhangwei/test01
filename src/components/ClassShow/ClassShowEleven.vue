@@ -593,13 +593,13 @@
       },
       getTeacherState() {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/sign/getSignUp?phone=' + this.phoneNum
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.stateCode = res.data.code
         })
       },
       getPhone() {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/ifPhone?username='+localStorage.getItem('name')
-        this.$axios.post(url).then((res) => {
+        this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           if (res.data.code === 10009) {
             // this.$confirm('请尽快绑定手机号', '提示信息', {
             //   confirmButtonText: '确定',
@@ -618,7 +618,7 @@
       },
       getClassList() {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/ff808081732c7ece0173413b3e1e0069/' + localStorage.getItem('name')
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.list = res.data.teachplanNode.children
           this.Paystatus = res.data.status
         })
@@ -638,8 +638,8 @@
       },
       getInfo() {
         if (this.flag_state === false) {
-          var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
             // localStorage.setItem('headimg', res.data.userInfo.headimg)
             // localStorage.setItem('city', res.data.userInfo.city)
