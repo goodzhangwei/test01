@@ -85,15 +85,7 @@ export default {
     }
     // this.name = localStorage.getItem('name')
   },
-  // computed: {
-  //   name() {
-  //     if (localStorage.getItem('name') === 'admin') {
-  //       return '教师用户'
-  //     } else {
-  //       return localStorage.getItem('name')
-  //     }
-  //   }
-  // },
+ 
   mounted() {
     this.getInfo()
   },
@@ -147,7 +139,7 @@ export default {
     },
     gotolive () {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pushVideo?username=' + this.username
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
        this.LiveUrl = res.data
         this.dialogVisible = true
       })
@@ -184,12 +176,13 @@ export default {
       this.$message.info('已退出')
     },
     getInfo() {
-      var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-      this.$axios.get(url).then((res) => {
-        // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
-        localStorage.setItem('headimg', res.data.userInfo.headimg)
-        this.headerImg = res.data.userInfo.headimg
-        this.infoState = res.data.infoState
+     // var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+      var url = `http://58.119.112.14:11020/cms/system/user/profile`
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
+        localStorage.setItem('headimg', res.data.avatar)
+        this.headerImg = `http://58.119.112.14:11013/cms-manager${res.data.data.avatar}`
+         
+        this.infoState = true
 
       })
     },

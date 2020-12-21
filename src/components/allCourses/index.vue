@@ -212,13 +212,13 @@
       },
       getKindList(id) {
         var url = `http://58.119.112.14:11020/cms/category/listThree?id=${id}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.stList = res.data.data
         })
       },
       getClassByType(type, name) {
         var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10&${type}=${name}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           console.log("bbb", res.data)
           this.courseList = res.data.data.list
           this.totalList = res.data.data.total
@@ -237,15 +237,15 @@
        // console.log(scrollTop)
       },
       getInfo() {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.infoState = res.data.infoState
         })
       },
       
       getCategory() {
         var url = 'http://58.119.112.14:11020/cms/category/listTwo'
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.mtList = res.data.data
           console.log("SelectIndex5", this.selectIndex5)
           var item = this.mtList[this.selectIndex5]
@@ -256,14 +256,14 @@
       getKinds() {
        // console.log("SelectIndex5", this.selectIndex5)
         var url = 'http://58.119.112.14:11020/cms/category/listThree'
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.stList = res.data.data
         })
       },
       
       getAllCourses() {
         var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           
           var arr = res.data.data.list
            
@@ -277,7 +277,7 @@
       searchCourse() {
         
         var url = `http://58.119.112.14:11020/cms/course/coursebase/search?page=${this.page}&size=10&name=${this.interestingCourse}`
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.courseList = res.data.data.list
           this.totalList = res.data.data.total
         })
@@ -349,7 +349,7 @@
     transform: translateY(-50%);
   }
   .courseNav {
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     
    

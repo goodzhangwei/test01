@@ -240,7 +240,7 @@
         var username = ''
         username = this.$route.query.username
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pullVideo?username=' + username
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           if (res.data.code === undefined) {
             this.initLive(res.data)
             this.showvideo = true

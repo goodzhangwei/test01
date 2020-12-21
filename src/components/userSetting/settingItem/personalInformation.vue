@@ -5,51 +5,48 @@
         <div class="information_title">
           <div class="information_one">
             <span class="information_one_span">个人信息</span>
-            <div class="icon-edit" @click="edit_info">
+            <!-- <div class="icon-edit" @click="edit_info">
               <i class="iconfont ymq-iconbianjisekuai icon-i"></i>
               <span class="style_edit">编辑</span>
-            </div>
+            </div> -->
           </div>
         </div>
         <el-divider></el-divider>
         <div class="information_content">
           <div class="information_content_div">
             <div class="title-text">
-              手机
+              姓名
             </div>
             <div class="title-text2">
-              {{gettext(phoneNum)}}
-              <el-button type="text" class="text-button" @click="showDis" v-if="phoneNum===  ''">绑定手机号</el-button>
-              <el-button type="text" class="text-button" @click="showDis" v-else>修改</el-button>
-              <!--<div class="clearfloat"></div>-->
+              {{gettext(form.username)}}
             </div>
             <div class="clearfloat"></div>
           </div>
           <div class="information_content_div">
             <div class="title-text">
-              昵称
+              手机号
             </div>
             <div class="title-text2">
-             {{gettext(form.nickname)}}
+             {{gettext(form.phonenumber)}}
             </div>
           </div>
           <div class="information_content_div">
             <div class="title-text">
-              职位
+              邮箱
             </div>
             <div class="title-text2">
-              {{gettext(form.profession)}}
+              {{gettext(form.email)}}
             </div>
           </div>
           <div class="information_content_div">
             <div class="title-text">
-              学历
+              学校
             </div>
             <div class="title-text2">
-              {{gettext(form.education)}}
+              {{gettext(form.remark)}}
             </div>
           </div>
-          <div class="information_content_div">
+          <!-- <div class="information_content_div">
             <div class="title-text">
               城市
             </div>
@@ -80,7 +77,7 @@
             <div class="title-text2">
               {{gettext(form.mail)}}
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -131,7 +128,7 @@
         <el-button type="primary" @click="onSubmit_info('ruleForm')">保 存</el-button>
       </span>
     </el-dialog>
-    <el-dialog
+    <!-- <el-dialog
       title="绑定手机号"
       :visible.sync="dialogVisible2"
       width="35%">
@@ -156,11 +153,8 @@
           </div>
         </div>
       </div>
-      <!--<span slot="footer" class="dialog-footer">-->
-        <!--<el-button @click="dialogVisible2 = false">取 消</el-button>-->
-        <!--<el-button type="primary" @click="onSubmit_info('ruleForm')">确 定</el-button>-->
-      <!--</span>-->
-    </el-dialog>
+      
+    </el-dialog> -->
     <!--<div class="distpickerss">-->
      <!---->
     <!--</div>-->
@@ -272,22 +266,17 @@ export default {
   },
   mounted() {
     this.getInfo()
-    this.getPhone()
+    
   },
   methods: {
     getInfo() {
-      var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-      this.$axios.get(url).then((res) => {
-        this.form.username = res.data.userInfo.username
-        this.form.nickname = res.data.userInfo.nickname
-        this.form.sex = res.data.userInfo.sex
-        this.form.education = res.data.userInfo.education
-        this.form.profession = res.data.userInfo.profession
-        this.form.province = res.data.userInfo.province
-        this.form.city = res.data.userInfo.city
-        localStorage.setItem('city', res.data.userInfo.city)
-        this.form.district = res.data.userInfo.district
-        this.form.mail = res.data.userInfo.mail
+      var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
+        this.form.username = res.data.data.userName
+        this.form.email = res.data.data.email
+        this.form.remark = res.data.data.remark
+        this.form.phonenumber = res.data.data.phonenumber
+        this.form.userId = res.data.data.userId
       })
     },
     showDis() {
@@ -296,7 +285,7 @@ export default {
     getCodes() {
       if (this.phoneNum !== '') {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/getCode?phone='+this.phoneNum
-        this.$axios.get(url).then((res)=> {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res)=> {
           this.timeCode = res.data.data.time
           this.strCode = res.data.data.str
         })
@@ -312,23 +301,7 @@ export default {
         }, 1000)
       }
     },
-    getPhone() {
-      var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/ifPhone?username='+this.username
-      this.$axios.post(url).then((res) => {
-        if (res.data.code === 10009) {
-          this.$confirm('请尽快绑定手机号', '提示信息', {
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-          }).then(() => {
-            // this.$router.push('/userSetting/personalInformation')
-          }).catch(() => {
-          })
-        } else {
-          this.phoneNum = res.data.user.phone
-        }
-      })
-    },
+    
     gettext(item) {
       if (item === null) {
         return '未设置'
@@ -349,7 +322,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           var url = 'https://zhongkeruitong.top/towerImg/cms/user/updateUserInfo?username=' + this.username + '&nickname=' + this.form.nickname + '&sex=' + this.form.sex + '&education=' + this.form.education + '&profession=' + this.form.profession + '&province='+ this.form.province + '&city=' + this.form.city + '&district=' + this.form.district + '&mail=' + this.form.mail
-          this.$axios.post(url).then((res) => {
+          this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             if (res.data.code === 200) {
               this.$message.success('修改成功！')
               this.dialogVisible = false
@@ -381,7 +354,7 @@ export default {
     },
     resetPhone() {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/resetPhone?phone=' + this.phoneNum + '&username=' + this.username
-      this.$axios.post(url).then((res) => {
+      this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.code === 200) {
           this.$message.success('手机号绑定成功')
           this.dialogVisible2 = false

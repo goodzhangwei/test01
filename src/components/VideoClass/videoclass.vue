@@ -445,7 +445,7 @@ export default {
       var list = []
       this.class_id = this.$route.query.class_id
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/courseview/' + this.class_id + '/' + localStorage.getItem('name')
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         this.list = res.data.teachplanNode.children
         this.teachPlanId = res.data.teachplanNode.children[0].children[0].id
         this.getStatue()
@@ -465,7 +465,7 @@ export default {
     },
     getStatue () {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/findCourseTeachplan?teachPlanId=' + this.teachPlanId + '&username=' + localStorage.getItem('name')
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         this.videoState = res.data
         if (res.data === 1) {
           this.playerOptions.notSupportedMessage = '暂未开播'
@@ -488,7 +488,7 @@ export default {
       this.TimeList = []
       if (item.ptype === '1') {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/course/findCourseTeachplan?teachPlanId=' + item.id+ '&username=' + localStorage.getItem('name')
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.videoState = res.data
           if (res.data === 1) {
             this.playerOptions.notSupportedMessage = '暂未开播'
@@ -580,7 +580,7 @@ export default {
     },
     updatePlayerStatus() {
       var url = `http://58.119.112.14:11020/cms//userAttendClass/add?teachPlanId=${this.teachPlanId}&userId=${localStorage.getItem('userId')}`
-      this.$axios.post(url).then((res) => {
+      this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.code === 0) {
           
         }else {
@@ -692,13 +692,13 @@ export default {
     getContent() {
       this.courseIdFirst = this.$route.query.class_id
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/findList?courseId=' + this.$route.query.class_id
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         this.content_list = res.data.queryResult.list
       })
     },
     submit_content() {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicTake?courseId=' + this.courseIdFirst + '&username=' + this.username + '&info=' + this.textarea
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')
           this.textarea = ''
@@ -708,7 +708,7 @@ export default {
     },
     submit_reply(item) {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' + item.takeid
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')
           this.textarea2 = ''
@@ -720,7 +720,7 @@ export default {
     },
     submit_reply2(item, takeid) {
       var url = 'https://www.zhongkeruitong.top/towerImg/cms/take/publicAsk?courseId=' + this.courseIdFirst + '&username=' + this.username + '&ask=' + this.textarea2 + '&askuser=' + item.username + '&takeid=' +  takeid
-      this.$axios.get(url).then((res) => {
+      this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
         if (res.data.success === true) {
           this.$message.success('发表成功！')
           this.textarea2 = ''

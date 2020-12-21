@@ -38,12 +38,12 @@
               <ul class="nav navbar-nav ">
                 <li  @click="gotoHomepage"><a>首页</a></li>
                 <li @click="gotoAllclasses"><a>全部课程</a></li>
-                <li @click="gotoAllclasses"><a>在线课堂</a></li>
+                <li @click="gotoWork"><a>在线课堂</a></li>
                 <li @click="gotoOnline"><a>在线教学</a></li>
                 <li @click="gotoStudy"><a>科技研学</a></li>
                 <!-- <li @click="gotoTeacher"><a>师资培训</a></li> -->
                 
-                <li @click="gotoPlat"><a>教学资源平台</a></li>
+                <li @click="gotoPlat"><a>资源云平台</a></li>
                 <li @click="gotoCompetition"><a>比赛服务</a></li>
                 <!--<li><a>关于我们</a></li>-->
                 <!--<li class="dropdown">-->
@@ -122,21 +122,6 @@
         console.log('我要跳转界面了')
       },
       gotoAllclasses: function () {
-        if (this.flag_state === true) {
-          alert('请先登录！')
-          this.$router.push('/login')
-        } else {
-          // if (this.flagInfo === false) {
-          //   this.openInfo()
-          // } else {
-          //   this.$router.push('/userSetting/myLesson')
-          // }
-          this.$router.push('/userSetting/myLesson')
-        }
-
-
-      },
-      gotoWork () {
         // if (this.flag_state === true) {
         //   alert('请先登录！')
         //   this.$router.push('/login')
@@ -144,36 +129,65 @@
         //   // if (this.flagInfo === false) {
         //   //   this.openInfo()
         //   // } else {
-        //   //   this.$router.push('/WorkIndex')
+        //   //   this.$router.push('/userSetting/myLesson')
         //   // }
-        //   this.$router.push('/WorkIndex')
+        //   this.$router.push('/userSetting/myLesson')
         // }
-        // console.log('我要跳转界面了')
-        this.$router.push('/WorkIndex')
+        this.$router.push('/AllCourses')
+
+
+      },
+      gotoWork () {
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/WorkIndex')
+        }
+        
       },
       gotoHomepage () {
         this.$router.push('/')
       },
       gotoStudy() {
-        this.$router.push('/StudyProject')
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/StudyProject')
+        }
+      
       },
       gotoTeacher() {
         
         this.$router.push('/ClassShowTen')
       },
       gotoOnline() {
-        this.$router.push('/OnlineTeach')
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/OnlineTeach')
+        }
+        
       },
-      gotoPlat() {},
+      gotoPlat() {
+        var role  = localStorage.getItem('role')
+        if(role === 0) {
+          this.$message.warning("没有权限访问该功能，请申请升级权限!")
+        } else {
+          window.location.href = `http://58.119.112.14:11013/index.html?userId=${localStorage.getItem('userId')}`
+        }
+      },
       gotoCompetition: function () {
-        // if (this.flag_state === true) {
-        //   alert('请先登录！')
-        //   this.$router.push('/login')
-        // } else {
-        //   this.$router.push('/competition')
-        // }
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/competition')
+        }
         // console.log('我要跳转界面了')
-        this.$router.push('/competition')
+        //this.$router.push('/competition')
       },
       gotoAboutUs() {
         this.$router.push('/AboutUs')

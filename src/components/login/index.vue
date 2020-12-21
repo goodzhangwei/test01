@@ -14,7 +14,7 @@
         </ul>
       </div>
       <div class="login-forms" v-show="tagsShow === '登录'">
-        <el-input  placeholder="请输入登录手机号/用户名" class="forminput" v-model="ruleForm1.username" clearable></el-input>
+        <el-input  placeholder="请输入登录手机号" class="forminput" v-model="ruleForm1.username" clearable></el-input>
         <el-input  placeholder="密码" class="forminput" v-model="ruleForm1.password" type="password" :show-password="showpassword" @keyup.enter.native="login" clearable></el-input>
         <div class="login-button-style" @click="login">
           登录
@@ -80,6 +80,16 @@
                   </el-col>
                   <el-col :span="20">
                     <el-input  placeholder="学校" class="forminput4" v-model="ruleForm2.class_name" clearable></el-input>
+                  </el-col>
+                </el-row>
+              </el-form-item>
+              <el-form-item prop="class_name" class="form-items">
+                <el-row>
+                  <el-col :span="4">
+                    <i class="iconfont ymq-iconchengshi formicon"></i>
+                  </el-col>
+                  <el-col :span="20">
+                    <el-input  placeholder="邮箱" class="forminput4" v-model="ruleForm2.email" clearable></el-input>
                   </el-col>
                 </el-row>
               </el-form-item>
@@ -225,6 +235,14 @@ export default {
         callback()
       }, 1000)
     }
+    var checkEmail = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请填写邮箱地址'))
+      }
+      setTimeout(() => {
+        callback()
+      }, 1000)
+    }
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
@@ -263,7 +281,8 @@ export default {
         username: '',
         password1: '',
         password2: '',
-        class_name: ''
+        class_name: '',
+        email: ''
       },
       show1: true,
       rules: {
@@ -279,6 +298,11 @@ export default {
         class_name: [
           {
             validator: checkClass, trigger: 'blur'
+          }
+        ],
+        email: [
+          {
+            validator: checkEmail, trigger: 'blur'
           }
         ]
       }
@@ -303,8 +327,14 @@ export default {
       if (this.phoneNum !== '') {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/getCode?phone='+this.phoneNum
         this.$axios.get(url).then((res)=> {
-          this.timeCode = res.data.data.time
-          this.strCode = res.data.data.str
+          if(res.data.code === 0) {
+            this.timeCode = res.data.data.time
+            this.strCode = res.data.data.str
+            this.$message.success(res.data.msg)
+          } else {
+            this.$message.error(res.data.msg)
+          }
+          
         })
         this.countNum = 60
         this.showCountNum = false
@@ -334,10 +364,11 @@ export default {
           if (this.radio === '') {
             this.$message.warning('请选择需要注册的角色')
           } else {
-            var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/register?username=' + this.ruleForm2.username + '&password=' + this.ruleForm2.password1 + '&schoolname=' + this.ruleForm2.class_name + '&role=' + this.radio+ '&phone=' + this.phoneNum
+           // var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/register?username=' + this.ruleForm2.username + '&password=' + this.ruleForm2.password1 + '&schoolname=' + this.ruleForm2.class_name + '&role=' + this.radio+ '&phone=' + this.phoneNum
+            var url = `http://58.119.112.14:11020/cms/register?username=${this.ruleForm2.username}&password=${this.ruleForm2.password1}&schoolname=${this.ruleForm2.class_name}&phone=${this.phoneNum}&email=${this.ruleForm2.email}`
             this.$axios.post(url).then((res) => {
               if (res.data.code === 200) {
-                this.$message.success('注册成功！')
+                this.$message.success('注册成功！请进行登录')
                 this.tagsShow = '登录'
                 this.tagsShow2 = '1'
               } else {
@@ -352,18 +383,21 @@ export default {
       if (this.ruleForm1.username === '' || this.ruleForm1.password === '') {
         this.$message.warning('请输入用户名或密码！')
       } else {
-        var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/login?username=' + this.ruleForm1.username + '&password=' + this.ruleForm1.password
+        //var url = 'https://www.zhongkeruitong.top/towerImg/cms/user/login?username=' + this.ruleForm1.username + '&password=' + this.ruleForm1.password
+        var url = `http://58.119.112.14:11020/cms/login?username=${this.ruleForm1.username}&password=${this.ruleForm1.password}`
         this.$axios.post(url).then((res) => {
           
           if (res.data.code === 200) {
             
             this.$message.success('登录成功！')
             localStorage.setItem('flag_class', '已登录')
-            localStorage.setItem('userId', res.data.user.id)
-            localStorage.setItem('role', res.data.user.role)
-            localStorage.setItem('name', res.data.user.username)
-            localStorage.setItem('schoolname', res.data.user.schoolname)
-            localStorage.setItem('password', res.data.user.password)
+            localStorage.setItem('userId', res.data.userid)
+            localStorage.setItem('role', res.data.role)
+            localStorage.setItem('name', res.data.username)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('schoolname', this.ruleForm2.class_name)
+            localStorage.setItem('password', this.ruleForm1.password)
+            console.log("1212121")
             this.$router.push('/')
             // this.$router.push({
             //   path: '/',

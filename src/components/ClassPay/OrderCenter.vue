@@ -154,7 +154,7 @@
         },
         getALLlist() {
             var url = 'https://zhongkeruitong.top/towerImg/cms/order/getAllOrderInfo?username=' + localStorage.getItem('name')
-          this.$axios.get(url).then((res) => {
+          this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             if (res.data.code === 0) {
               this.noPay = res.data.data.noPay
               this.Payed = res.data.data.isPay
@@ -183,7 +183,7 @@
         },
         cancel_submit() {
             var url = 'https://zhongkeruitong.top/towerImg/cms/order/delPayOrder?outTradeNo=' + this.outTradeNo
-          this.$axios.post(url).then((res) => {
+          this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
             if (res.data.code === 0) {
               this.show_cancel_order = false
               document.body.style.overflow = ''

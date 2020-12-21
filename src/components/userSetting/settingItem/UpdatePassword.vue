@@ -85,7 +85,7 @@
           this.$refs[formName].validate((valid) => {
             if (valid) {
               var url = 'https://zhongkeruitong.top/towerImg/cms/user/resetPasswd?oldpassword=' + this.ruleForm.oldPassword + '&newpassword=' + this.ruleForm.pass + '&username=' + localStorage.getItem('name')
-              this.$axios.post(url).then((res) => {
+              this.$axios.post(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
                 if (res.data.code === 200) {
                   localStorage.setItem('password', res.data.user.password)
                   this.$message.success('密码修改成功！')

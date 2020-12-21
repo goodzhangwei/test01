@@ -141,7 +141,7 @@
       },
       gotolive () {
         var url = 'https://www.zhongkeruitong.top/towerImg/cms/video/pushVideo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           this.LiveUrl = res.data
           this.dialogVisible = true
         })
@@ -166,8 +166,8 @@
         this.$message.info('已退出')
       },
       getInfo() {
-        var url = 'https://zhongkeruitong.top/towerImg/cms/user/getUserInfo?username=' + this.username
-        this.$axios.get(url).then((res) => {
+        var url = `http://58.119.112.14:11020/cms/system/user/${localStorage.getItem('userId')}`
+        this.$axios.get(url, {headers:{Authorization:'Bearer ' + localStorage.getItem('token')}}).then((res) => {
           // this.$store.dispatch('changeMsg', res.data.userInfo.headimg);
           localStorage.setItem('headimg', res.data.userInfo.headimg)
           this.headerImg = res.data.userInfo.headimg
