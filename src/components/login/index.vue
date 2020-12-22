@@ -380,6 +380,7 @@ export default {
       })
     },
     login () {
+      console.log('token是',localStorage.getItem('token'))
       if (this.ruleForm1.username === '' || this.ruleForm1.password === '') {
         this.$message.warning('请输入用户名或密码！')
       } else {
@@ -397,7 +398,7 @@ export default {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('schoolname', this.ruleForm2.class_name)
             localStorage.setItem('password', this.ruleForm1.password)
-            console.log("1212121")
+            console.log("登录后的token是", localStorage.getItem('token'))
             this.$router.push('/')
             // this.$router.push({
             //   path: '/',

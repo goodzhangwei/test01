@@ -117,18 +117,13 @@ export default {
       this.$router.push('/coursestudy')
     },
     gotoAllclasses: function () {
-      // if (this.flag_state === true) {
-      //   alert('请先登录！')
-      //   this.$router.push('/login')
-      // } else {
-      //   // if (this.flagInfo === false) {
-      //   //   this.openInfo()
-      //   // } else {
-      //   //   this.$router.push('/userSetting/myLesson')
-      //   // }
-      //   this.$router.push('/AllCourses')
-      // }
-      this.$router.push('/AllCourses')
+      if (this.flag_state === true) {
+        alert('请先登录！')
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/AllCourses')
+      }
+      // this.$router.push('/AllCourses')
 
     },
     openInfo() {
