@@ -122,20 +122,13 @@
         console.log('我要跳转界面了')
       },
       gotoAllclasses: function () {
-        // if (this.flag_state === true) {
-        //   alert('请先登录！')
-        //   this.$router.push('/login')
-        // } else {
-        //   // if (this.flagInfo === false) {
-        //   //   this.openInfo()
-        //   // } else {
-        //   //   this.$router.push('/userSetting/myLesson')
-        //   // }
-        //   this.$router.push('/userSetting/myLesson')
-        // }
-        this.$router.push('/AllCourses')
-
-
+        if (this.flag_state === true) {
+          alert('请先登录！')
+          this.$router.push('/login')
+        } else {
+          this.$router.push('/AllCourses')
+        }
+        // this.$router.push('/AllCourses')
       },
       gotoWork () {
         if (this.flag_state === true) {
@@ -173,7 +166,7 @@
       },
       gotoPlat() {
         var role  = localStorage.getItem('role')
-        if(role === 0) {
+        if(role === '0') {
           this.$message.warning("没有权限访问该功能，请申请升级权限!")
         } else {
           window.location.href = `http://58.119.112.14:11013/index.html?userId=${localStorage.getItem('userId')}`
