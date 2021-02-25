@@ -30,7 +30,7 @@
     </div>
     <div class="content-tag">
       <div @click="gotopszn">
-        <span>AI系列课程123</span>
+        <span>AI系列课程123456789900</span>
       </div>
       <!-- <div @click="gotose">
         <span>Python少儿趣味编程</span>
